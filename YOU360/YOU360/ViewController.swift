@@ -2,23 +2,16 @@
 //  ViewController.swift
 //  YOU360
 //
-//  Created by Ihar Karunny on 2/16/24.
+//  Created by Ihar Karunny on 2/18/24.
 //
 
-import Cocoa
+import UIKit
 
-class ViewController: NSViewController {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
     }
 
 
