@@ -8,11 +8,32 @@
 import Foundation
 
 public final class AuthorizationService {
-    static var shared = {
+    public static var shared = {
         AuthorizationService()
     }()
     
-    var isAuthorized: Bool {
+    public var isAuthorized: Bool {
         false
+    }
+    
+    private var loginObservers: [LoginObserver] = []
+    
+    public func observeLogin(callback: @escaping ((Bool) -> Void)) -> AnyObject? {
+        let observer = LoginObserver(closure: callback)
+        loginObservers.append(observer)
+        return observer
+    }
+    
+    public func removeLogin(observer: AnyObject?) {
+        guard let observer = observer else { return }
+        loginObservers.removeAll(where: { $0 === observer })
+    }
+}
+
+private final class LoginObserver {
+    let closure: ((Bool) -> Void)
+    
+    init(closure: @escaping (Bool) -> Void) {
+        self.closure = closure
     }
 }

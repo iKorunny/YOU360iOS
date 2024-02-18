@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8032A54B2B820B7600294DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54A2B820B7600294DD7 /* AppDelegate.swift */; };
 		8032A54D2B820B7600294DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54C2B820B7600294DD7 /* SceneDelegate.swift */; };
-		8032A54F2B820B7600294DD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54E2B820B7600294DD7 /* ViewController.swift */; };
+		8032A54F2B820B7600294DD7 /* AppRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54E2B820B7600294DD7 /* AppRootViewController.swift */; };
 		8032A5522B820B7600294DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8032A5502B820B7600294DD7 /* Main.storyboard */; };
 		8032A5552B820B7600294DD7 /* YOU360.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8032A5532B820B7600294DD7 /* YOU360.xcdatamodeld */; };
 		8032A5572B820B7700294DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8032A5562B820B7700294DD7 /* Assets.xcassets */; };
@@ -27,6 +27,10 @@
 		8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; };
 		8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A5982B822D8200294DD7 /* AuthorizationService.swift */; };
+		80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */; };
+		80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */; };
+		80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */; };
+		80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +77,7 @@
 		8032A5472B820B7600294DD7 /* YOU360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YOU360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8032A54A2B820B7600294DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8032A54C2B820B7600294DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8032A54E2B820B7600294DD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8032A54E2B820B7600294DD7 /* AppRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewController.swift; sourceTree = "<group>"; };
 		8032A5512B820B7600294DD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8032A5542B820B7600294DD7 /* YOU360.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YOU360.xcdatamodel; sourceTree = "<group>"; };
 		8032A5562B820B7700294DD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +93,10 @@
 		8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUAuthorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUAuthorization.h; sourceTree = "<group>"; };
 		8032A5982B822D8200294DD7 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
+		80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartVC.swift; sourceTree = "<group>"; };
+		80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreensFactory.swift; sourceTree = "<group>"; };
+		80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +161,7 @@
 			children = (
 				8032A54A2B820B7600294DD7 /* AppDelegate.swift */,
 				8032A54C2B820B7600294DD7 /* SceneDelegate.swift */,
-				8032A54E2B820B7600294DD7 /* ViewController.swift */,
+				8032A54E2B820B7600294DD7 /* AppRootViewController.swift */,
 				8032A5502B820B7600294DD7 /* Main.storyboard */,
 				8032A5562B820B7700294DD7 /* Assets.xcassets */,
 				8032A5582B820B7700294DD7 /* LaunchScreen.storyboard */,
@@ -178,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				8032A57D2B820D8200294DD7 /* YOUUIComponents.h */,
+				80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */,
 			);
 			path = YOUUIComponents;
 			sourceTree = "<group>";
@@ -187,8 +196,19 @@
 			children = (
 				8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */,
 				8032A5982B822D8200294DD7 /* AuthorizationService.swift */,
+				80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */,
+				80A4F5692B823E6E002CC9AD /* Screens */,
 			);
 			path = YOUAuthorization;
+			sourceTree = "<group>";
+		};
+		80A4F5692B823E6E002CC9AD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */,
+				80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +335,7 @@
 					};
 					8032A57A2B820D8200294DD7 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 					8032A58C2B820E6C00294DD7 = {
 						CreatedOnToolsVersion = 15.0;
@@ -383,7 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8032A5872B820DF400294DD7 /* MainRouter.swift in Sources */,
-				8032A54F2B820B7600294DD7 /* ViewController.swift in Sources */,
+				8032A54F2B820B7600294DD7 /* AppRootViewController.swift in Sources */,
 				8032A5552B820B7600294DD7 /* YOU360.xcdatamodeld in Sources */,
 				8032A54B2B820B7600294DD7 /* AppDelegate.swift in Sources */,
 				8032A54D2B820B7600294DD7 /* SceneDelegate.swift in Sources */,
@@ -403,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +432,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */,
+				80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */,
 				8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */,
+				80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +728,7 @@
 		8032A5842B820D8200294DD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -726,6 +752,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -736,6 +763,7 @@
 		8032A5852B820D8200294DD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
