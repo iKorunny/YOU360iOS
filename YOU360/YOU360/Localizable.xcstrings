@@ -1,19 +1,36 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Test" : {
+    "ButtonCreateAccountTitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Testovoe str"
+            "value" : "Create account"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Тестовый стр"
+            "value" : "Зарегистрироваться"
+          }
+        }
+      }
+    },
+    "ButtonLoginTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вход"
           }
         }
       }

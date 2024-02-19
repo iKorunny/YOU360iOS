@@ -12,6 +12,9 @@ public enum ButtonsFactoryDefaults {
     public static let wideButtonDefaultHeight: CGFloat = 56
     public static let wideButtonDefaultCornerRadius: CGFloat = 12
     public static let wideButtonDefaultTitleFontSize: CGFloat = 16
+    public static let wideButtonDefaultIconPadding: CGFloat = 8
+    
+    public static let wideButtonDefaultHighlightedAlpha: CGFloat = 0.4
 }
 
 public enum ButtonsFactoryTitleIconAligment {
@@ -21,24 +24,51 @@ public enum ButtonsFactoryTitleIconAligment {
 
 public final class ButtonsFactory {
     
-    public func createWideButton(
+    public static func createWideButton(
         backgroundColor: UIColor = .clear,
         title: String? = nil,
         titleFont: UIFont = .systemFont(ofSize: ButtonsFactoryDefaults.wideButtonDefaultTitleFontSize),
         titleColor: UIColor? = nil,
         titleIcon: UIImage? = nil,
+        iconPadding: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultIconPadding,
         titleIconAligment: ButtonsFactoryTitleIconAligment = .left,
         height: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultHeight,
-        cornerRadius: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultCornerRadius
+        cornerRadius: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultCornerRadius,
+        target: Any? = nil,
+        action: Selector,
+        for event: UIControl.Event
     ) -> UIButton {
         let button = UIButton()
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.imagePadding = iconPadding
+        configuration.image = titleIcon
+        configuration.imageColorTransformer = UIConfigurationColorTransformer { [weak button] color in
+            if button?.state == .highlighted || button?.state == .selected {
+                return titleColor?.withAlphaComponent(ButtonsFactoryDefaults.wideButtonDefaultHighlightedAlpha) ?? .clear
+            }
+            
+            return titleColor ?? .clear
+        }
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [weak button] incoming in
+            var outgoing = incoming
+            outgoing.foregroundColor = (button?.state == .selected || button?.state == .highlighted) ? titleColor?.withAlphaComponent(ButtonsFactoryDefaults.wideButtonDefaultHighlightedAlpha) : titleColor
+            return outgoing
+        }
+        
+        switch titleIconAligment {
+        case .right:
+            configuration.imagePlacement = .trailing
+        default:
+            break
+        }
+        button.configuration = configuration
         
         button.backgroundColor = backgroundColor
         
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = titleFont
         button.setTitleColor(titleColor, for: .normal)
-        button.setImage(titleIcon, for: .normal)
         
         button.layer.masksToBounds = true
         button.layer.cornerRadius = cornerRadius
@@ -46,6 +76,8 @@ public final class ButtonsFactory {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.heightAnchor.constraint(equalToConstant: height).isActive = true
+        
+        button.addTarget(target, action: action, for: event)
         
         return button
     }
