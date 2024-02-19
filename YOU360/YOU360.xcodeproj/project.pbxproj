@@ -45,6 +45,13 @@
 		80A4F5982B836800002CC9AD /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5912B836800002CC9AD /* Manrope-Bold.ttf */; };
 		80A4F5992B836800002CC9AD /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5922B836800002CC9AD /* Manrope-Regular.ttf */; };
 		80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */; };
+		80A4F59C2B836C66002CC9AD /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5912B836800002CC9AD /* Manrope-Bold.ttf */; };
+		80A4F59D2B836C66002CC9AD /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58D2B836800002CC9AD /* Manrope-ExtraBold.ttf */; };
+		80A4F59E2B836C66002CC9AD /* Manrope-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58E2B836800002CC9AD /* Manrope-ExtraLight.ttf */; };
+		80A4F59F2B836C66002CC9AD /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5902B836800002CC9AD /* Manrope-Medium.ttf */; };
+		80A4F5A02B836C66002CC9AD /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5922B836800002CC9AD /* Manrope-Regular.ttf */; };
+		80A4F5A12B836C66002CC9AD /* Manrope-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58F2B836800002CC9AD /* Manrope-Light.ttf */; };
+		80A4F5A22B836C66002CC9AD /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,8 +492,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8032A55A2B820B7700294DD7 /* LaunchScreen.storyboard in Resources */,
+				80A4F59C2B836C66002CC9AD /* Manrope-Bold.ttf in Resources */,
 				8032A5572B820B7700294DD7 /* Assets.xcassets in Resources */,
+				80A4F59D2B836C66002CC9AD /* Manrope-ExtraBold.ttf in Resources */,
+				80A4F5A22B836C66002CC9AD /* Manrope-SemiBold.ttf in Resources */,
+				80A4F5A12B836C66002CC9AD /* Manrope-Light.ttf in Resources */,
 				80A4F5872B836410002CC9AD /* Localizable.xcstrings in Resources */,
+				80A4F5A02B836C66002CC9AD /* Manrope-Regular.ttf in Resources */,
+				80A4F59E2B836C66002CC9AD /* Manrope-ExtraLight.ttf in Resources */,
+				80A4F59F2B836C66002CC9AD /* Manrope-Medium.ttf in Resources */,
 				8032A5522B820B7600294DD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
