@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YOUUtils
 
 final class LoginStartVC: UIViewController {
 
@@ -14,5 +15,7 @@ final class LoginStartVC: UIViewController {
 
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = UIColor.red
+        
+        _ = YOUFontsProvider.appRegularFont(with: 12)
     }
 }

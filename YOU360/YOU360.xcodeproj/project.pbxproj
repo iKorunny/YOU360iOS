@@ -31,6 +31,20 @@
 		80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */; };
 		80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */; };
 		80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */; };
+		80A4F57A2B8361CB002CC9AD /* YOUUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A4F5792B8361CB002CC9AD /* YOUUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80A4F57D2B8361CB002CC9AD /* YOUUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; };
+		80A4F57E2B8361CB002CC9AD /* YOUUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		80A4F5832B8361DF002CC9AD /* String+Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5822B8361DF002CC9AD /* String+Localisation.swift */; };
+		80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5842B836250002CC9AD /* LocalisedImageProvider.swift */; };
+		80A4F5872B836410002CC9AD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5862B836410002CC9AD /* Localizable.xcstrings */; };
+		80A4F5932B836800002CC9AD /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */; };
+		80A4F5942B836800002CC9AD /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58D2B836800002CC9AD /* Manrope-ExtraBold.ttf */; };
+		80A4F5952B836800002CC9AD /* Manrope-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58E2B836800002CC9AD /* Manrope-ExtraLight.ttf */; };
+		80A4F5962B836800002CC9AD /* Manrope-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58F2B836800002CC9AD /* Manrope-Light.ttf */; };
+		80A4F5972B836800002CC9AD /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5902B836800002CC9AD /* Manrope-Medium.ttf */; };
+		80A4F5982B836800002CC9AD /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5912B836800002CC9AD /* Manrope-Bold.ttf */; };
+		80A4F5992B836800002CC9AD /* Manrope-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F5922B836800002CC9AD /* Manrope-Regular.ttf */; };
+		80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +69,13 @@
 			remoteGlobalIDString = 8032A58C2B820E6C00294DD7;
 			remoteInfo = YOUAuthorization;
 		};
+		80A4F57B2B8361CB002CC9AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A4F5762B8361CB002CC9AD;
+			remoteInfo = YOUUtils;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				80A4F57E2B8361CB002CC9AD /* YOUUtils.framework in Embed Frameworks */,
 				8032A5822B820D8200294DD7 /* YOUUIComponents.framework in Embed Frameworks */,
 				8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */,
 				8032A56D2B820BA000294DD7 /* YOUNetworking.framework in Embed Frameworks */,
@@ -97,6 +119,21 @@
 		80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartVC.swift; sourceTree = "<group>"; };
 		80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreensFactory.swift; sourceTree = "<group>"; };
 		80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
+		80A4F5772B8361CB002CC9AD /* YOUUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80A4F5792B8361CB002CC9AD /* YOUUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUUtils.h; sourceTree = "<group>"; };
+		80A4F5822B8361DF002CC9AD /* String+Localisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localisation.swift"; sourceTree = "<group>"; };
+		80A4F5842B836250002CC9AD /* LocalisedImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisedImageProvider.swift; sourceTree = "<group>"; };
+		80A4F5862B836410002CC9AD /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		80A4F5882B83644C002CC9AD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		80A4F5892B83644C002CC9AD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
+		80A4F58D2B836800002CC9AD /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
+		80A4F58E2B836800002CC9AD /* Manrope-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraLight.ttf"; sourceTree = "<group>"; };
+		80A4F58F2B836800002CC9AD /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Light.ttf"; sourceTree = "<group>"; };
+		80A4F5902B836800002CC9AD /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		80A4F5912B836800002CC9AD /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		80A4F5922B836800002CC9AD /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
+		80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUFontsProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80A4F57D2B8361CB002CC9AD /* YOUUtils.framework in Frameworks */,
 				8032A5812B820D8200294DD7 /* YOUUIComponents.framework in Frameworks */,
 				8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */,
 				8032A56C2B820BA000294DD7 /* YOUNetworking.framework in Frameworks */,
@@ -131,6 +169,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		80A4F5742B8361CB002CC9AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -141,6 +186,7 @@
 				8032A5672B820BA000294DD7 /* YOUNetworking */,
 				8032A57C2B820D8200294DD7 /* YOUUIComponents */,
 				8032A58E2B820E6C00294DD7 /* YOUAuthorization */,
+				80A4F5782B8361CB002CC9AD /* YOUUtils */,
 				8032A5482B820B7600294DD7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,6 +198,7 @@
 				8032A5662B820BA000294DD7 /* YOUNetworking.framework */,
 				8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */,
 				8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */,
+				80A4F5772B8361CB002CC9AD /* YOUUtils.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +215,7 @@
 				8032A55B2B820B7700294DD7 /* Info.plist */,
 				8032A5532B820B7600294DD7 /* YOU360.xcdatamodeld */,
 				8032A5862B820DF400294DD7 /* MainRouter.swift */,
+				80A4F5862B836410002CC9AD /* Localizable.xcstrings */,
 			);
 			path = YOU360;
 			sourceTree = "<group>";
@@ -211,6 +259,40 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		80A4F5782B8361CB002CC9AD /* YOUUtils */ = {
+			isa = PBXGroup;
+			children = (
+				80A4F5792B8361CB002CC9AD /* YOUUtils.h */,
+				80A4F5822B8361DF002CC9AD /* String+Localisation.swift */,
+				80A4F5842B836250002CC9AD /* LocalisedImageProvider.swift */,
+				80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */,
+				80A4F58A2B8367AA002CC9AD /* fonts */,
+			);
+			path = YOUUtils;
+			sourceTree = "<group>";
+		};
+		80A4F58A2B8367AA002CC9AD /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				80A4F58B2B8367EE002CC9AD /* Manrope */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		80A4F58B2B8367EE002CC9AD /* Manrope */ = {
+			isa = PBXGroup;
+			children = (
+				80A4F5912B836800002CC9AD /* Manrope-Bold.ttf */,
+				80A4F58D2B836800002CC9AD /* Manrope-ExtraBold.ttf */,
+				80A4F58E2B836800002CC9AD /* Manrope-ExtraLight.ttf */,
+				80A4F58F2B836800002CC9AD /* Manrope-Light.ttf */,
+				80A4F5902B836800002CC9AD /* Manrope-Medium.ttf */,
+				80A4F5922B836800002CC9AD /* Manrope-Regular.ttf */,
+				80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */,
+			);
+			path = Manrope;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -238,6 +320,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		80A4F5722B8361CB002CC9AD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A4F57A2B8361CB002CC9AD /* YOUUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -256,6 +346,7 @@
 				8032A56B2B820BA000294DD7 /* PBXTargetDependency */,
 				8032A5802B820D8200294DD7 /* PBXTargetDependency */,
 				8032A5922B820E6C00294DD7 /* PBXTargetDependency */,
+				80A4F57C2B8361CB002CC9AD /* PBXTargetDependency */,
 			);
 			name = YOU360;
 			productName = YOU360;
@@ -316,6 +407,24 @@
 			productReference = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		80A4F5762B8361CB002CC9AD /* YOUUtils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80A4F5812B8361CB002CC9AD /* Build configuration list for PBXNativeTarget "YOUUtils" */;
+			buildPhases = (
+				80A4F5722B8361CB002CC9AD /* Headers */,
+				80A4F5732B8361CB002CC9AD /* Sources */,
+				80A4F5742B8361CB002CC9AD /* Frameworks */,
+				80A4F5752B8361CB002CC9AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YOUUtils;
+			productName = YOUUtils;
+			productReference = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -341,6 +450,10 @@
 						CreatedOnToolsVersion = 15.0;
 						LastSwiftMigration = 1500;
 					};
+					80A4F5762B8361CB002CC9AD = {
+						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
+					};
 				};
 			};
 			buildConfigurationList = 8032A5422B820B7600294DD7 /* Build configuration list for PBXProject "YOU360" */;
@@ -350,6 +463,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 8032A53E2B820B7600294DD7;
 			productRefGroup = 8032A5482B820B7600294DD7 /* Products */;
@@ -360,6 +474,7 @@
 				8032A5652B820BA000294DD7 /* YOUNetworking */,
 				8032A57A2B820D8200294DD7 /* YOUUIComponents */,
 				8032A58C2B820E6C00294DD7 /* YOUAuthorization */,
+				80A4F5762B8361CB002CC9AD /* YOUUtils */,
 			);
 		};
 /* End PBXProject section */
@@ -371,6 +486,7 @@
 			files = (
 				8032A55A2B820B7700294DD7 /* LaunchScreen.storyboard in Resources */,
 				8032A5572B820B7700294DD7 /* Assets.xcassets in Resources */,
+				80A4F5872B836410002CC9AD /* Localizable.xcstrings in Resources */,
 				8032A5522B820B7600294DD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +509,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A4F5752B8361CB002CC9AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A4F5962B836800002CC9AD /* Manrope-Light.ttf in Resources */,
+				80A4F5932B836800002CC9AD /* Manrope-SemiBold.ttf in Resources */,
+				80A4F5952B836800002CC9AD /* Manrope-ExtraLight.ttf in Resources */,
+				80A4F5942B836800002CC9AD /* Manrope-ExtraBold.ttf in Resources */,
+				80A4F5982B836800002CC9AD /* Manrope-Bold.ttf in Resources */,
+				80A4F5972B836800002CC9AD /* Manrope-Medium.ttf in Resources */,
+				80A4F5992B836800002CC9AD /* Manrope-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +569,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		80A4F5732B8361CB002CC9AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A4F5832B8361DF002CC9AD /* String+Localisation.swift in Sources */,
+				80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */,
+				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -457,6 +597,11 @@
 			target = 8032A58C2B820E6C00294DD7 /* YOUAuthorization */;
 			targetProxy = 8032A5912B820E6C00294DD7 /* PBXContainerItemProxy */;
 		};
+		80A4F57C2B8361CB002CC9AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A4F5762B8361CB002CC9AD /* YOUUtils */;
+			targetProxy = 80A4F57B2B8361CB002CC9AD /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -464,6 +609,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8032A5512B820B7600294DD7 /* Base */,
+				80A4F5882B83644C002CC9AD /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -472,6 +618,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8032A5592B820B7700294DD7 /* Base */,
+				80A4F5892B83644C002CC9AD /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -484,6 +631,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -547,6 +695,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -863,6 +1012,75 @@
 			};
 			name = Release;
 		};
+		80A4F57F2B8361CB002CC9AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUUtils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		80A4F5802B8361CB002CC9AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUUtils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -907,6 +1125,15 @@
 			buildConfigurations = (
 				8032A5962B820E6C00294DD7 /* Debug */,
 				8032A5972B820E6C00294DD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80A4F5812B8361CB002CC9AD /* Build configuration list for PBXNativeTarget "YOUUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A4F57F2B8361CB002CC9AD /* Debug */,
+				80A4F5802B8361CB002CC9AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
