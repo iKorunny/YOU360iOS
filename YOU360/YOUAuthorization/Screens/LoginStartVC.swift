@@ -16,6 +16,11 @@ final class LoginStartVC: UIViewController {
         static let logoInsets = UIEdgeInsets(top: 65, left: 0, bottom: 0, right: 21)
         
         static let createAccountButtonInsets = UIEdgeInsets(top: 16, left: 20, bottom: 58, right: 20)
+        
+        static let buttonTitleFontSize: CGFloat = 16
+        
+        static let titleImageSize = CGSize(width: 517, height: 141)
+        static let titleImageBottomOffset: CGFloat = 39
     }
     
     private lazy var logoImageView: UIImageView = {
@@ -24,16 +29,35 @@ final class LoginStartVC: UIViewController {
         return imageView
     }()
     
+    private lazy var titleImageView: UIImageView = {
+        let imageView = UIImageView(image: LocalisedImageProvider.localisedImage(with: "LoginLogoMain"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private lazy var loginButton: UIButton = {
+        return ButtonsFactory.createWideButton(
+            backgroundColor: ColorPallete.appWhiteSecondary,
+            title: "ButtonLoginTitle".localised(),
+            titleFont: YOUFontsProvider.appBoldFont(with: Constants.buttonTitleFontSize),
+            titleColor: ColorPallete.appBlack,
+            target: self,
+            action: #selector(createAccount),
+            for: .touchUpInside
+        )
+    }()
+    
     private lazy var createAccountButton: UIButton = {
         return ButtonsFactory.createWideButton(
             backgroundColor: ColorPallete.appPink,
             title: "ButtonCreateAccountTitle".localised(),
-            titleFont: YOUFontsProvider.appBoldFont(with: 16),
+            titleFont: YOUFontsProvider.appBoldFont(with: Constants.buttonTitleFontSize),
             titleColor: ColorPallete.appWhite,
             titleIcon: UIImage(named: "CreateAccountIcon"),
             titleIconAligment: .right,
             target: self,
-            action: #selector(createAccount),
+            action: #selector(login),
             for: .touchUpInside
         )
     }()
@@ -58,6 +82,21 @@ final class LoginStartVC: UIViewController {
         createAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.createAccountButtonInsets.left).isActive = true
         createAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.createAccountButtonInsets.right).isActive = true
         createAccountButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Constants.createAccountButtonInsets.bottom).isActive = true
+        
+        view.addSubview(loginButton)
+        loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.createAccountButtonInsets.left).isActive = true
+        loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.createAccountButtonInsets.right).isActive = true
+        loginButton.bottomAnchor.constraint(equalTo: createAccountButton.topAnchor, constant: -Constants.createAccountButtonInsets.top).isActive = true
+
+        view.addSubview(titleImageView)
+        titleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleImageView.widthAnchor.constraint(equalToConstant: Constants.titleImageSize.width).isActive = true
+        titleImageView.heightAnchor.constraint(equalToConstant: Constants.titleImageSize.height).isActive = true
+        titleImageView.bottomAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: -Constants.titleImageBottomOffset).isActive = true
+    }
+    
+    @objc private func login() {
+        print()
     }
     
     @objc private func createAccount() {
