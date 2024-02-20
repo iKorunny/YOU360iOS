@@ -9,8 +9,12 @@ import Foundation
 import UIKit
 
 final class LoginScreensFactory {
-    static func makeStartLogin() -> UIViewController {
+    static func makeStartLogin() -> UINavigationController {
         let navigationVC = UINavigationController(rootViewController: LoginStartVC())
         return navigationVC
+    }
+    
+    static func createLoginMainScreen() -> UIViewController {
+        return LoginMainVC()
     }
 }

@@ -13,6 +13,8 @@ public final class AuthorizationRouter {
         AuthorizationRouter()
     }()
     
+    private var rootVC: UINavigationController?
+    
     private lazy var loginWindow: UIWindow? = {
         let windowScene = UIApplication.shared
                         .connectedScenes
@@ -25,7 +27,13 @@ public final class AuthorizationRouter {
     }()
     
     public func startLoginFlow() {
-        loginWindow?.rootViewController = LoginScreensFactory.makeStartLogin()
+        let startScreen = LoginScreensFactory.makeStartLogin()
+        rootVC = startScreen
+        loginWindow?.rootViewController = startScreen
         loginWindow?.makeKeyAndVisible()
+    }
+    
+    func moveToLoginMain() {
+        rootVC?.pushViewController(LoginScreensFactory.createLoginMainScreen(), animated: true)
     }
 }

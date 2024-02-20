@@ -43,7 +43,7 @@ final class LoginStartVC: UIViewController {
             titleFont: YOUFontsProvider.appBoldFont(with: Constants.buttonTitleFontSize),
             titleColor: ColorPallete.appBlack,
             target: self,
-            action: #selector(createAccount),
+            action: #selector(login),
             for: .touchUpInside
         )
     }()
@@ -96,7 +96,7 @@ final class LoginStartVC: UIViewController {
     }
     
     @objc private func login() {
-        print()
+        AuthorizationRouter.shared.moveToLoginMain()
     }
     
     @objc private func createAccount() {
