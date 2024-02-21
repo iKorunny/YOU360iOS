@@ -29,6 +29,7 @@
 		8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A5982B822D8200294DD7 /* AuthorizationService.swift */; };
 		8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */; };
 		8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */; };
+		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */; };
 		80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */; };
 		80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */; };
@@ -128,6 +129,7 @@
 		8032A5982B822D8200294DD7 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartVC.swift; sourceTree = "<group>"; };
 		80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreensFactory.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				8032A57D2B820D8200294DD7 /* YOUUIComponents.h */,
 				80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */,
 				80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */,
+				806B3E972B8683F9007A695D /* TextFieldWithError.swift */,
 			);
 			path = YOUUIComponents;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */,
+				806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

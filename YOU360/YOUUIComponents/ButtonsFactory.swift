@@ -26,6 +26,7 @@ public final class ButtonsFactory {
     
     public static func createWideButton(
         backgroundColor: UIColor = .clear,
+        highlightedBackgroundColor: UIColor = .clear,
         title: String? = nil,
         titleFont: UIFont = .systemFont(ofSize: ButtonsFactoryDefaults.wideButtonDefaultTitleFontSize),
         titleColor: UIColor? = nil,
@@ -43,16 +44,13 @@ public final class ButtonsFactory {
         var configuration = UIButton.Configuration.plain()
         configuration.imagePadding = iconPadding
         configuration.image = titleIcon
-        configuration.imageColorTransformer = UIConfigurationColorTransformer { [weak button] color in
-            if button?.state == .highlighted || button?.state == .selected {
-                return titleColor?.withAlphaComponent(ButtonsFactoryDefaults.wideButtonDefaultHighlightedAlpha) ?? .clear
-            }
-            
+        configuration.imageColorTransformer = UIConfigurationColorTransformer { color in
             return titleColor ?? .clear
         }
         configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [weak button] incoming in
             var outgoing = incoming
-            outgoing.foregroundColor = (button?.state == .selected || button?.state == .highlighted) ? titleColor?.withAlphaComponent(ButtonsFactoryDefaults.wideButtonDefaultHighlightedAlpha) : titleColor
+            outgoing.foregroundColor = titleColor
+            button?.backgroundColor = (button?.state == .selected || button?.state == .highlighted) ? highlightedBackgroundColor : backgroundColor
             return outgoing
         }
         

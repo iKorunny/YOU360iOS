@@ -13,6 +13,10 @@ public final class ColorPallete {
         return .white
     }
     
+    public static var appDarkWhite: UIColor {
+        return UIColor.color(from: "#EEEEEE")
+    }
+    
     public static var appBlack: UIColor {
         return .black
     }
@@ -27,5 +31,13 @@ public final class ColorPallete {
     
     public static var appPink: UIColor {
         return UIColor.color(from: "#F81C79")
+    }
+    
+    public static var appDarkPink: UIColor {
+        return UIColor.color(from: "#DC1769")
+    }
+    
+    public static var appRed: UIColor {
+        return UIColor.color(from: "#CB5454")
     }
 }

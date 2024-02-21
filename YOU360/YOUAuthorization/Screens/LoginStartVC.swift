@@ -39,9 +39,10 @@ final class LoginStartVC: UIViewController {
     private lazy var loginButton: UIButton = {
         return ButtonsFactory.createWideButton(
             backgroundColor: ColorPallete.appWhiteSecondary,
+            highlightedBackgroundColor: ColorPallete.appDarkWhite,
             title: "ButtonLoginTitle".localised(),
             titleFont: YOUFontsProvider.appBoldFont(with: Constants.buttonTitleFontSize),
-            titleColor: ColorPallete.appBlack,
+            titleColor: ColorPallete.appPink,
             target: self,
             action: #selector(login),
             for: .touchUpInside
@@ -51,6 +52,7 @@ final class LoginStartVC: UIViewController {
     private lazy var createAccountButton: UIButton = {
         return ButtonsFactory.createWideButton(
             backgroundColor: ColorPallete.appPink,
+            highlightedBackgroundColor: ColorPallete.appDarkPink,
             title: "ButtonCreateAccountTitle".localised(),
             titleFont: YOUFontsProvider.appBoldFont(with: Constants.buttonTitleFontSize),
             titleColor: ColorPallete.appWhite,
@@ -65,10 +67,15 @@ final class LoginStartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.isNavigationBarHidden = true
         view.backgroundColor = UIColor.white
         
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func setupUI() {

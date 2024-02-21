@@ -17,6 +17,13 @@ public final class YOUFontsProvider {
     }
     
     /**
+     size = 500
+     */
+    public static func appMediumFont(with size: CGFloat) -> UIFont {
+        return UIFont(name: "Manrope-Medium", size: size)!
+    }
+    
+    /**
      size = 600
      */
     public static func appSemiBoldFont(with size: CGFloat) -> UIFont {
