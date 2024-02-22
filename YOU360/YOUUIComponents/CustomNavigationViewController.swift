@@ -17,13 +17,20 @@ open class CustomNavigationViewController: UIViewController {
         static let logoInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 18)
         
         static let titleFontSize: CGFloat = 18
+        
+        static let logoViewTag = 1060704360
     }
     
     private lazy var logoImageView: UIImageView = {
+        if let logoView =  navigationController?.navigationBar.subviews.first(where: { $0.tag == Constants.logoViewTag }) as? UIImageView {
+            return logoView
+        }
+        
         let imageView = UIImageView(image: .init(named: "LOGOYOU360"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: Constants.logoViewSize.height).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: Constants.logoViewSize.width).isActive = true
+        imageView.tag = Constants.logoViewTag
         return imageView
     }()
 

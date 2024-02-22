@@ -9,12 +9,12 @@ import UIKit
 import YOUUIComponents
 import YOUUtils
 
-class LoginMainVC: CustomNavigationViewController {
+final class LoginMainVC: CustomNavigationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "ButtonLoginTitle".localised()
+        title = nil
         
         setupUI()
     }
