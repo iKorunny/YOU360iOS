@@ -40,4 +40,12 @@ public final class ColorPallete {
     public static var appRed: UIColor {
         return UIColor.color(from: "#CB5454")
     }
+    
+    public static var appGrey: UIColor {
+        return UIColor.color(from: "#9496A2")
+    }
+    
+    public static var appGreySecondary: UIColor {
+        return UIColor.color(from: "#9C9C9C")
+    }
 }

@@ -15,6 +15,6 @@ final class LoginScreensFactory {
     }
     
     static func createLoginMainScreen() -> UIViewController {
-        return LoginMainVC()
+        return LoginMainVC(viewModel: LoginMainVCViewModelImpl())
     }
 }

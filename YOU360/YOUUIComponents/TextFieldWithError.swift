@@ -35,9 +35,13 @@ public final class TextFieldWithError: UIView {
         
         static let errorLabelTextSize: CGFloat = 12
         static let errorLabelInsets = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+        
+        static let placeholderSize: CGFloat = 14
+        static let textSize: CGFloat = 14
     }
     
     private var setupComplete = false
+    private var state: State = .default
 
     private lazy var textField: UITextField = {
         let field = UITextField()
@@ -65,18 +69,15 @@ public final class TextFieldWithError: UIView {
         textField.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         textField.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
+        textField.font = YOUFontsProvider.appMediumFont(with: Constants.textSize)
+        
+        updateColors()
+        
         addSubview(errorLabel)
         errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: Constants.errorLabelInsets.top).isActive = true
         errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        errorLabel.text = "This is concrete error message"
-        textField.backgroundColor = .gray
-        textField.leftView = fieldLeftView(named: "InputEmailIndicator")
-        textField.rightView = fieldLeftView(named: "InputSecureShow")
-        textField.leftViewMode = .always
-        textField.rightViewMode = .always
     }
     
     private func fieldLeftView(named: String) -> UIView {
@@ -96,6 +97,42 @@ public final class TextFieldWithError: UIView {
         return outerView
     }
     
+    private func fieldRightView(named: String) -> UIView {
+        let image = UIImage(named: named)
+        let imageSize = image?.size ?? .zero
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = true
+        imageView.contentMode = .center
+        
+        let outerView = UIView()
+        outerView.translatesAutoresizingMaskIntoConstraints = false
+        outerView.addSubview(imageView)
+        outerView.frame = CGRect(origin: .zero, size: CGSize(width: imageSize.width + Constants.fieldIconsPaddingOut + Constants.fieldIconsPaddingIn, height: imageSize.height))
+        
+        imageView.frame.origin = CGPoint(x: Constants.fieldIconsPaddingIn, y: 0)
+        
+        return outerView
+    }
+    
+    public func setupLeftImage(named: String) {
+        textField.leftView = fieldLeftView(named: named)
+        textField.leftViewMode = .always
+        textField.leftView?.tintColor = leftImageTintColor(for: state)
+    }
+    
+    public func setupRightImage(named: String) {
+        textField.rightView = fieldRightView(named: named)
+        textField.rightViewMode = .always
+        textField.rightView?.tintColor = rightImageTintColor(for: state)
+    }
+    
+    public func set(placeholder: String) {
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+            .foregroundColor : ColorPallete.appGrey,
+            .font : YOUFontsProvider.appMediumFont(with: Constants.placeholderSize)
+        ])
+    }
+    
     public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
@@ -105,6 +142,76 @@ public final class TextFieldWithError: UIView {
     }
     
     public func set(state: State) {
+        self.state = state
+        updateColors()
+    }
+    
+    public func set(secureInput: Bool) {
+        textField.isSecureTextEntry = secureInput
+    }
+    
+    private func leftImageTintColor(for state: State) -> UIColor {
+        switch state {
+        case .typing:
+            return ColorPallete.appPink
+        case .error(error: _):
+            return ColorPallete.appRed
+        case .disabled:
+            return ColorPallete.appGrey
+        default:
+            return ColorPallete.appBlackSecondary
+        }
+    }
+    
+    private func rightImageTintColor(for state: State) -> UIColor {
+        return ColorPallete.appBlackSecondary
+    }
+    
+    private func updateColors() {
+        textField.tintColor = ColorPallete.appBlackSecondary
+        textField.backgroundColor = fieldBackgroundColor(for: state)
+        textField.rightView?.tintColor = rightImageTintColor(for: state)
+        textField.leftView?.tintColor = leftImageTintColor(for: state)
+        textField.textColor = textColor(for: state)
+        textField.layer.borderWidth = Constants.borderWidth
+        textField.layer.borderColor = borderColor(for: state).cgColor
         
+        switch state {
+        case .disabled:
+            textField.alpha = 0.5
+        default:
+            textField.alpha = 1.0
+        }
+    }
+    
+    private func fieldBackgroundColor(for state: State) -> UIColor {
+        switch state {
+        case .error(error: _):
+            return ColorPallete.appRed.withAlphaComponent(0.05)
+        default:
+            return ColorPallete.appWhite
+        }
+    }
+    
+    private func textColor(for state: State) -> UIColor {
+        switch state {
+        case .error(error: _):
+            return ColorPallete.appRed
+        default:
+            return ColorPallete.appBlackSecondary
+        }
+    }
+    
+    private func borderColor(for state: State) -> UIColor {
+        switch state {
+        case .typing:
+            return ColorPallete.appPink
+        case .typed:
+            return ColorPallete.appGreySecondary
+        case .error(error: _):
+            return ColorPallete.appRed
+        default:
+            return ColorPallete.appWhite
+        }
     }
 }

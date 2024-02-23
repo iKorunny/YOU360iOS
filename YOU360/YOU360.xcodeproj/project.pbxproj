@@ -32,6 +32,9 @@
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E992B87A3EB007A695D /* TopRoundedView.swift */; };
 		806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */; };
+		806E88952B88FBEC00D45FDA /* LoginFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */; };
+		8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */; };
+		8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */; };
 		80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */; };
 		80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */; };
 		80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */; };
@@ -134,6 +137,9 @@
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		806B3E992B87A3EB007A695D /* TopRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsCell.swift; sourceTree = "<group>"; };
+		8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainVCViewModel.swift; sourceTree = "<group>"; };
+		8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTitleCell.swift; sourceTree = "<group>"; };
 		80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartVC.swift; sourceTree = "<group>"; };
 		80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreensFactory.swift; sourceTree = "<group>"; };
@@ -270,9 +276,27 @@
 				8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */,
 				8032A5982B822D8200294DD7 /* AuthorizationService.swift */,
 				80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */,
+				8096B7552B88B2B90015D917 /* Cells */,
 				80A4F5692B823E6E002CC9AD /* Screens */,
 			);
 			path = YOUAuthorization;
+			sourceTree = "<group>";
+		};
+		8096B7552B88B2B90015D917 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8096B7562B88B2C60015D917 /* Login */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8096B7562B88B2C60015D917 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */,
+				806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		80A4F5692B823E6E002CC9AD /* Screens */ = {
@@ -281,6 +305,7 @@
 				80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */,
 				80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */,
 				80A739592B85262000A5A482 /* LoginMainVC.swift */,
+				8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -601,10 +626,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806E88952B88FBEC00D45FDA /* LoginFieldsCell.swift in Sources */,
 				80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */,
 				80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */,
+				8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */,
 				8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */,
 				80A7395A2B85262000A5A482 /* LoginMainVC.swift in Sources */,
+				8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */,
 				80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
