@@ -8,7 +8,7 @@
 import UIKit
 import YOUUtils
 
-final public class LoginTitleCell: UITableViewCell {
+final class LoginTitleCell: UITableViewCell {
     
     private enum Constants {
         static let titleFontSize: CGFloat = 22
@@ -26,7 +26,7 @@ final public class LoginTitleCell: UITableViewCell {
         return label
     }()
     
-    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }

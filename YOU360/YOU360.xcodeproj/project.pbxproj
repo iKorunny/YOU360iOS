@@ -36,7 +36,7 @@
 		8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */; };
 		8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */; };
 		80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */; };
-		80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */; };
+		80A4F56B2B823E8A002CC9AD /* LoginRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginRootVC.swift */; };
 		80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */; };
 		80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */; };
 		80A4F57A2B8361CB002CC9AD /* YOUUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A4F5792B8361CB002CC9AD /* YOUUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +62,11 @@
 		80A4F5A22B836C66002CC9AD /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */; };
 		80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */; };
 		80A7395A2B85262000A5A482 /* LoginMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739592B85262000A5A482 /* LoginMainVC.swift */; };
+		80BF5E5F2B8A029F0017524F /* LoginButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */; };
+		80BF5E612B8A10410017524F /* LoginSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */; };
+		80BF5E632B8A1AF60017524F /* LoginSocialNetworksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E622B8A1AF60017524F /* LoginSocialNetworksCell.swift */; };
+		80BF5E652B8A1B7D0017524F /* LoginSocialNetworksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E642B8A1B7D0017524F /* LoginSocialNetworksProvider.swift */; };
+		80BF5E672B8A29530017524F /* LoginRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E662B8A29530017524F /* LoginRegisterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,7 +146,7 @@
 		8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainVCViewModel.swift; sourceTree = "<group>"; };
 		8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTitleCell.swift; sourceTree = "<group>"; };
 		80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
-		80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartVC.swift; sourceTree = "<group>"; };
+		80A4F56A2B823E8A002CC9AD /* LoginRootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRootVC.swift; sourceTree = "<group>"; };
 		80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreensFactory.swift; sourceTree = "<group>"; };
 		80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsFactory.swift; sourceTree = "<group>"; };
 		80A4F5772B8361CB002CC9AD /* YOUUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +166,11 @@
 		80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUFontsProvider.swift; sourceTree = "<group>"; };
 		80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 		80A739592B85262000A5A482 /* LoginMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainVC.swift; sourceTree = "<group>"; };
+		80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonsCell.swift; sourceTree = "<group>"; };
+		80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSeparatorCell.swift; sourceTree = "<group>"; };
+		80BF5E622B8A1AF60017524F /* LoginSocialNetworksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSocialNetworksCell.swift; sourceTree = "<group>"; };
+		80BF5E642B8A1B7D0017524F /* LoginSocialNetworksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSocialNetworksProvider.swift; sourceTree = "<group>"; };
+		80BF5E662B8A29530017524F /* LoginRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +286,7 @@
 				8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */,
 				8032A5982B822D8200294DD7 /* AuthorizationService.swift */,
 				80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */,
+				80BF5E642B8A1B7D0017524F /* LoginSocialNetworksProvider.swift */,
 				8096B7552B88B2B90015D917 /* Cells */,
 				80A4F5692B823E6E002CC9AD /* Screens */,
 			);
@@ -295,6 +306,10 @@
 			children = (
 				8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */,
 				806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */,
+				80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */,
+				80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */,
+				80BF5E622B8A1AF60017524F /* LoginSocialNetworksCell.swift */,
+				80BF5E662B8A29530017524F /* LoginRegisterCell.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -303,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */,
-				80A4F56A2B823E8A002CC9AD /* LoginStartVC.swift */,
+				80A4F56A2B823E8A002CC9AD /* LoginRootVC.swift */,
 				80A739592B85262000A5A482 /* LoginMainVC.swift */,
 				8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */,
 			);
@@ -630,10 +645,15 @@
 				80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */,
 				80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */,
 				8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */,
+				80BF5E632B8A1AF60017524F /* LoginSocialNetworksCell.swift in Sources */,
 				8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */,
 				80A7395A2B85262000A5A482 /* LoginMainVC.swift in Sources */,
+				80BF5E5F2B8A029F0017524F /* LoginButtonsCell.swift in Sources */,
+				80BF5E652B8A1B7D0017524F /* LoginSocialNetworksProvider.swift in Sources */,
+				80BF5E612B8A10410017524F /* LoginSeparatorCell.swift in Sources */,
 				8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */,
-				80A4F56B2B823E8A002CC9AD /* LoginStartVC.swift in Sources */,
+				80A4F56B2B823E8A002CC9AD /* LoginRootVC.swift in Sources */,
+				80BF5E672B8A29530017524F /* LoginRegisterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

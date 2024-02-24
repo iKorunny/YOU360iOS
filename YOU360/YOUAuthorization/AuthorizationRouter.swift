@@ -27,7 +27,7 @@ public final class AuthorizationRouter {
     }()
     
     public func startLoginFlow() {
-        let startScreen = LoginScreensFactory.makeStartLogin()
+        let startScreen = LoginScreensFactory.makeRootLogin()
         rootVC = startScreen
         loginWindow?.rootViewController = startScreen
         loginWindow?.makeKeyAndVisible()
@@ -35,5 +35,9 @@ public final class AuthorizationRouter {
     
     func moveToLoginMain() {
         rootVC?.pushViewController(LoginScreensFactory.createLoginMainScreen(), animated: true)
+    }
+    
+    func moveToRegister() {
+        
     }
 }

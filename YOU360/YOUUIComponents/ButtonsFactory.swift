@@ -36,8 +36,8 @@ public final class ButtonsFactory {
         height: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultHeight,
         cornerRadius: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultCornerRadius,
         target: Any? = nil,
-        action: Selector,
-        for event: UIControl.Event
+        action: Selector? = nil,
+        for event: UIControl.Event = .touchUpInside
     ) -> UIButton {
         let button = UIButton()
         
@@ -75,7 +75,9 @@ public final class ButtonsFactory {
         
         button.heightAnchor.constraint(equalToConstant: height).isActive = true
         
-        button.addTarget(target, action: action, for: event)
+        if let action = action {
+            button.addTarget(target, action: action, for: event)
+        }
         
         return button
     }

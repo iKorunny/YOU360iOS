@@ -1,5 +1,5 @@
 //
-//  LoginStartVC.swift
+//  LoginRootVC.swift
 //  YOUAuthorization
 //
 //  Created by Ihar Karunny on 2/18/24.
@@ -9,7 +9,7 @@ import UIKit
 import YOUUIComponents
 import YOUUtils
 
-final class LoginStartVC: UIViewController {
+final class LoginRootVC: UIViewController {
     
     private enum Constants {
         static let logoViewSize = CGSize(width: 123, height: 41)
@@ -56,7 +56,7 @@ final class LoginStartVC: UIViewController {
             title: "ButtonCreateAccountTitle".localised(),
             titleFont: YOUFontsProvider.appBoldFont(with: Constants.buttonTitleFontSize),
             titleColor: ColorPallete.appWhite,
-            titleIcon: UIImage(named: "CreateAccountIcon"),
+            titleIcon: UIImage(named: "LoginRightArrow"),
             titleIconAligment: .right,
             target: self,
             action: #selector(login),

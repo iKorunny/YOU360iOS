@@ -9,14 +9,14 @@ import UIKit
 import YOUUIComponents
 import YOUUtils
 
-final public class LoginFieldsCell: UITableViewCell {
+final class LoginFieldsCell: UITableViewCell {
     private enum Constants {
         static let fieldsPadding: CGFloat = 20
         static let loginTopOffset: CGFloat = 16
         static let fieldsVerticalPadding: CGFloat = 24
     }
     
-    public lazy var loginField = {
+    lazy var loginField = {
         let field = TextFieldWithError()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.set(placeholder: "LoginEmail".localised())
@@ -24,7 +24,7 @@ final public class LoginFieldsCell: UITableViewCell {
         return field
     }()
     
-    public lazy var passwordField = {
+    lazy var passwordField = {
         let field = TextFieldWithError()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.set(placeholder: "LoginPassword".localised())
@@ -33,7 +33,7 @@ final public class LoginFieldsCell: UITableViewCell {
         return field
     }()
     
-    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
@@ -44,6 +44,7 @@ final public class LoginFieldsCell: UITableViewCell {
     
     private func setupUI() {
         contentView.backgroundColor = ColorPallete.appWhiteSecondary
+        selectionStyle = .none
         
         contentView.addSubview(loginField)
         loginField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.loginTopOffset).isActive = true
