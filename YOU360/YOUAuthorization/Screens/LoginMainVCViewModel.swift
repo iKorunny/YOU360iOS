@@ -10,12 +10,14 @@ import UIKit
 import YOUUIComponents
 
 protocol LoginMainVCViewModel {
+    var tableView: UITableView? { get set }
     var numberOfRows: Int { get }
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell
     func registerCells(for tableView: UITableView)
+    func didScroll()
 }
 
-final class LoginMainVCViewModelImpl: LoginMainVCViewModel {
+final class LoginMainVCViewModelImpl: NSObject, LoginMainVCViewModel {
     private enum Constants {
         static let loginTitleCellID = "LoginTitleCell"
         static let fieldsCellID = "LoginFieldsCell"
@@ -23,7 +25,13 @@ final class LoginMainVCViewModelImpl: LoginMainVCViewModel {
         static let separatorCellID = "LoginSeparatorCell"
         static let socialNetworkButtonsCellID = "LoginSocialNetworksCell"
         static let loginRegisterCellID = "LoginRegisterCell"
+        static let fieldsCellIndex: Int = 1
     }
+    
+    private weak var fieldsCell: LoginFieldsCell?
+    private var fieldsCellModel = LoginFieldsCellModel()
+    
+    var tableView: UITableView?
     
     var numberOfRows: Int {
         return 6
@@ -31,8 +39,11 @@ final class LoginMainVCViewModelImpl: LoginMainVCViewModel {
     
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell {
         switch index.row {
-        case 1:
+        case Constants.fieldsCellIndex:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: index) as! LoginFieldsCell
+            cell.set(model: fieldsCellModel)
+            cell.setFieldsDelegate(self)
+            fieldsCell = cell
             return cell
         case 2:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonsFieldCellID, for: index) as! LoginButtonsCell
@@ -69,5 +80,26 @@ final class LoginMainVCViewModelImpl: LoginMainVCViewModel {
         tableView.register(LoginSeparatorCell.self, forCellReuseIdentifier: Constants.separatorCellID)
         tableView.register(LoginSocialNetworksCell.self, forCellReuseIdentifier: Constants.socialNetworkButtonsCellID)
         tableView.register(LoginRegisterCell.self, forCellReuseIdentifier: Constants.loginRegisterCellID)
+    }
+    
+    func didScroll() {
+        fieldsCell?.hideKeyboard()
+    }
+    
+    private func show(error: TextFieldWithError.FieldError, for field: UITextField) {
+        fieldsCell?.setState(.error(error: error), for: field)
+        tableView?.reloadRows(at: [IndexPath(row: Constants.fieldsCellIndex, section: 0)], with: .none)
+    }
+}
+
+extension LoginMainVCViewModelImpl: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        fieldsCell?.setState(.typing, for: textField)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        let input = textField.text ?? ""
+        let isEmpty = input.isEmpty
+        fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
     }
 }

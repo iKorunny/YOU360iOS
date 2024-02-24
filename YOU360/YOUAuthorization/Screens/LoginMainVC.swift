@@ -30,7 +30,7 @@ final class LoginMainVC: CustomNavigationViewController {
         return table
     }()
     
-    private let viewModel: LoginMainVCViewModel
+    private var viewModel: LoginMainVCViewModel
     
     init(viewModel: LoginMainVCViewModel) {
         self.viewModel = viewModel
@@ -43,6 +43,8 @@ final class LoginMainVC: CustomNavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.tableView = tableView
 
         title = nil
         view.backgroundColor = ColorPallete.appWhiteSecondary
@@ -53,14 +55,6 @@ final class LoginMainVC: CustomNavigationViewController {
     }
     
     private func setupUI() {
-//        let field = TextFieldWithError()
-//        field.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        view.addSubview(field)
-//        field.widthAnchor.constraint(equalToConstant: 355).isActive = true
-//        field.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        field.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.tableTopOffset).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -76,5 +70,9 @@ extension LoginMainVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return viewModel.cellForRow(with: indexPath, for: tableView)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        viewModel.didScroll()
     }
 }

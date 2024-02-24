@@ -9,6 +9,11 @@ import UIKit
 import YOUUIComponents
 import YOUUtils
 
+final class LoginFieldsCellModel {
+    var loginFieldState: TextFieldWithError.State = .default
+    var passwordFieldState: TextFieldWithError.State = .default
+}
+
 final class LoginFieldsCell: UITableViewCell {
     private enum Constants {
         static let fieldsPadding: CGFloat = 20
@@ -33,6 +38,8 @@ final class LoginFieldsCell: UITableViewCell {
         return field
     }()
     
+    private var model: LoginFieldsCellModel?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -56,5 +63,35 @@ final class LoginFieldsCell: UITableViewCell {
         passwordField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.fieldsPadding).isActive = true
         passwordField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.fieldsPadding).isActive = true
         passwordField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    }
+    
+    func set(model: LoginFieldsCellModel) {
+        self.model = model
+        loginField.set(state: model.loginFieldState)
+        passwordField.set(state: model.passwordFieldState)
+    }
+    
+    func setFieldsDelegate(_ delegate: UITextFieldDelegate) {
+        loginField.set(delegate: delegate)
+        passwordField.set(delegate: delegate)
+    }
+    
+    func hideKeyboard() {
+        loginField.hideKeyboard()
+        passwordField.hideKeyboard()
+    }
+    
+    func setState(_ state: TextFieldWithError.State, for field: UITextField) {
+        if loginField.equal(to: field) {
+            loginField.set(state: state)
+            model?.loginFieldState = state
+            return
+        }
+        
+        if passwordField.equal(to: field) {
+            passwordField.set(state: state)
+            model?.passwordFieldState = state
+            return
+        }
     }
 }

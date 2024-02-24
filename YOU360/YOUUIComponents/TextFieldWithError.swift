@@ -13,7 +13,7 @@ public final class TextFieldWithError: UIView {
     public final class FieldError {
         private(set) var description: String
         
-        init(description: String) {
+        public init(description: String) {
             self.description = description
         }
     }
@@ -114,6 +114,10 @@ public final class TextFieldWithError: UIView {
         return outerView
     }
     
+    public func set(delegate: UITextFieldDelegate) {
+        textField.delegate = delegate
+    }
+    
     public func setupLeftImage(named: String) {
         textField.leftView = fieldLeftView(named: named)
         textField.leftViewMode = .always
@@ -150,6 +154,14 @@ public final class TextFieldWithError: UIView {
         textField.isSecureTextEntry = secureInput
     }
     
+    public func hideKeyboard() {
+        textField.resignFirstResponder()
+    }
+    
+    public func equal(to field: UITextField) -> Bool {
+        return textField === field
+    }
+    
     private func leftImageTintColor(for state: State) -> UIColor {
         switch state {
         case .typing:
@@ -168,6 +180,13 @@ public final class TextFieldWithError: UIView {
     }
     
     private func updateColors() {
+        switch state {
+        case .default:
+            print()
+        default:
+            break
+        }
+        
         textField.tintColor = ColorPallete.appBlackSecondary
         textField.backgroundColor = fieldBackgroundColor(for: state)
         textField.rightView?.tintColor = rightImageTintColor(for: state)
@@ -179,8 +198,13 @@ public final class TextFieldWithError: UIView {
         switch state {
         case .disabled:
             textField.alpha = 0.5
+            errorLabel.text = nil
+        case .error(error: let err):
+            textField.alpha = 1.0
+            errorLabel.text = err.description
         default:
             textField.alpha = 1.0
+            errorLabel.text = nil
         }
     }
     

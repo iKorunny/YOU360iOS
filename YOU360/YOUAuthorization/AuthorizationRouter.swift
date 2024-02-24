@@ -8,12 +8,16 @@
 import Foundation
 import UIKit
 
-public final class AuthorizationRouter {
+public final class AuthorizationRouter: NSObject {
     public static var shared = {
         AuthorizationRouter()
     }()
     
-    private var rootVC: UINavigationController?
+    private var rootVC: UINavigationController? {
+        didSet {
+            rootVC?.delegate = self
+        }
+    }
     
     private lazy var loginWindow: UIWindow? = {
         let windowScene = UIApplication.shared
@@ -39,5 +43,11 @@ public final class AuthorizationRouter {
     
     func moveToRegister() {
         
+    }
+}
+
+extension AuthorizationRouter: UINavigationControllerDelegate {
+    public func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.portrait, UIInterfaceOrientationMask.portraitUpsideDown]
     }
 }
