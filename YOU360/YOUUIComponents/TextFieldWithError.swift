@@ -40,8 +40,20 @@ public final class TextFieldWithError: UIView {
         static let textSize: CGFloat = 14
     }
     
+    public var isEmpty: Bool {
+        (textField.text ?? "").isEmpty
+    }
+    
+    public var isSecure: Bool {
+        return textField.isSecureTextEntry
+    }
+    
     private var setupComplete = false
     private var state: State = .default
+    
+    private lazy var secureControlTapRecognizer: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: #selector(onSecureControl))
+    }()
 
     private lazy var textField: UITextField = {
         let field = UITextField()
@@ -114,6 +126,10 @@ public final class TextFieldWithError: UIView {
         return outerView
     }
     
+    @objc private func onSecureControl() {
+        set(secureInput: !textField.isSecureTextEntry, showControl: true)
+    }
+    
     public func set(delegate: UITextFieldDelegate) {
         textField.delegate = delegate
     }
@@ -150,8 +166,17 @@ public final class TextFieldWithError: UIView {
         updateColors()
     }
     
-    public func set(secureInput: Bool) {
+    public func set(secureInput: Bool, showControl: Bool = false) {
         textField.isSecureTextEntry = secureInput
+        textField.rightView?.removeGestureRecognizer(secureControlTapRecognizer)
+        textField.rightView = nil
+        textField.rightViewMode = .never
+        
+        guard showControl else { return }
+        textField.rightView = fieldRightView(named: secureInput ? "InputSecureHide" : "InputSecureShow")
+        textField.rightView?.addGestureRecognizer(secureControlTapRecognizer)
+        textField.rightViewMode = .always
+        textField.rightView?.tintColor = rightImageTintColor(for: state)
     }
     
     public func hideKeyboard() {
@@ -160,6 +185,12 @@ public final class TextFieldWithError: UIView {
     
     public func equal(to field: UITextField) -> Bool {
         return textField === field
+    }
+    
+    public func setRightView(visible: Bool) {
+        textField.rightViewMode = visible ? .always : .never
+        guard textField.rightView == nil else { return }
+        set(secureInput: textField.isSecureTextEntry, showControl: visible)
     }
     
     private func leftImageTintColor(for state: State) -> UIColor {
@@ -180,12 +211,6 @@ public final class TextFieldWithError: UIView {
     }
     
     private func updateColors() {
-        switch state {
-        case .default:
-            print()
-        default:
-            break
-        }
         
         textField.tintColor = ColorPallete.appBlackSecondary
         textField.backgroundColor = fieldBackgroundColor(for: state)

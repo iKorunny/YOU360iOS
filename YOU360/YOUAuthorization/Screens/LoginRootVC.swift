@@ -59,7 +59,7 @@ final class LoginRootVC: UIViewController {
             titleIcon: UIImage(named: "LoginRightArrow"),
             titleIconAligment: .right,
             target: self,
-            action: #selector(login),
+            action: #selector(createAccount),
             for: .touchUpInside
         )
     }()
@@ -107,6 +107,6 @@ final class LoginRootVC: UIViewController {
     }
     
     @objc private func createAccount() {
-        print()
+        AuthorizationRouter.shared.moveToRegister()
     }
 }

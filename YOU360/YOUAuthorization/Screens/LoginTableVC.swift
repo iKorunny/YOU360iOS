@@ -1,5 +1,5 @@
 //
-//  LoginMainVC.swift
+//  LoginTableVC.swift
 //  YOUAuthorization
 //
 //  Created by Ihar Karunny on 2/20/24.
@@ -9,7 +9,7 @@ import UIKit
 import YOUUIComponents
 import YOUUtils
 
-final class LoginMainVC: CustomNavigationViewController {
+final class LoginTableVC: CustomNavigationViewController {
     
     private enum Constants {
         static let tableTopOffset: CGFloat = 88
@@ -30,9 +30,9 @@ final class LoginMainVC: CustomNavigationViewController {
         return table
     }()
     
-    private var viewModel: LoginMainVCViewModel
+    private var viewModel: LoginTableVCViewModel
     
-    init(viewModel: LoginMainVCViewModel) {
+    init(viewModel: LoginTableVCViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -63,7 +63,7 @@ final class LoginMainVC: CustomNavigationViewController {
     }
 }
 
-extension LoginMainVC: UITableViewDelegate, UITableViewDataSource {
+extension LoginTableVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }

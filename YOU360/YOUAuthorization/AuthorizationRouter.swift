@@ -13,6 +13,9 @@ public final class AuthorizationRouter: NSObject {
         AuthorizationRouter()
     }()
     
+    private weak var loginMainVCRef: AnyObject?
+    private weak var registerMainVCRef: AnyObject?
+    
     private var rootVC: UINavigationController? {
         didSet {
             rootVC?.delegate = self
@@ -38,11 +41,35 @@ public final class AuthorizationRouter: NSObject {
     }
     
     func moveToLoginMain() {
-        rootVC?.pushViewController(LoginScreensFactory.createLoginMainScreen(), animated: true)
+        if let rootVC = rootVC {
+            let screensStack = rootVC.viewControllers
+            let screensStackCount = screensStack.count
+            
+            if screensStackCount > 2 && screensStack[screensStackCount - 2] === loginMainVCRef {
+                rootVC.popViewController(animated: true)
+                return
+            }
+        }
+        
+        let loginMain = LoginScreensFactory.createLoginMainScreen()
+        loginMainVCRef = loginMain
+        rootVC?.pushViewController(loginMain, animated: true)
     }
     
     func moveToRegister() {
+        if let rootVC = rootVC {
+            let screensStack = rootVC.viewControllers
+            let screensStackCount = screensStack.count
+            
+            if screensStackCount > 2 && screensStack[screensStackCount - 2] === registerMainVCRef {
+                rootVC.popViewController(animated: true)
+                return
+            }
+        }
         
+        let registerMain = LoginScreensFactory.createRegisterMainScreen()
+        registerMainVCRef = registerMain
+        rootVC?.pushViewController(registerMain, animated: true)
     }
 }
 

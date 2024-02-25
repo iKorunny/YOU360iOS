@@ -1,27 +1,27 @@
 //
-//  LoginMainVCViewModel.swift
+//  RegisterMainVCViewModel.swift
 //  YOUAuthorization
 //
-//  Created by Ihar Karunny on 2/23/24.
+//  Created by Ihar Karunny on 2/25/24.
 //
 
 import Foundation
 import UIKit
 import YOUUIComponents
 
-final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
+final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     private enum Constants {
-        static let loginTitleCellID = "LoginTitleCell"
-        static let fieldsCellID = "LoginFieldsCell"
-        static let buttonsFieldCellID = "LoginButtonsCell"
+        static let registerTitleCellID = "SignInTitleCell"
+        static let fieldsCellID = "SignInFieldsCell"
+        static let buttonFieldCellID = "SignInButtonsCell"
         static let separatorCellID = "LoginSeparatorCell"
         static let socialNetworkButtonsCellID = "LoginSocialNetworksCell"
-        static let loginRegisterCellID = "LoginRegisterCell"
+        static let loginRegisterCellID = "SignInLoginCell"
         static let fieldsCellIndex: Int = 1
     }
     
-    private weak var fieldsCell: LoginFieldsCell?
-    private var fieldsCellModel = LoginFieldsCellModel()
+    private weak var fieldsCell: SignInFieldsCell?
+    private var fieldsCellModel = RegisterFieldsCellModel()
     
     var tableView: UITableView?
     
@@ -32,17 +32,15 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell {
         switch index.row {
         case Constants.fieldsCellIndex:
-            let cell = table.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: index) as! LoginFieldsCell
+            let cell = table.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: index) as! SignInFieldsCell
             cell.set(model: fieldsCellModel)
             cell.setFieldsDelegate(self)
             fieldsCell = cell
             return cell
         case 2:
-            let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonsFieldCellID, for: index) as! LoginButtonsCell
+            let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonFieldCellID, for: index) as! SignInButtonsCell
             cell.setup {
-                print("Login -> Log in")
-            } forgotPasswordAction: {
-                print("Login -> Forgot Password")
+                print("Register -> sign in")
             }
 
             return cell
@@ -51,27 +49,27 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
         case 4:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.socialNetworkButtonsCellID, for: index) as! LoginSocialNetworksCell
             cell.setup(with: LoginSocialNetworksProvider.supportedNetworks()) { network in
-                print("Login -> authorize with: \(network.rawValue)")
+                print("Register -> authorize with: \(network.rawValue)")
             }
             return cell
         case 5:
-            let cell = table.dequeueReusableCell(withIdentifier: Constants.loginRegisterCellID) as! LoginRegisterCell
+            let cell = table.dequeueReusableCell(withIdentifier: Constants.loginRegisterCellID) as! SignInLoginCell
             cell.setup {
-                AuthorizationRouter.shared.moveToRegister()
+                AuthorizationRouter.shared.moveToLoginMain()
             }
             return cell
         default:
-            return table.dequeueReusableCell(withIdentifier: Constants.loginTitleCellID, for: index)
+            return table.dequeueReusableCell(withIdentifier: Constants.registerTitleCellID, for: index)
         }
     }
     
     func registerCells(for tableView: UITableView) {
-        tableView.register(LoginTitleCell.self, forCellReuseIdentifier: Constants.loginTitleCellID)
-        tableView.register(LoginFieldsCell.self, forCellReuseIdentifier: Constants.fieldsCellID)
-        tableView.register(LoginButtonsCell.self, forCellReuseIdentifier: Constants.buttonsFieldCellID)
+        tableView.register(SignInTitleCell.self, forCellReuseIdentifier: Constants.registerTitleCellID)
+        tableView.register(SignInFieldsCell.self, forCellReuseIdentifier: Constants.fieldsCellID)
+        tableView.register(SignInButtonsCell.self, forCellReuseIdentifier: Constants.buttonFieldCellID)
         tableView.register(LoginSeparatorCell.self, forCellReuseIdentifier: Constants.separatorCellID)
         tableView.register(LoginSocialNetworksCell.self, forCellReuseIdentifier: Constants.socialNetworkButtonsCellID)
-        tableView.register(LoginRegisterCell.self, forCellReuseIdentifier: Constants.loginRegisterCellID)
+        tableView.register(SignInLoginCell.self, forCellReuseIdentifier: Constants.loginRegisterCellID)
     }
     
     func didScroll() {
@@ -84,7 +82,23 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
     }
 }
 
-extension LoginMainVCViewModel: UITextFieldDelegate {
+extension RegisterMainVCViewModel: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text,
+           let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange,
+                                                       with: string)
+            fieldsCell?.setRightView(visible: !updatedText.isEmpty, for: textField)
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        fieldsCell?.setRightView(visible: false, for: textField)
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         fieldsCell?.setState(.typing, for: textField)
     }
