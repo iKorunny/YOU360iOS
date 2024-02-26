@@ -41,6 +41,9 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
             let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonsFieldCellID, for: index) as! LoginButtonsCell
             cell.setup {
                 print("Login -> Log in")
+                AuthorizationAPIService.shared.requestLogin(email: "user@example.com", password: "string") { success, error, data, string in
+                    print()
+                }
             } forgotPasswordAction: {
                 print("Login -> Forgot Password")
             }

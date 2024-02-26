@@ -73,6 +73,8 @@
 		80BF5E712B8B890B0017524F /* SignInFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E702B8B890B0017524F /* SignInFieldsCell.swift */; };
 		80BF5E732B8B90BD0017524F /* SignInButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E722B8B90BD0017524F /* SignInButtonsCell.swift */; };
 		80BF5E752B8B921C0017524F /* SignInLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E742B8B921C0017524F /* SignInLoginCell.swift */; };
+		80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */; };
+		80BF5E7A2B8C8C6A0017524F /* AuthorizationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +185,8 @@
 		80BF5E702B8B890B0017524F /* SignInFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFieldsCell.swift; sourceTree = "<group>"; };
 		80BF5E722B8B90BD0017524F /* SignInButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButtonsCell.swift; sourceTree = "<group>"; };
 		80BF5E742B8B921C0017524F /* SignInLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInLoginCell.swift; sourceTree = "<group>"; };
+		80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNetworkConfig.swift; sourceTree = "<group>"; };
+		80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +278,7 @@
 			children = (
 				8032A5682B820BA000294DD7 /* YOUNetworking.h */,
 				8032A5722B820BBD00294DD7 /* NetworkRequestMaking.swift */,
+				80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */,
 				8032A5742B820C2100294DD7 /* YOUNetworkingServices.swift */,
 			);
 			path = YOUNetworking;
@@ -299,6 +304,7 @@
 				8032A5982B822D8200294DD7 /* AuthorizationService.swift */,
 				80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */,
 				80BF5E642B8A1B7D0017524F /* LoginSocialNetworksProvider.swift */,
+				80BF5E782B8C8C4C0017524F /* Network */,
 				8096B7552B88B2B90015D917 /* Cells */,
 				80A4F5692B823E6E002CC9AD /* Screens */,
 			);
@@ -377,6 +383,14 @@
 				80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */,
 			);
 			path = Manrope;
+			sourceTree = "<group>";
+		};
+		80BF5E782B8C8C4C0017524F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -638,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */,
 				8032A5732B820BBD00294DD7 /* NetworkRequestMaking.swift in Sources */,
 				8032A5752B820C2100294DD7 /* YOUNetworkingServices.swift in Sources */,
 			);
@@ -663,6 +678,7 @@
 				80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */,
 				80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */,
 				8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */,
+				80BF5E7A2B8C8C6A0017524F /* AuthorizationAPIService.swift in Sources */,
 				80BF5E6B2B8B7D690017524F /* LoginTableVCViewModel.swift in Sources */,
 				80BF5E632B8A1AF60017524F /* LoginSocialNetworksCell.swift in Sources */,
 				8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */,

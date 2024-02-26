@@ -8,7 +8,15 @@
 import Foundation
 
 public protocol NetworkRequestMaking {
-    func makeDatataskRequest()
+    func makeDatataskRequest(with url: URL,
+                             headerAcceptValue: String,
+                             headerContentTypeValue: String,
+                             method: RequestMethod,
+                             json: [String: Any]?) -> URLRequest
+}
+
+public enum RequestMethod: String {
+    case post = "POST"
 }
 
 public final class NetworkRequestMaker: NetworkRequestMaking {
@@ -17,7 +25,24 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
        return NetworkRequestMaker()
     }()
     
-    public func makeDatataskRequest() {
+    public func makeDatataskRequest(with url: URL, 
+                                    headerAcceptValue: String,
+                                    headerContentTypeValue: String,
+                                    method: RequestMethod,
+                                    json: [String: Any]?) -> URLRequest {
+        var request = URLRequest(url: url)
         
+        request.addValue(headerAcceptValue, forHTTPHeaderField: "Accept")
+        request.addValue(headerContentTypeValue, forHTTPHeaderField: "Content-Type")
+        
+        request.httpMethod = method.rawValue
+        
+        request.addValue(Locale.current.identifier, forHTTPHeaderField: "Accept-Language")
+        
+        if let json = json {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [])
+        }
+        
+        return request
     }
 }
