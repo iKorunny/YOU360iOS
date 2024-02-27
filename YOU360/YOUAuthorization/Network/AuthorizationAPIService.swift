@@ -30,7 +30,7 @@ final class AuthorizationAPIService {
     }()
     private var dataTask: URLSessionDataTask?
     
-    func requestLogin(email: String, password: String, completion: @escaping ((Bool, AuthorizationAPIError?, Data?, String?) -> Void)) {
+    func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Data?, String?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/Login")
         
         let request = requestMaker.makeDatataskRequest(with: url,
@@ -43,18 +43,76 @@ final class AuthorizationAPIService {
                                                        ])
         
         dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
-            var parsedError: AuthorizationAPIError?
+            var errors: [AuthorizationAPIError] = []
             if let error = error {
-                parsedError = AuthorizationAPIError(stringRepresentation: error.localizedDescription)
+                errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(false, parsedError, nil, nil)
+                completion(false, errors, nil, nil)
                 return
             }
             
-            // String.init(data: data!, encoding: .utf8) // now token received as body.
+            let success = httpResponse.statusCode == 200
+            var tokenParsed: String?
+            if success {
+                guard let data = data else { return }
+                tokenParsed = String(data: data, encoding: .utf8) // now token received as body.
+            }
+            else {
+                guard let data = data,
+                let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
+                let errorsString = errorsJSON["errors"] else { return }
+                
+                errorsString.forEach({ errors.append(AuthorizationAPIError(stringRepresentation: $0)) })
+            }
             
-            completion(error == nil && httpResponse.statusCode == 200, parsedError, data, httpResponse.value(forHTTPHeaderField: "X-Token"))
+            DispatchQueue.main.async {
+                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token") ?? tokenParsed)
+            }
+        })
+        
+        dataTask?.resume()
+    }
+    
+    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Data?, String?) -> Void)) {
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/Register")
+        
+        let request = requestMaker.makeDatataskRequest(with: url,
+                                                       headerAcceptValue: "application/json",
+                                                       headerContentTypeValue: "application/json",
+                                                       method: .post,
+                                                       json: [
+                                                        "userName" : email,
+                                                        "password" : password
+                                                       ])
+        
+        dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+            var errors: [AuthorizationAPIError] = []
+            if let error = error {
+                errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(false, errors, nil, nil)
+                return
+            }
+            
+            let success = httpResponse.statusCode == 200
+            var tokenParsed: String?
+            if success {
+                guard let data = data else { return }
+                tokenParsed = String(data: data, encoding: .utf8) // now token received as body.
+            }
+            else {
+                guard let data = data,
+                let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
+                let errorsString = errorsJSON["errors"] else { return }
+                
+                errorsString.forEach({ errors.append(AuthorizationAPIError(stringRepresentation: $0)) })
+            }
+            
+            DispatchQueue.main.async {
+                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token") ?? tokenParsed)
+            }
         })
         
         dataTask?.resume()

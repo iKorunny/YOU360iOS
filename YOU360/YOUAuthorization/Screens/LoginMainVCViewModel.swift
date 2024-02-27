@@ -18,12 +18,19 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
         static let socialNetworkButtonsCellID = "LoginSocialNetworksCell"
         static let loginRegisterCellID = "LoginRegisterCell"
         static let fieldsCellIndex: Int = 1
+        
+        static let debugLogin = "user@example.com"
+        static let debugPassword = "string"
     }
     
     private weak var fieldsCell: LoginFieldsCell?
     private var fieldsCellModel = LoginFieldsCellModel()
+    private lazy var loaderManager: LoaderManager = {
+        return LoaderManager()
+    }()
     
     var tableView: UITableView?
+    var viewController: UIViewController?
     
     var numberOfRows: Int {
         return 6
@@ -39,13 +46,31 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
             return cell
         case 2:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonsFieldCellID, for: index) as! LoginButtonsCell
-            cell.setup {
+            cell.setup { [ weak self] in
                 print("Login -> Log in")
-                AuthorizationAPIService.shared.requestLogin(email: "user@example.com", password: "string") { success, error, data, string in
-                    print()
+                self?.hideKeyboards()
+                if let vc = self?.viewController {
+                    self?.loaderManager.addFullscreenLoader(for: vc)
                 }
-            } forgotPasswordAction: {
+                
+                AuthorizationAPIService.shared.requestLogin(email: self?.fieldsCellModel.loginString ?? "",
+                                                            password: self?.fieldsCellModel.passwordString ?? "") { [weak self] success, errors, data, token in
+                    defer {
+                        self?.loaderManager.removeFullscreenLoader()
+                    }
+                    
+                    if !errors.isEmpty {
+                        // TODO: will handle errors here
+                        return
+                    }
+                    
+                    guard success, let data = data, let token = token else { return }
+                    AuthorizationService.shared.token = token
+                    AuthorizationRouter.shared.endFlow()
+                }
+            } forgotPasswordAction: { [weak self] in
                 print("Login -> Forgot Password")
+                self?.hideKeyboards()
             }
 
             return cell
@@ -53,13 +78,15 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
             return table.dequeueReusableCell(withIdentifier: Constants.separatorCellID, for: index)
         case 4:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.socialNetworkButtonsCellID, for: index) as! LoginSocialNetworksCell
-            cell.setup(with: LoginSocialNetworksProvider.supportedNetworks()) { network in
+            cell.setup(with: LoginSocialNetworksProvider.supportedNetworks()) { [weak self] network in
                 print("Login -> authorize with: \(network.rawValue)")
+                self?.hideKeyboards()
             }
             return cell
         case 5:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.loginRegisterCellID) as! LoginRegisterCell
-            cell.setup {
+            cell.setup { [weak self] in
+                self?.hideKeyboards()
                 AuthorizationRouter.shared.moveToRegister()
             }
             return cell
@@ -78,6 +105,10 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
     }
     
     func didScroll() {
+        hideKeyboards()
+    }
+    
+    private func hideKeyboards() {
         fieldsCell?.hideKeyboard()
     }
     
@@ -96,5 +127,6 @@ extension LoginMainVCViewModel: UITextFieldDelegate {
         let input = textField.text ?? ""
         let isEmpty = input.isEmpty
         fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
+        fieldsCell?.saveValue(for: textField)
     }
 }

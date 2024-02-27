@@ -16,6 +16,10 @@ final class RegisterFieldsCellModel {
     
     var passwordSecure: Bool = true
     var repeatPasswordSecure: Bool = true
+    
+    var loginString: String?
+    var passwordString: String?
+    var repeatPasswordString: String?
 }
 
 final class SignInFieldsCell: UITableViewCell {
@@ -139,6 +143,23 @@ final class SignInFieldsCell: UITableViewCell {
         
         if repeatPasswordField.equal(to: field) {
             repeatPasswordField.setRightView(visible: visible)
+            return
+        }
+    }
+    
+    func saveValue(for field: UITextField) {
+        if loginField.equal(to: field) {
+            model?.loginString = field.text
+            return
+        }
+        
+        if passwordField.equal(to: field) {
+            model?.passwordString = field.text
+            return
+        }
+        
+        if repeatPasswordField.equal(to: field) {
+            model?.repeatPasswordString = field.text
             return
         }
     }

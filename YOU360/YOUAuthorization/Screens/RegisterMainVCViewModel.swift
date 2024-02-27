@@ -22,8 +22,12 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     
     private weak var fieldsCell: SignInFieldsCell?
     private var fieldsCellModel = RegisterFieldsCellModel()
+    private lazy var loaderManager: LoaderManager = {
+        return LoaderManager()
+    }()
     
     var tableView: UITableView?
+    var viewController: UIViewController?
     
     var numberOfRows: Int {
         return 6
@@ -39,8 +43,28 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
             return cell
         case 2:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonFieldCellID, for: index) as! SignInButtonsCell
-            cell.setup {
+            cell.setup { [weak self] in
                 print("Register -> sign in")
+                self?.hideKeyboards()
+                if let vc = self?.viewController {
+                    self?.loaderManager.addFullscreenLoader(for: vc)
+                }
+                
+                AuthorizationAPIService.shared.requestRegister(email: self?.fieldsCellModel.loginString ?? "",
+                                                            password: self?.fieldsCellModel.passwordString ?? "") { [weak self] success, errors, data, token in
+                    defer {
+                        self?.loaderManager.removeFullscreenLoader()
+                    }
+                    
+                    if !errors.isEmpty {
+                        // TODO: will handle errors here
+                        return
+                    }
+                    
+                    guard success, let data = data, let token = token else { return }
+                    AuthorizationService.shared.token = token
+                    AuthorizationRouter.shared.endFlow()
+                }
             }
 
             return cell
@@ -48,14 +72,16 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
             return table.dequeueReusableCell(withIdentifier: Constants.separatorCellID, for: index)
         case 4:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.socialNetworkButtonsCellID, for: index) as! LoginSocialNetworksCell
-            cell.setup(with: LoginSocialNetworksProvider.supportedNetworks()) { network in
+            cell.setup(with: LoginSocialNetworksProvider.supportedNetworks()) { [weak self] network in
                 print("Register -> authorize with: \(network.rawValue)")
+                self?.hideKeyboards()
             }
             return cell
         case 5:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.loginRegisterCellID) as! SignInLoginCell
-            cell.setup {
+            cell.setup { [weak self] in
                 AuthorizationRouter.shared.moveToLoginMain()
+                self?.hideKeyboards()
             }
             return cell
         default:
@@ -73,6 +99,10 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     }
     
     func didScroll() {
+        hideKeyboards()
+    }
+    
+    private func hideKeyboards() {
         fieldsCell?.hideKeyboard()
     }
     
@@ -107,5 +137,6 @@ extension RegisterMainVCViewModel: UITextFieldDelegate {
         let input = textField.text ?? ""
         let isEmpty = input.isEmpty
         fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
+        fieldsCell?.saveValue(for: textField)
     }
 }

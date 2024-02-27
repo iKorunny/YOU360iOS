@@ -27,6 +27,11 @@
 		8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; };
 		8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A5982B822D8200294DD7 /* AuthorizationService.swift */; };
+		80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528EFB2B8DF680000D6D80 /* SafeStorage.swift */; };
+		80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528EFD2B8DF6EE000D6D80 /* KeychainService.swift */; };
+		80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */; };
+		80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */; };
+		80528F062B8DFAFB000D6D80 /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F052B8DFAFB000D6D80 /* LoaderManager.swift */; };
 		8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */; };
 		8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */; };
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
@@ -145,6 +150,11 @@
 		8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUAuthorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUAuthorization.h; sourceTree = "<group>"; };
 		8032A5982B822D8200294DD7 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		80528EFB2B8DF680000D6D80 /* SafeStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeStorage.swift; sourceTree = "<group>"; };
+		80528EFD2B8DF6EE000D6D80 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FulScreenLoaderVC.swift; sourceTree = "<group>"; };
+		80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoading.swift; sourceTree = "<group>"; };
+		80528F052B8DFAFB000D6D80 /* LoaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderManager.swift; sourceTree = "<group>"; };
 		8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
@@ -293,6 +303,7 @@
 				806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */,
 				806B3E972B8683F9007A695D /* TextFieldWithError.swift */,
 				806B3E992B87A3EB007A695D /* TopRoundedView.swift */,
+				80528F002B8DF8BE000D6D80 /* Loaders */,
 			);
 			path = YOUUIComponents;
 			sourceTree = "<group>";
@@ -309,6 +320,24 @@
 				80A4F5692B823E6E002CC9AD /* Screens */,
 			);
 			path = YOUAuthorization;
+			sourceTree = "<group>";
+		};
+		80528EFF2B8DF6F5000D6D80 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				80528EFD2B8DF6EE000D6D80 /* KeychainService.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		80528F002B8DF8BE000D6D80 /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */,
+				80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */,
+				80528F052B8DFAFB000D6D80 /* LoaderManager.swift */,
+			);
+			path = Loaders;
 			sourceTree = "<group>";
 		};
 		8096B7552B88B2B90015D917 /* Cells */ = {
@@ -352,7 +381,9 @@
 		80A4F5782B8361CB002CC9AD /* YOUUtils */ = {
 			isa = PBXGroup;
 			children = (
+				80528EFF2B8DF6F5000D6D80 /* Internal */,
 				80A4F5792B8361CB002CC9AD /* YOUUtils.h */,
+				80528EFB2B8DF680000D6D80 /* SafeStorage.swift */,
 				80A4F5822B8361DF002CC9AD /* String+Localisation.swift */,
 				8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */,
 				80A4F5842B836250002CC9AD /* LocalisedImageProvider.swift */,
@@ -662,9 +693,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80528F062B8DFAFB000D6D80 /* LoaderManager.swift in Sources */,
 				80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */,
 				806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */,
+				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
+				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
 				806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */,
 			);
@@ -703,7 +737,9 @@
 			files = (
 				80A4F5832B8361DF002CC9AD /* String+Localisation.swift in Sources */,
 				80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */,
+				80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */,
 				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
+				80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,
 				8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */,
 			);

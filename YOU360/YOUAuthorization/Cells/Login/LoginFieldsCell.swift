@@ -12,6 +12,9 @@ import YOUUtils
 final class LoginFieldsCellModel {
     var loginFieldState: TextFieldWithError.State = .default
     var passwordFieldState: TextFieldWithError.State = .default
+    
+    var loginString: String?
+    var passwordString: String?
 }
 
 final class LoginFieldsCell: UITableViewCell {
@@ -91,6 +94,18 @@ final class LoginFieldsCell: UITableViewCell {
         if passwordField.equal(to: field) {
             passwordField.set(state: state)
             model?.passwordFieldState = state
+            return
+        }
+    }
+    
+    func saveValue(for field: UITextField) {
+        if loginField.equal(to: field) {
+            model?.loginString = field.text
+            return
+        }
+        
+        if passwordField.equal(to: field) {
+            model?.passwordString = field.text
             return
         }
     }

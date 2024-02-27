@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import YOUUtils
 
 public final class AuthorizationService {
     public static var shared = {
@@ -13,7 +14,22 @@ public final class AuthorizationService {
     }()
     
     public var isAuthorized: Bool {
-        false
+        token != nil
+    }
+    
+    var token: String? {
+        set {
+            if let token = newValue {
+                SafeStorage.saveAuthToken(token)
+            }
+            else {
+                SafeStorage.removeToken()
+            }
+        }
+        
+        get {
+            SafeStorage.getToken()
+        }
     }
     
     private var loginObservers: [LoginObserver] = []

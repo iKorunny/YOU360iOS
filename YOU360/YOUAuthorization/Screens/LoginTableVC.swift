@@ -34,6 +34,7 @@ final class LoginTableVC: CustomNavigationViewController {
     
     init(viewModel: LoginTableVCViewModel) {
         self.viewModel = viewModel
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,6 +46,7 @@ final class LoginTableVC: CustomNavigationViewController {
         super.viewDidLoad()
         
         viewModel.tableView = tableView
+        viewModel.viewController = self
 
         title = nil
         view.backgroundColor = ColorPallete.appWhiteSecondary

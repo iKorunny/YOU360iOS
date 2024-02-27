@@ -22,7 +22,9 @@ final class MainRouter {
     }
     
     func routeToLogin() {
-        AuthorizationRouter.shared.startLoginFlow()
+        AuthorizationRouter.shared.startLoginFlow { [weak self] in
+            self?.routeToApp()
+        }
     }
     
     func routeToApp() {

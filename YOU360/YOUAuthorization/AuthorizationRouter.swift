@@ -13,6 +13,8 @@ public final class AuthorizationRouter: NSObject {
         AuthorizationRouter()
     }()
     
+    private var onEnd: (() -> Void)?
+    
     private weak var loginMainVCRef: AnyObject?
     private weak var registerMainVCRef: AnyObject?
     
@@ -33,11 +35,17 @@ public final class AuthorizationRouter: NSObject {
         return window
     }()
     
-    public func startLoginFlow() {
+    public func startLoginFlow(onEnd: @escaping (() -> Void)) {
+        self.onEnd = onEnd
         let startScreen = LoginScreensFactory.makeRootLogin()
         rootVC = startScreen
         loginWindow?.rootViewController = startScreen
         loginWindow?.makeKeyAndVisible()
+    }
+    
+    func endFlow() {
+        loginWindow?.isHidden = true
+        onEnd?()
     }
     
     func moveToLoginMain() {

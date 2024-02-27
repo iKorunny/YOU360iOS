@@ -7,6 +7,7 @@
 
 import UIKit
 import YOUAuthorization
+import YOUUtils
 
 class AppRootViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class AppRootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SafeStorage.removeToken()
         
     }
     
