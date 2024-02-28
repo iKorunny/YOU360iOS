@@ -25,6 +25,7 @@ public final class AuthorizationService {
             else {
                 SafeStorage.removeToken()
             }
+            loginObservers.forEach { $0.closure() }
         }
         
         get {
@@ -32,10 +33,10 @@ public final class AuthorizationService {
         }
     }
     
-    private var loginObservers: [LoginObserver] = []
+    private var loginObservers: [ClosureObserver] = []
     
-    public func observeLogin(callback: @escaping ((Bool) -> Void)) -> AnyObject? {
-        let observer = LoginObserver(closure: callback)
+    public func observeLoginStatus(callback: @escaping (() -> Void)) -> AnyObject? {
+        let observer = ClosureObserver(closure: callback)
         loginObservers.append(observer)
         return observer
     }
@@ -46,10 +47,10 @@ public final class AuthorizationService {
     }
 }
 
-private final class LoginObserver {
-    let closure: ((Bool) -> Void)
+private final class ClosureObserver {
+    let closure: (() -> Void)
     
-    init(closure: @escaping (Bool) -> Void) {
+    init(closure: @escaping () -> Void) {
         self.closure = closure
     }
 }

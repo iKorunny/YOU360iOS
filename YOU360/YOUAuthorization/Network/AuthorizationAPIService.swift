@@ -53,10 +53,9 @@ final class AuthorizationAPIService {
             }
             
             let success = httpResponse.statusCode == 200
-            var tokenParsed: String?
             if success {
                 guard let data = data else { return }
-                tokenParsed = String(data: data, encoding: .utf8) // now token received as body.
+                //TODO: parse profile
             }
             else {
                 guard let data = data,
@@ -67,7 +66,7 @@ final class AuthorizationAPIService {
             }
             
             DispatchQueue.main.async {
-                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token") ?? tokenParsed)
+                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token"))
             }
         })
         
@@ -97,10 +96,9 @@ final class AuthorizationAPIService {
             }
             
             let success = httpResponse.statusCode == 200
-            var tokenParsed: String?
             if success {
                 guard let data = data else { return }
-                tokenParsed = String(data: data, encoding: .utf8) // now token received as body.
+                // TODO: Parse profile
             }
             else {
                 guard let data = data,
@@ -111,7 +109,7 @@ final class AuthorizationAPIService {
             }
             
             DispatchQueue.main.async {
-                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token") ?? tokenParsed)
+                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token"))
             }
         })
         
