@@ -8,7 +8,7 @@
 import UIKit
 import YOUUtils
 
-final class ProfileRootVC: UIViewController {
+final class ProfileRootVC: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

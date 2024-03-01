@@ -10,6 +10,6 @@ import UIKit
 
 public final class ProfileScreenFactory {
     public static func createRootVC() -> UIViewController {
-        return ProfileRootVC()
+        return ProfileRootVC(rootViewController: ProfileVC())
     }
 }
