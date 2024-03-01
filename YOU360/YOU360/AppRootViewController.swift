@@ -8,6 +8,7 @@
 import UIKit
 import YOUAuthorization
 import YOUUtils
+import YOUProfile
 
 class AppRootViewController: UIViewController {
     
@@ -45,6 +46,7 @@ class AppRootViewController: UIViewController {
         let tabBar = UITabBarController()
         tabBar.view.translatesAutoresizingMaskIntoConstraints = false
         tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
+        tabBar.viewControllers = [ProfileScreenFactory.createRootVC()]
         return tabBar
     }()
     

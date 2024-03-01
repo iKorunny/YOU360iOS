@@ -134,6 +134,17 @@
         }
       }
     },
+    "ProfileTabBarTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YOU"
+          }
+        }
+      }
+    },
     "RegisterButtonTitle" : {
       "extractionState" : "manual",
       "localizations" : {
