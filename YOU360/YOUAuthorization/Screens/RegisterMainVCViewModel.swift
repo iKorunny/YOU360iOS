@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import YOUUIComponents
+import YOUProfileInterfaces
 
 final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     private enum Constants {
@@ -51,7 +52,7 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
                 }
                 
                 AuthorizationAPIService.shared.requestRegister(email: self?.fieldsCellModel.loginString ?? "",
-                                                            password: self?.fieldsCellModel.passwordString ?? "") { [weak self] success, errors, data, token in
+                                                            password: self?.fieldsCellModel.passwordString ?? "") { [weak self] success, errors, profile, token in
                     defer {
                         self?.loaderManager.removeFullscreenLoader()
                     }
@@ -61,7 +62,8 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
                         return
                     }
                     
-                    guard success, let data = data, let token = token else { return }
+                    guard success, let profile = profile, let token = token else { return }
+                    ProfileManager.shared.profile = profile
                     AuthorizationService.shared.token = token
                     AuthorizationRouter.shared.endFlow()
                 }

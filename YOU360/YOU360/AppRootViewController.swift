@@ -9,6 +9,9 @@ import UIKit
 import YOUAuthorization
 import YOUUtils
 import YOUProfile
+import YOUEstablishments
+import YOUChat
+import YOUUIComponents
 
 class AppRootViewController: UIViewController {
     
@@ -47,7 +50,13 @@ class AppRootViewController: UIViewController {
         tabBar.view.translatesAutoresizingMaskIntoConstraints = false
         tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
         tabBar.tabBar.isTranslucent = false
-        tabBar.viewControllers = [ProfileScreenFactory.createRootVC()]
+        tabBar.viewControllers = [
+            EstablishmentsScreenFactory.createHomeRootVC(),
+            EstablishmentsScreenFactory.createTopRootVC(),
+            ChatScreenFactory.createChatRootVC(),
+            ProfileScreenFactory.createReserveRootVC(),
+            ProfileScreenFactory.createMyProfileRootVC()
+        ]
         return tabBar
     }()
     
@@ -61,6 +70,7 @@ class AppRootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        MainRouter.shared.mainVC = self
 //        SafeStorage.removeToken()
         
         setupUI()
@@ -116,3 +126,16 @@ class AppRootViewController: UIViewController {
     }
 }
 
+extension AppRootViewController: MainVC {
+    func toMyProfile() {
+        toItem(type: .you)
+    }
+    
+    func toHomeVC() {
+        toItem(type: .home)
+    }
+    
+    private func toItem(type: YOUNavigationControllerItemType) {
+        tabBarVC.selectedIndex = type.rawValue
+    }
+}

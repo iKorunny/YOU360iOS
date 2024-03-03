@@ -35,6 +35,28 @@
         }
       }
     },
+    "ChatTabBarTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat"
+          }
+        }
+      }
+    },
+    "HomeTabBarTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
     "LoginButtonTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -140,7 +162,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "YOU"
+            "value" : "You"
           }
         }
       }
@@ -196,6 +218,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Get your account started"
+          }
+        }
+      }
+    },
+    "ReserveTabBarTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reserve"
+          }
+        }
+      }
+    },
+    "TopTabBarTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top"
           }
         }
       }

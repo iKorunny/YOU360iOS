@@ -30,11 +30,18 @@
 		804824002B924A120057F152 /* YOUProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 804823FF2B924A120057F152 /* YOUProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		804824032B924A120057F152 /* YOUProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; };
 		804824042B924A120057F152 /* YOUProfile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		804824082B924A250057F152 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804823F62B9247650057F152 /* Profile.swift */; };
 		8048240A2B924A9D0057F152 /* ProfileScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824092B924A9D0057F152 /* ProfileScreenFactory.swift */; };
-		8048240C2B924ACA0057F152 /* ProfileRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240B2B924AC90057F152 /* ProfileRootVC.swift */; };
 		8048240E2B924C740057F152 /* AppearanceConfigoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240D2B924C740057F152 /* AppearanceConfigoration.swift */; };
 		804824102B9250B90057F152 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240F2B9250B90057F152 /* ProfileVC.swift */; };
+		804824192B9465B40057F152 /* YOUEstablishments.h in Headers */ = {isa = PBXBuildFile; fileRef = 804824182B9465B40057F152 /* YOUEstablishments.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8048241C2B9465B40057F152 /* YOUEstablishments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804824162B9465B40057F152 /* YOUEstablishments.framework */; };
+		8048241D2B9465B40057F152 /* YOUEstablishments.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804824162B9465B40057F152 /* YOUEstablishments.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		804824292B9465C30057F152 /* YOUChat.h in Headers */ = {isa = PBXBuildFile; fileRef = 804824282B9465C30057F152 /* YOUChat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8048242C2B9465C30057F152 /* YOUChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804824262B9465C30057F152 /* YOUChat.framework */; };
+		8048242D2B9465C30057F152 /* YOUChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804824262B9465C30057F152 /* YOUChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		804824312B9466280057F152 /* YOUNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240B2B924AC90057F152 /* YOUNavigationController.swift */; };
+		804824332B946B530057F152 /* ChatScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824322B946B530057F152 /* ChatScreenFactory.swift */; };
+		804824352B946BA30057F152 /* EstablishmentsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824342B946BA30057F152 /* EstablishmentsScreenFactory.swift */; };
 		80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528EFB2B8DF680000D6D80 /* SafeStorage.swift */; };
 		80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528EFD2B8DF6EE000D6D80 /* KeychainService.swift */; };
 		80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */; };
@@ -48,6 +55,11 @@
 		806E88952B88FBEC00D45FDA /* LoginFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */; };
 		8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */; };
 		8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */; };
+		809FC41B2B946FFF00C0A707 /* YOUProfileInterfaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 809FC41A2B946FFF00C0A707 /* YOUProfileInterfaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		809FC41E2B946FFF00C0A707 /* YOUProfileInterfaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */; };
+		809FC41F2B946FFF00C0A707 /* YOUProfileInterfaces.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		809FC4232B94700B00C0A707 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804823F62B9247650057F152 /* Profile.swift */; };
+		809FC4242B94725700C0A707 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824362B946CDD0057F152 /* ProfileManager.swift */; };
 		80A4F5682B823C17002CC9AD /* AuthorizationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */; };
 		80A4F56B2B823E8A002CC9AD /* LoginRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56A2B823E8A002CC9AD /* LoginRootVC.swift */; };
 		80A4F56D2B823F45002CC9AD /* LoginScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */; };
@@ -119,6 +131,27 @@
 			remoteGlobalIDString = 804823FC2B924A120057F152;
 			remoteInfo = YOUProfile;
 		};
+		8048241A2B9465B40057F152 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804824152B9465B40057F152;
+			remoteInfo = YOUEstablishments;
+		};
+		8048242A2B9465C30057F152 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 804824252B9465C30057F152;
+			remoteInfo = YOUChat;
+		};
+		809FC41C2B946FFF00C0A707 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 809FC4172B946FFF00C0A707;
+			remoteInfo = YOUProfileInterfaces;
+		};
 		80A4F57B2B8361CB002CC9AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
@@ -135,10 +168,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8048241D2B9465B40057F152 /* YOUEstablishments.framework in Embed Frameworks */,
 				804824042B924A120057F152 /* YOUProfile.framework in Embed Frameworks */,
 				80A4F57E2B8361CB002CC9AD /* YOUUtils.framework in Embed Frameworks */,
 				8032A5822B820D8200294DD7 /* YOUUIComponents.framework in Embed Frameworks */,
+				809FC41F2B946FFF00C0A707 /* YOUProfileInterfaces.framework in Embed Frameworks */,
 				8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */,
+				8048242D2B9465C30057F152 /* YOUChat.framework in Embed Frameworks */,
 				8032A56D2B820BA000294DD7 /* YOUNetworking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -170,9 +206,16 @@
 		804823FD2B924A120057F152 /* YOUProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		804823FF2B924A120057F152 /* YOUProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUProfile.h; sourceTree = "<group>"; };
 		804824092B924A9D0057F152 /* ProfileScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenFactory.swift; sourceTree = "<group>"; };
-		8048240B2B924AC90057F152 /* ProfileRootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRootVC.swift; sourceTree = "<group>"; };
+		8048240B2B924AC90057F152 /* YOUNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUNavigationController.swift; sourceTree = "<group>"; };
 		8048240D2B924C740057F152 /* AppearanceConfigoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigoration.swift; sourceTree = "<group>"; };
 		8048240F2B9250B90057F152 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		804824162B9465B40057F152 /* YOUEstablishments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUEstablishments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		804824182B9465B40057F152 /* YOUEstablishments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUEstablishments.h; sourceTree = "<group>"; };
+		804824262B9465C30057F152 /* YOUChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		804824282B9465C30057F152 /* YOUChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUChat.h; sourceTree = "<group>"; };
+		804824322B946B530057F152 /* ChatScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenFactory.swift; sourceTree = "<group>"; };
+		804824342B946BA30057F152 /* EstablishmentsScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentsScreenFactory.swift; sourceTree = "<group>"; };
+		804824362B946CDD0057F152 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		80528EFB2B8DF680000D6D80 /* SafeStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeStorage.swift; sourceTree = "<group>"; };
 		80528EFD2B8DF6EE000D6D80 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FulScreenLoaderVC.swift; sourceTree = "<group>"; };
@@ -186,6 +229,8 @@
 		806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsCell.swift; sourceTree = "<group>"; };
 		8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainVCViewModel.swift; sourceTree = "<group>"; };
 		8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTitleCell.swift; sourceTree = "<group>"; };
+		809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfileInterfaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		809FC41A2B946FFF00C0A707 /* YOUProfileInterfaces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUProfileInterfaces.h; sourceTree = "<group>"; };
 		80A4F5672B823C17002CC9AD /* AuthorizationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRouter.swift; sourceTree = "<group>"; };
 		80A4F56A2B823E8A002CC9AD /* LoginRootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRootVC.swift; sourceTree = "<group>"; };
 		80A4F56C2B823F45002CC9AD /* LoginScreensFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreensFactory.swift; sourceTree = "<group>"; };
@@ -227,10 +272,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8048241C2B9465B40057F152 /* YOUEstablishments.framework in Frameworks */,
 				804824032B924A120057F152 /* YOUProfile.framework in Frameworks */,
 				80A4F57D2B8361CB002CC9AD /* YOUUtils.framework in Frameworks */,
 				8032A5812B820D8200294DD7 /* YOUUIComponents.framework in Frameworks */,
+				809FC41E2B946FFF00C0A707 /* YOUProfileInterfaces.framework in Frameworks */,
 				8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */,
+				8048242C2B9465C30057F152 /* YOUChat.framework in Frameworks */,
 				8032A56C2B820BA000294DD7 /* YOUNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +311,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		804824132B9465B40057F152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804824232B9465C30057F152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		809FC4152B946FFF00C0A707 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80A4F5742B8361CB002CC9AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,7 +350,10 @@
 				8032A57C2B820D8200294DD7 /* YOUUIComponents */,
 				8032A58E2B820E6C00294DD7 /* YOUAuthorization */,
 				80A4F5782B8361CB002CC9AD /* YOUUtils */,
+				809FC4192B946FFF00C0A707 /* YOUProfileInterfaces */,
 				804823FE2B924A120057F152 /* YOUProfile */,
+				804824172B9465B40057F152 /* YOUEstablishments */,
+				804824272B9465C30057F152 /* YOUChat */,
 				8032A5482B820B7600294DD7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -295,6 +367,9 @@
 				8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */,
 				80A4F5772B8361CB002CC9AD /* YOUUtils.framework */,
 				804823FD2B924A120057F152 /* YOUProfile.framework */,
+				804824162B9465B40057F152 /* YOUEstablishments.framework */,
+				804824262B9465C30057F152 /* YOUChat.framework */,
+				809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +412,7 @@
 				806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */,
 				806B3E972B8683F9007A695D /* TextFieldWithError.swift */,
 				806B3E992B87A3EB007A695D /* TopRoundedView.swift */,
+				8048240B2B924AC90057F152 /* YOUNavigationController.swift */,
 				80528F002B8DF8BE000D6D80 /* Loaders */,
 			);
 			path = YOUUIComponents;
@@ -360,12 +436,28 @@
 			isa = PBXGroup;
 			children = (
 				804823FF2B924A120057F152 /* YOUProfile.h */,
-				804823F62B9247650057F152 /* Profile.swift */,
 				804824092B924A9D0057F152 /* ProfileScreenFactory.swift */,
-				8048240B2B924AC90057F152 /* ProfileRootVC.swift */,
 				8048240F2B9250B90057F152 /* ProfileVC.swift */,
 			);
 			path = YOUProfile;
+			sourceTree = "<group>";
+		};
+		804824172B9465B40057F152 /* YOUEstablishments */ = {
+			isa = PBXGroup;
+			children = (
+				804824182B9465B40057F152 /* YOUEstablishments.h */,
+				804824342B946BA30057F152 /* EstablishmentsScreenFactory.swift */,
+			);
+			path = YOUEstablishments;
+			sourceTree = "<group>";
+		};
+		804824272B9465C30057F152 /* YOUChat */ = {
+			isa = PBXGroup;
+			children = (
+				804824282B9465C30057F152 /* YOUChat.h */,
+				804824322B946B530057F152 /* ChatScreenFactory.swift */,
+			);
+			path = YOUChat;
 			sourceTree = "<group>";
 		};
 		80528EFF2B8DF6F5000D6D80 /* Internal */ = {
@@ -409,6 +501,16 @@
 				80BF5E742B8B921C0017524F /* SignInLoginCell.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		809FC4192B946FFF00C0A707 /* YOUProfileInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				804823F62B9247650057F152 /* Profile.swift */,
+				804824362B946CDD0057F152 /* ProfileManager.swift */,
+				809FC41A2B946FFF00C0A707 /* YOUProfileInterfaces.h */,
+			);
+			path = YOUProfileInterfaces;
 			sourceTree = "<group>";
 		};
 		80A4F5692B823E6E002CC9AD /* Screens */ = {
@@ -505,6 +607,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		804824112B9465B40057F152 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				804824192B9465B40057F152 /* YOUEstablishments.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804824212B9465C30057F152 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				804824292B9465C30057F152 /* YOUChat.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		809FC4132B946FFF00C0A707 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				809FC41B2B946FFF00C0A707 /* YOUProfileInterfaces.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80A4F5722B8361CB002CC9AD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -533,6 +659,9 @@
 				8032A5922B820E6C00294DD7 /* PBXTargetDependency */,
 				80A4F57C2B8361CB002CC9AD /* PBXTargetDependency */,
 				804824022B924A120057F152 /* PBXTargetDependency */,
+				8048241B2B9465B40057F152 /* PBXTargetDependency */,
+				8048242B2B9465C30057F152 /* PBXTargetDependency */,
+				809FC41D2B946FFF00C0A707 /* PBXTargetDependency */,
 			);
 			name = YOU360;
 			productName = YOU360;
@@ -611,6 +740,60 @@
 			productReference = 804823FD2B924A120057F152 /* YOUProfile.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		804824152B9465B40057F152 /* YOUEstablishments */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8048241E2B9465B40057F152 /* Build configuration list for PBXNativeTarget "YOUEstablishments" */;
+			buildPhases = (
+				804824112B9465B40057F152 /* Headers */,
+				804824122B9465B40057F152 /* Sources */,
+				804824132B9465B40057F152 /* Frameworks */,
+				804824142B9465B40057F152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YOUEstablishments;
+			productName = YOUEstablishments;
+			productReference = 804824162B9465B40057F152 /* YOUEstablishments.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		804824252B9465C30057F152 /* YOUChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8048242E2B9465C30057F152 /* Build configuration list for PBXNativeTarget "YOUChat" */;
+			buildPhases = (
+				804824212B9465C30057F152 /* Headers */,
+				804824222B9465C30057F152 /* Sources */,
+				804824232B9465C30057F152 /* Frameworks */,
+				804824242B9465C30057F152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YOUChat;
+			productName = YOUChat;
+			productReference = 804824262B9465C30057F152 /* YOUChat.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		809FC4172B946FFF00C0A707 /* YOUProfileInterfaces */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 809FC4222B946FFF00C0A707 /* Build configuration list for PBXNativeTarget "YOUProfileInterfaces" */;
+			buildPhases = (
+				809FC4132B946FFF00C0A707 /* Headers */,
+				809FC4142B946FFF00C0A707 /* Sources */,
+				809FC4152B946FFF00C0A707 /* Frameworks */,
+				809FC4162B946FFF00C0A707 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YOUProfileInterfaces;
+			productName = YOUProfileInterfaces;
+			productReference = 809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		80A4F5762B8361CB002CC9AD /* YOUUtils */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80A4F5812B8361CB002CC9AD /* Build configuration list for PBXNativeTarget "YOUUtils" */;
@@ -657,6 +840,17 @@
 					804823FC2B924A120057F152 = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					804824152B9465B40057F152 = {
+						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
+					};
+					804824252B9465C30057F152 = {
+						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
+					};
+					809FC4172B946FFF00C0A707 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					80A4F5762B8361CB002CC9AD = {
 						CreatedOnToolsVersion = 15.0;
 						LastSwiftMigration = 1500;
@@ -683,6 +877,9 @@
 				8032A58C2B820E6C00294DD7 /* YOUAuthorization */,
 				80A4F5762B8361CB002CC9AD /* YOUUtils */,
 				804823FC2B924A120057F152 /* YOUProfile */,
+				804824152B9465B40057F152 /* YOUEstablishments */,
+				804824252B9465C30057F152 /* YOUChat */,
+				809FC4172B946FFF00C0A707 /* YOUProfileInterfaces */,
 			);
 		};
 /* End PBXProject section */
@@ -728,6 +925,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		804823FB2B924A120057F152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804824142B9465B40057F152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804824242B9465C30057F152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		809FC4162B946FFF00C0A707 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -784,6 +1002,7 @@
 				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
 				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,
+				804824312B9466280057F152 /* YOUNavigationController.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
 				806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */,
 			);
@@ -821,9 +1040,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
-				8048240C2B924ACA0057F152 /* ProfileRootVC.swift in Sources */,
 				8048240A2B924A9D0057F152 /* ProfileScreenFactory.swift in Sources */,
-				804824082B924A250057F152 /* Profile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804824122B9465B40057F152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				804824352B946BA30057F152 /* EstablishmentsScreenFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		804824222B9465C30057F152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				804824332B946B530057F152 /* ChatScreenFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		809FC4142B946FFF00C0A707 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				809FC4232B94700B00C0A707 /* Profile.swift in Sources */,
+				809FC4242B94725700C0A707 /* ProfileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +1105,21 @@
 			isa = PBXTargetDependency;
 			target = 804823FC2B924A120057F152 /* YOUProfile */;
 			targetProxy = 804824012B924A120057F152 /* PBXContainerItemProxy */;
+		};
+		8048241B2B9465B40057F152 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804824152B9465B40057F152 /* YOUEstablishments */;
+			targetProxy = 8048241A2B9465B40057F152 /* PBXContainerItemProxy */;
+		};
+		8048242B2B9465C30057F152 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 804824252B9465C30057F152 /* YOUChat */;
+			targetProxy = 8048242A2B9465C30057F152 /* PBXContainerItemProxy */;
+		};
+		809FC41D2B946FFF00C0A707 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 809FC4172B946FFF00C0A707 /* YOUProfileInterfaces */;
+			targetProxy = 809FC41C2B946FFF00C0A707 /* PBXContainerItemProxy */;
 		};
 		80A4F57C2B8361CB002CC9AD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1345,6 +1602,210 @@
 			};
 			name = Release;
 		};
+		8048241F2B9465B40057F152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUEstablishments;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		804824202B9465B40057F152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUEstablishments;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8048242F2B9465C30057F152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUChat;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		804824302B9465C30057F152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUChat;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		809FC4202B946FFF00C0A707 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUProfileInterfaces;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		809FC4212B946FFF00C0A707 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUProfileInterfaces;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		80A4F57F2B8361CB002CC9AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1467,6 +1928,33 @@
 			buildConfigurations = (
 				804824062B924A120057F152 /* Debug */,
 				804824072B924A120057F152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8048241E2B9465B40057F152 /* Build configuration list for PBXNativeTarget "YOUEstablishments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8048241F2B9465B40057F152 /* Debug */,
+				804824202B9465B40057F152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8048242E2B9465C30057F152 /* Build configuration list for PBXNativeTarget "YOUChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8048242F2B9465C30057F152 /* Debug */,
+				804824302B9465C30057F152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		809FC4222B946FFF00C0A707 /* Build configuration list for PBXNativeTarget "YOUProfileInterfaces" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				809FC4202B946FFF00C0A707 /* Debug */,
+				809FC4212B946FFF00C0A707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

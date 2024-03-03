@@ -7,7 +7,7 @@
 
 import Foundation
 import YOUNetworking
-import YOUProfile
+import YOUProfileInterfaces
 
 final class AuthorizationAPIError {
     let stringRepresentation: String
@@ -49,7 +49,9 @@ final class AuthorizationAPIService {
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(false, errors, nil, nil)
+                DispatchQueue.main.async {
+                    completion(false, errors, nil, nil)
+                }
                 return
             }
             
@@ -57,9 +59,7 @@ final class AuthorizationAPIService {
             let success = httpResponse.statusCode == 200
             if success {
                 guard let data = data else { return }
-                let profileString = String(data: data, encoding: .utf8)
                 profile = try? JSONDecoder().decode(Profile.self, from: data)
-                //TODO: parse profile
             }
             else {
                 guard let data = data,
@@ -77,7 +77,7 @@ final class AuthorizationAPIService {
         dataTask?.resume()
     }
     
-    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Data?, String?) -> Void)) {
+    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/Register")
         
         let request = requestMaker.makeDatataskRequest(with: url,
@@ -95,14 +95,17 @@ final class AuthorizationAPIService {
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(false, errors, nil, nil)
+                DispatchQueue.main.async {
+                    completion(false, errors, nil, nil)
+                }
                 return
             }
             
+            var profile: Profile?
             let success = httpResponse.statusCode == 200
             if success {
                 guard let data = data else { return }
-                // TODO: Parse profile
+                profile = try? JSONDecoder().decode(Profile.self, from: data)
             }
             else {
                 guard let data = data,
@@ -113,7 +116,7 @@ final class AuthorizationAPIService {
             }
             
             DispatchQueue.main.async {
-                completion(errors.isEmpty && success, errors, data, httpResponse.value(forHTTPHeaderField: "X-Token"))
+                completion(errors.isEmpty && success, errors, profile, httpResponse.value(forHTTPHeaderField: "X-Token"))
             }
         })
         

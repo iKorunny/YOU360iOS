@@ -7,9 +7,14 @@
 
 import Foundation
 import UIKit
+import YOUUIComponents
 
 public final class ProfileScreenFactory {
-    public static func createRootVC() -> UIViewController {
-        return ProfileRootVC(rootViewController: ProfileVC())
+    public static func createMyProfileRootVC() -> UIViewController {
+        return YOUNavigationController(rootViewController: ProfileVC(), type: .you)
+    }
+    
+    public static func createReserveRootVC() -> UIViewController {
+        return YOUNavigationController(rootViewController: UIViewController(), type: .reserve)
     }
 }

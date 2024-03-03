@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import YOUUIComponents
+import YOUProfileInterfaces
 
 final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
     private enum Constants {
@@ -65,6 +66,7 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
                     }
                     
                     guard success, let profile = profile, let token = token else { return }
+                    ProfileManager.shared.profile = profile
                     AuthorizationService.shared.token = token
                     AuthorizationRouter.shared.endFlow()
                 }
