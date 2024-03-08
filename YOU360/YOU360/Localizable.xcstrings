@@ -156,6 +156,28 @@
         }
       }
     },
+    "ProfileHeaderEdit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        }
+      }
+    },
+    "ProfileHeaderOnlineIndicatorOnline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "online"
+          }
+        }
+      }
+    },
     "ProfileTabBarTitle" : {
       "extractionState" : "manual",
       "localizations" : {

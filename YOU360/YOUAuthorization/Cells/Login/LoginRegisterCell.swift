@@ -32,7 +32,7 @@ final class LoginRegisterCell: UITableViewCell {
     }()
     
     private lazy var button: UIButton = {
-        let button = ButtonsFactory.createWideButton(
+        let button = ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appWhiteSecondary,
             highlightedBackgroundColor: ColorPallete.appWhiteSecondary.withAlphaComponent(0.5),
             title: "LoginCreateAccountButtonTitle".localised(),

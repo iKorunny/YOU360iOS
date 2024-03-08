@@ -50,6 +50,7 @@ class AppRootViewController: UIViewController {
         tabBar.view.translatesAutoresizingMaskIntoConstraints = false
         tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
         tabBar.tabBar.isTranslucent = false
+        
         tabBar.viewControllers = [
             EstablishmentsScreenFactory.createHomeRootVC(),
             EstablishmentsScreenFactory.createTopRootVC(),

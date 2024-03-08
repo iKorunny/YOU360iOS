@@ -46,11 +46,3 @@ public final class AuthorizationService {
         loginObservers.removeAll(where: { $0 === observer })
     }
 }
-
-private final class ClosureObserver {
-    let closure: (() -> Void)
-    
-    init(closure: @escaping () -> Void) {
-        self.closure = closure
-    }
-}

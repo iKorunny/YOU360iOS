@@ -92,7 +92,7 @@ final class LoginSocialNetworksCell: UITableViewCell {
     }
     
     private func createButton(for network: LoginSocialNetwork) -> UIButton {
-        let button = ButtonsFactory.createWideButton(
+        let button = ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appWhite,
             highlightedBackgroundColor: ColorPallete.appDarkWhite,
             title: String(format: "LoginSocialAuth".localised(), network.rawValue),

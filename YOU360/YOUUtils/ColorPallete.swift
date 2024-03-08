@@ -17,6 +17,10 @@ public final class ColorPallete {
         return UIColor.color(from: "#EEEEEE")
     }
     
+    public static var appWhite3: UIColor {
+        return UIColor.color(from: "#FDFDFD")
+    }
+    
     public static var appBlack: UIColor {
         return .black
     }
@@ -55,5 +59,9 @@ public final class ColorPallete {
     
     public static var appGrey2: UIColor {
         return UIColor.color(from: "#BABABA")
+    }
+    
+    public static var appGreenIndication: UIColor {
+        return UIColor.color(from: "#8BC078")
     }
 }

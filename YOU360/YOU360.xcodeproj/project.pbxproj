@@ -100,6 +100,10 @@
 		80BF5E752B8B921C0017524F /* SignInLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E742B8B921C0017524F /* SignInLoginCell.swift */; };
 		80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */; };
 		80BF5E7A2B8C8C6A0017524F /* AuthorizationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */; };
+		80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */; };
+		80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */; };
+		80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */; };
+		80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +269,10 @@
 		80BF5E742B8B921C0017524F /* SignInLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInLoginCell.swift; sourceTree = "<group>"; };
 		80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNetworkConfig.swift; sourceTree = "<group>"; };
 		80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAPIService.swift; sourceTree = "<group>"; };
+		80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvileHeaderContentView.swift; sourceTree = "<group>"; };
+		80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCViewModel.swift; sourceTree = "<group>"; };
+		80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +446,9 @@
 				804823FF2B924A120057F152 /* YOUProfile.h */,
 				804824092B924A9D0057F152 /* ProfileScreenFactory.swift */,
 				8048240F2B9250B90057F152 /* ProfileVC.swift */,
+				80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */,
+				80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */,
+				80CA23A92B9BA90A008C9170 /* Cells */,
 			);
 			path = YOUProfile;
 			sourceTree = "<group>";
@@ -537,6 +548,7 @@
 				80A4F5842B836250002CC9AD /* LocalisedImageProvider.swift */,
 				80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */,
 				8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */,
+				80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 			);
 			path = YOUUtils;
@@ -570,6 +582,14 @@
 				80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		80CA23A92B9BA90A008C9170 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1039,6 +1059,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */,
+				80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */,
+				80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */,
 				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
 				8048240A2B924A9D0057F152 /* ProfileScreenFactory.swift in Sources */,
 			);
@@ -1078,6 +1101,7 @@
 				80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */,
 				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
 				80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */,
+				80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,
 				8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */,
 			);

@@ -37,7 +37,7 @@ final class LoginRootVC: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-        return ButtonsFactory.createWideButton(
+        return ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appWhiteSecondary,
             highlightedBackgroundColor: ColorPallete.appDarkWhite,
             title: "ButtonLoginTitle".localised(),
@@ -50,7 +50,7 @@ final class LoginRootVC: UIViewController {
     }()
     
     private lazy var createAccountButton: UIButton = {
-        return ButtonsFactory.createWideButton(
+        return ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appPink,
             highlightedBackgroundColor: ColorPallete.appDarkPink,
             title: "ButtonCreateAccountTitle".localised(),

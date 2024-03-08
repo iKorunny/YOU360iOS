@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 import YOUUIComponents
+import YOUProfileInterfaces
 
 public final class ProfileScreenFactory {
     public static func createMyProfileRootVC() -> UIViewController {
-        return YOUNavigationController(rootViewController: ProfileVC(), type: .you)
+        return YOUNavigationController(rootViewController: ProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared)), type: .you)
     }
     
     public static func createReserveRootVC() -> UIViewController {

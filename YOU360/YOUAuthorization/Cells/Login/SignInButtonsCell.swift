@@ -22,7 +22,7 @@ final class SignInButtonsCell: UITableViewCell {
     private var signInAction: (() -> Void)?
     
     private lazy var signInButton: UIButton = {
-        let button = ButtonsFactory.createWideButton(
+        let button = ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appPink,
             highlightedBackgroundColor: ColorPallete.appDarkPink,
             title: "RegisterButtonTitle".localised(),

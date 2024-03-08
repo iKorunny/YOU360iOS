@@ -24,13 +24,14 @@ public enum ButtonsFactoryTitleIconAligment {
 
 public final class ButtonsFactory {
     
-    public static func createWideButton(
+    public static func createButton(
         backgroundColor: UIColor = .clear,
         highlightedBackgroundColor: UIColor = .clear,
         title: String? = nil,
         titleFont: UIFont = .systemFont(ofSize: ButtonsFactoryDefaults.wideButtonDefaultTitleFontSize),
         titleColor: UIColor? = nil,
         titleIcon: UIImage? = nil,
+        contentInsets: NSDirectionalEdgeInsets? = nil,
         iconPadding: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultIconPadding,
         titleIconAligment: ButtonsFactoryTitleIconAligment = .left,
         height: CGFloat = ButtonsFactoryDefaults.wideButtonDefaultHeight,
@@ -46,6 +47,9 @@ public final class ButtonsFactory {
         configuration.image = titleIcon
         configuration.imageColorTransformer = UIConfigurationColorTransformer { color in
             return titleColor ?? .clear
+        }
+        if let contentInsets {
+            configuration.contentInsets = contentInsets
         }
         configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [weak button] incoming in
             var outgoing = incoming

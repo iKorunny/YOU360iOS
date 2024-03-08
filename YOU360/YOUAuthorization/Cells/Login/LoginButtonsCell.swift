@@ -25,7 +25,7 @@ final class LoginButtonsCell: UITableViewCell {
     private var forgotPasswordAction: (() -> Void)?
     
     private lazy var loginButton: UIButton = {
-        let button = ButtonsFactory.createWideButton(
+        let button = ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appPink,
             highlightedBackgroundColor: ColorPallete.appDarkPink,
             title: "LoginButtonTitle".localised(),
@@ -41,7 +41,7 @@ final class LoginButtonsCell: UITableViewCell {
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
-        let button = ButtonsFactory.createWideButton(
+        let button = ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appWhiteSecondary,
             highlightedBackgroundColor: ColorPallete.appDarkWhite,
             title: "LoginForgotPasswordButtonTitle".localised(),

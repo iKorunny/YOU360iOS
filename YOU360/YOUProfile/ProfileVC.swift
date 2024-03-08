@@ -15,6 +15,8 @@ final class ProfileVC: UIViewController {
         static let moreButtonInsets = UIEdgeInsets(top: 52, left: 0, bottom: 0, right: 20)
     }
     
+    private var viewModel: ProfileVCViewModel
+    
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "NavigationBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -31,10 +33,28 @@ final class ProfileVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let collection = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .clear
+        return collection
+    }()
+    
+    init(viewModel: ProfileVCViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.isNavigationBarHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         view.backgroundColor = ColorPallete.appWhiteSecondary
         
@@ -42,6 +62,7 @@ final class ProfileVC: UIViewController {
     }
     
     private func setupUI() {
+        setupCollectionView()
         
         setupTopButtons()
     }
@@ -55,6 +76,16 @@ final class ProfileVC: UIViewController {
         view.addSubview(moreButton)
         moreButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.moreButtonInsets.top).isActive = true
         moreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.moreButtonInsets.right).isActive = true
+    }
+    
+    private func setupCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        viewModel.set(collectionView: collectionView)
     }
     
     @objc private func popBack() {

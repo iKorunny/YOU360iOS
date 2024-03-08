@@ -17,4 +17,8 @@ public final class Profile: Codable {
 //        var container = encoder.container(keyedBy: CodingKeys.self)
 //        try container.encode(name, forKey: .name)
     }
+    
+    public init() {
+        
+    }
 }
