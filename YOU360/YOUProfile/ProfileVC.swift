@@ -37,7 +37,7 @@ final class ProfileVC: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .clear
+        collection.backgroundColor = ColorPallete.appWhiteSecondary
         return collection
     }()
     
@@ -54,7 +54,7 @@ final class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         view.backgroundColor = ColorPallete.appWhiteSecondary
         

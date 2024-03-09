@@ -51,12 +51,16 @@ class AppRootViewController: UIViewController {
         tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
         tabBar.tabBar.isTranslucent = false
         
+        let reserveVC = ProfileScreenFactory.createReserveRootVC()
+        let myProfileVC = ProfileScreenFactory.createMyProfileRootVC()
+        ProfileRouter.shared.rootProfileVC = myProfileVC
+        ProfileRouter.shared.rootReserveVC = reserveVC
         tabBar.viewControllers = [
             EstablishmentsScreenFactory.createHomeRootVC(),
             EstablishmentsScreenFactory.createTopRootVC(),
             ChatScreenFactory.createChatRootVC(),
-            ProfileScreenFactory.createReserveRootVC(),
-            ProfileScreenFactory.createMyProfileRootVC()
+            reserveVC,
+            myProfileVC
         ]
         return tabBar
     }()

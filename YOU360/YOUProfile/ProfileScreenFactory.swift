@@ -11,11 +11,14 @@ import YOUUIComponents
 import YOUProfileInterfaces
 
 public final class ProfileScreenFactory {
-    public static func createMyProfileRootVC() -> UIViewController {
+    public static func createMyProfileRootVC() -> UINavigationController {
         return YOUNavigationController(rootViewController: ProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared)), type: .you)
     }
+    public static func createProfileEditVC() -> UIViewController {
+        return ProfileEditVC()
+    }
     
-    public static func createReserveRootVC() -> UIViewController {
+    public static func createReserveRootVC() -> UINavigationController {
         return YOUNavigationController(rootViewController: UIViewController(), type: .reserve)
     }
 }

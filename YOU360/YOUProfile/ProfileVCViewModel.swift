@@ -19,6 +19,7 @@ protocol ProfileVCViewModel {
 final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private enum Constants {
         static let profileHeaderId = "ProfileHeaderCell"
+        static let profileEditCellId = "ProfileEditProfileCell"
     }
     
     var myProfile: Bool { return true }
@@ -39,17 +40,24 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.alwaysBounceHorizontal = false
         collectionView.alwaysBounceVertical = true
         collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
+        collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
     }
 }
 
 
 extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return isProfileFilled ? 0 : 1
+        default: return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -58,13 +66,25 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             let profileHeaderViewModel = ProvileHeaderContentViewModel(
                 profile: ProfileManager.shared.profile ?? Profile(),
                 onlineIdicator: .init(isHidden: false, status: .online)) {
-                    print("MyProfileVCViewModelImpl -> OnEdit")
+                    ProfileRouter.shared.toEditProfile()
                 } onShare: {
                     print("MyProfileVCViewModelImpl -> OnShare")
                 }
 
             cell.apply(viewModel: profileHeaderViewModel)
             return cell
+        }
+        else if indexPath.section == 1 {
+            if !isProfileFilled {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileEditCellId, for: indexPath) as! ProfileEditProfileCell
+                cell.apply(viewModel: .init(onEdit: {
+                    ProfileRouter.shared.toEditProfile()
+                }))
+                return cell
+            }
+            else {
+                return UICollectionViewCell()
+            }
         }
         else {
             return UICollectionViewCell()
@@ -76,6 +96,16 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
             let height = ProvileHeaderContentView.calculateHeight(from: width)
             return CGSize(width: width, height: height)
+        }
+        else if indexPath.section == 1 {
+            if !isProfileFilled {
+                let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileEditCellId, for: indexPath) as! ProfileEditProfileCell
+                return CGSize(width: width, height: cell.height(with: width))
+            }
+            else {
+                return CGSize.zero
+            }
         }
         else {
             return CGSize.zero

@@ -156,6 +156,50 @@
         }
       }
     },
+    "ProfileEditCellButtonTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Profile"
+          }
+        }
+      }
+    },
+    "ProfileEditCellDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your personal information will be display here. Please fill it in to proceed👇"
+          }
+        }
+      }
+    },
+    "ProfileEditCellTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is your profile"
+          }
+        }
+      }
+    },
+    "ProfileEditVCSaveButton" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
     "ProfileHeaderEdit" : {
       "extractionState" : "manual",
       "localizations" : {

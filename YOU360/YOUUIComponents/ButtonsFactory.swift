@@ -24,6 +24,30 @@ public enum ButtonsFactoryTitleIconAligment {
 
 public final class ButtonsFactory {
     
+    public static func createTextButton(
+        title: String?,
+        titleFont: UIFont,
+        titleColor: UIColor,
+        highLightedTitleColor: UIColor? = nil,
+        target: Any? = nil,
+        action: Selector? = nil,
+        for event: UIControl.Event = .touchUpInside
+    ) -> UIButton {
+        let button = UIButton()
+        
+        button.setTitle(title, for: .normal)
+        if let action = action {
+            button.addTarget(target, action: action, for: event)
+        }
+        button.setTitleColor(titleColor, for: .normal)
+        button.setTitleColor(highLightedTitleColor ?? titleColor, for: .highlighted)
+        button.setTitleColor(highLightedTitleColor ?? titleColor, for: .selected)
+        button.titleLabel?.font = titleFont
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }
+    
     public static func createButton(
         backgroundColor: UIColor = .clear,
         highlightedBackgroundColor: UIColor = .clear,
