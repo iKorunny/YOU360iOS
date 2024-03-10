@@ -64,7 +64,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileHeaderId, for: indexPath) as! ProfileHeaderCell
             let profileHeaderViewModel = ProvileHeaderContentViewModel(
-                profile: ProfileManager.shared.profile ?? Profile(),
+                profile: ProfileManager.shared.profile,
                 onlineIdicator: .init(isHidden: false, status: .online)) {
                     ProfileRouter.shared.toEditProfile()
                 } onShare: {

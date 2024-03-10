@@ -52,6 +52,12 @@
 		805BCBF22B9CE6F800641FB7 /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBF12B9CE6F800641FB7 /* ProfileEditVC.swift */; };
 		805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824092B924A9D0057F152 /* ProfileScreenFactory.swift */; };
 		805BCBF72B9CE82800641FB7 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBF32B9CE76B00641FB7 /* ProfileRouter.swift */; };
+		805BCBF92B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBF82B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift */; };
+		805BCBFB2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBFA2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift */; };
+		805BCBFD2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBFC2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift */; };
+		805BCBFF2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */; };
+		805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */; };
+		805BCC032B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */; };
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E992B87A3EB007A695D /* TopRoundedView.swift */; };
 		806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */; };
@@ -235,6 +241,12 @@
 		805BCBEF2B9CE3EC00641FB7 /* TextSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeCalculator.swift; sourceTree = "<group>"; };
 		805BCBF12B9CE6F800641FB7 /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
 		805BCBF32B9CE76B00641FB7 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		805BCBF82B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditHeaderContentView.swift; sourceTree = "<group>"; };
+		805BCBFA2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditScreenViewModel.swift; sourceTree = "<group>"; };
+		805BCBFC2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditAvatarsCell.swift; sourceTree = "<group>"; };
+		805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditImagesButtonsCell.swift; sourceTree = "<group>"; };
+		805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFieldsCell.swift; sourceTree = "<group>"; };
+		805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFieldsContentView.swift; sourceTree = "<group>"; };
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		806B3E992B87A3EB007A695D /* TopRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -461,6 +473,9 @@
 				80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */,
 				80CA23AE2B9CCDF2008C9170 /* ProfileEditCellContentView.swift */,
 				805BCBF12B9CE6F800641FB7 /* ProfileEditVC.swift */,
+				805BCBFA2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift */,
+				805BCBF82B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift */,
+				805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */,
 				80CA23A92B9BA90A008C9170 /* Cells */,
 			);
 			path = YOUProfile;
@@ -603,6 +618,9 @@
 			children = (
 				80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */,
 				80CA23B02B9CDBD0008C9170 /* ProfileEditProfileCell.swift */,
+				805BCBFC2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift */,
+				805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */,
+				805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1074,15 +1092,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				805BCBFF2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift in Sources */,
 				80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */,
 				80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */,
 				80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */,
 				805BCBF72B9CE82800641FB7 /* ProfileRouter.swift in Sources */,
 				80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */,
 				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
+				805BCBFD2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift in Sources */,
+				805BCBFB2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift in Sources */,
 				80CA23B12B9CDBD0008C9170 /* ProfileEditProfileCell.swift in Sources */,
+				805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */,
 				805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */,
+				805BCC032B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift in Sources */,
 				805BCBF22B9CE6F800641FB7 /* ProfileEditVC.swift in Sources */,
+				805BCBF92B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

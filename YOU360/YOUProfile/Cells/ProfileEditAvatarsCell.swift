@@ -1,20 +1,34 @@
 //
-//  ProfileEditProfileCell.swift
+//  ProfileEditAvatarsCell.swift
 //  YOUProfile
 //
-//  Created by Ihar Karunny on 3/9/24.
+//  Created by Ihar Karunny on 3/10/24.
 //
 
 import UIKit
+import YOUUtils
 
-final class ProfileEditProfileCell: UICollectionViewCell {
+final class ProfileEditAvatarsCell: UITableViewCell {
     
-    private var editProfileContentView: ProfileEditCellContentView?
+    private var editProfileContentView: ProfileEditHeaderContentView?
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+    }
     
-    func apply(viewModel: ProfileEditCellContentViewModel) {
-        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        contentView.backgroundColor = ColorPallete.appWhiteSecondary
+        selectionStyle = .none
+    }
+    
+    func apply(viewModel: ProfileEditHeaderContentViewModel) {
         if editProfileContentView == nil {
-            let editProfileView = ProfileEditCellContentView()
+            let editProfileView = ProfileEditHeaderContentView()
             editProfileView.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(editProfileView)
             editProfileView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
@@ -25,9 +39,5 @@ final class ProfileEditProfileCell: UICollectionViewCell {
         }
         
         editProfileContentView?.apply(viewModel: viewModel)
-    }
-    
-    func height(with width: CGFloat) -> CGFloat {
-        return ProfileEditCellContentView.height(with: width)
     }
 }

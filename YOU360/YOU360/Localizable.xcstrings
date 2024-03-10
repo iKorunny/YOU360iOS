@@ -189,6 +189,28 @@
         }
       }
     },
+    "ProfileEditChooseAvatarTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your photo"
+          }
+        }
+      }
+    },
+    "ProfileEditChooseBannerTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your banner"
+          }
+        }
+      }
+    },
     "ProfileEditVCSaveButton" : {
       "extractionState" : "manual",
       "localizations" : {

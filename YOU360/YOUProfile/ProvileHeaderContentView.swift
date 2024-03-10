@@ -27,13 +27,13 @@ struct OnlineIndicator {
 }
 
 final class ProvileHeaderContentViewModel {
-    var profile: Profile
+    var profile: Profile?
     var onlineIdicator: OnlineIndicator
     
     var onEdit: (() -> Void)
     var onShare: (() -> Void)
     
-    init(profile: Profile,
+    init(profile: Profile?,
          onlineIdicator: OnlineIndicator,
          onEdit: @escaping () -> Void,
          onShare: @escaping () -> Void) {
