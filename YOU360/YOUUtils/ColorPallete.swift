@@ -64,4 +64,8 @@ public final class ColorPallete {
     public static var appGreenIndication: UIColor {
         return UIColor.color(from: "#8BC078")
     }
+    
+    public static var appWeakPink: UIColor {
+        return UIColor.color(from: "#FEDDEB")
+    }
 }
