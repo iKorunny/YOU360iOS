@@ -91,7 +91,7 @@ final class ProfileEditFieldsContentView: UIView {
         addSubview(fieldsContainer)
         
         fieldsContainer.topAnchor.constraint(equalTo: topAnchor, constant: Constants.containerInsets.top).isActive = true
-        fieldsContainer.bottomAnchor.constraint(equalTo: topAnchor).isActive = true
+        fieldsContainer.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         fieldsContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.containerInsets.left).isActive = true
         fieldsContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.containerInsets.right).isActive = true
         
@@ -114,11 +114,13 @@ final class ProfileEditFieldsContentView: UIView {
             }
             else if let previousView {
                 let separator = UIView()
+                fieldsContainer.addSubview(separator)
                 separator.translatesAutoresizingMaskIntoConstraints = false
                 separator.backgroundColor = ColorPallete.appWeakPink
                 separator.heightAnchor.constraint(equalToConstant: Constants.fieldsSeparatorHeight).isActive = true
                 separator.leadingAnchor.constraint(equalTo: previousView.leadingAnchor).isActive = true
                 separator.trailingAnchor.constraint(equalTo: previousView.trailingAnchor).isActive = true
+                separator.topAnchor.constraint(equalTo: previousView.bottomAnchor).isActive = true
                 
                 field.topAnchor.constraint(equalTo: separator.bottomAnchor).isActive = true
             }
@@ -138,7 +140,7 @@ final class ProfileEditFieldsContentView: UIView {
         field.backgroundColor = ColorPallete.appWhite
         field.attributedPlaceholder = NSAttributedString(string: model.placeholder, attributes: [
             .font: model.placeholderFont,
-            .foregroundColor: model.placeholderColor.cgColor
+            .foregroundColor: model.placeholderColor
         ])
         
         field.text = model.text

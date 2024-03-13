@@ -8,16 +8,117 @@
 import Foundation
 import UIKit
 import YOUProfileInterfaces
+import YOUUtils
 
 protocol ProfileEditScreenViewModel {
     func set(tableView: UITableView)
+}
+
+private enum ProfileEditFieldsSection: Int {
+    case names
+    case aboutMe
+    case more1
+    case more2
+    case social
+    
+    static func section(from index: Int) -> ProfileEditFieldsSection {
+        return ProfileEditFieldsSection(rawValue: index - 2)!
+    }
 }
 
 final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel {
     private enum Constants {
         static let avatarsCellID = "ProfileEditAvatarsCell"
         static let imageButtonsCellID = "ProfileEditImagesButtonsCell"
+        static let fieldsCellID = "ProfileEditFieldsCell"
+        
+        static let fieldsPlaceholderTextSize: CGFloat = 14
+        static let fieldsTextSize: CGFloat = 14
+        
+        enum fieldsIDs {
+            static let nameField = "ProfileEditNameField"
+            static let lastNameField = "ProfileEditLastNameField"
+            static let aboutField = "ProfileEditAboutMeField"
+            static let dateOfBirthField = "ProfileEditDateOfBirthField"
+            static let cityField = "ProfileEditCity"
+            static let phoneNumberField = "ProfileEditPhoneNumberField"
+            static let paymentMethodField = "ProfileEditPaymentMethodField"
+            static let instagramField = "ProfileEditInstagramField"
+            static let facebookField = "ProfileEditFacebookField"
+            static let twitterField = "ProfileEditTwitterField"
+        }
     }
+    
+    private lazy var fieldsViewModels: [ProfileEditFieldsContentViewModel] = [
+        ProfileEditFieldsContentViewModel(fieldModels: [
+            .init(
+                identifier: Constants.fieldsIDs.nameField,
+                placeholder: "ProfileEditNameFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary),
+            .init(
+                identifier: Constants.fieldsIDs.lastNameField,
+                placeholder: "ProfileEditLastNameFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary)]),
+        ProfileEditFieldsContentViewModel(fieldModels: [
+            .init(
+                identifier: Constants.fieldsIDs.aboutField,
+                placeholder: "ProfileEditAboutMeFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary)]),
+        ProfileEditFieldsContentViewModel(fieldModels: [
+            .init(
+                identifier: Constants.fieldsIDs.dateOfBirthField,
+                placeholder: "ProfileEditDateOfBirthFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary),
+            .init(
+                identifier: Constants.fieldsIDs.cityField,
+                placeholder: "ProfileEditCityPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary)]),
+        ProfileEditFieldsContentViewModel(fieldModels: [
+            .init(
+                identifier: Constants.fieldsIDs.instagramField,
+                placeholder: "ProfileEditInstagramFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary),
+            .init(
+                identifier: Constants.fieldsIDs.facebookField,
+                placeholder: "ProfileEditFacebookFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary),
+            .init(
+                identifier: Constants.fieldsIDs.twitterField,
+                placeholder: "ProfileEditTwitterFieldPlaceholder".localised(),
+                placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                placeholderColor: ColorPallete.appGrey,
+                text: nil,
+                textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                textColor: ColorPallete.appBlackSecondary)])
+    ]
     
     private weak var table: UITableView?
     
@@ -32,11 +133,17 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         registerCells(for: tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        table?.rowHeight = UITableView.automaticDimension
     }
     
     private func registerCells(for tableView: UITableView) {
         tableView.register(ProfileEditAvatarsCell.self, forCellReuseIdentifier: Constants.avatarsCellID)
         tableView.register(ProfileEditImagesButtonsCell.self, forCellReuseIdentifier: Constants.imageButtonsCellID)
+        tableView.register(ProfileEditFieldsCell.self, forCellReuseIdentifier: Constants.fieldsCellID)
+    }
+    
+    private func fieldsModel(for section: ProfileEditFieldsSection) -> ProfileEditFieldsContentViewModel {
+        return fieldsViewModels[section.rawValue]
     }
     
     private func deactivateInputFields() {
@@ -46,7 +153,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
 
 extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 2 + fieldsViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +170,10 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
                 print("ProfileEditScreenViewModelImpl -> onChooseBanner")
             }))
             return cell
+        case 2, 3, 4, 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: indexPath) as! ProfileEditFieldsCell
+            cell.apply(model: fieldsModel(for: .section(from: indexPath.row)))
+            return cell
         default:
             return UITableViewCell()
         }
@@ -70,5 +181,9 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         deactivateInputFields()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
