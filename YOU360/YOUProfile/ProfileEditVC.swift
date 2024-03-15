@@ -64,6 +64,7 @@ final class ProfileEditVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = ColorPallete.appWhiteSecondary
         setupUI()
     }
@@ -94,6 +95,7 @@ final class ProfileEditVC: UIViewController {
     
     @objc private func popBack() {
         navigationController?.popViewController(animated: true)
+        tabBarController?.tabBar.isHidden = false
     }
     
     @objc private func onSave() {

@@ -27,6 +27,9 @@
 		8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; };
 		8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A5982B822D8200294DD7 /* AuthorizationService.swift */; };
+		8038AD532BA4DE67003B377C /* ProfileEditPushScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */; };
+		8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */; };
+		8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */; };
 		804824002B924A120057F152 /* YOUProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 804823FF2B924A120057F152 /* YOUProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		804824032B924A120057F152 /* YOUProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; };
 		804824042B924A120057F152 /* YOUProfile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -217,6 +220,9 @@
 		8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUAuthorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUAuthorization.h; sourceTree = "<group>"; };
 		8032A5982B822D8200294DD7 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenCell.swift; sourceTree = "<group>"; };
+		8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenContentView.swift; sourceTree = "<group>"; };
+		8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenLineView.swift; sourceTree = "<group>"; };
 		804823F62B9247650057F152 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		804823FD2B924A120057F152 /* YOUProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		804823FF2B924A120057F152 /* YOUProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUProfile.h; sourceTree = "<group>"; };
@@ -476,6 +482,8 @@
 				805BCBFA2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift */,
 				805BCBF82B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift */,
 				805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */,
+				8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */,
+				8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */,
 				80CA23A92B9BA90A008C9170 /* Cells */,
 			);
 			path = YOUProfile;
@@ -621,6 +629,7 @@
 				805BCBFC2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift */,
 				805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */,
 				805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */,
+				8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1093,6 +1102,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				805BCBFF2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift in Sources */,
+				8038AD532BA4DE67003B377C /* ProfileEditPushScreenCell.swift in Sources */,
+				8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */,
 				80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */,
 				80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */,
 				80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */,
@@ -1102,6 +1113,7 @@
 				805BCBFD2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift in Sources */,
 				805BCBFB2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift in Sources */,
 				80CA23B12B9CDBD0008C9170 /* ProfileEditProfileCell.swift in Sources */,
+				8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */,
 				805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */,
 				805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */,
 				805BCC032B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift in Sources */,

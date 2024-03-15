@@ -17,12 +17,22 @@ protocol ProfileEditScreenViewModel {
 private enum ProfileEditFieldsSection: Int {
     case names
     case aboutMe
-    case more1
-    case more2
+    case more
     case social
     
     static func section(from index: Int) -> ProfileEditFieldsSection {
-        return ProfileEditFieldsSection(rawValue: index - 2)!
+        switch index {
+        case 2:
+            return .names
+        case 3:
+            return .aboutMe
+        case 4:
+            return .more
+        case 6:
+            return .social
+        default:
+            fatalError("Bad ProfileEditFieldsSection")
+        }
     }
 }
 
@@ -31,6 +41,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         static let avatarsCellID = "ProfileEditAvatarsCell"
         static let imageButtonsCellID = "ProfileEditImagesButtonsCell"
         static let fieldsCellID = "ProfileEditFieldsCell"
+        static let pushScreenLinesCellID = "ProfileEditPushScreenCell"
         
         static let fieldsPlaceholderTextSize: CGFloat = 14
         static let fieldsTextSize: CGFloat = 14
@@ -120,6 +131,29 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 textColor: ColorPallete.appBlackSecondary)])
     ]
     
+    private lazy var pushScreenModel: ProfileEditPushScreenContentViewModel = {
+        return .init(models: [
+            ProfileEditPushScreenLineModel(identifier: Constants.fieldsIDs.phoneNumberField,
+                                           placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                                           placeholderColor: ColorPallete.appGrey,
+                                           placeholder: "ProfileEditPhoneNumberFieldPlaceholder".localised(),
+                                           textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                                           textColor: ColorPallete.appBlackSecondary,
+                                           action: {
+                                               print("ProfileEditScreenViewModelImpl -> phoneNumber")
+                                           }),
+            ProfileEditPushScreenLineModel(identifier: Constants.fieldsIDs.paymentMethodField,
+                                           placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
+                                           placeholderColor: ColorPallete.appGrey,
+                                           placeholder: "ProfileEditPaymentMethodFieldPlaceholder".localised(),
+                                           textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
+                                           textColor: ColorPallete.appBlackSecondary,
+                                           action: {
+                                               print("ProfileEditScreenViewModelImpl -> to paymentMethod")
+                                           })
+        ])
+    }()
+    
     private weak var table: UITableView?
     
     let profileManager: ProfileManager
@@ -140,6 +174,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         tableView.register(ProfileEditAvatarsCell.self, forCellReuseIdentifier: Constants.avatarsCellID)
         tableView.register(ProfileEditImagesButtonsCell.self, forCellReuseIdentifier: Constants.imageButtonsCellID)
         tableView.register(ProfileEditFieldsCell.self, forCellReuseIdentifier: Constants.fieldsCellID)
+        tableView.register(ProfileEditPushScreenCell.self, forCellReuseIdentifier: Constants.pushScreenLinesCellID)
     }
     
     private func fieldsModel(for section: ProfileEditFieldsSection) -> ProfileEditFieldsContentViewModel {
@@ -153,7 +188,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
 
 extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 + fieldsViewModels.count
+        return 2 + fieldsViewModels.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,9 +205,13 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
                 print("ProfileEditScreenViewModelImpl -> onChooseBanner")
             }))
             return cell
-        case 2, 3, 4, 5:
+        case 2, 3, 4, 6:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: indexPath) as! ProfileEditFieldsCell
             cell.apply(model: fieldsModel(for: .section(from: indexPath.row)))
+            return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.pushScreenLinesCellID, for: indexPath) as! ProfileEditPushScreenCell
+            cell.apply(model: pushScreenModel)
             return cell
         default:
             return UITableViewCell()
