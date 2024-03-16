@@ -102,12 +102,10 @@ final class ProfileEditPushScreenContentView: UIView {
         linesContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.containerInsets.left).isActive = true
         linesContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.containerInsets.right).isActive = true
         
-        guard let viewModel else { return }
-        
         var previousView: UIView?
-        viewModel.models.forEach { lineModel in
-            guard let firstModel = viewModel.models.first,
-                  let lastModel = viewModel.models.last else { return }
+        lineModels.forEach { lineModel in
+            guard let firstModel = lineModels.first,
+                  let lastModel = lineModels.last else { return }
             let line = line(for: lineModel)
             let isFirst = firstModel === lineModel
             let isLast = lastModel === lineModel

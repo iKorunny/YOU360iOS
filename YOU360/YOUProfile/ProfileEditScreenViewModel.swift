@@ -24,11 +24,11 @@ private enum ProfileEditFieldsSection: Int {
         switch index {
         case 2:
             return .names
-        case 3:
-            return .aboutMe
         case 4:
-            return .more
+            return .aboutMe
         case 6:
+            return .more
+        case 9:
             return .social
         default:
             fatalError("Bad ProfileEditFieldsSection")
@@ -42,6 +42,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         static let imageButtonsCellID = "ProfileEditImagesButtonsCell"
         static let fieldsCellID = "ProfileEditFieldsCell"
         static let pushScreenLinesCellID = "ProfileEditPushScreenCell"
+        static let headerFooterCellID = "ProfileEditHeaderFooterCell"
         
         static let fieldsPlaceholderTextSize: CGFloat = 14
         static let fieldsTextSize: CGFloat = 14
@@ -57,6 +58,11 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             static let instagramField = "ProfileEditInstagramField"
             static let facebookField = "ProfileEditFacebookField"
             static let twitterField = "ProfileEditTwitterField"
+        }
+        
+        enum headerFooter {
+            static let footerTextSize: CGFloat = 12
+            static let headerTextSize: CGFloat = 14
         }
     }
     
@@ -175,6 +181,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         tableView.register(ProfileEditImagesButtonsCell.self, forCellReuseIdentifier: Constants.imageButtonsCellID)
         tableView.register(ProfileEditFieldsCell.self, forCellReuseIdentifier: Constants.fieldsCellID)
         tableView.register(ProfileEditPushScreenCell.self, forCellReuseIdentifier: Constants.pushScreenLinesCellID)
+        tableView.register(ProfileEditHeaderFooterCell.self, forCellReuseIdentifier: Constants.headerFooterCellID)
     }
     
     private func fieldsModel(for section: ProfileEditFieldsSection) -> ProfileEditFieldsContentViewModel {
@@ -188,7 +195,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
 
 extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 + fieldsViewModels.count + 1
+        return 2 + fieldsViewModels.count + 1 + 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -205,13 +212,19 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
                 print("ProfileEditScreenViewModelImpl -> onChooseBanner")
             }))
             return cell
-        case 2, 3, 4, 6:
+        case 2, 4, 6, 9:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: indexPath) as! ProfileEditFieldsCell
             cell.apply(model: fieldsModel(for: .section(from: indexPath.row)))
             return cell
-        case 5:
+        case 7:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.pushScreenLinesCellID, for: indexPath) as! ProfileEditPushScreenCell
             cell.apply(model: pushScreenModel)
+            return cell
+        case 3, 5, 8:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.headerFooterCellID, for: indexPath) as! ProfileEditHeaderFooterCell
+            if let model = headerFooterModel(for: indexPath.row) {
+                cell.apply(model: model)
+            }
             return cell
         default:
             return UITableViewCell()
@@ -224,5 +237,40 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    private func headerFooterModel(for index: Int) -> ProfileEditHeaderFooterContentViewModel? {
+        switch index {
+        case 3:
+            return ProfileEditHeaderFooterContentViewModel(models: [
+                .init(type: .footer,
+                      text: "ProfileEditNamesFooter".localised(),
+                      font: YOUFontsProvider.appRegularFont(with: Constants.headerFooter.footerTextSize),
+                      color: ColorPallete.appGrey)
+            ])
+        case 5:
+            return ProfileEditHeaderFooterContentViewModel(models: [
+                .init(type: .footer,
+                      text: "ProfileEditAboutMeFooter".localised(),
+                      font: YOUFontsProvider.appRegularFont(with: Constants.headerFooter.footerTextSize),
+                      color: ColorPallete.appGrey),
+                .init(type: .header,
+                      text: "ProfileEditMoreHeader".localised(),
+                      font: YOUFontsProvider.appMediumFont(with: Constants.headerFooter.headerTextSize),
+                      color: ColorPallete.appBlackSecondary)
+            ])
+        case 8:
+            return ProfileEditHeaderFooterContentViewModel(models: [
+                .init(type: .footer,
+                      text: "ProfileEditPhoneNPaymentFooter".localised(),
+                      font: YOUFontsProvider.appRegularFont(with: Constants.headerFooter.footerTextSize),
+                      color: ColorPallete.appGrey),
+                .init(type: .header,
+                      text: "ProfileEditSocialHeader".localised(),
+                      font: YOUFontsProvider.appMediumFont(with: Constants.headerFooter.headerTextSize),
+                      color: ColorPallete.appBlackSecondary)
+            ])
+        default: return nil
+        }
     }
 }

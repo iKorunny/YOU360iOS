@@ -167,6 +167,17 @@
         }
       }
     },
+    "ProfileEditAboutMeFooter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Any details that you want to share with other users."
+          }
+        }
+      }
+    },
     "ProfileEditCellButtonTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -277,6 +288,17 @@
         }
       }
     },
+    "ProfileEditMoreHeader" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More information"
+          }
+        }
+      }
+    },
     "ProfileEditNameFieldPlaceholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -284,6 +306,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "First name"
+          }
+        }
+      }
+    },
+    "ProfileEditNamesFooter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a name and if you want add a photo to your profile"
           }
         }
       }
@@ -299,6 +332,17 @@
         }
       }
     },
+    "ProfileEditPhoneNPaymentFooter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only you will see this data"
+          }
+        }
+      }
+    },
     "ProfileEditPhoneNumberFieldPlaceholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -306,6 +350,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Phone number"
+          }
+        }
+      }
+    },
+    "ProfileEditSocialHeader" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Social media"
           }
         }
       }

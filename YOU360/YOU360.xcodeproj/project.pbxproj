@@ -30,6 +30,8 @@
 		8038AD532BA4DE67003B377C /* ProfileEditPushScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */; };
 		8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */; };
 		8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */; };
+		8038AD592BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD582BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift */; };
+		8038AD5B2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD5A2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift */; };
 		804824002B924A120057F152 /* YOUProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 804823FF2B924A120057F152 /* YOUProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		804824032B924A120057F152 /* YOUProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; };
 		804824042B924A120057F152 /* YOUProfile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -223,6 +225,8 @@
 		8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenCell.swift; sourceTree = "<group>"; };
 		8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenContentView.swift; sourceTree = "<group>"; };
 		8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenLineView.swift; sourceTree = "<group>"; };
+		8038AD582BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditHeaderFooterCell.swift; sourceTree = "<group>"; };
+		8038AD5A2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditHeaderFooterContentView.swift; sourceTree = "<group>"; };
 		804823F62B9247650057F152 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		804823FD2B924A120057F152 /* YOUProfile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		804823FF2B924A120057F152 /* YOUProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUProfile.h; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 				805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */,
 				8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */,
 				8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */,
+				8038AD5A2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift */,
 				80CA23A92B9BA90A008C9170 /* Cells */,
 			);
 			path = YOUProfile;
@@ -630,6 +635,7 @@
 				805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */,
 				805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */,
 				8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */,
+				8038AD582BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1105,11 +1111,13 @@
 				8038AD532BA4DE67003B377C /* ProfileEditPushScreenCell.swift in Sources */,
 				8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */,
 				80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */,
+				8038AD5B2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift in Sources */,
 				80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */,
 				80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */,
 				805BCBF72B9CE82800641FB7 /* ProfileRouter.swift in Sources */,
 				80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */,
 				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
+				8038AD592BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift in Sources */,
 				805BCBFD2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift in Sources */,
 				805BCBFB2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift in Sources */,
 				80CA23B12B9CDBD0008C9170 /* ProfileEditProfileCell.swift in Sources */,

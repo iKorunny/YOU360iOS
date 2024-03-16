@@ -95,12 +95,10 @@ final class ProfileEditFieldsContentView: UIView {
         fieldsContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.containerInsets.left).isActive = true
         fieldsContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.containerInsets.right).isActive = true
         
-        guard let viewModel else { return }
-        
         var previousView: UIView?
-        viewModel.fieldModels.forEach { fieldModel in
-            guard let firstModel = viewModel.fieldModels.first,
-                  let lastModel = viewModel.fieldModels.last else { return }
+        fieldsModels.forEach { fieldModel in
+            guard let firstModel = fieldsModels.first,
+                  let lastModel = fieldsModels.last else { return }
             let field = textField(for: fieldModel)
             let isFirst = firstModel === fieldModel
             let isLast = lastModel === fieldModel
