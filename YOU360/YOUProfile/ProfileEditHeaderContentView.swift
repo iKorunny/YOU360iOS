@@ -13,15 +13,22 @@ import YOUProfileInterfaces
 
 final class ProfileEditHeaderContentViewModel {
     var profile: Profile?
+    var selectedAvatar: UIImage?
+    var selectedBanner: UIImage?
     
-    init(profile: Profile?) {
+    init(profile: Profile?,
+         selectedAvatar: UIImage?,
+         selectedBanner: UIImage?) {
         self.profile = profile
+        self.selectedAvatar = selectedAvatar
+        self.selectedBanner = selectedBanner
     }
 }
 
 final class ProfileEditHeaderContentView: UIView {
     private enum Constants {
         static let avatarBackgroundBottomOffset: CGFloat = 30
+        static let avatarBackgroundHeightMultiplier: CGFloat = 222 / 375
         
         static let avatarSize: CGSize = .init(width: 120, height: 120)
         static let avatarLeadingOffset: CGFloat = 20
@@ -31,15 +38,24 @@ final class ProfileEditHeaderContentView: UIView {
     
     private var viewModel: ProfileEditHeaderContentViewModel?
     
+    private lazy var backgroundPlaceholder: UIImage? = {
+        return UIImage(named: "ProfileBackgroundPlaceholder")
+    }()
+    
     private(set) lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: .init(named: "ProfileBackgroundPlaceholder"))
+        let imageView = UIImageView(image: backgroundPlaceholder)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
+    private lazy var avatarPlaceholder: UIImage? = {
+        return UIImage(named: "ProfileAvatarPlaceholder")
+    }()
+    
     private(set) lazy var avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: .init(named: "ProfileAvatarPlaceholder"))
+        let imageView = UIImageView(image: avatarPlaceholder)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.widthAnchor.constraint(equalToConstant: Constants.avatarSize.width).isActive = true
@@ -83,6 +99,9 @@ final class ProfileEditHeaderContentView: UIView {
         backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.avatarBackgroundBottomOffset).isActive = true
+        let backgroundHeight = backgroundImageView.heightAnchor.constraint(equalTo: backgroundImageView.widthAnchor, multiplier: Constants.avatarBackgroundHeightMultiplier)
+        backgroundHeight.priority = .defaultHigh
+        backgroundHeight.isActive = true
         
         avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.avatarLeadingOffset).isActive = true
         avatarImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -90,9 +109,7 @@ final class ProfileEditHeaderContentView: UIView {
     
     func apply(viewModel: ProfileEditHeaderContentViewModel) {
         self.viewModel = viewModel
-    }
-    
-    static func calculateHeight(from width: CGFloat) -> CGFloat {
-        return width / 375 * 222 + Constants.avatarBackgroundBottomOffset
+        avatarImageView.image = viewModel.selectedAvatar ?? avatarPlaceholder
+        backgroundImageView.image = viewModel.selectedBanner ?? backgroundPlaceholder
     }
 }

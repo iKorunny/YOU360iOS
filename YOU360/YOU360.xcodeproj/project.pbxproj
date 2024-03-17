@@ -63,6 +63,9 @@
 		805BCBFF2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */; };
 		805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */; };
 		805BCC032B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */; };
+		805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C558E2BA73C2C00CBC64E /* YOUImagePicker.swift */; };
+		805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C55902BA7500700CBC64E /* UIImage+Extension.swift */; };
+		805C55932BA7502F00CBC64E /* UIImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C55922BA7502F00CBC64E /* UIImageResizer.swift */; };
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E992B87A3EB007A695D /* TopRoundedView.swift */; };
 		806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */; };
@@ -257,6 +260,9 @@
 		805BCBFE2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditImagesButtonsCell.swift; sourceTree = "<group>"; };
 		805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFieldsCell.swift; sourceTree = "<group>"; };
 		805BCC022B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFieldsContentView.swift; sourceTree = "<group>"; };
+		805C558E2BA73C2C00CBC64E /* YOUImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUImagePicker.swift; sourceTree = "<group>"; };
+		805C55902BA7500700CBC64E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		805C55922BA7502F00CBC64E /* UIImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResizer.swift; sourceTree = "<group>"; };
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		806B3E992B87A3EB007A695D /* TopRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -453,6 +459,7 @@
 				806B3E972B8683F9007A695D /* TextFieldWithError.swift */,
 				806B3E992B87A3EB007A695D /* TopRoundedView.swift */,
 				8048240B2B924AC90057F152 /* YOUNavigationController.swift */,
+				805C558E2BA73C2C00CBC64E /* YOUImagePicker.swift */,
 				80528F002B8DF8BE000D6D80 /* Loaders */,
 			);
 			path = YOUUIComponents;
@@ -591,6 +598,8 @@
 				8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */,
 				80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */,
 				805BCBEF2B9CE3EC00641FB7 /* TextSizeCalculator.swift */,
+				805C55902BA7500700CBC64E /* UIImage+Extension.swift */,
+				805C55922BA7502F00CBC64E /* UIImageResizer.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 			);
 			path = YOUUtils;
@@ -1069,6 +1078,7 @@
 				806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */,
 				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
+				805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */,
 				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,
 				804824312B9466280057F152 /* YOUNavigationController.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
@@ -1165,7 +1175,9 @@
 				805BCBF02B9CE3EC00641FB7 /* TextSizeCalculator.swift in Sources */,
 				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
 				80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */,
+				805C55932BA7502F00CBC64E /* UIImageResizer.swift in Sources */,
 				80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */,
+				805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,
 				8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */,
 			);

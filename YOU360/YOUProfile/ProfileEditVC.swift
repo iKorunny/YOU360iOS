@@ -44,7 +44,7 @@ final class ProfileEditVC: UIViewController {
         table.separatorStyle = .none
         table.rowHeight = UITableView.automaticDimension
         table.translatesAutoresizingMaskIntoConstraints = false
-        viewModel.set(tableView: table)
+        viewModel.set(tableView: table, controller: self)
         
         return table
     }()

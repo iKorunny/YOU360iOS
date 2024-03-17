@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 import YOUProfileInterfaces
 import YOUUtils
+import YOUUIComponents
 
 protocol ProfileEditScreenViewModel {
-    func set(tableView: UITableView)
+    func set(tableView: UITableView, controller: UIViewController)
 }
 
 private enum ProfileEditFieldsSection: Int {
@@ -65,6 +66,13 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             static let headerTextSize: CGFloat = 14
         }
     }
+    
+    private var selectedAvatar: UIImage?
+    private var selectedBanner: UIImage?
+    
+    private lazy var imagePicker: YOUImagePicker = {
+       return YOUImagePicker(delegate: self)
+    }()
     
     private lazy var fieldsViewModels: [ProfileEditFieldsContentViewModel] = [
         ProfileEditFieldsContentViewModel(fieldModels: [
@@ -161,6 +169,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     }()
     
     private weak var table: UITableView?
+    private weak var controller: UIViewController?
     
     let profileManager: ProfileManager
     
@@ -168,7 +177,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         self.profileManager = profileManager
     }
     
-    func set(tableView: UITableView) {
+    func set(tableView: UITableView, controller: UIViewController) {
+        self.controller = controller
         self.table = tableView
         registerCells(for: tableView)
         tableView.delegate = self
@@ -191,6 +201,16 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     private func deactivateInputFields() {
         
     }
+    
+    private func onChooseAvatar() {
+        guard let vc = controller else { return }
+        imagePicker.present(from: vc, type: .avatar)
+    }
+    
+    private func onChooseBanner() {
+        guard let vc = controller else { return }
+        imagePicker.present(from: vc, type: .banner)
+    }
 }
 
 extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSource {
@@ -202,14 +222,17 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.avatarsCellID, for: indexPath) as! ProfileEditAvatarsCell
-            cell.apply(viewModel: ProfileEditHeaderContentViewModel(profile: profileManager.profile))
+            cell.apply(viewModel: ProfileEditHeaderContentViewModel(profile: profileManager.profile,
+                                                                    selectedAvatar: selectedAvatar,
+                                                                    selectedBanner: selectedBanner))
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.imageButtonsCellID, for: indexPath) as! ProfileEditImagesButtonsCell
-            cell.apply(viewModel: ProfileEditImagesButtonsCellViewModel(onChooseAvatar: {
-                print("ProfileEditScreenViewModelImpl -> onChooseAvatar")
-            }, onChooseBanner: {
-                print("ProfileEditScreenViewModelImpl -> onChooseBanner")
+            cell.apply(viewModel: ProfileEditImagesButtonsCellViewModel(onChooseAvatar: { [weak self] in
+                self?.onChooseAvatar()
+                
+            }, onChooseBanner: { [weak self] in
+                self?.onChooseBanner()
             }))
             return cell
         case 2, 4, 6, 9:
@@ -272,5 +295,23 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
             ])
         default: return nil
         }
+    }
+}
+
+extension ProfileEditScreenViewModelImpl: YOUImagePickerDelegate {
+    func didPick(image: UIImage?, type: YOUImagePickerType) {
+        switch type {
+        case .avatar:
+            selectedAvatar = image
+            updateAvatars()
+        case .banner:
+            selectedBanner = image
+            updateAvatars()
+        default: return
+        }
+    }
+    
+    private func updateAvatars() {
+        table?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
     }
 }

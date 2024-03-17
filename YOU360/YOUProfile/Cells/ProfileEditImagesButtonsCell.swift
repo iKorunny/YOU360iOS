@@ -108,7 +108,7 @@ final class ProfileEditImagesButtonsCell: UITableViewCell {
             titleColor: ColorPallete.appPink,
             height: Constants.buttonsHeight,
             target: self,
-            action: #selector(onChooseAvatar)
+            action: #selector(onChooseBanner)
             )
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

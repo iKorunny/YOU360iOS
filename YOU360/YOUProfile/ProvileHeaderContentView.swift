@@ -47,6 +47,7 @@ final class ProvileHeaderContentViewModel {
 final class ProvileHeaderContentView: UIView {
     private enum Constants {
         static let avatarBackgroundBottomOffset: CGFloat = 30
+        static let avatarBackgroundHeightMultiplier: CGFloat = 222 / 375
         
         static let avatarSize: CGSize = .init(width: 120, height: 120)
         static let avatarLeadingOffset: CGFloat = 20
@@ -181,6 +182,9 @@ final class ProvileHeaderContentView: UIView {
         backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.avatarBackgroundBottomOffset).isActive = true
+        let backgroundHeight = backgroundImageView.heightAnchor.constraint(equalTo: backgroundImageView.widthAnchor, multiplier: Constants.avatarBackgroundHeightMultiplier)
+        backgroundHeight.priority = .defaultHigh
+        backgroundHeight.isActive = true
         
         avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.avatarLeadingOffset).isActive = true
         avatarImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
