@@ -8,8 +8,21 @@
 import UIKit
 import YOUUtils
 
-final class ProfileEditFieldModel {
+enum ProfileEditFieldModelType {
+    case keyboard
+    case date
+}
+
+protocol ProfileEditFieldActionsDelegate: AnyObject {
+    func willShowPicker(for type: ProfileEditFieldModelType) -> Bool
+    
+    func onShouldBeginEditing(for type: ProfileEditFieldModelType)
+}
+
+final class ProfileEditFieldModel: NSObject {
     let identifier: String
+    
+    let type: ProfileEditFieldModelType
     
     let placeholder: String
     let placeholderFont: UIFont
@@ -19,20 +32,34 @@ final class ProfileEditFieldModel {
     let textFont: UIFont
     let textColor: UIColor
     
+    private weak var actionsDelegate: ProfileEditFieldActionsDelegate?
+    
     init(identifier: String, 
+         type: ProfileEditFieldModelType = .keyboard,
          placeholder: String,
          placeholderFont: UIFont,
          placeholderColor: UIColor,
          text: String?,
          textFont: UIFont,
-         textColor: UIColor) {
+         textColor: UIColor,
+         actionsDelegate: ProfileEditFieldActionsDelegate?) {
         self.identifier = identifier
+        self.type = type
         self.placeholder = placeholder
         self.placeholderFont = placeholderFont
         self.placeholderColor = placeholderColor
         self.text = text
         self.textFont = textFont
         self.textColor = textColor
+        self.actionsDelegate = actionsDelegate
+    }
+}
+
+extension ProfileEditFieldModel: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        actionsDelegate?.onShouldBeginEditing(for: type)
+        guard let actionsDelegate else { return true }
+        return !actionsDelegate.willShowPicker(for: type)
     }
 }
 
@@ -145,6 +172,7 @@ final class ProfileEditFieldsContentView: UIView {
         field.textColor = model.textColor
         field.font = model.textFont
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.delegate = model
         return field
     }
 }

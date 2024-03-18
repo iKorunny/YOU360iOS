@@ -66,6 +66,9 @@
 		805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C558E2BA73C2C00CBC64E /* YOUImagePicker.swift */; };
 		805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C55902BA7500700CBC64E /* UIImage+Extension.swift */; };
 		805C55932BA7502F00CBC64E /* UIImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C55922BA7502F00CBC64E /* UIImageResizer.swift */; };
+		805CB49E2BA8A8160051665E /* YOUDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805CB49D2BA8A8160051665E /* YOUDatePicker.swift */; };
+		805CB4A02BA8B3A50051665E /* YOUNativeDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805CB49F2BA8B3A50051665E /* YOUNativeDatePickerVC.swift */; };
+		805CB4A22BA8BBC80051665E /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805CB4A12BA8BBC80051665E /* Formatters.swift */; };
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E992B87A3EB007A695D /* TopRoundedView.swift */; };
 		806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */; };
@@ -263,6 +266,9 @@
 		805C558E2BA73C2C00CBC64E /* YOUImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUImagePicker.swift; sourceTree = "<group>"; };
 		805C55902BA7500700CBC64E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		805C55922BA7502F00CBC64E /* UIImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResizer.swift; sourceTree = "<group>"; };
+		805CB49D2BA8A8160051665E /* YOUDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUDatePicker.swift; sourceTree = "<group>"; };
+		805CB49F2BA8B3A50051665E /* YOUNativeDatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUNativeDatePickerVC.swift; sourceTree = "<group>"; };
+		805CB4A12BA8BBC80051665E /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		806B3E992B87A3EB007A695D /* TopRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -460,6 +466,8 @@
 				806B3E992B87A3EB007A695D /* TopRoundedView.swift */,
 				8048240B2B924AC90057F152 /* YOUNavigationController.swift */,
 				805C558E2BA73C2C00CBC64E /* YOUImagePicker.swift */,
+				805CB49D2BA8A8160051665E /* YOUDatePicker.swift */,
+				805CB49F2BA8B3A50051665E /* YOUNativeDatePickerVC.swift */,
 				80528F002B8DF8BE000D6D80 /* Loaders */,
 			);
 			path = YOUUIComponents;
@@ -600,6 +608,7 @@
 				805BCBEF2B9CE3EC00641FB7 /* TextSizeCalculator.swift */,
 				805C55902BA7500700CBC64E /* UIImage+Extension.swift */,
 				805C55922BA7502F00CBC64E /* UIImageResizer.swift */,
+				805CB4A12BA8BBC80051665E /* Formatters.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 			);
 			path = YOUUtils;
@@ -1080,7 +1089,9 @@
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
 				805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */,
 				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,
+				805CB4A02BA8B3A50051665E /* YOUNativeDatePickerVC.swift in Sources */,
 				804824312B9466280057F152 /* YOUNavigationController.swift in Sources */,
+				805CB49E2BA8A8160051665E /* YOUDatePicker.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
 				806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */,
 			);
@@ -1175,6 +1186,7 @@
 				805BCBF02B9CE3EC00641FB7 /* TextSizeCalculator.swift in Sources */,
 				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
 				80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */,
+				805CB4A22BA8BBC80051665E /* Formatters.swift in Sources */,
 				805C55932BA7502F00CBC64E /* UIImageResizer.swift in Sources */,
 				80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */,
 				805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */,
@@ -1387,6 +1399,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1416,6 +1429,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1444,6 +1458,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1479,6 +1494,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1513,6 +1529,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1548,6 +1565,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1582,6 +1600,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1617,6 +1636,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1650,6 +1670,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1683,6 +1704,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1717,6 +1739,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1752,6 +1775,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1786,6 +1810,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1821,6 +1846,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1854,6 +1880,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1887,6 +1914,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1921,6 +1949,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1956,6 +1985,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

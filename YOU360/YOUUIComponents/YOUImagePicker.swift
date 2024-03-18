@@ -15,11 +15,15 @@ public enum YOUImagePickerType {
     case none
 }
 
+public protocol YOUImagePicker {
+    func present(from vc: UIViewController, type: YOUImagePickerType)
+}
+
 public protocol YOUImagePickerDelegate: AnyObject {
     func didPick(image: UIImage?, type: YOUImagePickerType)
 }
 
-public final class YOUImagePicker: NSObject {
+public final class YOUNativeImagePicker: NSObject, YOUImagePicker {
     private var type: YOUImagePickerType = .none
     private weak var delegate: YOUImagePickerDelegate?
     
@@ -36,7 +40,7 @@ public final class YOUImagePicker: NSObject {
     }
 }
 
-extension YOUImagePicker: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension YOUNativeImagePicker: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) { [weak self] in
             guard let self else { return }

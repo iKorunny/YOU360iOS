@@ -69,9 +69,24 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     
     private var selectedAvatar: UIImage?
     private var selectedBanner: UIImage?
+    private var selectedDateOfBirth: Date? {
+        didSet {
+            let moreModel = fieldsModel(for: .more)
+            moreModel.fieldModels.first { $0.type == .date }?.text = Formatters.formateDayMonthYear(date: selectedDateOfBirth)
+        }
+    }
     
     private lazy var imagePicker: YOUImagePicker = {
-       return YOUImagePicker(delegate: self)
+       return YOUNativeImagePicker(delegate: self)
+    }()
+    
+    private lazy var datePicker: YOUDatePicker = {
+        let picker = YOUNativeDatePicker()
+        picker.dateDidChange = { [weak self] date in
+            self?.selectedDateOfBirth = date
+            self?.updateMore()
+        }
+        return picker
     }()
     
     private lazy var fieldsViewModels: [ProfileEditFieldsContentViewModel] = [
@@ -83,7 +98,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary),
+                textColor: ColorPallete.appBlackSecondary, 
+                actionsDelegate: self),
             .init(
                 identifier: Constants.fieldsIDs.lastNameField,
                 placeholder: "ProfileEditLastNameFieldPlaceholder".localised(),
@@ -91,7 +107,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary)]),
+                textColor: ColorPallete.appBlackSecondary,
+                actionsDelegate: self)]),
         ProfileEditFieldsContentViewModel(fieldModels: [
             .init(
                 identifier: Constants.fieldsIDs.aboutField,
@@ -100,16 +117,19 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary)]),
+                textColor: ColorPallete.appBlackSecondary, 
+                actionsDelegate: self)]),
         ProfileEditFieldsContentViewModel(fieldModels: [
             .init(
                 identifier: Constants.fieldsIDs.dateOfBirthField,
+                type: .date,
                 placeholder: "ProfileEditDateOfBirthFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: Formatters.formateDayMonthYear(date: selectedDateOfBirth),
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary),
+                textColor: ColorPallete.appBlackSecondary, 
+                actionsDelegate: self),
             .init(
                 identifier: Constants.fieldsIDs.cityField,
                 placeholder: "ProfileEditCityPlaceholder".localised(),
@@ -117,7 +137,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary)]),
+                textColor: ColorPallete.appBlackSecondary, 
+                actionsDelegate: self)]),
         ProfileEditFieldsContentViewModel(fieldModels: [
             .init(
                 identifier: Constants.fieldsIDs.instagramField,
@@ -126,7 +147,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary),
+                textColor: ColorPallete.appBlackSecondary,
+                actionsDelegate: self),
             .init(
                 identifier: Constants.fieldsIDs.facebookField,
                 placeholder: "ProfileEditFacebookFieldPlaceholder".localised(),
@@ -134,7 +156,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary),
+                textColor: ColorPallete.appBlackSecondary, 
+                actionsDelegate: self),
             .init(
                 identifier: Constants.fieldsIDs.twitterField,
                 placeholder: "ProfileEditTwitterFieldPlaceholder".localised(),
@@ -142,7 +165,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholderColor: ColorPallete.appGrey,
                 text: nil,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
-                textColor: ColorPallete.appBlackSecondary)])
+                textColor: ColorPallete.appBlackSecondary, 
+                actionsDelegate: self)])
     ]
     
     private lazy var pushScreenModel: ProfileEditPushScreenContentViewModel = {
@@ -313,5 +337,27 @@ extension ProfileEditScreenViewModelImpl: YOUImagePickerDelegate {
     
     private func updateAvatars() {
         table?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+    }
+    
+    private func updateMore() {
+        table?.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .none)
+    }
+}
+
+extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
+    func willShowPicker(for type: ProfileEditFieldModelType) -> Bool {
+        switch type {
+        case .date: return true
+        case .keyboard: return false
+        }
+    }
+    
+    func onShouldBeginEditing(for type: ProfileEditFieldModelType) {
+        switch type {
+        case .keyboard: return
+        case .date:
+            guard let controller else { return }
+            datePicker.present(from: controller, with: selectedDateOfBirth)
+        }
     }
 }
