@@ -78,8 +78,10 @@ final class ProfileEditVC: UIViewController {
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        let bottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        bottomConstraint.isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        viewModel.set(tableViewBottomConstraint: bottomConstraint)
     }
     
     private func setupTopButtons() {

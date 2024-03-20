@@ -14,8 +14,9 @@ final class YOUNativeDatePickerVC: UIViewController {
     }
     
     var onDateChanged: ((Date?) -> Void)?
+    var onWillDismiss: (() -> Void)?
     
-    private lazy var datePicker: UIDatePicker = {
+    private(set) lazy var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.preferredDatePickerStyle = .wheels
@@ -73,5 +74,10 @@ final class YOUNativeDatePickerVC: UIViewController {
     
     private func didSelect(date: Date?) {
         onDateChanged?(date)
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        onWillDismiss?()
+        super.dismiss(animated: flag, completion: completion)
     }
 }

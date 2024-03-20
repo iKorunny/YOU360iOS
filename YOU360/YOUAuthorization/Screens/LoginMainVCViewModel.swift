@@ -106,7 +106,7 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
         tableView.register(LoginRegisterCell.self, forCellReuseIdentifier: Constants.loginRegisterCellID)
     }
     
-    func didScroll() {
+    func didScrollByUser() {
         hideKeyboards()
     }
     

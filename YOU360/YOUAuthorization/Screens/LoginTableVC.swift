@@ -75,6 +75,7 @@ extension LoginTableVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        viewModel.didScroll()
+        guard scrollView.isDragging || scrollView.isTracking else { return }
+        viewModel.didScrollByUser()
     }
 }

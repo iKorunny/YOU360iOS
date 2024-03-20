@@ -13,6 +13,7 @@ import YOUUIComponents
 
 protocol ProfileEditScreenViewModel {
     func set(tableView: UITableView, controller: UIViewController)
+    func set(tableViewBottomConstraint: NSLayoutConstraint)
 }
 
 private enum ProfileEditFieldsSection: Int {
@@ -38,6 +39,10 @@ private enum ProfileEditFieldsSection: Int {
 }
 
 final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private enum Constants {
         static let avatarsCellID = "ProfileEditAvatarsCell"
         static let imageButtonsCellID = "ProfileEditImagesButtonsCell"
@@ -65,6 +70,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             static let footerTextSize: CGFloat = 12
             static let headerTextSize: CGFloat = 14
         }
+        
+        static let inputViewShowHideAnimationDuration: CGFloat = 0.3
     }
     
     private var selectedAvatar: UIImage?
@@ -86,6 +93,11 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             self?.selectedDateOfBirth = date
             self?.updateMore()
         }
+        
+        picker.onWillFinishEditing = { [weak self] in
+            self?.onHideInputView()
+        }
+        
         return picker
     }()
     
@@ -194,14 +206,33 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     
     private weak var table: UITableView?
     private weak var controller: UIViewController?
+    private weak var tableViewBottomConstraint: NSLayoutConstraint?
     
     let profileManager: ProfileManager
     
     init(profileManager: ProfileManager) {
         self.profileManager = profileManager
+        super.init()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
     }
     
-    func set(tableView: UITableView, controller: UIViewController) {
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard  let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        
+        onShowInputView(with: keyboardHeight, type: .keyboard)
+    }
+    
+    func set(tableViewBottomConstraint: NSLayoutConstraint) {
+        self.tableViewBottomConstraint = tableViewBottomConstraint
+    }
+    
+    func set(tableView: UITableView,
+             controller: UIViewController) {
         self.controller = controller
         self.table = tableView
         registerCells(for: tableView)
@@ -223,7 +254,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     }
     
     private func deactivateInputFields() {
-        
+        datePicker.dismiss()
+        fieldsViewModels.forEach { $0.resignActive() }
     }
     
     private func onChooseAvatar() {
@@ -234,6 +266,32 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     private func onChooseBanner() {
         guard let vc = controller else { return }
         imagePicker.present(from: vc, type: .banner)
+    }
+    
+    private func onShowInputView(with height: CGFloat, type: ProfileEditFieldModelType) {
+        var editingCellPath: IndexPath?
+        
+        switch type {
+        case .date:
+            editingCellPath = fieldsViewModels.first(where: { $0.fieldModels.contains(where: { $0.type == .date }) })?.indexPath
+        case .keyboard:
+            editingCellPath = fieldsViewModels.first(where: { $0.isFirstResponder })?.indexPath
+        }
+        
+        tableViewBottomConstraint?.constant = -height
+        UIView.animate(withDuration: Constants.inputViewShowHideAnimationDuration) { [weak self] in
+            self?.controller?.view.layoutIfNeeded()
+        } completion: { [weak self] _ in
+            guard let editingCellPath else { return }
+            self?.table?.scrollToRow(at: editingCellPath, at: .bottom, animated: true)
+        }
+    }
+    
+    private func onHideInputView() {
+        tableViewBottomConstraint?.constant = 0
+        UIView.animate(withDuration: Constants.inputViewShowHideAnimationDuration) { [weak self] in
+            self?.controller?.view.layoutIfNeeded()
+        }
     }
 }
 
@@ -261,7 +319,9 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
             return cell
         case 2, 4, 6, 9:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.fieldsCellID, for: indexPath) as! ProfileEditFieldsCell
-            cell.apply(model: fieldsModel(for: .section(from: indexPath.row)))
+            let model = fieldsModel(for: .section(from: indexPath.row))
+            model.indexPath = indexPath
+            cell.apply(model: model)
             return cell
         case 7:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.pushScreenLinesCellID, for: indexPath) as! ProfileEditPushScreenCell
@@ -279,6 +339,7 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isDragging || scrollView.isTracking else { return }
         deactivateInputFields()
     }
     
@@ -345,6 +406,10 @@ extension ProfileEditScreenViewModelImpl: YOUImagePickerDelegate {
 }
 
 extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
+    func onShouldEndEditing(for type: ProfileEditFieldModelType) {
+        
+    }
+    
     func willShowPicker(for type: ProfileEditFieldModelType) -> Bool {
         switch type {
         case .date: return true
@@ -358,6 +423,7 @@ extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
         case .date:
             guard let controller else { return }
             datePicker.present(from: controller, with: selectedDateOfBirth)
+            onShowInputView(with: datePicker.pickerHeight, type: type)
         }
     }
 }

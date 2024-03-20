@@ -17,6 +17,7 @@ protocol ProfileEditFieldActionsDelegate: AnyObject {
     func willShowPicker(for type: ProfileEditFieldModelType) -> Bool
     
     func onShouldBeginEditing(for type: ProfileEditFieldModelType)
+    func onShouldEndEditing(for type: ProfileEditFieldModelType)
 }
 
 final class ProfileEditFieldModel: NSObject {
@@ -31,6 +32,8 @@ final class ProfileEditFieldModel: NSObject {
     var text: String?
     let textFont: UIFont
     let textColor: UIColor
+    
+    weak var textField: UITextField?
     
     private weak var actionsDelegate: ProfileEditFieldActionsDelegate?
     
@@ -52,6 +55,7 @@ final class ProfileEditFieldModel: NSObject {
         self.textFont = textFont
         self.textColor = textColor
         self.actionsDelegate = actionsDelegate
+        super.init()
     }
 }
 
@@ -61,9 +65,24 @@ extension ProfileEditFieldModel: UITextFieldDelegate {
         guard let actionsDelegate else { return true }
         return !actionsDelegate.willShowPicker(for: type)
     }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        actionsDelegate?.onShouldEndEditing(for: type)
+        return true
+    }
 }
 
-final class ProfileEditFieldsContentViewModel {
+final class ProfileEditFieldsContentViewModel: ProfileEditScreenFieldModel {
+    var indexPath: IndexPath?
+    
+    var isFirstResponder: Bool {
+        return self.fieldModels.contains(where: { $0.textField?.isFirstResponder == true })
+    }
+    
+    func resignActive() {
+        fieldModels.forEach { $0.textField?.resignFirstResponder() }
+    }
+    
     let fieldModels: [ProfileEditFieldModel]
     
     init(fieldModels: [ProfileEditFieldModel]) {
@@ -173,6 +192,9 @@ final class ProfileEditFieldsContentView: UIView {
         field.font = model.textFont
         field.translatesAutoresizingMaskIntoConstraints = false
         field.delegate = model
+        
+        model.textField = field
+        
         return field
     }
 }

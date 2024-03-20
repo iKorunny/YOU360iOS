@@ -14,5 +14,5 @@ protocol LoginTableVCViewModel {
     var viewController: UIViewController? { get set }
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell
     func registerCells(for tableView: UITableView)
-    func didScroll()
+    func didScrollByUser()
 }
