@@ -9,9 +9,6 @@ import UIKit
 import YOUUtils
 
 final class YOUNativeDatePickerVC: UIViewController {
-    deinit {
-        hideGestures.forEach { view.removeGestureRecognizer($0) }
-    }
     
     var onDateChanged: ((Date?) -> Void)?
     var onWillDismiss: (() -> Void)?

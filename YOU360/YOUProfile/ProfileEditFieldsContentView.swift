@@ -34,6 +34,7 @@ final class ProfileEditFieldModel: NSObject {
     let textColor: UIColor
     
     weak var textField: UITextField?
+    var value: String? { textField?.text }
     
     private weak var actionsDelegate: ProfileEditFieldActionsDelegate?
     

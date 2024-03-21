@@ -69,6 +69,12 @@ final class ProfileEditVC: UIViewController {
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.deactivateInputFields()
+    }
+    
     private func setupUI() {
         setupTableView()
         setupTopButtons()
@@ -101,6 +107,6 @@ final class ProfileEditVC: UIViewController {
     }
     
     @objc private func onSave() {
-        print("ProfileEditVC -> onSave")
+        viewModel.onSave()
     }
 }

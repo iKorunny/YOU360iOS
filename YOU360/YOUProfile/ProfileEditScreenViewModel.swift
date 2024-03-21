@@ -14,6 +14,8 @@ import YOUUIComponents
 protocol ProfileEditScreenViewModel {
     func set(tableView: UITableView, controller: UIViewController)
     func set(tableViewBottomConstraint: NSLayoutConstraint)
+    func deactivateInputFields()
+    func onSave()
 }
 
 private enum ProfileEditFieldsSection: Int {
@@ -253,9 +255,14 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         return fieldsViewModels[section.rawValue]
     }
     
-    private func deactivateInputFields() {
+    func deactivateInputFields() {
         datePicker.dismiss()
         fieldsViewModels.forEach { $0.resignActive() }
+    }
+    
+    func onSave() {
+        deactivateInputFields()
+        print("ProfileEditScreenViewModelImpl -> onSave")
     }
     
     private func onChooseAvatar() {
@@ -407,7 +414,7 @@ extension ProfileEditScreenViewModelImpl: YOUImagePickerDelegate {
 
 extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
     func onShouldEndEditing(for type: ProfileEditFieldModelType) {
-        
+        print()
     }
     
     func willShowPicker(for type: ProfileEditFieldModelType) -> Bool {
