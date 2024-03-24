@@ -20,6 +20,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private enum Constants {
         static let profileHeaderId = "ProfileHeaderCell"
         static let profileEditCellId = "ProfileEditProfileCell"
+        static let profileInfoCellId = "ProfileInfoCell"
     }
     
     var myProfile: Bool { return true }
@@ -41,6 +42,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.alwaysBounceVertical = true
         collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
+        collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: Constants.profileInfoCellId)
     }
 }
 
@@ -55,7 +57,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         case 0:
             return 1
         case 1:
-            return isProfileFilled ? 0 : 1
+            return isProfileFilled ? 1 : 1
         default: return 0
         }
     }
@@ -65,8 +67,9 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileHeaderId, for: indexPath) as! ProfileHeaderCell
             let profileHeaderViewModel = ProvileHeaderContentViewModel(
                 profile: ProfileManager.shared.profile,
-                onlineIdicator: .init(isHidden: false, status: .online)) {
+                onlineIdicator: .init(isHidden: false, status: .online)) { [weak self] in
                     ProfileRouter.shared.toEditProfile()
+                    self?.profileManager.isProfileEdited = true
                 } onShare: {
                     print("MyProfileVCViewModelImpl -> OnShare")
                 }
@@ -83,7 +86,9 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
                 return cell
             }
             else {
-                return UICollectionViewCell()
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileInfoCellId, for: indexPath) as! ProfileInfoCell
+                
+                return cell
             }
         }
         else {

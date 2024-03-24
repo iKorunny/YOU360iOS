@@ -12,7 +12,5 @@ public final class ProfileManager {
         return ProfileManager()
     }()
     public var profile: Profile?
-    public var isProfileEdited: Bool {
-        return false
-    }
+    public var isProfileEdited: Bool = false
 }
