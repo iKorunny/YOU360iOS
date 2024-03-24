@@ -39,7 +39,7 @@ final class AuthorizationAPIService {
                                                        headerContentTypeValue: "application/json",
                                                        method: .post,
                                                        json: [
-                                                        "userName" : email,
+                                                        "email" : email,
                                                         "password" : password
                                                        ])
         
@@ -85,7 +85,7 @@ final class AuthorizationAPIService {
                                                        headerContentTypeValue: "application/json",
                                                        method: .post,
                                                        json: [
-                                                        "userName" : email,
+                                                        "email" : email,
                                                         "password" : password
                                                        ])
         
