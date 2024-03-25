@@ -15,6 +15,7 @@ protocol ProfileEditScreenViewModel {
     func set(tableView: UITableView, controller: UIViewController)
     func set(tableViewBottomConstraint: NSLayoutConstraint)
     func deactivateInputFields()
+    func onWillDissapear()
     func onSave()
 }
 
@@ -211,9 +212,11 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     private weak var tableViewBottomConstraint: NSLayoutConstraint?
     
     let profileManager: ProfileManager
+    let onClose: (() -> Void)
     
-    init(profileManager: ProfileManager) {
+    init(profileManager: ProfileManager, onClose: @escaping (() -> Void)) {
         self.profileManager = profileManager
+        self.onClose = onClose
         super.init()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
@@ -263,6 +266,10 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     func onSave() {
         deactivateInputFields()
         print("ProfileEditScreenViewModelImpl -> onSave")
+    }
+    
+    func onWillDissapear() {
+        onClose()
     }
     
     private func onChooseAvatar() {

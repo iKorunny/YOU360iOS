@@ -44,6 +44,23 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
         collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: Constants.profileInfoCellId)
     }
+    
+    private func infoViewModel(from pofile: Profile?) -> ProfileInfoContentViewModel? {
+//        guard let profile = profileManager.profile else { return nil }
+        
+        let date = Calendar.current.date(byAdding: .year, value: -25, to: Date())
+        return ProfileInfoContentViewModel(name: "Lucas Bailey",
+                                           desciption: ("🔘" + " I do business in the club industry for 17 years.\n" + "🔘" + " I was the CCO of many international projects."),
+                                           address: "Paris, France",
+                                           dateOfBirth: date)
+    }
+    
+    private func toEditProfile() {
+        ProfileRouter.shared.toEditProfile { [weak self] in
+            self?.collectionView?.reloadSections([1])
+        }
+        profileManager.isProfileEdited = true
+    }
 }
 
 
@@ -68,8 +85,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             let profileHeaderViewModel = ProvileHeaderContentViewModel(
                 profile: ProfileManager.shared.profile,
                 onlineIdicator: .init(isHidden: false, status: .online)) { [weak self] in
-                    ProfileRouter.shared.toEditProfile()
-                    self?.profileManager.isProfileEdited = true
+                    self?.toEditProfile()
                 } onShare: {
                     print("MyProfileVCViewModelImpl -> OnShare")
                 }
@@ -80,13 +96,16 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         else if indexPath.section == 1 {
             if !isProfileFilled {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileEditCellId, for: indexPath) as! ProfileEditProfileCell
-                cell.apply(viewModel: .init(onEdit: {
-                    ProfileRouter.shared.toEditProfile()
+                cell.apply(viewModel: .init(onEdit: { [weak self] in
+                    self?.toEditProfile()
                 }))
                 return cell
             }
             else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileInfoCellId, for: indexPath) as! ProfileInfoCell
+                if let model = infoViewModel(from: profileManager.profile) {
+                    cell.apply(viewModel: model)
+                }
                 
                 return cell
             }
@@ -109,7 +128,11 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
                 return CGSize(width: width, height: cell.height(with: width))
             }
             else {
-                return CGSize.zero
+                guard let infoModel = infoViewModel(from: profileManager.profile) else { return CGSize.zero }
+                let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
+                
+                return CGSize(width: width, 
+                              height: ProfileInfoCell.calculateHeight(from: width, model: infoModel))
             }
         }
         else {

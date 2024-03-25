@@ -22,8 +22,8 @@ enum LoginSocialNetwork: String {
             return UIImage(named: "loginApple")
         case .facebook:
             return UIImage(named: "loginFacebook")
-        default:
-            return nil
+        case .vk:
+            return UIImage(named: "loginVK")
         }
     }
 }
@@ -34,7 +34,7 @@ final class LoginSocialNetworksProvider {
         
         switch region.identifier {
         case "RU":
-            return [.google, .apple]
+            return [.google, .apple, .vk]
         default:
             return [.google, .apple, .facebook]
         }

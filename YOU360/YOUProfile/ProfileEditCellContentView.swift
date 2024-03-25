@@ -131,8 +131,7 @@ final class ProfileEditCellContentView: UIView {
         let calculatedDescriptionHeight = TextSizeCalculator.calculateSize(with: width, text: Constants.descriptionLabelText, font: Constants.descriptionLabelFont).height
         height += calculatedTitleHeight
         height += calculatedDescriptionHeight
-        height += 2
         
-        return height
+        return ceil(height)
     }
 }

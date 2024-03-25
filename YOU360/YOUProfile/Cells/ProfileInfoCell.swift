@@ -24,4 +24,8 @@ final class ProfileInfoCell: UICollectionViewCell {
         
         infoContentView?.apply(viewModel: viewModel)
     }
+    
+    static func calculateHeight(from width: CGFloat, model: ProfileInfoContentViewModel) -> CGFloat {
+        return ProfileInfoContentView.calculateHeight(from: width, model: model)
+    }
 }

@@ -73,6 +73,9 @@ final class ProfileEditVC: UIViewController {
         super.viewWillDisappear(animated)
         
         viewModel.deactivateInputFields()
+        DispatchQueue.main.async { [weak self] in
+            self?.viewModel.onWillDissapear()
+        }
     }
     
     private func setupUI() {

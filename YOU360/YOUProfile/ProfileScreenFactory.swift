@@ -14,8 +14,8 @@ public final class ProfileScreenFactory {
     public static func createMyProfileRootVC() -> UINavigationController {
         return YOUNavigationController(rootViewController: ProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared)), type: .you)
     }
-    public static func createProfileEditVC() -> UIViewController {
-        return ProfileEditVC(viewModel: ProfileEditScreenViewModelImpl(profileManager: ProfileManager.shared))
+    public static func createProfileEditVC(onClose: @escaping (() -> Void)) -> UIViewController {
+        return ProfileEditVC(viewModel: ProfileEditScreenViewModelImpl(profileManager: ProfileManager.shared, onClose: onClose))
     }
     
     public static func createReserveRootVC() -> UINavigationController {

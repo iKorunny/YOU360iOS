@@ -14,4 +14,14 @@ public class Formatters {
         formatter.dateFormat = "dd-MM-yyyy"
         return formatter.string(from: date)
     }
+    
+    public static func ageFrom(birthdate: Date) -> String? {
+        let now = Date()
+        let birthday: Date = birthdate
+        let calendar = Calendar.current
+
+        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+        guard let age = ageComponents.year else { return nil }
+        return "\(age)"
+    }
 }
