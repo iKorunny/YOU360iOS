@@ -13,15 +13,18 @@ final class ProfileInfoContentViewModel {
     let desciption: String?
     let address: String?
     let dateOfBirth: Date?
+    let isVerified: Bool
     
     init(name: String, 
          desciption: String?,
          address: String?,
-         dateOfBirth: Date?) {
+         dateOfBirth: Date?,
+         isVerified: Bool) {
         self.name = name
         self.desciption = desciption
         self.address = address
         self.dateOfBirth = dateOfBirth
+        self.isVerified = isVerified
     }
 }
 
@@ -34,6 +37,7 @@ final class ProfileInfoContentView: UIView {
         static let descriptionTopOffset: CGFloat = 4
         static let addressAgeTopOffset: CGFloat = 11
         static let ageTopOffset: CGFloat = 7
+        static let verifiedIconLeftOffset: CGFloat = 4
         
         static let nameFont: UIFont = YOUFontsProvider.appBoldFont(with: 22)
         static let descriptionFont: UIFont = YOUFontsProvider.appSemiBoldFont(with: 14)
@@ -44,11 +48,19 @@ final class ProfileInfoContentView: UIView {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Constants.nameFont
         label.textColor = ColorPallete.appBlackSecondary
+        label.textAlignment = .left
         return label
+    }()
+    
+    private lazy var verifiedIcon: UIImageView = {
+        let imageView = UIImageView(image: .init(named: "ProfileVerified"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return imageView
     }()
     
     private lazy var descriptionLabel: UILabel = {
@@ -57,6 +69,7 @@ final class ProfileInfoContentView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Constants.descriptionFont
         label.textColor = ColorPallete.appGrey
+        label.textAlignment = .left
         return label
     }()
 
@@ -66,7 +79,16 @@ final class ProfileInfoContentView: UIView {
         
         addSubview(nameLabel)
         nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.contentHorizontalSpacing).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.contentHorizontalSpacing).isActive = true
+        
+        if viewModel.isVerified {
+            addSubview(verifiedIcon)
+            verifiedIcon.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -Constants.contentHorizontalSpacing).isActive = true
+            verifiedIcon.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
+            verifiedIcon.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: Constants.verifiedIconLeftOffset).isActive = true
+        }
+        else {
+            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -Constants.contentHorizontalSpacing).isActive = true
+        }
         nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.contentTopOffset).isActive = true
         nameLabel.text = viewModel.name
         var previousView: UIView = nameLabel

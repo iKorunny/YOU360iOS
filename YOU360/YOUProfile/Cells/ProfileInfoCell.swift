@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YOUUtils
 
 final class ProfileInfoCell: UICollectionViewCell {
     private var infoContentView: ProfileInfoContentView?
@@ -13,6 +14,7 @@ final class ProfileInfoCell: UICollectionViewCell {
     func apply(viewModel: ProfileInfoContentViewModel) {
         if infoContentView == nil {
             let infoView = ProfileInfoContentView()
+            infoView.backgroundColor = ColorPallete.appWhiteSecondary
             infoView.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(infoView)
             infoView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
