@@ -97,7 +97,8 @@ public final class ButtonsFactory {
         var configuration = UIButton.Configuration.plain()
         configuration.imagePadding = iconPadding
         configuration.image = titleIcon
-        configuration.imageColorTransformer = UIConfigurationColorTransformer { color in
+        configuration.imageColorTransformer = UIConfigurationColorTransformer { [weak button] color in
+            button?.backgroundColor = (button?.state == .selected || button?.state == .highlighted) ? highlightedBackgroundColor : backgroundColor
             return titleColor ?? .clear
         }
         if let contentInsets {
