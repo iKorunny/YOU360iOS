@@ -7,12 +7,14 @@
 
 import UIKit
 import YOUUtils
+import YOUUIComponents
 
 final class ProfileVC: UIViewController {
     
     private enum Constants {
         static let backButtonInsets = UIEdgeInsets(top: 52, left: 20, bottom: 0, right: 0)
         static let moreButtonInsets = UIEdgeInsets(top: 52, left: 0, bottom: 0, right: 20)
+        static let makePostButtonInsets = UIEdgeInsets(top: 0, left: 20, bottom: -16, right: -20)
     }
     
     private var viewModel: ProfileVCViewModel
@@ -39,6 +41,18 @@ final class ProfileVC: UIViewController {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = ColorPallete.appWhiteSecondary
         return collection
+    }()
+    
+    private lazy var makePostButton: UIButton = {
+        ButtonsFactory.createButton(
+            backgroundColor: ColorPallete.appPink,
+            highlightedBackgroundColor: ColorPallete.appDarkPink,
+            title: "ProfileMakePostButtonTitle".localised(),
+            titleColor: ColorPallete.appWhite,
+            titleIcon: UIImage(named: "ProfileMakePostButtonIcon"),
+            target: self,
+            action: #selector(toMakePost)
+        )
     }()
     
     init(viewModel: ProfileVCViewModel) {
@@ -76,6 +90,12 @@ final class ProfileVC: UIViewController {
         view.addSubview(moreButton)
         moreButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.moreButtonInsets.top).isActive = true
         moreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.moreButtonInsets.right).isActive = true
+        
+        view.addSubview(makePostButton)
+        makePostButton.isHidden = true
+        makePostButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.makePostButtonInsets.left).isActive = true
+        makePostButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.makePostButtonInsets.right).isActive = true
+        makePostButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.makePostButtonInsets.bottom - (view.safeAreaInsets.bottom + (tabBarController?.tabBar.bounds.height ?? 0))).isActive = true
     }
     
     private func setupCollectionView() {
@@ -85,7 +105,7 @@ final class ProfileVC: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        viewModel.set(collectionView: collectionView)
+        viewModel.set(collectionView: collectionView, view: self)
     }
     
     @objc private func popBack() {
@@ -95,8 +115,18 @@ final class ProfileVC: UIViewController {
     @objc private func toMore() {
         print("ProfileVC -> to More")
     }
+    
+    @objc private func toMakePost() {
+        print("ProfileVC -> toMakePost")
+    }
 }
 
 extension ProfileVC: UIGestureRecognizerDelegate {
     
+}
+
+extension ProfileVC: ProfileVCView {
+    func setMakePostButton(visible: Bool) {
+        makePostButton.isHidden = !visible
+    }
 }

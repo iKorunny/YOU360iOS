@@ -9,11 +9,54 @@ import Foundation
 import YOUProfileInterfaces
 import UIKit
 
+enum ProfileTab {
+    case content
+    case places
+    case events
+    
+    var icon: UIImage? {
+        switch self {
+        case .content:
+            return UIImage(named: "ProfileContentTab")
+        case .places:
+            return UIImage(named: "ProfilePlacesTab")
+        case .events:
+            return UIImage(named: "ProfileEventsTab")
+        }
+    }
+    
+    var selectedIcon: UIImage? {
+        switch self {
+        case .content:
+            return UIImage(named: "ProfileContentTabSelected")
+        case .places:
+            return UIImage(named: "ProfilePlacesTabSelected")
+        case .events:
+            return UIImage(named: "ProfileEventsTabSelected")
+        }
+    }
+    
+    var title: String? {
+        switch self {
+        case .content:
+            return "ProfileContentTab".localised()
+        case .places:
+            return "ProfilePlacesTab".localised()
+        case .events:
+            return "ProfileEventsTab".localised()
+        }
+    }
+}
+
+protocol ProfileVCView: AnyObject {
+    func setMakePostButton(visible: Bool)
+}
+
 protocol ProfileVCViewModel {
     var myProfile: Bool { get }
     var isProfileFilled: Bool { get }
     
-    func set(collectionView: UICollectionView)
+    func set(collectionView: UICollectionView, view: ProfileVCView)
 }
 
 final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
@@ -22,21 +65,32 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         static let profileEditCellId = "ProfileEditProfileCell"
         static let profileInfoCellId = "ProfileInfoCell"
         static let profileSocialButtonsCellId = "ProfileSocialButtonsCell"
+        static let profileContentSegmentCellId = "ProfileContentSegmentCell"
+        static let profileContentEmptyCellId = "ProfileContentEmptyCell"
+        
+        static let socialSectionIndex: Int = 1
+        static let contentSegmentSectionIndex: Int = 2
+        static let contentSectionIndex: Int = 3
+        static let contentSectionOffset: CGFloat = 24
     }
     
     var myProfile: Bool { return true }
     var isProfileFilled: Bool { return profileManager.isProfileEdited }
     
     private weak var collectionView: UICollectionView?
+    private weak var view: ProfileVCView?
     
     private var profileManager: ProfileManager
+    
+    private var contentType: ProfileTab = .content
     
     init(profileManager: ProfileManager) {
         self.profileManager = profileManager
     }
     
-    func set(collectionView: UICollectionView) {
+    func set(collectionView: UICollectionView, view: ProfileVCView) {
         self.collectionView = collectionView
+        self.view = view
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alwaysBounceHorizontal = false
@@ -46,6 +100,8 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
         collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: Constants.profileInfoCellId)
         collectionView.register(ProfileSocialButtonsCell.self, forCellWithReuseIdentifier: Constants.profileSocialButtonsCellId)
+        collectionView.register(ProfileContentSegmentCell.self, forCellWithReuseIdentifier: Constants.profileContentSegmentCellId)
+        collectionView.register(ProfileContentEmptyCell.self, forCellWithReuseIdentifier: Constants.profileContentEmptyCellId)
     }
     
     private func infoViewModel(from pofile: Profile?) -> ProfileInfoContentViewModel? {
@@ -72,24 +128,53 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     
     private func toEditProfile() {
         ProfileRouter.shared.toEditProfile { [weak self] in
-            self?.collectionView?.reloadSections([1])
+            guard let self else { return }
+            self.collectionView?.reloadData()
+            self.view?.setMakePostButton(visible: self.isProfileFilled)
         }
         profileManager.isProfileEdited = true
+    }
+    
+    private func numberOfItems(for tab: ProfileTab) -> Int {
+        switch tab {
+        case .content:
+            return 0
+        case .events:
+            return 0
+        case .places:
+            return 0
+        }
+    }
+    
+    private func emptySectionText(for tab: ProfileTab) -> String? {
+        switch tab {
+        case .content:
+            return "ProfileContentEmpty".localised()
+        case .events:
+            return "ProfileEventsEmpty".localised()
+        case .places:
+            return "ProfilePlacesEmpty".localised()
+        }
     }
 }
 
 
 extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return isProfileFilled ? 4 : 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
-        case 1:
+        case Constants.socialSectionIndex:
             return isProfileFilled ? 2 : 1
+        case Constants.contentSegmentSectionIndex:
+            return isProfileFilled ? 1 : 0
+        case Constants.contentSectionIndex:
+            let contentNumber = numberOfItems(for: contentType)
+            return (contentNumber == 0 ? 1 : contentNumber)
         default: return 0
         }
     }
@@ -108,7 +193,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             cell.apply(viewModel: profileHeaderViewModel)
             return cell
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == Constants.socialSectionIndex {
             switch indexPath.row {
             case 0:
                 if !isProfileFilled {
@@ -134,12 +219,34 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
                 
                 return cell
             default:
+                break
+            }
+        }
+        
+        if indexPath.section == Constants.contentSegmentSectionIndex {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileContentSegmentCellId, for: indexPath) as! ProfileContentSegmentCell
+            
+            cell.apply(viewModel: ProfileContentSegmentContentViewModel(tabs: [.content, .places, .events], selectedTab: contentType, onSelectTab: { [weak self] newTab in
+                self?.contentType = newTab
+                self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+            }))
+            
+            return cell
+        }
+        
+        if indexPath.section == Constants.contentSectionIndex {
+            let isEmptySection = numberOfItems(for: contentType) == 0
+            if isEmptySection {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileContentEmptyCellId, for: indexPath) as! ProfileContentEmptyCell
+                cell.apply(text: emptySectionText(for: contentType))
+                return cell
+            }
+            else {
                 return UICollectionViewCell()
             }
         }
-        else {
-            return UICollectionViewCell()
-        }
+            
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -148,7 +255,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             let height = ProvileHeaderContentView.calculateHeight(from: width)
             return CGSize(width: width, height: height)
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == Constants.socialSectionIndex {
             switch indexPath.row {
             case 0:
                 if !isProfileFilled {
@@ -167,8 +274,25 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
                 return .zero
             }
         }
-        else {
-            return CGSize.zero
+        
+        if indexPath.section == Constants.contentSegmentSectionIndex {
+            return CGSize(width: width,
+                          height: ProfileContentSegmentCell.height())
+        }
+        
+        if indexPath.section == Constants.contentSectionIndex {
+            return CGSize(width: width,
+                          height: ProfileContentEmptyCell.height(for: emptySectionText(for: contentType), with: width))
+        }
+        
+        return CGSize.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        switch section {
+        case Constants.contentSegmentSectionIndex:
+            return Constants.contentSectionOffset
+        default: return CGFloat.leastNormalMagnitude
         }
     }
 }

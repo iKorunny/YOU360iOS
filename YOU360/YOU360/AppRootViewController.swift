@@ -50,6 +50,7 @@ class AppRootViewController: UIViewController {
         tabBar.view.translatesAutoresizingMaskIntoConstraints = false
         tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
         tabBar.tabBar.isTranslucent = true
+        tabBar.tabBar.backgroundColor = ColorPallete.appWhite.withAlphaComponent(0.8)
         
         let reserveVC = ProfileScreenFactory.createReserveRootVC()
         let myProfileVC = ProfileScreenFactory.createMyProfileRootVC()

@@ -178,6 +178,28 @@
         }
       }
     },
+    "ProfileContentEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All of your uploaded content will be placed here"
+          }
+        }
+      }
+    },
+    "ProfileContentTab" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Content"
+          }
+        }
+      }
+    },
     "ProfileEditAboutMeFieldPlaceholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -409,6 +431,28 @@
         }
       }
     },
+    "ProfileEventsEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All the events you like\nwill be here."
+          }
+        }
+      }
+    },
+    "ProfileEventsTab" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Events"
+          }
+        }
+      }
+    },
     "ProfileHeaderEdit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -427,6 +471,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "online"
+          }
+        }
+      }
+    },
+    "ProfileMakePostButtonTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload a file"
+          }
+        }
+      }
+    },
+    "ProfilePlacesEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Here you will see your favorite places"
+          }
+        }
+      }
+    },
+    "ProfilePlacesTab" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Places"
           }
         }
       }

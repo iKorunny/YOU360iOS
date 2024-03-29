@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import YOUUtils
 
 public enum ButtonsFactoryDefaults {
     public static let wideButtonDefaultHeight: CGFloat = 56
@@ -80,7 +81,7 @@ public final class ButtonsFactory {
         backgroundColor: UIColor = .clear,
         highlightedBackgroundColor: UIColor = .clear,
         title: String? = nil,
-        titleFont: UIFont = .systemFont(ofSize: ButtonsFactoryDefaults.wideButtonDefaultTitleFontSize),
+        titleFont: UIFont = YOUFontsProvider.appBoldFont(with: ButtonsFactoryDefaults.wideButtonDefaultTitleFontSize),
         titleColor: UIColor? = nil,
         titleIcon: UIImage? = nil,
         contentInsets: NSDirectionalEdgeInsets? = nil,
