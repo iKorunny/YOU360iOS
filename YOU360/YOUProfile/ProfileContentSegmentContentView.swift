@@ -47,6 +47,7 @@ final class ProfileContentSegmentContentView: UIView {
     }()
 
     func apply(viewModel: ProfileContentSegmentContentViewModel) {
+        guard segment.numberOfSegments == 0 else { return }
         subviews.forEach { $0.removeFromSuperview() }
         
         self.viewModel = viewModel

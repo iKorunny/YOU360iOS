@@ -135,6 +135,7 @@
 		80E627A52BB3519A00F50B4E /* ProfileSocialButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E627A42BB3519A00F50B4E /* ProfileSocialButtonsCell.swift */; };
 		80E627A72BB3526F00F50B4E /* ProfileSocialButtonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */; };
 		80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F82CC72BB7500D00006FEC /* ProfileContentEmptyCell.swift */; };
+		80F82CCA2BB89DD500006FEC /* ProfileContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F82CC92BB89DD500006FEC /* ProfileContentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +336,7 @@
 		80E627A42BB3519A00F50B4E /* ProfileSocialButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialButtonsCell.swift; sourceTree = "<group>"; };
 		80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialButtonContentView.swift; sourceTree = "<group>"; };
 		80F82CC72BB7500D00006FEC /* ProfileContentEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentEmptyCell.swift; sourceTree = "<group>"; };
+		80F82CC92BB89DD500006FEC /* ProfileContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -681,6 +683,7 @@
 				805BCC002B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift */,
 				8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */,
 				8038AD582BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift */,
+				80F82CC92BB89DD500006FEC /* ProfileContentCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1178,6 +1181,7 @@
 				8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */,
 				80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */,
 				805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */,
+				80F82CCA2BB89DD500006FEC /* ProfileContentCell.swift in Sources */,
 				80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */,
 				805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */,
 				805BCC032B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift in Sources */,

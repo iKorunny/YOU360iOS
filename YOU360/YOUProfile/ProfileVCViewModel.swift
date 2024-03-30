@@ -67,11 +67,18 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         static let profileSocialButtonsCellId = "ProfileSocialButtonsCell"
         static let profileContentSegmentCellId = "ProfileContentSegmentCell"
         static let profileContentEmptyCellId = "ProfileContentEmptyCell"
+        static let profileContentCellId = "ProfileContentCell"
         
         static let socialSectionIndex: Int = 1
         static let contentSegmentSectionIndex: Int = 2
         static let contentSectionIndex: Int = 3
         static let contentSectionOffset: CGFloat = 24
+        
+        static let contentSecionInteritemSpace: CGFloat = 10
+        static let contentSectionLineOffset: CGFloat = 10
+        static let contentCollectionOffset: CGFloat = 20
+        static let contentCollectionItemsPerLine: Int = 3
+        static let contentFooterHeight: CGFloat = 72
     }
     
     var myProfile: Bool { return true }
@@ -95,6 +102,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.dataSource = self
         collectionView.alwaysBounceHorizontal = false
         collectionView.alwaysBounceVertical = true
+        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
@@ -102,6 +110,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.register(ProfileSocialButtonsCell.self, forCellWithReuseIdentifier: Constants.profileSocialButtonsCellId)
         collectionView.register(ProfileContentSegmentCell.self, forCellWithReuseIdentifier: Constants.profileContentSegmentCellId)
         collectionView.register(ProfileContentEmptyCell.self, forCellWithReuseIdentifier: Constants.profileContentEmptyCellId)
+        collectionView.register(ProfileContentCell.self, forCellWithReuseIdentifier: Constants.profileContentCellId)
     }
     
     private func infoViewModel(from pofile: Profile?) -> ProfileInfoContentViewModel? {
@@ -138,7 +147,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private func numberOfItems(for tab: ProfileTab) -> Int {
         switch tab {
         case .content:
-            return 0
+            return 4
         case .events:
             return 0
         case .places:
@@ -242,7 +251,9 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
                 return cell
             }
             else {
-                return UICollectionViewCell()
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileContentCellId, for: indexPath) as! ProfileContentCell
+                cell.setup()
+                return cell
             }
         }
             
@@ -281,8 +292,16 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         }
         
         if indexPath.section == Constants.contentSectionIndex {
-            return CGSize(width: width,
-                          height: ProfileContentEmptyCell.height(for: emptySectionText(for: contentType), with: width))
+            if numberOfItems(for: contentType) == 0 {
+                return CGSize(width: width,
+                              height: ProfileContentEmptyCell.height(for: emptySectionText(for: contentType), with: width))
+            }
+            else {
+                return ProfileContentCell.size(with: width,
+                                               offset: Constants.contentCollectionOffset,
+                                               interitemSpacing: Constants.contentSecionInteritemSpace,
+                                               numbeOfItemsPerLine: Constants.contentCollectionItemsPerLine)
+            }
         }
         
         return CGSize.zero
@@ -292,7 +311,36 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         switch section {
         case Constants.contentSegmentSectionIndex:
             return Constants.contentSectionOffset
+        case Constants.contentSectionIndex:
+            return Constants.contentSectionLineOffset
         default: return CGFloat.leastNormalMagnitude
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        switch section {
+        case Constants.contentSectionIndex:
+            return Constants.contentSecionInteritemSpace
+        default: return CGFloat.leastNormalMagnitude
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
+        switch section {
+        case Constants.contentSectionIndex:
+            return CGSize(width: width, height: Constants.contentFooterHeight)
+        default:
+            return CGSize(width: width, height: .leastNormalMagnitude)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch section {
+        case Constants.contentSectionIndex:
+            return UIEdgeInsets(top: 0, left: Constants.contentCollectionOffset, bottom: 0, right: Constants.contentCollectionOffset)
+        default:
+            return UIEdgeInsets.zero
         }
     }
 }

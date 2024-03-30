@@ -28,6 +28,6 @@ final class ProfileContentSegmentCell: UICollectionViewCell {
     }
     
     static func height() -> CGFloat {
-        return 64
+        return 54
     }
 }
