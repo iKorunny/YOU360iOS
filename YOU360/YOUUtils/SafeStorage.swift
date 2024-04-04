@@ -11,6 +11,7 @@ import Security
 public final class SafeStorage: NSObject {
 	
 	private static let tokenKey = "AuthTokenKey"
+    private static let refreshTokenKey = "RefreshTokenKey"
 	
 	private static let userLoginKey = "UserLoginKey"
 	private static let userPasKey = "userPasKey"
@@ -24,13 +25,30 @@ public final class SafeStorage: NSObject {
 		}
 	}
 	
-	public static func getToken() -> String? {
+	public static func getAuthToken() -> String? {
 		return KeychainService.load(key: tokenKey)
 	}
 	
-	public static func removeToken() {
+	public static func removeAuthToken() {
 		KeychainService.remove(key: tokenKey)
 	}
+    
+    public static func saveRefreshToken(_ token: String) {
+        if KeychainService.load(key: refreshTokenKey) == nil {
+            _ = KeychainService.save(key: refreshTokenKey, data: token)
+        }
+        else {
+            _ = KeychainService.update(key: refreshTokenKey, data: token)
+        }
+    }
+    
+    public static func getRefreshToken() -> String? {
+        return KeychainService.load(key: refreshTokenKey)
+    }
+    
+    public static func removeRefreshToken() {
+        KeychainService.remove(key: refreshTokenKey)
+    }
 	
 	public static func saveUserLogin(_ login: String) {
 		if KeychainService.load(key: userLoginKey) == nil {
@@ -41,34 +59,35 @@ public final class SafeStorage: NSObject {
 		}
 	}
 	
-	public static func getUserLogin() -> String? {
-		return KeychainService.load(key: userLoginKey)
-	}
-	
-	public static func removeUserLogin() {
-		KeychainService.remove(key: userLoginKey)
-	}
-	
-    public static func saveUserPassword(_ password: String) {
-		if KeychainService.load(key: userPasKey) == nil {
-			_ = KeychainService.save(key: userPasKey, data: password)
-		}
-		else {
-			_ = KeychainService.update(key: userPasKey, data: password)
-		}
-	}
-	
-    public static func getUserPassword() -> String? {
-		return KeychainService.load(key: userPasKey)
-	}
-	
-    public static func removeUserPassword() {
-		KeychainService.remove(key: userPasKey)
-	}
+//	public static func getUserLogin() -> String? {
+//		return KeychainService.load(key: userLoginKey)
+//	}
+//	
+//	public static func removeUserLogin() {
+//		KeychainService.remove(key: userLoginKey)
+//	}
+//	
+//    public static func saveUserPassword(_ password: String) {
+//		if KeychainService.load(key: userPasKey) == nil {
+//			_ = KeychainService.save(key: userPasKey, data: password)
+//		}
+//		else {
+//			_ = KeychainService.update(key: userPasKey, data: password)
+//		}
+//	}
+//	
+//    public static func getUserPassword() -> String? {
+//		return KeychainService.load(key: userPasKey)
+//	}
+//	
+//    public static func removeUserPassword() {
+//		KeychainService.remove(key: userPasKey)
+//	}
 	
     public static func clear() {
-		removeToken()
-		removeUserLogin()
-		removeUserPassword()
+		removeAuthToken()
+        removeRefreshToken()
+//		removeUserLogin()
+//		removeUserPassword()
 	}
 }

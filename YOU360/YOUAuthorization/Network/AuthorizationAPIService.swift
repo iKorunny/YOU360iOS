@@ -31,8 +31,8 @@ final class AuthorizationAPIService {
     }()
     private var dataTask: URLSessionDataTask?
     
-    func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?) -> Void)) {
-        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/Login")
+    func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/SignIn")
         
         let request = requestMaker.makeDatataskRequest(with: url,
                                                        headerAcceptValue: "application/json",
@@ -50,7 +50,7 @@ final class AuthorizationAPIService {
             }
             guard let httpResponse = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
-                    completion(false, errors, nil, nil)
+                    completion(false, errors, nil, nil, nil)
                 }
                 return
             }
@@ -70,15 +70,19 @@ final class AuthorizationAPIService {
             }
             
             DispatchQueue.main.async {
-                completion(errors.isEmpty && success, errors, profile, httpResponse.value(forHTTPHeaderField: "X-Token"))
+                completion(errors.isEmpty && success,
+                           errors,
+                           profile,
+                           httpResponse.value(forHTTPHeaderField: "x-token"),
+                           httpResponse.value(forHTTPHeaderField: "r-token"))
             }
         })
         
         dataTask?.resume()
     }
     
-    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?) -> Void)) {
-        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/Register")
+    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/SignUp")
         
         let request = requestMaker.makeDatataskRequest(with: url,
                                                        headerAcceptValue: "application/json",
@@ -96,7 +100,7 @@ final class AuthorizationAPIService {
             }
             guard let httpResponse = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
-                    completion(false, errors, nil, nil)
+                    completion(false, errors, nil, nil, nil)
                 }
                 return
             }
@@ -116,7 +120,10 @@ final class AuthorizationAPIService {
             }
             
             DispatchQueue.main.async {
-                completion(errors.isEmpty && success, errors, profile, httpResponse.value(forHTTPHeaderField: "X-Token"))
+                completion(errors.isEmpty && success, 
+                           errors, profile,
+                           httpResponse.value(forHTTPHeaderField: "x-token"),
+                           httpResponse.value(forHTTPHeaderField: "r-token"))
             }
         })
         

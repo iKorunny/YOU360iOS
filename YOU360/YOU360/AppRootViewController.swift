@@ -77,7 +77,7 @@ class AppRootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MainRouter.shared.mainVC = self
-//        SafeStorage.removeToken()
+//        SafeStorage.clear()
         
         setupUI()
         state = AuthorizationService.shared.isAuthorized ? .authorized : .nonAuthorized

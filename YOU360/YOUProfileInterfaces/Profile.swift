@@ -6,19 +6,83 @@
 //
 
 import Foundation
+public enum ProfileVerification: Int, Decodable {
+    case no
+    case verified
+}
+
 public final class Profile: Codable {
     private enum CodingKeys : String, CodingKey {
+        case id = "id"
         case email = "email"
+        case userName = "userName"
+        case name = "name"
+        case surname = "surname"
+        case aboutMe = "aboutMe"
+        case dateOfBirth = "dateOfBirth"
+        case city = "city"
+//        case paymentMethod = "paymentMethod"
+        case instagram = "instagram"
+        case facebook = "facebook"
+        case twitter = "twitter"
+        case posts = "posts"
+        case events = "events"
+        case establishments = "establishments"
+        case photoAvatarUrl = "photoAvatarUrl"
+        case photoBackgroundUrl = "photoBackgroundUrl"
+        case verification = "verification"
     }
     
-    var email: String?
+    var id: String
+    var email: String
+    var userName: String
+    
+    var name: String?
+    var surname: String?
+    var aboutMe: String?
+    var dateOfBirth: String?
+    var city: String?
+//    var paymentMethod
+    var instagram: String?
+    var facebook: String?
+    var twitter: String?
+    var posts: Int
+    var events: Int
+    var establishments: Int
+    var photoAvatarUrl: String?
+    var photoBackgroundUrl: String?
+    var verification: ProfileVerification
+    
     
     public func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(name, forKey: .name)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(email, forKey: .email)
+        try container.encode(userName, forKey: .userName)
+        try container.encode(name, forKey: .name)
+        try container.encode(surname, forKey: .surname)
+        try container.encode(aboutMe, forKey: .aboutMe)
+        try container.encode(dateOfBirth, forKey: .dateOfBirth)
+        try container.encode(city, forKey: .city)
+//        try container.encode(paymentMethod, forKey: .paymentMethod)
+        try container.encode(instagram, forKey: .instagram)
+        try container.encode(facebook, forKey: .facebook)
+        try container.encode(twitter, forKey: .twitter)
+        try container.encode(posts, forKey: .posts)
+        try container.encode(events, forKey: .events)
+        try container.encode(establishments, forKey: .establishments)
+        try container.encode(photoAvatarUrl, forKey: .photoAvatarUrl)
+        try container.encode(photoBackgroundUrl, forKey: .photoBackgroundUrl)
+        try container.encode(verification.rawValue, forKey: .verification)
     }
     
     public init() {
-        
+        id = ""
+        email = ""
+        userName = ""
+        posts = 0
+        events = 0
+        establishments = 0
+        verification = .no
     }
 }

@@ -14,7 +14,7 @@ public final class AuthorizationService {
     }()
     
     public var isAuthorized: Bool {
-        token != nil
+        token != nil && refreshToken != nil
     }
     
     var token: String? {
@@ -23,13 +23,28 @@ public final class AuthorizationService {
                 SafeStorage.saveAuthToken(token)
             }
             else {
-                SafeStorage.removeToken()
+                SafeStorage.removeAuthToken()
+            }
+        }
+        
+        get {
+            SafeStorage.getAuthToken()
+        }
+    }
+    
+    var refreshToken: String? {
+        set {
+            if let token = newValue {
+                SafeStorage.saveRefreshToken(token)
+            }
+            else {
+                SafeStorage.removeRefreshToken()
             }
             loginObservers.forEach { $0.closure() }
         }
         
         get {
-            SafeStorage.getToken()
+            SafeStorage.getRefreshToken()
         }
     }
     
