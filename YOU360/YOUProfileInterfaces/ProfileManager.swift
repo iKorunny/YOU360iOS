@@ -8,6 +8,10 @@
 import Foundation
 
 public final class ProfileManager {
+    private enum Constants {
+        static let isFilledProfileKey = "isFilledProfileKey"
+    }
+    
     public static var shared = {
         return ProfileManager()
     }()
@@ -16,7 +20,15 @@ public final class ProfileManager {
             saveProfile()
         }
     }
-    public var isProfileEdited: Bool = false
+    public var isProfileEdited: Bool {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Constants.isFilledProfileKey)
+        }
+        
+        get {
+            UserDefaults.standard.bool(forKey: Constants.isFilledProfileKey)
+        }
+    }
     
     private var fileURL: URL {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

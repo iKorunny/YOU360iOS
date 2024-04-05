@@ -68,6 +68,7 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
                             let token = token,
                             let rToken = rToken else { return }
                     ProfileManager.shared.profile = profile
+                    ProfileManager.shared.isProfileEdited = profile.profileFilled
                     AuthorizationService.shared.token = token
                     AuthorizationService.shared.refreshToken = rToken
                     YOUNetworkingServices.secretNetworkService.refreshToken = rToken

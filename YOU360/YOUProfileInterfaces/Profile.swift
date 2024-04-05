@@ -34,24 +34,24 @@ public final class Profile: Codable {
     }
     
     var id: String
-    var email: String
-    var userName: String
+    public var email: String
+    public var userName: String
     
-    var name: String?
-    var surname: String?
-    var aboutMe: String?
-    var dateOfBirth: String?
-    var city: String?
-//    var paymentMethod
-    var instagram: String?
-    var facebook: String?
-    var twitter: String?
-    var posts: Int
-    var events: Int
-    var establishments: Int
-    var photoAvatarUrl: String?
-    var photoBackgroundUrl: String?
-    var verification: ProfileVerification
+    public var name: String?
+    public var surname: String?
+    public var aboutMe: String?
+    public var dateOfBirth: String?
+    public var city: String?
+//    public var paymentMethod
+    public var instagram: String?
+    public var facebook: String?
+    public var twitter: String?
+    public var posts: Int
+    public var events: Int
+    public var establishments: Int
+    public var photoAvatarUrl: String?
+    public var photoBackgroundUrl: String?
+    public var verification: ProfileVerification
     
     
     public func encode(to encoder: Encoder) throws {

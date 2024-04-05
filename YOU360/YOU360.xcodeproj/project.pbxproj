@@ -75,6 +75,7 @@
 		806E88952B88FBEC00D45FDA /* LoginFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */; };
 		807FAAFF2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FAAFE2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift */; };
 		807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */; };
+		80859F552BC07AAE008FAF30 /* Profile+isFilled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80859F542BC07AAE008FAF30 /* Profile+isFilled.swift */; };
 		8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */; };
 		8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */; };
 		80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */; };
@@ -287,6 +288,7 @@
 		806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsCell.swift; sourceTree = "<group>"; };
 		807FAAFE2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentSegmentCell.swift; sourceTree = "<group>"; };
 		807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentSegmentContentView.swift; sourceTree = "<group>"; };
+		80859F542BC07AAE008FAF30 /* Profile+isFilled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+isFilled.swift"; sourceTree = "<group>"; };
 		8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainVCViewModel.swift; sourceTree = "<group>"; };
 		8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTitleCell.swift; sourceTree = "<group>"; };
 		80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretPartNetworkService.swift; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 				80BF5E6A2B8B7D690017524F /* LoginTableVCViewModel.swift */,
 				8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */,
 				80BF5E6C2B8B7DA40017524F /* RegisterMainVCViewModel.swift */,
+				80859F542BC07AAE008FAF30 /* Profile+isFilled.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1165,6 +1168,7 @@
 				80BF5E712B8B890B0017524F /* SignInFieldsCell.swift in Sources */,
 				8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */,
 				80A4F56B2B823E8A002CC9AD /* LoginRootVC.swift in Sources */,
+				80859F552BC07AAE008FAF30 /* Profile+isFilled.swift in Sources */,
 				80BF5E672B8A29530017524F /* LoginRegisterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
