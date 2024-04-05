@@ -9,4 +9,5 @@ import Foundation
 
 public final class YOUNetworkingServices {
     public static var requestMaker = NetworkRequestMaker.shared
+    public static var secretNetworkService = SecretPartNetworkService.shared
 }

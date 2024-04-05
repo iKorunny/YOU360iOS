@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import YOUUIComponents
 import YOUProfileInterfaces
+import YOUNetworking
 
 final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
     private enum Constants {
@@ -72,6 +73,8 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
                     ProfileManager.shared.profile = profile
                     AuthorizationService.shared.token = token
                     AuthorizationService.shared.refreshToken = rToken
+                    YOUNetworkingServices.secretNetworkService.refreshToken = rToken
+                    YOUNetworkingServices.secretNetworkService.authToken = token
                     AuthorizationRouter.shared.endFlow()
                 }
             } forgotPasswordAction: { [weak self] in

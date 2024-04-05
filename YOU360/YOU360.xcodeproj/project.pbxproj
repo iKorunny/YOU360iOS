@@ -77,6 +77,8 @@
 		807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */; };
 		8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */; };
 		8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */; };
+		80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */; };
+		80980A2A2BC03E22009DD9AB /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */; };
 		809F56162BB0B2DF00CF702C /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */; };
 		809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */; };
 		809FC41B2B946FFF00C0A707 /* YOUProfileInterfaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 809FC41A2B946FFF00C0A707 /* YOUProfileInterfaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -287,6 +289,8 @@
 		807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentSegmentContentView.swift; sourceTree = "<group>"; };
 		8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainVCViewModel.swift; sourceTree = "<group>"; };
 		8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTitleCell.swift; sourceTree = "<group>"; };
+		80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretPartNetworkService.swift; sourceTree = "<group>"; };
+		80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
 		809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoContentView.swift; sourceTree = "<group>"; };
 		809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfileInterfaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -471,6 +475,7 @@
 				8032A5722B820BBD00294DD7 /* NetworkRequestMaking.swift */,
 				80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */,
 				8032A5742B820C2100294DD7 /* YOUNetworkingServices.swift */,
+				80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */,
 			);
 			path = YOUNetworking;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 				8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */,
 				8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */,
 				8038AD5A2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift */,
+				80980A282BC03E10009DD9AB /* Networking */,
 				80CA23A92B9BA90A008C9170 /* Cells */,
 			);
 			path = YOUProfile;
@@ -593,6 +599,14 @@
 				80BF5E742B8B921C0017524F /* SignInLoginCell.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		80980A282BC03E10009DD9AB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		809FC4192B946FFF00C0A707 /* YOUProfileInterfaces */ = {
@@ -1103,6 +1117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */,
+				80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */,
 				8032A5732B820BBD00294DD7 /* NetworkRequestMaking.swift in Sources */,
 				8032A5752B820C2100294DD7 /* YOUNetworkingServices.swift in Sources */,
 			);
@@ -1181,6 +1196,7 @@
 				8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */,
 				80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */,
 				805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */,
+				80980A2A2BC03E22009DD9AB /* ProfileNetworkService.swift in Sources */,
 				80F82CCA2BB89DD500006FEC /* ProfileContentCell.swift in Sources */,
 				80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */,
 				805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */,
