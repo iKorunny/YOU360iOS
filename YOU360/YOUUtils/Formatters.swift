@@ -7,7 +7,9 @@
 
 import Foundation
 
-public class Formatters {
+public final class Formatters {
+    public static let dateOfBirthNetworkFormatter = DateOfBirthNetworkFormatter()
+    
     public static func formateDayMonthYear(date: Date?) -> String? {
         guard let date else { return nil }
         let formatter = DateFormatter()
@@ -23,5 +25,23 @@ public class Formatters {
         let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
         guard let age = ageComponents.year else { return nil }
         return "\(age)"
+    }
+}
+
+public final class DateOfBirthNetworkFormatter {
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    public func toString(date: Date?) -> String? {
+        guard let date = date else { return nil }
+        return dateFormatter.string(from: date)
+    }
+    
+    public func toDate(string: String?) -> Date? {
+        guard let string = string else { return nil }
+        return dateFormatter.date(from: string)
     }
 }

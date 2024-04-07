@@ -33,7 +33,7 @@ public final class Profile: Codable {
         case verification = "verification"
     }
     
-    var id: String
+    public var id: String
     public var email: String
     public var userName: String
     

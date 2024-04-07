@@ -72,10 +72,6 @@ final class ProfileVC: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         view.backgroundColor = ColorPallete.appWhiteSecondary
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            ProfileNetworkService().makeSecretPageRequest()
-        }
-        
         setupUI()
     }
     

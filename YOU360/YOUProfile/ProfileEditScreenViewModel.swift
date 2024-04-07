@@ -11,8 +11,12 @@ import YOUProfileInterfaces
 import YOUUtils
 import YOUUIComponents
 
+protocol ProfileEditScreenView {
+    func close()
+}
+
 protocol ProfileEditScreenViewModel {
-    func set(tableView: UITableView, controller: UIViewController)
+    func set(tableView: UITableView, controller: UIViewController & ProfileEditScreenView)
     func set(tableViewBottomConstraint: NSLayoutConstraint)
     func deactivateInputFields()
     func onWillDissapear()
@@ -79,12 +83,18 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     
     private var selectedAvatar: UIImage?
     private var selectedBanner: UIImage?
+    private var didSelectAvatar = false
+    private var didSelectBanner = false
     private var selectedDateOfBirth: Date? {
         didSet {
             let moreModel = fieldsModel(for: .more)
             moreModel.fieldModels.first { $0.type == .date }?.text = Formatters.formateDayMonthYear(date: selectedDateOfBirth)
         }
     }
+    
+    private lazy var loaderManager: LoaderManager = {
+        return LoaderManager()
+    }()
     
     private lazy var imagePicker: YOUImagePicker = {
        return YOUNativeImagePicker(delegate: self)
@@ -208,7 +218,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     }()
     
     private weak var table: UITableView?
-    private weak var controller: UIViewController?
+    private weak var controller: (UIViewController & ProfileEditScreenView)?
     private weak var tableViewBottomConstraint: NSLayoutConstraint?
     
     let profileManager: ProfileManager
@@ -237,7 +247,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     }
     
     func set(tableView: UITableView,
-             controller: UIViewController) {
+             controller: UIViewController & ProfileEditScreenView) {
         self.controller = controller
         self.table = tableView
         registerCells(for: tableView)
@@ -265,7 +275,40 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     
     func onSave() {
         deactivateInputFields()
-        print("ProfileEditScreenViewModelImpl -> onSave")
+        guard let profile = profileManager.profile else { return }
+        if let controller = controller {
+            loaderManager.addFullscreenLoader(for: controller)
+        }
+        
+        ProfileNetworkService().makeUpdateProfileRequest(
+            id: profile.id,
+            email: profile.email,
+            username: profile.userName,
+            name: nil,
+            surname: nil,
+            aboutMe: nil,
+            dateOfBirth: nil,
+            city: nil,
+            paymentMethod: nil,
+            instagram: nil,
+            facebook: nil,
+            twitter: nil,
+            avatar: selectedAvatar,
+            isAvatarUpdated: didSelectAvatar,
+            banner: selectedBanner,
+            isBannerUpdated: didSelectBanner) { [weak self] success, profile in
+                self?.loaderManager.removeFullscreenLoader()
+                
+                if success, let profile {
+                    ProfileManager.shared.set(profile: profile)
+                    self?.controller?.close()
+                }
+                else {
+                    if let vc = self?.controller {
+                        AlertsPresenter.presentSomethingWentWrongAlert(from: vc)
+                    }
+                }
+            }
     }
     
     func onWillDissapear() {
@@ -402,9 +445,11 @@ extension ProfileEditScreenViewModelImpl: YOUImagePickerDelegate {
         switch type {
         case .avatar:
             selectedAvatar = image
+            didSelectAvatar = true
             updateAvatars()
         case .banner:
             selectedBanner = image
+            didSelectBanner = true
             updateAvatars()
         default: return
         }

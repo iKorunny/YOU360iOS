@@ -7,6 +7,7 @@
 
 import Foundation
 import YOUUtils
+import YOUProfileInterfaces
 
 public final class AuthorizationService {
     public static var shared = {
@@ -14,7 +15,7 @@ public final class AuthorizationService {
     }()
     
     public var isAuthorized: Bool {
-        token != nil && refreshToken != nil
+        token != nil && refreshToken != nil && ProfileManager.shared.hasProfile
     }
     
     var token: String? {

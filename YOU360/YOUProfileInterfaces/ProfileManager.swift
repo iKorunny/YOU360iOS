@@ -20,6 +20,9 @@ public final class ProfileManager {
             saveProfile()
         }
     }
+    public var hasProfile: Bool {
+        profile != nil
+    }
     public var isProfileEdited: Bool {
         set {
             UserDefaults.standard.setValue(newValue, forKey: Constants.isFilledProfileKey)
@@ -70,5 +73,29 @@ public final class ProfileManager {
     public func deleteProfile() {
         guard FileManager.default.fileExists(atPath: fileURL.path()) else { return }
         try? FileManager.default.removeItem(at: fileURL)
+    }
+    
+    public func set(profile: Profile?) {
+        self.profile = profile
+        self.isProfileEdited = profile?.profileFilled ?? false
+    }
+}
+
+extension Profile {
+    var profileFilled: Bool {
+        return name != nil ||
+        surname != nil ||
+        aboutMe != nil ||
+        dateOfBirth != nil ||
+        city != nil ||
+//        paymentMethod != nil ||
+        instagram != nil ||
+        facebook != nil ||
+        twitter != nil ||
+        posts != 0 ||
+        events != 0 ||
+        establishments != 0 ||
+        photoAvatarUrl != nil ||
+        photoBackgroundUrl != nil
     }
 }

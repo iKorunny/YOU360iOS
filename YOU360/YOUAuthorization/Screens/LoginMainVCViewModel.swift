@@ -70,7 +70,7 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
                             let profile = profile,
                             let token = token, 
                             let rToken = rToken else { return }
-                    ProfileManager.shared.profile = profile
+                    ProfileManager.shared.set(profile: profile)
                     AuthorizationService.shared.token = token
                     AuthorizationService.shared.refreshToken = rToken
                     YOUNetworkingServices.secretNetworkService.refreshToken = rToken

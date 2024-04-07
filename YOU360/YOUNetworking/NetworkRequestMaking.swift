@@ -31,6 +31,28 @@ public enum RequestMethod: String {
     case get = "GET"
 }
 
+public struct MultipartRequestTextField {
+    let name: String
+    let value: String
+    
+    public init(name: String, value: String) {
+        self.name = name
+        self.value = value
+    }
+}
+
+public struct MultipartRequestDataField {
+    let name: String
+    let data: Data
+    let mimeType: String
+    
+    public init(name: String, data: Data, mimeType: String) {
+        self.name = name
+        self.data = data
+        self.mimeType = mimeType
+    }
+}
+
 public final class NetworkRequestMaker: NetworkRequestMaking {
     
     static var shared = {
@@ -89,5 +111,56 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
                                   ])
         
         return request
+    }
+    
+    public func makeAuthorizedMultipartRequest(with url: URL, 
+                                               token: String,
+                                               textFields: [MultipartRequestTextField],
+                                               dataFields: [MultipartRequestDataField]) -> URLRequest {
+        let boundary = UUID().uuidString
+        var bodyData = Data()
+        
+        for textField in textFields {
+            bodyData.append(multipartRequestTextLine(from: textField, boundary: boundary).data(using: .utf8)!)
+        }
+        
+        for dataField in dataFields {
+            bodyData.append(multipartRequestDataLine(from: dataField, boundary: boundary))
+        }
+        
+        
+        bodyData.append("--\(boundary)--".data(using: .utf8)!)
+        
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = bodyData
+        
+        return request
+    }
+    
+    private func multipartRequestTextLine(from model: MultipartRequestTextField, boundary: String) -> String {
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(model.name)\"\r\n"
+        fieldString += "Content-Type: text/plain; charset=ISO-8859-1\r\n"
+        fieldString += "Content-Transfer-Encoding: 8bit\r\n"
+        fieldString += "\r\n"
+        fieldString += "\(model.value)\r\n"
+        
+        return fieldString
+    }
+    
+    private func multipartRequestDataLine(from model: MultipartRequestDataField, boundary: String) -> Data {
+        var fieldData = Data()
+        
+        fieldData.append("--\(boundary)\r\n".data(using: .utf8)!)
+        fieldData.append("Content-Disposition: form-data; name=\"\(model.name)\"\r\n".data(using: .utf8)!)
+        fieldData.append("Content-Type: \(model.mimeType)\r\n".data(using: .utf8)!)
+        fieldData.append("\r\n".data(using: .utf8)!)
+        fieldData.append(model.data)
+        fieldData.append("\r\n".data(using: .utf8)!)
+        
+        return fieldData
     }
 }
