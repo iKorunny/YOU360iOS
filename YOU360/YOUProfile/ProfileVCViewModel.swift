@@ -114,14 +114,12 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func infoViewModel(from pofile: Profile?) -> ProfileInfoContentViewModel? {
-//        guard let profile = profileManager.profile else { return nil }
-        
-        let date = Calendar.current.date(byAdding: .year, value: -25, to: Date())
-        return ProfileInfoContentViewModel(name: "Lucas Bailey",
-                                           desciption: ("🔘" + " I do business in the club industry for 17 years.\n" + "🔘" + " I was the CCO of many international projects."),
-                                           address: "Paris, France",
-                                           dateOfBirth: date, 
-                                           isVerified: true)
+        guard let profile = profileManager.profile else { return nil }
+        return ProfileInfoContentViewModel(name: profile.displayName,
+                                           desciption: profile.aboutMe,
+                                           address: profile.city, 
+                                           dateOfBirth: profile.birthDate,
+                                           isVerified: profile.isVerified)
     }
     
     private func socialsModel(from profile: Profile?) -> ProfileSocialButtonContentViewModel? {

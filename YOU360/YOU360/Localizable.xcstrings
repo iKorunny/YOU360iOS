@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\"ProfileEditCityPlaceholder\"" : {
+      "extractionState" : "manual"
+    },
     "ALertOkButton" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -11,6 +11,10 @@ import YOUProfileInterfaces
 import YOUUtils
 import YOUUIComponents
 
+protocol EditProfileField {
+    func apply()
+}
+
 protocol ProfileEditScreenView {
     func close()
 }
@@ -121,7 +125,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditNameFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.name,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary, 
                 actionsDelegate: self),
@@ -130,7 +134,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditLastNameFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.surname,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary,
                 actionsDelegate: self)]),
@@ -140,7 +144,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditAboutMeFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.aboutMe,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary, 
                 actionsDelegate: self)]),
@@ -151,7 +155,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditDateOfBirthFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: Formatters.formateDayMonthYear(date: selectedDateOfBirth),
+                text: Formatters.formateDayMonthYear(date: selectedDateOfBirth ?? profileManager.profile?.birthDate),
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary, 
                 actionsDelegate: self),
@@ -160,7 +164,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditCityPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.city,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary, 
                 actionsDelegate: self)]),
@@ -170,7 +174,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditInstagramFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.instagram,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary,
                 actionsDelegate: self),
@@ -179,7 +183,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditFacebookFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.facebook,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary, 
                 actionsDelegate: self),
@@ -188,7 +192,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 placeholder: "ProfileEditTwitterFieldPlaceholder".localised(),
                 placeholderFont: YOUFontsProvider.appMediumFont(with: Constants.fieldsPlaceholderTextSize),
                 placeholderColor: ColorPallete.appGrey,
-                text: nil,
+                text: profileManager.profile?.twitter,
                 textFont: YOUFontsProvider.appSemiBoldFont(with: Constants.fieldsTextSize),
                 textColor: ColorPallete.appBlackSecondary, 
                 actionsDelegate: self)])
@@ -275,6 +279,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     
     func onSave() {
         deactivateInputFields()
+        saveInputs()
         guard let profile = profileManager.profile else { return }
         if let controller = controller {
             loaderManager.addFullscreenLoader(for: controller)
@@ -284,15 +289,15 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             id: profile.id,
             email: profile.email,
             username: profile.userName,
-            name: nil,
-            surname: nil,
-            aboutMe: nil,
-            dateOfBirth: nil,
-            city: nil,
-            paymentMethod: nil,
-            instagram: nil,
-            facebook: nil,
-            twitter: nil,
+            name: nameToSave,
+            surname: surnameToSave,
+            aboutMe: aboutMeToSave,
+            dateOfBirth: selectedDateOfBirth ?? profile.birthDate,
+            city: cityToSave,
+            paymentMethod: paymentMethodToSave,
+            instagram: instagramToSave,
+            facebook: facebookToSave,
+            twitter: twitterToSave,
             avatar: selectedAvatar,
             isAvatarUpdated: didSelectAvatar,
             banner: selectedBanner,
@@ -309,6 +314,11 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                     }
                 }
             }
+    }
+    
+    private func saveInputs() {
+        fieldsViewModels.forEach { $0.apply() }
+        pushScreenModel.apply()
     }
     
     func onWillDissapear() {
@@ -481,8 +491,43 @@ extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
         case .keyboard: return
         case .date:
             guard let controller else { return }
-            datePicker.present(from: controller, with: selectedDateOfBirth)
+            datePicker.present(from: controller, with: selectedDateOfBirth ?? profileManager.profile?.birthDate)
             onShowInputView(with: datePicker.pickerHeight, type: type)
         }
+    }
+}
+
+extension ProfileEditScreenViewModelImpl {
+    private var fieldModels: [ProfileEditFieldModel] {
+        var result: [ProfileEditFieldModel] = []
+        fieldsViewModels.forEach { result.append(contentsOf: $0.fieldModels) }
+        return result
+    }
+    var nameToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.nameField })?.text
+    }
+    var surnameToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.lastNameField })?.text
+    }
+    var aboutMeToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.aboutField })?.text
+    }
+    var cityToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.cityField })?.text
+    }
+    var phoneNumberToSave: String? {
+        return pushScreenModel.models.first(where: { $0.identifier == Constants.fieldsIDs.phoneNumberField })?.text
+    }
+    var paymentMethodToSave: String? {
+        return pushScreenModel.models.first(where: { $0.identifier == Constants.fieldsIDs.paymentMethodField })?.text
+    }
+    var instagramToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.instagramField })?.text
+    }
+    var facebookToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.facebookField })?.text
+    }
+    var twitterToSave: String? {
+        return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.twitterField })?.text
     }
 }
