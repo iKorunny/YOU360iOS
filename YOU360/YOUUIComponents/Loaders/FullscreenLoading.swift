@@ -10,5 +10,5 @@ import UIKit
 
 public protocol FullscreenLoading {
     func present(from vc: UIViewController)
-    func remove()
+    func remove(completion: (() -> Void)?)
 }

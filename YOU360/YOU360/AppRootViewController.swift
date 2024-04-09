@@ -86,10 +86,16 @@ class AppRootViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !AuthorizationService.shared.isAuthorized {
-            loginObserver = AuthorizationService.shared.observeLoginStatus { [weak self] in
+        loginObserver = AuthorizationService.shared.observeLoginStatus { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.state = AuthorizationService.shared.isAuthorized ? .authorized : .nonAuthorized
+                if !AuthorizationService.shared.isAuthorized {
+                    MainRouter.shared.routeToLogin()
+                }
             }
+        }
+        
+        if !AuthorizationService.shared.isAuthorized {
             DispatchQueue.main.async {
                 MainRouter.shared.routeToLogin()
             }

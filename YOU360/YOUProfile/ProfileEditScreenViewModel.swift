@@ -302,11 +302,13 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             isAvatarUpdated: didSelectAvatar,
             banner: selectedBanner,
             isBannerUpdated: didSelectBanner) { [weak self] success, profile in
-                self?.loaderManager.removeFullscreenLoader()
+                self?.loaderManager.removeFullscreenLoader { [weak self] removed in
+                    guard removed else { return }
+                    self?.controller?.close()
+                }
                 
                 if success, let profile {
                     ProfileManager.shared.set(profile: profile)
-                    self?.controller?.close()
                 }
                 else {
                     if let vc = self?.controller {

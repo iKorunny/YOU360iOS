@@ -19,7 +19,7 @@ extension Profile {
         
         if let surname {
             if result != nil {
-                result!  +=  " " + surname
+                result! +=  " " + surname
             }
             else {
                 result = surname

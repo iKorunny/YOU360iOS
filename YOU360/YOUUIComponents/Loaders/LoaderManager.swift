@@ -26,12 +26,17 @@ public final class LoaderManager {
         fullScreenLoaderCounter += 1
     }
     
-    public func removeFullscreenLoader() {
+    public func removeFullscreenLoader(completion: ((Bool) -> Void)? = nil) {
         fullScreenLoaderCounter -= 1
         
-        guard fullScreenLoaderCounter <= 0 else { return }
+        guard fullScreenLoaderCounter <= 0 else { 
+            completion?(false)
+            return
+        }
         DispatchQueue.main.async { [weak self] in
-            self?.fullScreenLoader.remove()
+            self?.fullScreenLoader.remove {
+                completion?(true)
+            }
         }
     }
 }

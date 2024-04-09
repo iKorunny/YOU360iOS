@@ -51,6 +51,10 @@ public final class AuthorizationService {
     
     private var loginObservers: [ClosureObserver] = []
     
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onLogout), name: .onLogout, object: nil)
+    }
+    
     public func observeLoginStatus(callback: @escaping (() -> Void)) -> AnyObject? {
         let observer = ClosureObserver(closure: callback)
         loginObservers.append(observer)
@@ -60,5 +64,11 @@ public final class AuthorizationService {
     public func removeLogin(observer: AnyObject?) {
         guard let observer = observer else { return }
         loginObservers.removeAll(where: { $0 === observer })
+    }
+    
+    @objc public func onLogout() {
+        ProfileManager.shared.deleteProfile()
+        SafeStorage.clear()
+        loginObservers.forEach { $0.closure() }
     }
 }

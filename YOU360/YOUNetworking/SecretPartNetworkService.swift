@@ -60,6 +60,9 @@ public final class SecretPartNetworkService {
                       httpResponse.statusCode == 200,
                       let data = data,
                       let tokens = try? JSONDecoder().decode([String: String].self, from: data) else {
+                    if httpResponse.statusCode == 400 || httpResponse.statusCode == 401 {
+                        NotificationCenter.default.post(name: .onLogout, object: nil)
+                    }
                     completion(data, response, error, .general)
                     return
                 }

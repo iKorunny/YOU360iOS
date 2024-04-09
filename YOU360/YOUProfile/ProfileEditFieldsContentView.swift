@@ -55,6 +55,7 @@ final class ProfileEditFieldModel: NSObject, EditProfileField {
         self.placeholderFont = placeholderFont
         self.placeholderColor = placeholderColor
         self.text = text
+        enteredText = text
         self.textFont = textFont
         self.textColor = textColor
         self.actionsDelegate = actionsDelegate
