@@ -32,6 +32,8 @@ class AppRootViewController: UIViewController {
         }
     }
     
+    private var tabBarSelectedIndex: Int = 0
+    
     private lazy var nonAuthorizedView: UIView = {
         let newView = UIView()
         newView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,26 +47,7 @@ class AppRootViewController: UIViewController {
         return newView
     }()
     
-    private lazy var tabBarVC: UITabBarController = {
-        let tabBar = UITabBarController()
-        tabBar.view.translatesAutoresizingMaskIntoConstraints = false
-        tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
-        tabBar.tabBar.isTranslucent = true
-        tabBar.tabBar.backgroundColor = ColorPallete.appWhite.withAlphaComponent(0.8)
-        
-        let reserveVC = ProfileScreenFactory.createReserveRootVC()
-        let myProfileVC = ProfileScreenFactory.createMyProfileRootVC()
-        ProfileRouter.shared.rootProfileVC = myProfileVC
-        ProfileRouter.shared.rootReserveVC = reserveVC
-        tabBar.viewControllers = [
-            EstablishmentsScreenFactory.createHomeRootVC(),
-            EstablishmentsScreenFactory.createTopRootVC(),
-            ChatScreenFactory.createChatRootVC(),
-            reserveVC,
-            myProfileVC
-        ]
-        return tabBar
-    }()
+    private var tabBarVC: UITabBarController?
     
     private lazy var authorizedView: UIView = {
         let newView = UIView()
@@ -77,7 +60,6 @@ class AppRootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MainRouter.shared.mainVC = self
-//        SafeStorage.clear()
         
         setupUI()
         state = AuthorizationService.shared.isAuthorized ? .authorized : .nonAuthorized
@@ -102,6 +84,29 @@ class AppRootViewController: UIViewController {
         }
     }
     
+    private func createTabBarVC() -> UITabBarController {
+        let tabBar = UITabBarController()
+        tabBar.view.translatesAutoresizingMaskIntoConstraints = false
+        tabBar.tabBar.barTintColor = ColorPallete.appWhite.withAlphaComponent(0.8)
+        tabBar.tabBar.isTranslucent = true
+        tabBar.tabBar.backgroundColor = ColorPallete.appWhite.withAlphaComponent(0.8)
+        
+        let reserveVC = ProfileScreenFactory.createReserveRootVC()
+        let myProfileVC = ProfileScreenFactory.createMyProfileRootVC()
+        ProfileRouter.shared.rootProfileVC = myProfileVC
+        ProfileRouter.shared.rootReserveVC = reserveVC
+        tabBar.viewControllers = [
+            EstablishmentsScreenFactory.createHomeRootVC(),
+            EstablishmentsScreenFactory.createTopRootVC(),
+            ChatScreenFactory.createChatRootVC(),
+            reserveVC,
+            myProfileVC
+        ]
+        tabBar.selectedIndex = tabBarSelectedIndex
+        tabBarSelectedIndex = 0
+        return tabBar
+    }
+    
     private func setupUI() {
         view.addSubview(nonAuthorizedView)
         nonAuthorizedView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -114,16 +119,20 @@ class AppRootViewController: UIViewController {
         authorizedView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         authorizedView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         authorizedView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+    
+    private func setupAuthorizedPart() {
+        let newTabBar = createTabBarVC()
+        tabBarVC = newTabBar
+        newTabBar.willMove(toParent: self)
+        authorizedView.addSubview(newTabBar.view)
+        addChild(newTabBar)
+        newTabBar.didMove(toParent: self)
         
-        tabBarVC.willMove(toParent: self)
-        authorizedView.addSubview(tabBarVC.view)
-        addChild(tabBarVC)
-        tabBarVC.didMove(toParent: self)
-        
-        tabBarVC.view.topAnchor.constraint(equalTo: authorizedView.topAnchor).isActive = true
-        tabBarVC.view.bottomAnchor.constraint(equalTo: authorizedView.bottomAnchor).isActive = true
-        tabBarVC.view.leadingAnchor.constraint(equalTo: authorizedView.leadingAnchor).isActive = true
-        tabBarVC.view.trailingAnchor.constraint(equalTo: authorizedView.trailingAnchor).isActive = true
+        newTabBar.view.topAnchor.constraint(equalTo: authorizedView.topAnchor).isActive = true
+        newTabBar.view.bottomAnchor.constraint(equalTo: authorizedView.bottomAnchor).isActive = true
+        newTabBar.view.leadingAnchor.constraint(equalTo: authorizedView.leadingAnchor).isActive = true
+        newTabBar.view.trailingAnchor.constraint(equalTo: authorizedView.trailingAnchor).isActive = true
     }
     
     private func updateUIWith(state: State) {
@@ -131,9 +140,13 @@ class AppRootViewController: UIViewController {
         case .nonAuthorized:
             nonAuthorizedView.isHidden = false
             authorizedView.isHidden = true
+            tabBarVC?.removeFromParent()
+            tabBarVC?.view.removeFromSuperview()
+            tabBarVC = nil
         case .authorized:
             nonAuthorizedView.isHidden = true
             authorizedView.isHidden = false
+            setupAuthorizedPart()
         }
     }
 }
@@ -148,6 +161,11 @@ extension AppRootViewController: MainVC {
     }
     
     private func toItem(type: YOUNavigationControllerItemType) {
-        tabBarVC.selectedIndex = type.rawValue
+        if let tabBarVC {
+            tabBarVC.selectedIndex = type.rawValue
+        }
+        else {
+            tabBarSelectedIndex = type.rawValue
+        }
     }
 }
