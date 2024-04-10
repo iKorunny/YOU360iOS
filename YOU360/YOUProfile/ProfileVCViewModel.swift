@@ -8,6 +8,7 @@
 import Foundation
 import YOUProfileInterfaces
 import UIKit
+import YOUNetworking
 
 enum ProfileTab {
     case content
@@ -69,6 +70,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         static let profileContentEmptyCellId = "ProfileContentEmptyCell"
         static let profileContentCellId = "ProfileContentCell"
         
+        static let headerSectionIndex: Int = 0
         static let socialSectionIndex: Int = 1
         static let contentSegmentSectionIndex: Int = 2
         static let contentSectionIndex: Int = 3
@@ -91,8 +93,38 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     
     private var contentType: ProfileTab = .content
     
+    private var avatarDataTask: URLSessionDataTask?
+    private var bannerDataTask: URLSessionDataTask?
+    
     init(profileManager: ProfileManager) {
         self.profileManager = profileManager
+        super.init()
+        loadImages()
+    }
+    
+    private func loadImages() {
+        let url = URL(string: "https://avatar.iran.liara.run/public")
+        
+        let group = DispatchGroup()
+        var shouldReloadHeader = false
+        group.enter()
+        group.enter()
+        group.notify(queue: .main) { [weak self] in
+            self?.collectionView?.reloadSections([Constants.headerSectionIndex])
+        }
+        avatarDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { [weak self] image in
+            self?.avatarDataTask = nil
+            self?.profileManager.avatar = image
+            shouldReloadHeader = true
+            group.leave()
+        }
+        
+        bannerDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { [weak self] image in
+            self?.bannerDataTask = nil
+            self?.profileManager.banner = image
+            shouldReloadHeader = true
+            group.leave()
+        }
     }
     
     func set(collectionView: UICollectionView, view: ProfileVCView) {
@@ -145,11 +177,11 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private func numberOfItems(for tab: ProfileTab) -> Int {
         switch tab {
         case .content:
-            return 4
+            return profileManager.profile?.posts ?? 0
         case .events:
-            return 0
+            return profileManager.profile?.events ?? 0
         case .places:
-            return 0
+            return profileManager.profile?.establishments ?? 0
         }
     }
     
@@ -173,7 +205,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case Constants.headerSectionIndex:
             return 1
         case Constants.socialSectionIndex:
             return isProfileFilled ? 2 : 1
@@ -187,11 +219,13 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == Constants.headerSectionIndex{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileHeaderId, for: indexPath) as! ProfileHeaderCell
             let profileHeaderViewModel = ProvileHeaderContentViewModel(
                 profile: ProfileManager.shared.profile,
-                onlineIdicator: .init(isHidden: false, status: .online)) { [weak self] in
+                onlineIdicator: .init(isHidden: false, status: .online),
+                avatar: profileManager.avatar,
+                banner: profileManager.banner) { [weak self] in
                     self?.toEditProfile()
                 } onShare: {
                     print("MyProfileVCViewModelImpl -> OnShare")
@@ -260,7 +294,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
-        if indexPath.section == 0 {
+        if indexPath.section == Constants.headerSectionIndex {
             let height = ProvileHeaderContentView.calculateHeight(from: width)
             return CGSize(width: width, height: height)
         }

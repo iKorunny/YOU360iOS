@@ -2,7 +2,15 @@
   "sourceLanguage" : "en",
   "strings" : {
     "\"ProfileEditCityPlaceholder\"" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City"
+          }
+        }
+      }
     },
     "ALertOkButton" : {
       "extractionState" : "manual",

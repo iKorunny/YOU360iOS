@@ -374,8 +374,8 @@ extension ProfileEditScreenViewModelImpl: UITableViewDelegate, UITableViewDataSo
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.avatarsCellID, for: indexPath) as! ProfileEditAvatarsCell
             cell.apply(viewModel: ProfileEditHeaderContentViewModel(profile: profileManager.profile,
-                                                                    selectedAvatar: selectedAvatar,
-                                                                    selectedBanner: selectedBanner))
+                                                                    selectedAvatar: selectedAvatar ?? profileManager.avatar,
+                                                                    selectedBanner: selectedBanner ?? profileManager.banner))
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.imageButtonsCellID, for: indexPath) as! ProfileEditImagesButtonsCell

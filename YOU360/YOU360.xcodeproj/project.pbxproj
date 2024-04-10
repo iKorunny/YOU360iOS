@@ -70,9 +70,8 @@
 		805CB49E2BA8A8160051665E /* YOUDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805CB49D2BA8A8160051665E /* YOUDatePicker.swift */; };
 		805CB4A02BA8B3A50051665E /* YOUNativeDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805CB49F2BA8B3A50051665E /* YOUNativeDatePickerVC.swift */; };
 		805CB4A22BA8BBC80051665E /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805CB4A12BA8BBC80051665E /* Formatters.swift */; };
-		806A8E322BC5E28E00AD0227 /* ContentLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A8E312BC5E28E00AD0227 /* ContentLoaders.swift */; };
-		806A8E342BC5E2BE00AD0227 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A8E332BC5E2BE00AD0227 /* ImageLoader.swift */; };
-		806A8E362BC5E3BA00AD0227 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A8E352BC5E3BA00AD0227 /* ImageCache.swift */; };
+		806A8E3D2BC719DF00AD0227 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A8E3B2BC719DF00AD0227 /* ImageLoader.swift */; };
+		806A8E3E2BC719DF00AD0227 /* ContentLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A8E3C2BC719DF00AD0227 /* ContentLoaders.swift */; };
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E992B87A3EB007A695D /* TopRoundedView.swift */; };
 		806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */; };
@@ -288,9 +287,8 @@
 		805CB49D2BA8A8160051665E /* YOUDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUDatePicker.swift; sourceTree = "<group>"; };
 		805CB49F2BA8B3A50051665E /* YOUNativeDatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUNativeDatePickerVC.swift; sourceTree = "<group>"; };
 		805CB4A12BA8BBC80051665E /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
-		806A8E312BC5E28E00AD0227 /* ContentLoaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLoaders.swift; sourceTree = "<group>"; };
-		806A8E332BC5E2BE00AD0227 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		806A8E352BC5E3BA00AD0227 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		806A8E3B2BC719DF00AD0227 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		806A8E3C2BC719DF00AD0227 /* ContentLoaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentLoaders.swift; sourceTree = "<group>"; };
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		806B3E992B87A3EB007A695D /* TopRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -489,6 +487,7 @@
 				8032A5742B820C2100294DD7 /* YOUNetworkingServices.swift */,
 				80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */,
 				8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */,
+				806A8E3A2BC719DF00AD0227 /* ContentLoading */,
 			);
 			path = YOUNetworking;
 			sourceTree = "<group>";
@@ -591,12 +590,11 @@
 			path = Loaders;
 			sourceTree = "<group>";
 		};
-		806A8E302BC5E26C00AD0227 /* ContentLoading */ = {
+		806A8E3A2BC719DF00AD0227 /* ContentLoading */ = {
 			isa = PBXGroup;
 			children = (
-				806A8E312BC5E28E00AD0227 /* ContentLoaders.swift */,
-				806A8E332BC5E2BE00AD0227 /* ImageLoader.swift */,
-				806A8E352BC5E3BA00AD0227 /* ImageCache.swift */,
+				806A8E3B2BC719DF00AD0227 /* ImageLoader.swift */,
+				806A8E3C2BC719DF00AD0227 /* ContentLoaders.swift */,
 			);
 			path = ContentLoading;
 			sourceTree = "<group>";
@@ -673,7 +671,6 @@
 				805C55902BA7500700CBC64E /* UIImage+Extension.swift */,
 				805C55922BA7502F00CBC64E /* UIImageResizer.swift */,
 				805CB4A12BA8BBC80051665E /* Formatters.swift */,
-				806A8E302BC5E26C00AD0227 /* ContentLoading */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 			);
 			path = YOUUtils;
@@ -1144,6 +1141,8 @@
 			files = (
 				8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */,
 				80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */,
+				806A8E3E2BC719DF00AD0227 /* ContentLoaders.swift in Sources */,
+				806A8E3D2BC719DF00AD0227 /* ImageLoader.swift in Sources */,
 				80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */,
 				8032A5732B820BBD00294DD7 /* NetworkRequestMaking.swift in Sources */,
 				8032A5752B820C2100294DD7 /* YOUNetworkingServices.swift in Sources */,
@@ -1265,8 +1264,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				806A8E362BC5E3BA00AD0227 /* ImageCache.swift in Sources */,
-				806A8E342BC5E2BE00AD0227 /* ImageLoader.swift in Sources */,
 				80A4F5832B8361DF002CC9AD /* String+Localisation.swift in Sources */,
 				80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */,
 				80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */,
@@ -1279,7 +1276,6 @@
 				805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,
 				8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */,
-				806A8E322BC5E28E00AD0227 /* ContentLoaders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

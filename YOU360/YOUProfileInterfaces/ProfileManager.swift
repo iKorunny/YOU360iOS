@@ -7,6 +7,7 @@
 
 import Foundation
 import YOUUtils
+import UIKit
 
 public final class ProfileManager {
     private enum Constants {
@@ -21,6 +22,8 @@ public final class ProfileManager {
             saveProfile()
         }
     }
+    public var avatar: UIImage?
+    public var banner: UIImage?
     public var hasProfile: Bool {
         profile != nil
     }

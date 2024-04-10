@@ -28,6 +28,8 @@ struct OnlineIndicator {
 
 final class ProvileHeaderContentViewModel {
     var profile: Profile?
+    var avatar: UIImage?
+    var banner: UIImage?
     var onlineIdicator: OnlineIndicator
     
     var onEdit: (() -> Void)
@@ -35,9 +37,13 @@ final class ProvileHeaderContentViewModel {
     
     init(profile: Profile?,
          onlineIdicator: OnlineIndicator,
+         avatar: UIImage?,
+         banner: UIImage?,
          onEdit: @escaping () -> Void,
          onShare: @escaping () -> Void) {
         self.profile = profile
+        self.avatar = avatar
+        self.banner = banner
         self.onlineIdicator = onlineIdicator
         self.onEdit = onEdit
         self.onShare = onShare
@@ -221,6 +227,8 @@ final class ProvileHeaderContentView: UIView {
         onlineIndicatorBackgroundView.isHidden = viewModel.onlineIdicator.isHidden
         onlineIndicatorBackgroundView.backgroundColor = viewModel.onlineIdicator.statusColor
         onlineIndicatorLabel.text = viewModel.onlineIdicator.statusStringRepresentation
+        avatarImageView.image = viewModel.avatar
+        backgroundImageView.image = viewModel.banner
     }
     
     static func calculateHeight(from width: CGFloat) -> CGFloat {

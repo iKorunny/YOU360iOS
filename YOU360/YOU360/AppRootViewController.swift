@@ -60,7 +60,7 @@ class AppRootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MainRouter.shared.mainVC = self
-        
+
         setupUI()
         state = AuthorizationService.shared.isAuthorized ? .authorized : .nonAuthorized
     }
