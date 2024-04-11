@@ -155,9 +155,8 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
         var fieldData = Data()
         
         fieldData.append("--\(boundary)\r\n".data(using: .utf8)!)
-        fieldData.append("Content-Disposition: form-data; name=\"\(model.name)\"\r\n".data(using: .utf8)!)
-        fieldData.append("Content-Type: \(model.mimeType)\r\n".data(using: .utf8)!)
-        fieldData.append("\r\n".data(using: .utf8)!)
+        fieldData.append("Content-Disposition: form-data; name=\"\(model.name)\"; filename=\"photo\(model.name).jpg\"\r\n".data(using: .utf8)!)
+        fieldData.append("Content-Type: \(model.mimeType)\r\n\r\n".data(using: .utf8)!)
         fieldData.append(model.data)
         fieldData.append("\r\n".data(using: .utf8)!)
         

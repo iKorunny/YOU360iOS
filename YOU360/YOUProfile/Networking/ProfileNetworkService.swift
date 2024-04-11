@@ -94,11 +94,11 @@ final class ProfileNetworkService {
         var multipartImageFields: [MultipartRequestDataField] = []
         if let avatar = avatar,
             let avatarData = avatar.jpegData(compressionQuality: 1.0) {
-            multipartImageFields.append(MultipartRequestDataField.init(name: "\(username)_avatar", data: avatarData, mimeType: "img/jpeg"))
+            multipartImageFields.append(MultipartRequestDataField.init(name: "PhotoAvatar", data: avatarData, mimeType: "image/jpeg"))
         }
         if let banner = banner,
             let bannerData = banner.jpegData(compressionQuality: 1.0) {
-            multipartImageFields.append(MultipartRequestDataField.init(name: "\(username)_banner", data: bannerData, mimeType: "img/jpeg"))
+            multipartImageFields.append(MultipartRequestDataField.init(name: "PhotoBackground", data: bannerData, mimeType: "image/jpeg"))
         }
         
         let request = requestMaker.makeAuthorizedMultipartRequest(with: url,
