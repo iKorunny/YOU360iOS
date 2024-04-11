@@ -77,8 +77,9 @@ final class ProfileVC: UIViewController {
     
     private func setupUI() {
         setupCollectionView()
-        
         setupTopButtons()
+        
+        viewModel.set(collectionView: collectionView, view: self)
     }
     
     private func setupTopButtons() {
@@ -104,8 +105,6 @@ final class ProfileVC: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        viewModel.set(collectionView: collectionView, view: self)
     }
     
     @objc private func popBack() {
@@ -118,6 +117,7 @@ final class ProfileVC: UIViewController {
     
     @objc private func toMakePost() {
         print("ProfileVC -> toMakePost")
+        viewModel.onMakePost()
     }
 }
 

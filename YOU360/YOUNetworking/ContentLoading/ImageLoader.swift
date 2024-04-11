@@ -13,15 +13,14 @@ public final class ImageLoader {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = .returnCacheDataElseLoad
         sessionConfig.urlCache = URLCache.shared
-        sessionConfig.urlCache?.diskCapacity = 300000000 // 300 mb
-        sessionConfig.urlCache?.memoryCapacity = 30000000 // 30 mb
+        sessionConfig.urlCache?.diskCapacity = 500000000 // 500 mb
+        sessionConfig.urlCache?.memoryCapacity = 50000000 // 50 mb
         return URLSession(configuration: sessionConfig)
     }()
     
     public func dataTaskToLoadImage(with url: URL?, completion: @escaping ((UIImage?) -> Void)) -> URLSessionDataTask? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
-//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         
         let task: URLSessionDataTask? = session.dataTask(with: request) { data, response, error in

@@ -9,6 +9,7 @@ import Foundation
 import YOUProfileInterfaces
 import UIKit
 import YOUNetworking
+import YOUUIComponents
 
 enum ProfileTab {
     case content
@@ -57,7 +58,9 @@ protocol ProfileVCViewModel {
     var myProfile: Bool { get }
     var isProfileFilled: Bool { get }
     
-    func set(collectionView: UICollectionView, view: ProfileVCView)
+    func set(collectionView: UICollectionView, view: (UIViewController & ProfileVCView))
+    
+    func onMakePost()
 }
 
 final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
@@ -87,7 +90,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     var isProfileFilled: Bool { return profileManager.isProfileEdited }
     
     private weak var collectionView: UICollectionView?
-    private weak var view: ProfileVCView?
+    private weak var view: (UIViewController & ProfileVCView)?
     
     private var profileManager: ProfileManager
     
@@ -96,6 +99,10 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private var avatarDataTask: URLSessionDataTask?
     private var bannerDataTask: URLSessionDataTask?
     
+    private lazy var imagePicker: YOUImagePicker = {
+       return YOUNativeImagePicker(delegate: self)
+    }()
+    
     init(profileManager: ProfileManager) {
         self.profileManager = profileManager
         super.init()
@@ -103,31 +110,38 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func loadImages() {
-        let url = URL(string: "https://avatar.iran.liara.run/public")
-        
         let group = DispatchGroup()
         var shouldReloadHeader = false
-        group.enter()
-        group.enter()
-        group.notify(queue: .main) { [weak self] in
-            self?.collectionView?.reloadSections([Constants.headerSectionIndex])
-        }
-        avatarDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { [weak self] image in
-            self?.avatarDataTask = nil
-            self?.profileManager.avatar = image
-            shouldReloadHeader = true
-            group.leave()
+        
+        if let avatarUrlString = profileManager.profile?.photoAvatarUrl {
+            let avatarUrl = URL(string: avatarUrlString)
+            group.enter()
+            avatarDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: avatarUrl) { [weak self] image in
+                self?.avatarDataTask = nil
+                self?.profileManager.avatar = image
+                shouldReloadHeader = true
+                group.leave()
+            }
         }
         
-        bannerDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { [weak self] image in
-            self?.bannerDataTask = nil
-            self?.profileManager.banner = image
-            shouldReloadHeader = true
-            group.leave()
+        if let bannerUrlString = profileManager.profile?.photoBackgroundUrl {
+            let bannerUrl = URL(string: bannerUrlString)
+            group.enter()
+            bannerDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: bannerUrl) { [weak self] image in
+                self?.bannerDataTask = nil
+                self?.profileManager.banner = image
+                shouldReloadHeader = true
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) { [weak self] in
+            guard shouldReloadHeader else { return }
+            self?.collectionView?.reloadSections([Constants.headerSectionIndex])
         }
     }
     
-    func set(collectionView: UICollectionView, view: ProfileVCView) {
+    func set(collectionView: UICollectionView, view: (UIViewController & ProfileVCView)) {
         self.collectionView = collectionView
         self.view = view
         collectionView.delegate = self
@@ -135,6 +149,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.alwaysBounceHorizontal = false
         collectionView.alwaysBounceVertical = true
         collectionView.showsVerticalScrollIndicator = false
+        view.setMakePostButton(visible: self.isProfileFilled)
         
         collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
@@ -143,6 +158,12 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.register(ProfileContentSegmentCell.self, forCellWithReuseIdentifier: Constants.profileContentSegmentCellId)
         collectionView.register(ProfileContentEmptyCell.self, forCellWithReuseIdentifier: Constants.profileContentEmptyCellId)
         collectionView.register(ProfileContentCell.self, forCellWithReuseIdentifier: Constants.profileContentCellId)
+    }
+    
+    func onMakePost() {
+        guard let view = view else { return }
+        
+        imagePicker.present(from: view, type: .contentImage)
     }
     
     private func infoViewModel(from pofile: Profile?) -> ProfileInfoContentViewModel? {
@@ -168,6 +189,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private func toEditProfile() {
         ProfileRouter.shared.toEditProfile { [weak self] in
             guard let self else { return }
+            self.loadImages()
             self.collectionView?.reloadData()
             self.view?.setMakePostButton(visible: self.isProfileFilled)
         }
@@ -374,5 +396,15 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         default:
             return UIEdgeInsets.zero
         }
+    }
+}
+
+extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
+    func didPick(image: UIImage?, type: YOUImagePickerType) {
+//        switch type {
+//        case .contentImage:
+//
+//        default: return
+//        }
     }
 }
