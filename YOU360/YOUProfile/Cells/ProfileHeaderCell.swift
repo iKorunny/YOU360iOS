@@ -24,4 +24,8 @@ final class ProfileHeaderCell: UICollectionViewCell {
         
         profileContentView?.apply(viewModel: viewModel)
     }
+    
+    func resetIfNeeded(avatar: Bool, banner: Bool) {
+        profileContentView?.resetIfNeeded(avatar: avatar, banner: banner)
+    }
 }

@@ -30,7 +30,7 @@ public final class YOUNativeImagePicker: NSObject, YOUImagePicker {
     
     private var allowEditingOnPicker: Bool {
         switch type {
-        case .avatar, .contentImage:
+        case .avatar:
             return true
         default:
             return false
@@ -71,7 +71,7 @@ extension YOUNativeImagePicker: UIImagePickerControllerDelegate & UINavigationCo
                 pickedImage = UIImageResizer.resizeTo1080p(image: newImage)
             }
         case .contentImage:
-            pickedImage = info[.editedImage] as? UIImage
+            pickedImage = info[.originalImage] as? UIImage
         default: break
         }
         picker.dismiss(animated: true) { [weak self] in

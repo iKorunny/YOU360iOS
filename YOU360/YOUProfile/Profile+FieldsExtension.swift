@@ -36,4 +36,17 @@ extension Profile {
     var birthDate: Date? {
         return Formatters.dateOfBirthNetworkFormatter.toDate(string: dateOfBirth)
     }
+    
+    var hasSocial: Bool {
+        if let instagram, let _ = URL(string: instagram) {
+            return true
+        }
+        if let facebook, let _ = URL(string: facebook) {
+            return true
+        }
+        if let twitter, let _ = URL(string: twitter) {
+            return true
+        }
+        return false
+    }
 }

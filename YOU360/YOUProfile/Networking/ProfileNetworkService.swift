@@ -123,4 +123,38 @@ final class ProfileNetworkService {
             }
         }
     }
+    
+    func makeUploadImagePostRequest(id: String,
+                                    image: UIImage,
+                                    completion: @escaping ((Bool) -> Void)) {
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)/media")
+        
+        guard let postData = image.jpegData(compressionQuality: 1.0) else {
+            DispatchQueue.main.async {
+                completion(false)
+            }
+            return
+        }
+        let multipartImageFields: [MultipartRequestDataField] = [MultipartRequestDataField(name: "contentFiles", data: postData, mimeType: "image/jpeg", fileName: "contentFile0")]
+        
+        let request = requestMaker.makeAuthorizedMultipartRequest(with: url,
+                                                                  token: secretNetworkService.authToken,
+                                                                  textFields: [],
+                                                                  dataFields: multipartImageFields)
+        
+        secretNetworkService.performDataTask(request: request) { _, response, error, localError in
+            guard error == nil && localError == nil,
+                  let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        }
+    }
 }

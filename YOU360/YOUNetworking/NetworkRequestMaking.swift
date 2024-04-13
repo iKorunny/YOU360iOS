@@ -45,11 +45,13 @@ public struct MultipartRequestDataField {
     let name: String
     let data: Data
     let mimeType: String
+    let fileName: String?
     
-    public init(name: String, data: Data, mimeType: String) {
+    public init(name: String, data: Data, mimeType: String, fileName: String? = nil) {
         self.name = name
         self.data = data
         self.mimeType = mimeType
+        self.fileName = fileName
     }
 }
 
@@ -126,6 +128,19 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
         
         for dataField in dataFields {
             bodyData.append(multipartRequestDataLine(from: dataField, boundary: boundary))
+//            // Convert the image into Data
+//            let imageData = dataField.data
+//            
+//            let filename = "image0.jpg"
+//            let mimetype = "image/jpg"
+//            
+//            // Add the image data to the body
+//            bodyData.append("--\(boundary)\r\n".data(using: .utf8)!)
+//            bodyData.append("Content-Disposition: form-data; name=\"\(dataField.name)\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+//            bodyData.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
+//            bodyData.append(imageData)
+//            bodyData.append("\r\n".data(using: .utf8)!)
+
         }
         
         
@@ -153,9 +168,10 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
     
     private func multipartRequestDataLine(from model: MultipartRequestDataField, boundary: String) -> Data {
         var fieldData = Data()
+        var fileName = model.fileName ?? ("\(model.name).jpg")
         
         fieldData.append("--\(boundary)\r\n".data(using: .utf8)!)
-        fieldData.append("Content-Disposition: form-data; name=\"\(model.name)\"; filename=\"photo\(model.name).jpg\"\r\n".data(using: .utf8)!)
+        fieldData.append("Content-Disposition: form-data; name=\"\(model.name)\"; filename=\"photo\(fileName)\"\r\n".data(using: .utf8)!)
         fieldData.append("Content-Type: \(model.mimeType)\r\n\r\n".data(using: .utf8)!)
         fieldData.append(model.data)
         fieldData.append("\r\n".data(using: .utf8)!)
