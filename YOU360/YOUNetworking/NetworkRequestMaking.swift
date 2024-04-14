@@ -11,6 +11,7 @@ public protocol NetworkRequestMaking {
     func makeDatataskRequest(with url: URL,
                              headerAcceptValue: String,
                              headerContentTypeValue: String,
+                             body: String?,
                              method: RequestMethod,
                              json: [String: Any]?) -> URLRequest
 }
@@ -28,13 +29,14 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
     public func makeDatataskRequest(with url: URL, 
                                     headerAcceptValue: String,
                                     headerContentTypeValue: String,
+                                    body: String? = nil,
                                     method: RequestMethod,
                                     json: [String: Any]?) -> URLRequest {
         var request = URLRequest(url: url)
         
         request.addValue(headerAcceptValue, forHTTPHeaderField: "Accept")
         request.addValue(headerContentTypeValue, forHTTPHeaderField: "Content-Type")
-        
+        request.httpBody = body?.data(using: .utf8)
         request.httpMethod = method.rawValue
         
         request.addValue(Locale.current.identifier, forHTTPHeaderField: "Accept-Language")

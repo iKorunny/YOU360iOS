@@ -113,7 +113,7 @@ final class ProfileVC: UIViewController {
     }
     
     @objc private func toMore() {
-        print("ProfileVC -> to More")
+        viewModel.toMenu()
     }
     
     @objc private func toMakePost() {

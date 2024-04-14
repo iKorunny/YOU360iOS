@@ -56,6 +56,7 @@ protocol ProfileVCViewModel {
     var myProfile: Bool { get }
     var isProfileFilled: Bool { get }
     
+    func toMenu()
     func set(collectionView: UICollectionView, view: ProfileVCView)
 }
 
@@ -142,6 +143,10 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
             self.view?.setMakePostButton(visible: self.isProfileFilled)
         }
         profileManager.isProfileEdited = true
+    }
+    
+    func toMenu() {
+        ProfileRouter.shared.toMenu {}
     }
     
     private func numberOfItems(for tab: ProfileTab) -> Int {
