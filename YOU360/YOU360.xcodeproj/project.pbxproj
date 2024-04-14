@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */; };
+		801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */; };
+		801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */; };
+		801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A732BCC3FF200277394 /* RequestPage.swift */; };
+		801F7A762BCC57E300277394 /* ProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A752BCC57E300277394 /* ProfileContent.swift */; };
 		8032A54B2B820B7600294DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54A2B820B7600294DD7 /* AppDelegate.swift */; };
 		8032A54D2B820B7600294DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54C2B820B7600294DD7 /* SceneDelegate.swift */; };
 		8032A54F2B820B7600294DD7 /* AppRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A54E2B820B7600294DD7 /* AppRootViewController.swift */; };
@@ -227,6 +231,10 @@
 
 /* Begin PBXFileReference section */
 		8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCPostsDataSource.swift; sourceTree = "<group>"; };
+		801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCellModel.swift; sourceTree = "<group>"; };
+		801F7A732BCC3FF200277394 /* RequestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPage.swift; sourceTree = "<group>"; };
+		801F7A752BCC57E300277394 /* ProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContent.swift; sourceTree = "<group>"; };
 		8032A5472B820B7600294DD7 /* YOU360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YOU360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8032A54A2B820B7600294DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8032A54C2B820B7600294DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -534,6 +542,9 @@
 				809B1D112BC4773000DEEBC6 /* Profile+FieldsExtension.swift */,
 				8048240F2B9250B90057F152 /* ProfileVC.swift */,
 				80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */,
+				801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */,
+				801F7A752BCC57E300277394 /* ProfileContent.swift */,
+				801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */,
 				809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */,
 				80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */,
 				807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */,
@@ -595,6 +606,7 @@
 			children = (
 				806A8E3B2BC719DF00AD0227 /* ImageLoader.swift */,
 				806A8E3C2BC719DF00AD0227 /* ContentLoaders.swift */,
+				801F7A732BCC3FF200277394 /* RequestPage.swift */,
 			);
 			path = ContentLoading;
 			sourceTree = "<group>";
@@ -1141,6 +1153,7 @@
 			files = (
 				8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */,
 				80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */,
+				801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */,
 				806A8E3E2BC719DF00AD0227 /* ContentLoaders.swift in Sources */,
 				806A8E3D2BC719DF00AD0227 /* ImageLoader.swift in Sources */,
 				80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */,
@@ -1207,17 +1220,20 @@
 				8038AD5B2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift in Sources */,
 				80E627A52BB3519A00F50B4E /* ProfileSocialButtonsCell.swift in Sources */,
 				809F56162BB0B2DF00CF702C /* ProfileInfoCell.swift in Sources */,
+				801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */,
 				80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */,
 				809B1D122BC4773000DEEBC6 /* Profile+FieldsExtension.swift in Sources */,
 				80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */,
 				807FAAFF2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift in Sources */,
 				805BCBF72B9CE82800641FB7 /* ProfileRouter.swift in Sources */,
+				801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */,
 				809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */,
 				80C224DF2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift in Sources */,
 				80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */,
 				807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */,
 				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
 				8038AD592BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift in Sources */,
+				801F7A762BCC57E300277394 /* ProfileContent.swift in Sources */,
 				805BCBFD2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift in Sources */,
 				805BCBFB2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift in Sources */,
 				80CA23B12B9CDBD0008C9170 /* ProfileEditProfileCell.swift in Sources */,

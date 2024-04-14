@@ -10,11 +10,18 @@ import YOUUtils
 
 final class ProfileContentCell: UICollectionViewCell {
     
+    var cellModel: ProfilePostCellModel? {
+        didSet {
+            oldValue?.cell = nil
+            cellModel?.loadImageIfNeeded()
+        }
+    }
+    
     private lazy var imageContentView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         contentView.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true

@@ -185,4 +185,32 @@ final class ProfileNetworkService {
             }
         }
     }
+    
+    func makeProfileMediaRequest(id: String, page: RequestPage, completion: @escaping (Bool, [ProfileContent]?) -> Void) {
+        let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)/media")
+        let querryItems: [URLQueryItem] = page.jSON.map({ URLQueryItem(name: $0.key, value: "\($0.value)") })
+        let url = baseUrl.appending(queryItems: querryItems)
+        let request = requestMaker.makeAuthorizedRequest(with: url,
+                                                         headerAcceptValue: "application/json",
+                                                         headerContentTypeValue: "application/json",
+                                                         token: secretNetworkService.authToken,
+                                                         method: .get,
+                                                         json: nil)
+        secretNetworkService.performDataTask(request: request) { data, response, error, localError in
+            guard error == nil && localError == nil,
+                  let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200,
+                  let data = data else {
+                DispatchQueue.main.async {
+                    completion(false, [])
+                }
+                return
+            }
+            
+            let contentPage: ProfileContentPage? = try? JSONDecoder().decode(ProfileContentPage.self, from: data)
+            DispatchQueue.main.async {
+                completion(contentPage != nil, contentPage?.items)
+            }
+        }
+    }
 }

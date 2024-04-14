@@ -79,7 +79,9 @@ final class ProfileVC: UIViewController {
         setupCollectionView()
         setupTopButtons()
         
-        viewModel.set(collectionView: collectionView, view: self)
+        viewModel.set(collectionView: collectionView, 
+                      view: self,
+                      postsDataSource: ProfileVCPostsDataSource(collectionView: collectionView))
     }
     
     private func setupTopButtons() {

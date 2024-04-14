@@ -58,7 +58,9 @@ protocol ProfileVCViewModel {
     var myProfile: Bool { get }
     var isProfileFilled: Bool { get }
     
-    func set(collectionView: UICollectionView, view: (UIViewController & ProfileVCView))
+    func set(collectionView: UICollectionView, 
+             view: (UIViewController & ProfileVCView),
+             postsDataSource: ProfileVCPostsDataSource)
     
     func onMakePost()
 }
@@ -93,7 +95,8 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private weak var collectionView: UICollectionView?
     private weak var view: (UIViewController & ProfileVCView)?
     
-    private var profileManager: ProfileManager
+    private let profileManager: ProfileManager
+    private var postsDataSource: ProfileVCPostsDataSource?
     
     private var contentType: ProfileTab = .content
     
@@ -163,9 +166,12 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         }
     }
     
-    func set(collectionView: UICollectionView, view: (UIViewController & ProfileVCView)) {
+    func set(collectionView: UICollectionView,
+             view: (UIViewController & ProfileVCView),
+             postsDataSource: ProfileVCPostsDataSource) {
         self.collectionView = collectionView
         self.view = view
+        self.postsDataSource = postsDataSource
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alwaysBounceHorizontal = false
@@ -180,6 +186,10 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         collectionView.register(ProfileContentSegmentCell.self, forCellWithReuseIdentifier: Constants.profileContentSegmentCellId)
         collectionView.register(ProfileContentEmptyCell.self, forCellWithReuseIdentifier: Constants.profileContentEmptyCellId)
         collectionView.register(ProfileContentCell.self, forCellWithReuseIdentifier: Constants.profileContentCellId)
+        
+        if isProfileFilled, let profile = profileManager.profile {
+            reloadContent(with: profile)
+        }
     }
     
     func onMakePost() {
@@ -229,17 +239,21 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
             if didSelectBanner {
                 profileHeaderViewModel.banner = newBanner
             }
-//            self.loadImages(isAvatarUpdated: didSelectAvatar, isBannerUpdated: didSelectBanner)
-            self.collectionView?.reloadData()
-            self.view?.setMakePostButton(visible: self.isProfileFilled)
+            
+            self.reloadUI()
         }
         profileManager.isProfileEdited = true
+    }
+    
+    private func reloadUI() {
+        collectionView?.reloadData()
+        view?.setMakePostButton(visible: self.isProfileFilled)
     }
     
     private func numberOfItems(for tab: ProfileTab) -> Int {
         switch tab {
         case .content:
-            return profileManager.profile?.posts ?? 0
+            return postsDataSource?.numberOfPosts ?? 0
         case .events:
             return profileManager.profile?.events ?? 0
         case .places:
@@ -255,6 +269,13 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
             return "ProfileEventsEmpty".localised()
         case .places:
             return "ProfilePlacesEmpty".localised()
+        }
+    }
+    
+    private func reloadContent(with updatedProfile: Profile) {
+        postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.posts)) { [weak self] success in
+            guard success else { return }
+            self?.collectionView?.reloadSections([Constants.contentSectionIndex])
         }
     }
 }
@@ -339,7 +360,10 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileContentCellId, for: indexPath) as! ProfileContentCell
                 cell.setup()
-                cell.set(image: UIImage(named: "LOGOYOU360"))
+                if let model = postsDataSource?.cellModel(for: indexPath.row) {
+                    model.cell = cell
+                    cell.cellModel = model
+                }
                 return cell
             }
         }
@@ -430,6 +454,17 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             return UIEdgeInsets.zero
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == Constants.contentSectionIndex else { return }
+        
+        switch contentType {
+        case .content:
+            guard let selectedPost = postsDataSource?.postModel(for: indexPath.row) else { return }
+            print("MyProfileVCViewModelImpl -> didSelect post: \(selectedPost.id)")
+        default: return
+        }
+    }
 }
 
 extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
@@ -461,8 +496,8 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
                 }
                 
                 self?.profileManager.applyUpdate(updatedProfile: updatedProfile)
-                
                 self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+                self?.reloadContent(with: updatedProfile)
             }
         }
     }

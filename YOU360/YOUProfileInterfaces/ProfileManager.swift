@@ -88,6 +88,7 @@ public final class ProfileManager {
     
     public func applyUpdate(updatedProfile: Profile) {
         profile?.posts = updatedProfile.posts
+        saveProfile()
     }
 }
 
