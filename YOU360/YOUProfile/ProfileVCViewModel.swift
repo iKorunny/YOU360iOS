@@ -126,22 +126,12 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     init(profileManager: ProfileManager) {
         self.profileManager = profileManager
         super.init()
-        loadImages(isAvatarUpdated: false, isBannerUpdated: false)
+        loadImages()
     }
     
-    private func loadImages(isAvatarUpdated: Bool, isBannerUpdated: Bool) {
+    private func loadImages() {
         let group = DispatchGroup()
         var shouldReloadHeader = false
-        
-        if isAvatarUpdated {
-            profileHeaderViewModel.avatar = nil
-        }
-        
-        if isBannerUpdated {
-            profileHeaderViewModel.banner = nil
-        }
-        
-        headerCell?.resetIfNeeded(avatar: isAvatarUpdated, banner: isBannerUpdated)
         
         if let avatarUrlString = profileManager.profile?.photoAvatarUrl {
             let avatarUrl = URL(string: avatarUrlString)
@@ -230,9 +220,16 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func toEditProfile() {
-        ProfileRouter.shared.toEditProfile { [weak self] didSelectAvatar, didSelectBanner in
+        ProfileRouter.shared.toEditProfile { [weak self] didSelectAvatar, didSelectBanner, newAvatar, newBanner in
             guard let self else { return }
-            self.loadImages(isAvatarUpdated: didSelectAvatar, isBannerUpdated: didSelectBanner)
+            if didSelectAvatar {
+                profileHeaderViewModel.avatar = newAvatar
+            }
+            
+            if didSelectBanner {
+                profileHeaderViewModel.banner = newBanner
+            }
+//            self.loadImages(isAvatarUpdated: didSelectAvatar, isBannerUpdated: didSelectBanner)
             self.collectionView?.reloadData()
             self.view?.setMakePostButton(visible: self.isProfileFilled)
         }

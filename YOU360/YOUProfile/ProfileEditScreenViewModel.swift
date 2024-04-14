@@ -226,9 +226,9 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     private weak var tableViewBottomConstraint: NSLayoutConstraint?
     
     let profileManager: ProfileManager
-    let onClose: ((Bool, Bool) -> Void)
+    let onClose: ((Bool, Bool,UIImage?, UIImage?) -> Void)
     
-    init(profileManager: ProfileManager, onClose: @escaping ((Bool, Bool) -> Void)) {
+    init(profileManager: ProfileManager, onClose: @escaping ((Bool, Bool, UIImage?, UIImage?) -> Void)) {
         self.profileManager = profileManager
         self.onClose = onClose
         super.init()
@@ -324,7 +324,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     }
     
     func onWillDissapear() {
-        onClose(didSelectAvatar, didSelectBanner)
+        onClose(didSelectAvatar, didSelectBanner, selectedAvatar, selectedBanner)
     }
     
     private func onChooseAvatar() {

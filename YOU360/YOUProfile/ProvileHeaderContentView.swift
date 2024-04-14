@@ -236,16 +236,6 @@ final class ProvileHeaderContentView: UIView {
         backgroundImageView.image = viewModel.banner ?? Constants.bannerPlaceholder
     }
     
-    func resetIfNeeded(avatar: Bool, banner: Bool) {
-        if avatar {
-            avatarImageView.image = Constants.avatarPlaceholder
-        }
-        
-        if banner {
-            backgroundImageView.image = Constants.bannerPlaceholder
-        }
-    }
-    
     static func calculateHeight(from width: CGFloat) -> CGFloat {
         return width / 375 * 222 + Constants.avatarBackgroundBottomOffset
     }
