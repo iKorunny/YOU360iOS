@@ -157,4 +157,32 @@ final class ProfileNetworkService {
             }
         }
     }
+    
+    func makeProfileRequest(id: String, completion: @escaping (Bool, Profile?) -> Void) {
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)")
+        
+        let request = requestMaker.makeAuthorizedRequest(with: url,
+                                                         headerAcceptValue: "application/json",
+                                                         headerContentTypeValue: "application/json",
+                                                         token: secretNetworkService.authToken,
+                                                         method: .get,
+                                                         json: nil)
+        
+        secretNetworkService.performDataTask(request: request) { data, response, error, localError in
+            guard error == nil && localError == nil,
+                  let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200,
+                  let data = data else {
+                DispatchQueue.main.async {
+                    completion(false, nil)
+                }
+                return
+            }
+
+            let profile: Profile? = try? JSONDecoder().decode(Profile.self, from: data)
+            DispatchQueue.main.async {
+                completion(profile != nil, profile)
+            }
+        }
+    }
 }

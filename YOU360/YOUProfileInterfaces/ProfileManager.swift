@@ -85,6 +85,10 @@ public final class ProfileManager {
         self.profile = profile
         self.isProfileEdited = profile?.profileFilled ?? false
     }
+    
+    public func applyUpdate(updatedProfile: Profile) {
+        profile?.posts = updatedProfile.posts
+    }
 }
 
 extension Profile {

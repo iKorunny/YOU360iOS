@@ -339,6 +339,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileContentCellId, for: indexPath) as! ProfileContentCell
                 cell.setup()
+                cell.set(image: UIImage(named: "LOGOYOU360"))
                 return cell
             }
         }
@@ -438,7 +439,8 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
             loaderManager.addFullscreenLoader(for: view)
         }
         
-        ProfileNetworkService().makeUploadImagePostRequest(id: profile.id,
+        let networkService = ProfileNetworkService()
+        networkService.makeUploadImagePostRequest(id: profile.id,
                                                            image: image) { [weak self] success in
             guard success else {
                 self?.loaderManager.removeFullscreenLoader()
@@ -449,7 +451,19 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
             }
             
             // TODO: request posts and removeLoader on completion
-            self?.loaderManager.removeFullscreenLoader()
+            networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile in
+                self?.loaderManager.removeFullscreenLoader()
+                guard success, let updatedProfile = profile else {
+                    if let view = self?.view {
+                        AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                    }
+                    return
+                }
+                
+                self?.profileManager.applyUpdate(updatedProfile: updatedProfile)
+                
+                self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+            }
         }
     }
 }
