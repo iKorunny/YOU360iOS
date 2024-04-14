@@ -34,14 +34,14 @@ final public class AuthorizationAPIService {
     func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/SignIn")
         
-        let request = requestMaker.makeDatataskRequest(with: url,
-                                                       headerAcceptValue: "application/json",
-                                                       headerContentTypeValue: "application/json",
-                                                       method: .post,
-                                                       json: [
-                                                        "email" : email,
-                                                        "password" : password
-                                                       ])
+        let request = requestMaker.makeRequest(with: url,
+                                               headerAcceptValue: "application/json",
+                                               headerContentTypeValue: "application/json",
+                                               method: .post,
+                                               json: [
+                                                "email" : email,
+                                                "password" : password
+                                               ])
         
         dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             var errors: [AuthorizationAPIError] = []
@@ -84,14 +84,14 @@ final public class AuthorizationAPIService {
     func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/SignUp")
         
-        let request = requestMaker.makeDatataskRequest(with: url,
-                                                       headerAcceptValue: "application/json",
-                                                       headerContentTypeValue: "application/json",
-                                                       method: .post,
-                                                       json: [
-                                                        "email" : email,
-                                                        "password" : password
-                                                       ])
+        let request = requestMaker.makeRequest(with: url,
+                                               headerAcceptValue: "application/json",
+                                               headerContentTypeValue: "application/json",
+                                               method: .post,
+                                               json: [
+                                                "email" : email,
+                                                "password" : password
+                                               ])
         
         dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
             var errors: [AuthorizationAPIError] = []
@@ -133,10 +133,11 @@ final public class AuthorizationAPIService {
     public func requestLogout(completion: @escaping ((Bool, [AuthorizationAPIError]) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/Logout")
         
-        let request = requestMaker.makeDatataskRequest(with: url,
+        let request = requestMaker.makeRequest(with: url,
                                                        headerAcceptValue: "application/json",
                                                        headerContentTypeValue: "application/json",
                                                        body: AuthorizationService.shared.refreshToken,
+                                                       authToken: AuthorizationService.shared.token,
                                                        method: .post,
                                                        json: [:])
         
@@ -154,6 +155,7 @@ final public class AuthorizationAPIService {
             
             let success = httpResponse.statusCode == 200
             if success {
+                print(data)
                 guard let data = data else { return }
             }
             else {

@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import YOUUtils
+import UIKit
 
 public final class ProfileManager {
+    private enum Constants {
+        static let isFilledProfileKey = "isFilledProfileKey"
+    }
+    
     public static var shared = {
         return ProfileManager()
     }()
@@ -16,7 +22,20 @@ public final class ProfileManager {
             saveProfile()
         }
     }
-    public var isProfileEdited: Bool = false
+    public var avatar: UIImage?
+    public var banner: UIImage?
+    public var hasProfile: Bool {
+        profile != nil
+    }
+    public var isProfileEdited: Bool {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Constants.isFilledProfileKey)
+        }
+        
+        get {
+            UserDefaults.standard.bool(forKey: Constants.isFilledProfileKey)
+        }
+    }
     
     private var fileURL: URL {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -56,7 +75,38 @@ public final class ProfileManager {
     }
     
     public func deleteProfile() {
+        avatar = nil
+        banner = nil
         guard FileManager.default.fileExists(atPath: fileURL.path()) else { return }
         try? FileManager.default.removeItem(at: fileURL)
+    }
+    
+    public func set(profile: Profile?) {
+        self.profile = profile
+        self.isProfileEdited = profile?.profileFilled ?? false
+    }
+    
+    public func applyUpdate(updatedProfile: Profile) {
+        profile?.posts = updatedProfile.posts
+        saveProfile()
+    }
+}
+
+extension Profile {
+    var profileFilled: Bool {
+        return name != nil ||
+        surname != nil ||
+        aboutMe != nil ||
+        dateOfBirth != nil ||
+        city != nil ||
+//        paymentMethod != nil ||
+        instagram != nil ||
+        facebook != nil ||
+        twitter != nil ||
+        posts != 0 ||
+        events != 0 ||
+        establishments != 0 ||
+        photoAvatarUrl != nil ||
+        photoBackgroundUrl != nil
     }
 }

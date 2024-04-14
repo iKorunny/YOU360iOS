@@ -113,3 +113,9 @@ final class ProfileEditVC: UIViewController {
         viewModel.onSave()
     }
 }
+
+extension ProfileEditVC: ProfileEditScreenView {
+    func close() {
+        popBack()
+    }
+}

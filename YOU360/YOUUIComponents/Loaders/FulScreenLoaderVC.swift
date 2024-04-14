@@ -39,7 +39,7 @@ extension FulScreenLoaderVC: FullscreenLoading {
         vc.present(self, animated: true)
     }
     
-    public func remove() {
-        dismiss(animated: true)
+    public func remove(completion: (() -> Void)?) {
+        dismiss(animated: true, completion: completion)
     }
 }

@@ -28,6 +28,8 @@ struct OnlineIndicator {
 
 final class ProvileHeaderContentViewModel {
     var profile: Profile?
+    var avatar: UIImage?
+    var banner: UIImage?
     var onlineIdicator: OnlineIndicator
     
     var onEdit: (() -> Void)
@@ -35,9 +37,13 @@ final class ProvileHeaderContentViewModel {
     
     init(profile: Profile?,
          onlineIdicator: OnlineIndicator,
+         avatar: UIImage?,
+         banner: UIImage?,
          onEdit: @escaping () -> Void,
          onShare: @escaping () -> Void) {
         self.profile = profile
+        self.avatar = avatar
+        self.banner = banner
         self.onlineIdicator = onlineIdicator
         self.onEdit = onEdit
         self.onShare = onShare
@@ -64,19 +70,23 @@ final class ProvileHeaderContentView: UIView {
         static let onlineIndicatorHeight: CGFloat = 22
         static let onlineIndicatorTitleHorizontalOffset: CGFloat = 8
         static let onlineIndicatorTextSize: CGFloat = 10
+        
+        static let avatarPlaceholder = UIImage(named: "ProfileAvatarPlaceholder")
+        static let bannerPlaceholder = UIImage(named: "ProfileBackgroundPlaceholder")
     }
     
     private var viewModel: ProvileHeaderContentViewModel?
     
     private(set) lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: .init(named: "ProfileBackgroundPlaceholder"))
+        let imageView = UIImageView(image: Constants.avatarPlaceholder)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     private(set) lazy var avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: .init(named: "ProfileAvatarPlaceholder"))
+        let imageView = UIImageView(image: Constants.avatarPlaceholder)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.widthAnchor.constraint(equalToConstant: Constants.avatarSize.width).isActive = true
@@ -85,6 +95,7 @@ final class ProvileHeaderContentView: UIView {
         imageView.layer.borderWidth = Constants.avatarBorderWidth
         imageView.layer.cornerRadius = Constants.avatarCornerRadius
         imageView.layer.borderColor = ColorPallete.appWhiteSecondary.cgColor
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -221,6 +232,8 @@ final class ProvileHeaderContentView: UIView {
         onlineIndicatorBackgroundView.isHidden = viewModel.onlineIdicator.isHidden
         onlineIndicatorBackgroundView.backgroundColor = viewModel.onlineIdicator.statusColor
         onlineIndicatorLabel.text = viewModel.onlineIdicator.statusStringRepresentation
+        avatarImageView.image = viewModel.avatar ?? Constants.avatarPlaceholder
+        backgroundImageView.image = viewModel.banner ?? Constants.bannerPlaceholder
     }
     
     static func calculateHeight(from width: CGFloat) -> CGFloat {

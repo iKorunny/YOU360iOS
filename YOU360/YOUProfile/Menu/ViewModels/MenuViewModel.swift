@@ -27,7 +27,6 @@ struct Section {
 final class MenuViewModelImpl: NSObject, MenuViewModel {
     private enum Constants {
         static let menuCellID = "MenuCell"
-        static let menuProfileCellID = "MenuProfileCell"
         static let fieldsCellIndex: Int = 1
         static let heightOfRow: CGFloat = 72
         static let profileHeightOfRow: CGFloat = 72
@@ -94,7 +93,6 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        tableView.register(MenuProfileCell.self, forCellReuseIdentifier: Constants.menuProfileCellID)
         tableView.register(MenuCell.self, forCellReuseIdentifier: Constants.menuCellID)
     }
     

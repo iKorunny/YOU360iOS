@@ -20,7 +20,7 @@ protocol ProfileEditFieldActionsDelegate: AnyObject {
     func onShouldEndEditing(for type: ProfileEditFieldModelType)
 }
 
-final class ProfileEditFieldModel: NSObject {
+final class ProfileEditFieldModel: NSObject, EditProfileField {
     let identifier: String
     
     let type: ProfileEditFieldModelType
@@ -38,6 +38,8 @@ final class ProfileEditFieldModel: NSObject {
     
     private weak var actionsDelegate: ProfileEditFieldActionsDelegate?
     
+    private var enteredText: String?
+    
     init(identifier: String, 
          type: ProfileEditFieldModelType = .keyboard,
          placeholder: String,
@@ -53,10 +55,15 @@ final class ProfileEditFieldModel: NSObject {
         self.placeholderFont = placeholderFont
         self.placeholderColor = placeholderColor
         self.text = text
+        enteredText = text
         self.textFont = textFont
         self.textColor = textColor
         self.actionsDelegate = actionsDelegate
         super.init()
+    }
+    
+    func apply() {
+        text = enteredText
     }
 }
 
@@ -71,9 +78,13 @@ extension ProfileEditFieldModel: UITextFieldDelegate {
         actionsDelegate?.onShouldEndEditing(for: type)
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        enteredText = textField.text
+    }
 }
 
-final class ProfileEditFieldsContentViewModel: ProfileEditScreenFieldModel {
+final class ProfileEditFieldsContentViewModel: ProfileEditScreenFieldModel, EditProfileField {
     var indexPath: IndexPath?
     
     var isFirstResponder: Bool {
@@ -88,6 +99,10 @@ final class ProfileEditFieldsContentViewModel: ProfileEditScreenFieldModel {
     
     init(fieldModels: [ProfileEditFieldModel]) {
         self.fieldModels = fieldModels
+    }
+    
+    func apply() {
+        fieldModels.forEach { $0.apply() }
     }
 }
 
@@ -134,6 +149,8 @@ final class ProfileEditFieldsContentView: UIView {
     }
     
     private func setupUI() {
+        fieldsContainer.subviews.forEach { $0.removeFromSuperview() }
+        fieldsContainer.removeFromSuperview()
         guard let fieldsModels = viewModel?.fieldModels, !fieldsModels.isEmpty else { return }
         addSubview(fieldsContainer)
         

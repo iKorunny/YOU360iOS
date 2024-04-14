@@ -39,6 +39,8 @@ final class ProfileInfoContentView: UIView {
         static let ageTopOffset: CGFloat = 7
         static let verifiedIconLeftOffset: CGFloat = 4
         
+        static let nameHeight: CGFloat = 31
+        
         static let nameFont: UIFont = YOUFontsProvider.appBoldFont(with: 22)
         static let descriptionFont: UIFont = YOUFontsProvider.appSemiBoldFont(with: 14)
         static let addressAgeFont: UIFont = YOUFontsProvider.appMediumFont(with: 14)
@@ -130,9 +132,7 @@ final class ProfileInfoContentView: UIView {
     static func calculateHeight(from width: CGFloat, model: ProfileInfoContentViewModel) -> CGFloat {
         let actualWidth = width - Constants.contentHorizontalSpacing * 2
         var height = Constants.contentTopOffset
-        
-        let calculatedNameHeight = TextSizeCalculator.calculateSize(with: actualWidth, text: model.name, font: Constants.nameFont).height
-        height += calculatedNameHeight
+        height += Constants.nameHeight
         
         if let desciption = model.desciption {
             height += Constants.descriptionTopOffset

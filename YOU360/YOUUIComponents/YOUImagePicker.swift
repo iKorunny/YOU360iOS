@@ -12,6 +12,7 @@ import YOUUtils
 public enum YOUImagePickerType {
     case avatar
     case banner
+    case contentImage
     case none
 }
 
@@ -27,6 +28,15 @@ public final class YOUNativeImagePicker: NSObject, YOUImagePicker {
     private var type: YOUImagePickerType = .none
     private weak var delegate: YOUImagePickerDelegate?
     
+    private var allowEditingOnPicker: Bool {
+        switch type {
+        case .avatar:
+            return true
+        default:
+            return false
+        }
+    }
+    
     public init(delegate: YOUImagePickerDelegate) {
         self.delegate = delegate
     }
@@ -34,7 +44,7 @@ public final class YOUNativeImagePicker: NSObject, YOUImagePicker {
     public func present(from vc: UIViewController, type: YOUImagePickerType) {
         self.type = type
         let nativePicker = UIImagePickerController()
-        nativePicker.allowsEditing = type == .avatar
+        nativePicker.allowsEditing = allowEditingOnPicker
         nativePicker.delegate = self
         vc.present(nativePicker, animated: true)
     }
@@ -60,6 +70,8 @@ extension YOUNativeImagePicker: UIImagePickerControllerDelegate & UINavigationCo
             if let newImage = info[.originalImage] as? UIImage {
                 pickedImage = UIImageResizer.resizeTo1080p(image: newImage)
             }
+        case .contentImage:
+            pickedImage = info[.originalImage] as? UIImage
         default: break
         }
         picker.dismiss(animated: true) { [weak self] in

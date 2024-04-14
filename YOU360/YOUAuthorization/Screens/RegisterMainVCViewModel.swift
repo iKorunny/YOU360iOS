@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import YOUUIComponents
 import YOUProfileInterfaces
+import YOUNetworking
 
 final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     private enum Constants {
@@ -66,9 +67,11 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
                             let profile = profile,
                             let token = token,
                             let rToken = rToken else { return }
-                    ProfileManager.shared.profile = profile
+                    ProfileManager.shared.set(profile: profile)
                     AuthorizationService.shared.token = token
                     AuthorizationService.shared.refreshToken = rToken
+                    YOUNetworkingServices.secretNetworkService.refreshToken = rToken
+                    YOUNetworkingServices.secretNetworkService.authToken = token
                     AuthorizationRouter.shared.endFlow()
                 }
             }

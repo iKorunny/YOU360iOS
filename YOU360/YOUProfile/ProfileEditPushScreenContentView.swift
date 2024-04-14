@@ -8,7 +8,7 @@
 import UIKit
 import YOUUtils
 
-final class ProfileEditPushScreenLineModel {
+final class ProfileEditPushScreenLineModel: EditProfileField {
     let identifier: String
     let placeholderFont: UIFont
     let placeholderColor: UIColor
@@ -37,9 +37,13 @@ final class ProfileEditPushScreenLineModel {
         self.textColor = textColor
         self.action = action
     }
+    
+    func apply() {
+        
+    }
 }
 
-final class ProfileEditPushScreenContentViewModel {
+final class ProfileEditPushScreenContentViewModel: EditProfileField {
     let models: [ProfileEditPushScreenLineModel]
     
     init(models: [ProfileEditPushScreenLineModel]) {
@@ -48,6 +52,10 @@ final class ProfileEditPushScreenContentViewModel {
     
     func tag(for model: ProfileEditPushScreenLineModel) -> Int? {
         return models.firstIndex(where: { $0.identifier == model.identifier })
+    }
+    
+    func apply() {
+        models.forEach { $0.apply() }
     }
 }
 
