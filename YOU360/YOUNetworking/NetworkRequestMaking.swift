@@ -11,6 +11,8 @@ public protocol NetworkRequestMaking {
     func makeRequest(with url: URL,
                      headerAcceptValue: String,
                      headerContentTypeValue: String,
+                     body: String?,
+                     authToken: String?,
                      method: RequestMethod,
                      json: [String: Any]?) -> URLRequest
     func makeAuthorizedRequest(with url: URL,
@@ -64,13 +66,19 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
     public func makeRequest(with url: URL,
                             headerAcceptValue: String,
                             headerContentTypeValue: String,
+                            body authToken: String? = nil,
+                            authToken body: String? = nil,
                             method: RequestMethod,
                             json: [String: Any]?) -> URLRequest {
         var request = URLRequest(url: url)
         
         request.addValue(headerAcceptValue, forHTTPHeaderField: "Accept")
         request.addValue(headerContentTypeValue, forHTTPHeaderField: "Content-Type")
+        if let authToken {
+            request.addValue(authToken, forHTTPHeaderField: "x-token")
+        }
         
+        request.httpBody = body?.data(using: .utf8)
         request.httpMethod = method.rawValue
         
         request.addValue(Locale.current.identifier, forHTTPHeaderField: "Accept-Language")

@@ -21,4 +21,8 @@ public final class ProfileScreenFactory {
     public static func createReserveRootVC() -> UINavigationController {
         return YOUNavigationController(rootViewController: UIViewController(), type: .reserve)
     }
+    
+    public static func createMenuVC(onClose: @escaping (() -> Void)) -> UIViewController {
+        return MenuVC(viewModel: MenuViewModelImpl(onClose: onClose))
+    }
 }

@@ -17,4 +17,12 @@ public final class ProfileRouter {
     public func toEditProfile(onClose: @escaping ((Bool, Bool, UIImage?, UIImage?) -> Void)) {
         rootProfileVC?.pushViewController(ProfileScreenFactory.createProfileEditVC(onClose: onClose), animated: true)
     }
+    
+    public func toMenu(onClose: @escaping (() -> Void)) {
+        rootProfileVC?.pushViewController(ProfileScreenFactory.createMenuVC(onClose: onClose), animated: true)
+    }
+    
+    public func toLogin(onClose: @escaping (() -> Void)) {
+        rootProfileVC?.popToRootViewController(animated: true)
+    }
 }

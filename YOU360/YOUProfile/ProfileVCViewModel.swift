@@ -58,6 +58,7 @@ protocol ProfileVCViewModel {
     var myProfile: Bool { get }
     var isProfileFilled: Bool { get }
     
+    func toMenu()
     func set(collectionView: UICollectionView, 
              view: (UIViewController & ProfileVCView),
              postsDataSource: ProfileVCPostsDataSource)
@@ -248,6 +249,10 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private func reloadUI() {
         collectionView?.reloadData()
         view?.setMakePostButton(visible: self.isProfileFilled)
+    }
+
+    func toMenu() {
+        ProfileRouter.shared.toMenu {}
     }
     
     private func numberOfItems(for tab: ProfileTab) -> Int {

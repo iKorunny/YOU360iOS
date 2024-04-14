@@ -9,7 +9,7 @@ import Foundation
 import YOUNetworking
 import YOUProfileInterfaces
 
-final class AuthorizationAPIError {
+final public class AuthorizationAPIError {
     let stringRepresentation: String
     
     init(stringRepresentation: String) {
@@ -17,8 +17,8 @@ final class AuthorizationAPIError {
     }
 }
 
-final class AuthorizationAPIService {
-    static var shared = AuthorizationAPIService()
+final public class AuthorizationAPIService {
+    static public var shared = AuthorizationAPIService()
     
     private var requestMaker: NetworkRequestMaker {
         YOUNetworkingServices.requestMaker
@@ -124,6 +124,50 @@ final class AuthorizationAPIService {
                            errors, profile,
                            httpResponse.value(forHTTPHeaderField: "x-token"),
                            httpResponse.value(forHTTPHeaderField: "r-token"))
+            }
+        })
+        
+        dataTask?.resume()
+    }
+    
+    public func requestLogout(completion: @escaping ((Bool, [AuthorizationAPIError]) -> Void)) {
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/Logout")
+        
+        let request = requestMaker.makeRequest(with: url,
+                                                       headerAcceptValue: "application/json",
+                                                       headerContentTypeValue: "application/json",
+                                                       body: AuthorizationService.shared.refreshToken,
+                                                       authToken: AuthorizationService.shared.token,
+                                                       method: .post,
+                                                       json: [:])
+        
+        dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+            var errors: [AuthorizationAPIError] = []
+            if let error = error {
+                errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                DispatchQueue.main.async {
+                    completion(false, errors)
+                }
+                return
+            }
+            
+            let success = httpResponse.statusCode == 200
+            if success {
+                print(data)
+                guard let data = data else { return }
+            }
+            else {
+                guard let data = data,
+                let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
+                let errorsString = errorsJSON["errors"] else { return }
+                
+                errorsString.forEach({ errors.append(AuthorizationAPIError(stringRepresentation: $0)) })
+            }
+            
+            DispatchQueue.main.async {
+                completion(errors.isEmpty && success, errors)
             }
         })
         

@@ -147,6 +147,26 @@
 		80E627A72BB3526F00F50B4E /* ProfileSocialButtonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */; };
 		80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F82CC72BB7500D00006FEC /* ProfileContentEmptyCell.swift */; };
 		80F82CCA2BB89DD500006FEC /* ProfileContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F82CC92BB89DD500006FEC /* ProfileContentCell.swift */; };
+		896C908B2BC73FF000DB36DB /* YOUUIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */; };
+		896C908C2BC73FF000DB36DB /* YOUUIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		896C90902BC7400D00DB36DB /* YOUUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; };
+		896C90912BC7400D00DB36DB /* YOUUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		896C90952BC7402E00DB36DB /* YOUNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A5662B820BA000294DD7 /* YOUNetworking.framework */; };
+		896C90962BC7402E00DB36DB /* YOUNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A5662B820BA000294DD7 /* YOUNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		896C909C2BC7425600DB36DB /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C909B2BC7425600DB36DB /* MenuVC.swift */; };
+		896C909E2BC7446C00DB36DB /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C909D2BC7446C00DB36DB /* MenuViewModel.swift */; };
+		896C90A22BC750A300DB36DB /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C90A12BC750A300DB36DB /* MenuCell.swift */; };
+		896C90A42BCBFD7900DB36DB /* MenuItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C90A32BCBFD7900DB36DB /* MenuItemContentView.swift */; };
+		896C90AA2BCC360200DB36DB /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C90A92BCC360200DB36DB /* MenuModel.swift */; };
+		896C90AC2BCC376300DB36DB /* MenuContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C90AB2BCC376300DB36DB /* MenuContentViewModel.swift */; };
+		896C90B02BCC658900DB36DB /* YOUAuthorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; };
+		896C90B12BCC658900DB36DB /* YOUAuthorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		896C90B52BCC768B00DB36DB /* YOUUIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */; };
+		896C90B62BCC768B00DB36DB /* YOUUIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		896C90BA2BCC76B700DB36DB /* YOUUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; };
+		896C90BB2BCC76B700DB36DB /* YOUUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		896C90BF2BCC76CA00DB36DB /* YOUUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; };
+		896C90C02BCC76CA00DB36DB /* YOUUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80A4F5772B8361CB002CC9AD /* YOUUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +226,55 @@
 			remoteGlobalIDString = 80A4F5762B8361CB002CC9AD;
 			remoteInfo = YOUUtils;
 		};
+		896C908D2BC73FF000DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8032A57A2B820D8200294DD7;
+			remoteInfo = YOUUIComponents;
+		};
+		896C90922BC7400D00DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A4F5762B8361CB002CC9AD;
+			remoteInfo = YOUUtils;
+		};
+		896C90972BC7402E00DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8032A5652B820BA000294DD7;
+			remoteInfo = YOUNetworking;
+		};
+		896C90B22BCC658900DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8032A58C2B820E6C00294DD7;
+			remoteInfo = YOUAuthorization;
+		};
+		896C90B72BCC768B00DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8032A57A2B820D8200294DD7;
+			remoteInfo = YOUUIComponents;
+		};
+		896C90BC2BCC76B700DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A4F5762B8361CB002CC9AD;
+			remoteInfo = YOUUtils;
+		};
+		896C90C12BCC76CA00DB36DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A4F5762B8361CB002CC9AD;
+			remoteInfo = YOUUtils;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -223,6 +292,83 @@
 				8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */,
 				8048242D2B9465C30057F152 /* YOUChat.framework in Embed Frameworks */,
 				8032A56D2B820BA000294DD7 /* YOUNetworking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C908F2BC73FF000DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C908C2BC73FF000DB36DB /* YOUUIComponents.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C90942BC7400D00DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C90912BC7400D00DB36DB /* YOUUtils.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C90992BC7402E00DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C90962BC7402E00DB36DB /* YOUNetworking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C90B42BCC658900DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C90B12BCC658900DB36DB /* YOUAuthorization.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C90B92BCC768B00DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C90B62BCC768B00DB36DB /* YOUUIComponents.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C90BE2BCC76B700DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C90BB2BCC76B700DB36DB /* YOUUtils.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		896C90C32BCC76CA00DB36DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				896C90C02BCC76CA00DB36DB /* YOUUtils.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +505,12 @@
 		80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialButtonContentView.swift; sourceTree = "<group>"; };
 		80F82CC72BB7500D00006FEC /* ProfileContentEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentEmptyCell.swift; sourceTree = "<group>"; };
 		80F82CC92BB89DD500006FEC /* ProfileContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentCell.swift; sourceTree = "<group>"; };
+		896C909B2BC7425600DB36DB /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		896C909D2BC7446C00DB36DB /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		896C90A12BC750A300DB36DB /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		896C90A32BCBFD7900DB36DB /* MenuItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemContentView.swift; sourceTree = "<group>"; };
+		896C90A92BCC360200DB36DB /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
+		896C90AB2BCC376300DB36DB /* MenuContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +533,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C90BA2BCC76B700DB36DB /* YOUUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +541,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C90902BC7400D00DB36DB /* YOUUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C90952BC7402E00DB36DB /* YOUNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +557,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C90B02BCC658900DB36DB /* YOUAuthorization.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +565,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C908B2BC73FF000DB36DB /* YOUUIComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +573,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C90B52BCC768B00DB36DB /* YOUUIComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +581,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C90BF2BCC76CA00DB36DB /* YOUUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +608,7 @@
 				804824172B9465B40057F152 /* YOUEstablishments */,
 				804824272B9465C30057F152 /* YOUChat */,
 				8032A5482B820B7600294DD7 /* Products */,
+				896C908A2BC73FF000DB36DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -536,6 +696,7 @@
 		804823FE2B924A120057F152 /* YOUProfile */ = {
 			isa = PBXGroup;
 			children = (
+				896C909A2BC7422E00DB36DB /* Menu */,
 				804823FF2B924A120057F152 /* YOUProfile.h */,
 				805BCBF32B9CE76B00641FB7 /* ProfileRouter.swift */,
 				804824092B924A9D0057F152 /* ProfileScreenFactory.swift */,
@@ -737,6 +898,58 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		896C908A2BC73FF000DB36DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		896C909A2BC7422E00DB36DB /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				896C90A82BCC310000DB36DB /* ViewModels */,
+				896C90A72BCC30F300DB36DB /* View */,
+				896C90A62BCC30E700DB36DB /* VC */,
+				896C90A52BCC30D200DB36DB /* Cells */,
+				896C90A92BCC360200DB36DB /* MenuModel.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		896C90A52BCC30D200DB36DB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				896C90A12BC750A300DB36DB /* MenuCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		896C90A62BCC30E700DB36DB /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				896C909B2BC7425600DB36DB /* MenuVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		896C90A72BCC30F300DB36DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				896C90A32BCBFD7900DB36DB /* MenuItemContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		896C90A82BCC310000DB36DB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				896C909D2BC7446C00DB36DB /* MenuViewModel.swift */,
+				896C90AB2BCC376300DB36DB /* MenuContentViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -841,10 +1054,12 @@
 				8032A5622B820BA000294DD7 /* Sources */,
 				8032A5632B820BA000294DD7 /* Frameworks */,
 				8032A5642B820BA000294DD7 /* Resources */,
+				896C90BE2BCC76B700DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C90BD2BCC76B700DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUNetworking;
 			productName = YOUNetworking;
@@ -859,10 +1074,12 @@
 				8032A5772B820D8200294DD7 /* Sources */,
 				8032A5782B820D8200294DD7 /* Frameworks */,
 				8032A5792B820D8200294DD7 /* Resources */,
+				896C90942BC7400D00DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C90932BC7400D00DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUUIComponents;
 			productName = YOUUIComponents;
@@ -877,10 +1094,12 @@
 				8032A5892B820E6C00294DD7 /* Sources */,
 				8032A58A2B820E6C00294DD7 /* Frameworks */,
 				8032A58B2B820E6C00294DD7 /* Resources */,
+				896C90992BC7402E00DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C90982BC7402E00DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUAuthorization;
 			productName = YOUAuthorization;
@@ -895,10 +1114,12 @@
 				804823F92B924A120057F152 /* Sources */,
 				804823FA2B924A120057F152 /* Frameworks */,
 				804823FB2B924A120057F152 /* Resources */,
+				896C90B42BCC658900DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C90B32BCC658900DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUProfile;
 			productName = YOUProfile;
@@ -913,10 +1134,12 @@
 				804824122B9465B40057F152 /* Sources */,
 				804824132B9465B40057F152 /* Frameworks */,
 				804824142B9465B40057F152 /* Resources */,
+				896C908F2BC73FF000DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C908E2BC73FF000DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUEstablishments;
 			productName = YOUEstablishments;
@@ -931,10 +1154,12 @@
 				804824222B9465C30057F152 /* Sources */,
 				804824232B9465C30057F152 /* Frameworks */,
 				804824242B9465C30057F152 /* Resources */,
+				896C90B92BCC768B00DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C90B82BCC768B00DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUChat;
 			productName = YOUChat;
@@ -949,10 +1174,12 @@
 				809FC4142B946FFF00C0A707 /* Sources */,
 				809FC4152B946FFF00C0A707 /* Frameworks */,
 				809FC4162B946FFF00C0A707 /* Resources */,
+				896C90C32BCC76CA00DB36DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				896C90C22BCC76CA00DB36DB /* PBXTargetDependency */,
 			);
 			name = YOUProfileInterfaces;
 			productName = YOUProfileInterfaces;
@@ -1215,6 +1442,8 @@
 			files = (
 				805BCBFF2B9DE40A00641FB7 /* ProfileEditImagesButtonsCell.swift in Sources */,
 				8038AD532BA4DE67003B377C /* ProfileEditPushScreenCell.swift in Sources */,
+				896C909C2BC7425600DB36DB /* MenuVC.swift in Sources */,
+				896C90A42BCBFD7900DB36DB /* MenuItemContentView.swift in Sources */,
 				8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */,
 				80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */,
 				8038AD5B2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift in Sources */,
@@ -1230,6 +1459,7 @@
 				809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */,
 				80C224DF2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift in Sources */,
 				80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */,
+				896C909E2BC7446C00DB36DB /* MenuViewModel.swift in Sources */,
 				807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */,
 				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
 				8038AD592BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift in Sources */,
@@ -1246,7 +1476,10 @@
 				805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */,
 				805BCC032B9DEF9C00641FB7 /* ProfileEditFieldsContentView.swift in Sources */,
 				80E627A72BB3526F00F50B4E /* ProfileSocialButtonContentView.swift in Sources */,
+				896C90AA2BCC360200DB36DB /* MenuModel.swift in Sources */,
+				896C90AC2BCC376300DB36DB /* MenuContentViewModel.swift in Sources */,
 				805BCBF22B9CE6F800641FB7 /* ProfileEditVC.swift in Sources */,
+				896C90A22BC750A300DB36DB /* MenuCell.swift in Sources */,
 				805BCBF92B9DDB6600641FB7 /* ProfileEditHeaderContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1337,6 +1570,41 @@
 			isa = PBXTargetDependency;
 			target = 80A4F5762B8361CB002CC9AD /* YOUUtils */;
 			targetProxy = 80A4F57B2B8361CB002CC9AD /* PBXContainerItemProxy */;
+		};
+		896C908E2BC73FF000DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8032A57A2B820D8200294DD7 /* YOUUIComponents */;
+			targetProxy = 896C908D2BC73FF000DB36DB /* PBXContainerItemProxy */;
+		};
+		896C90932BC7400D00DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A4F5762B8361CB002CC9AD /* YOUUtils */;
+			targetProxy = 896C90922BC7400D00DB36DB /* PBXContainerItemProxy */;
+		};
+		896C90982BC7402E00DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8032A5652B820BA000294DD7 /* YOUNetworking */;
+			targetProxy = 896C90972BC7402E00DB36DB /* PBXContainerItemProxy */;
+		};
+		896C90B32BCC658900DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8032A58C2B820E6C00294DD7 /* YOUAuthorization */;
+			targetProxy = 896C90B22BCC658900DB36DB /* PBXContainerItemProxy */;
+		};
+		896C90B82BCC768B00DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8032A57A2B820D8200294DD7 /* YOUUIComponents */;
+			targetProxy = 896C90B72BCC768B00DB36DB /* PBXContainerItemProxy */;
+		};
+		896C90BD2BCC76B700DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A4F5762B8361CB002CC9AD /* YOUUtils */;
+			targetProxy = 896C90BC2BCC76B700DB36DB /* PBXContainerItemProxy */;
+		};
+		896C90C22BCC76CA00DB36DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A4F5762B8361CB002CC9AD /* YOUUtils */;
+			targetProxy = 896C90C12BCC76CA00DB36DB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1499,7 +1767,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1529,7 +1797,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1550,7 +1818,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1558,7 +1826,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1586,7 +1854,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1594,7 +1862,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1621,7 +1889,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = 6WHW6UX93U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1629,7 +1897,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1657,7 +1925,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = 6WHW6UX93U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1665,7 +1933,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1692,7 +1960,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1700,7 +1968,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1736,7 +2004,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1762,7 +2030,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1770,7 +2038,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1796,7 +2064,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1804,7 +2072,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1831,7 +2099,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1839,7 +2107,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1867,7 +2135,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1875,7 +2143,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1902,7 +2170,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1910,7 +2178,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1938,7 +2206,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1946,7 +2214,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1972,7 +2240,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1980,7 +2248,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2014,7 +2282,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2041,7 +2309,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2049,7 +2317,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2077,7 +2345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DEVELOPMENT_TEAM = L8VYQG6KXG;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2085,7 +2353,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
