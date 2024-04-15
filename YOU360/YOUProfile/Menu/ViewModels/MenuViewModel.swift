@@ -10,10 +10,12 @@ import YOUUIComponents
 import YOUUtils
 import YOUProfileInterfaces
 import YOUAuthorization
+import YOUNetworking
 
 protocol MenuViewModel {
-    var tableView: UITableView? { get set }
-    var viewController: UIViewController? { get set }
+    var view: MenuView? { get set }
+    
+    func onViewDidLoad()
     func onWillDissapear()
     func set(tableView: UITableView)
 }
@@ -26,6 +28,7 @@ struct Section {
 
 final class MenuViewModelImpl: NSObject, MenuViewModel {
     private enum Constants {
+        static let menuProfileCellID = "menuProfileCellID"
         static let menuCellID = "MenuCell"
         static let fieldsCellIndex: Int = 1
         static let heightOfRow: CGFloat = 72
@@ -38,47 +41,24 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     }
     
     let onClose: (() -> Void)
+    
+    private lazy var networkService = ProfileNetworkService()
     private lazy var loaderManager: LoaderManager = {
         return LoaderManager()
     }()
     
     var tableView: UITableView?
-    var viewController: UIViewController?
+    var view: MenuView?
+    private var profile: Profile?
+    private var avatarImage: UIImage?
     
     var heightForRow: CGFloat {
         return Constants.heightOfRow
     }
     
-    private let sections: [Section] = [
-        Section(name: "", items: [
-            MenuItem(title: "Lucas Bailey", type: .profile, subTitle: "example@gmail.com", icon: MenuItem.Icons.mock),
-            MenuItem(title: "Profile settings", type: .standart, icon: MenuItem.Icons.profile),
-            MenuItem(title: "History of Reservations", type: .standart, icon: MenuItem.Icons.history),
-            MenuItem(title: "Payment methods", type: .standart, icon: MenuItem.Icons.payment),
-            MenuItem(title: "Distance", type: .standart, icon: MenuItem.Icons.distance),
-        ]
-               ),
-        Section(name: "Settings & Preferences", items: [
-            MenuItem(title: "Notifications", type: .standart, icon: MenuItem.Icons.notifications),
-            MenuItem(title: "Dark Mode", type: .switchKey, icon: MenuItem.Icons.moon),
-        ]
-               ),
-        Section(name: "Support", items: [
-            MenuItem(title: "Help center", type: .standart, icon: MenuItem.Icons.help),
-            MenuItem(title: "Report a bug", type: .standart, icon: MenuItem.Icons.report),
-            MenuItem(title: "Log out", type: .logOut, icon: MenuItem.Icons.logOut, action: {
-                print("LOGOUT")
-                AuthorizationAPIService.shared.requestLogout { success, erros in
-                    DispatchQueue.main.async {
-                        ProfileRouter.shared.toLogin {
-                            ProfileManager.shared.deleteProfile()
-                        }
-                    }
-                }
-            })
-        ]
-               )
-    ]
+    private lazy var sections: [Section] = {
+        getSections()
+    }()
     
     init(onClose: @escaping (() -> Void)) {
         self.onClose = onClose
@@ -94,6 +74,11 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: Constants.menuCellID)
+        tableView.register(MenuCell.self, forCellReuseIdentifier: Constants.menuProfileCellID)
+    }
+    
+    func onViewDidLoad() {
+        loadProfile()
     }
     
     func onWillDissapear() {
@@ -101,8 +86,17 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     }
     
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell {
-        guard let cell = table.dequeueReusableCell(withIdentifier: Constants.menuCellID, for: index) as? MenuCell else { return UITableViewCell() }
-        let menuViewModel = MenuContentViewModelImpl(item: itemForIndex(index), reloadAction: reloadAction)
+        var cell: UITableViewCell?
+        
+        switch index.row {
+        case 0:
+            cell = table.dequeueReusableCell(withIdentifier: Constants.menuProfileCellID, for: index)
+        default:
+            cell = table.dequeueReusableCell(withIdentifier: Constants.menuCellID, for: index)
+        }
+        
+        guard let cell = cell as? MenuCell else { return UITableViewCell() }
+        let menuViewModel = MenuContentViewModelImpl(item: itemForIndex(index), reloadAction: reload)
         
         cell.apply(viewModel: menuViewModel)
         return cell
@@ -112,8 +106,97 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         sections[index.section].items[index.row]
     }
     
-    private func reloadAction() {
-        tableView?.reloadData()
+    private func reloadProfile() {
+        sections = getSections()
+        tableView?.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+    }
+    
+    private func reload() {
+        sections = getSections()
+        view?.reload()
+    }
+    
+    private func logoutAction() {
+        AuthorizationService.shared.onLogout()
+    }
+    
+    private func loadProfile() {
+        if let view = (view as? UIViewController)?.tabBarController {
+            loaderManager.addFullscreenLoader(for: view)
+        }
+        
+        profile = ProfileManager.shared.profile
+        
+        if let imagePath = profile?.photoAvatarUrl {
+            networkService.makeDownloadImageGetRequest(imagePath: imagePath) { [weak self] avatar in
+                self?.avatarImage = avatar
+                self?.loaderManager.removeFullscreenLoader()
+                self?.reloadProfile()
+            }
+        }
+    }
+    
+    private func getSections() -> [Section] {
+        [
+            Section(name: "", items: [
+                getProfileItem(),
+                MenuItem(title: "ProfileSettingsTitle".localised(), type: .standart, icon: MenuItem.Icons.profile),
+                MenuItem(title: "HistorOfReservationsTitle".localised(), type: .standart, icon: MenuItem.Icons.history),
+                MenuItem(title: "PaymentMethodsTitle".localised(), type: .standart, icon: MenuItem.Icons.payment),
+                MenuItem(title: "DistanceTitle".localised(), type: .standart, icon: MenuItem.Icons.distance),
+            ]
+                   ),
+            Section(name: "SettingsAndPreferencesTitle".localised(), items: [
+                MenuItem(title: "NotificationsTitle".localised(), type: .standart, icon: MenuItem.Icons.notifications),
+                MenuItem(title: "DarkModeTitle".localised(), type: .switchKey, icon: MenuItem.Icons.moon),
+            ]
+                   ),
+            Section(name: "SupportTitle".localised(), items: [
+                MenuItem(title: "HelpCenterTitle".localised(), type: .standart, icon: MenuItem.Icons.help),
+                MenuItem(title: "ReportBugTitle".localised(), type: .standart, icon: MenuItem.Icons.report),
+                MenuItem(title: "LogOutTitle".localised(), type: .logOut, icon: MenuItem.Icons.logOut, action: {
+                    AuthorizationAPIService.shared.requestLogout { success, errors in
+                        DispatchQueue.main.async { [weak self] in
+                            if success {
+                                self?.logoutAction()
+                            } else {
+                                guard !errors.isEmpty else {
+                                    self?.handleErrors(errors)
+                                    return
+                                }
+                            }
+                           
+                            self?.loaderManager.removeFullscreenLoader()
+                        }
+                    }
+                })
+            ]
+                   )
+        ]
+    }
+    
+    private func getProfileItem() -> MenuItem {
+        if let profile = profile {
+            var profileItem = MenuItem(title: profile.displayName, type: .profile, icon: avatarImage ?? UIImage(named: "ProfileAvatarPlaceholder"))
+            
+            if let avatar = avatarImage {
+                profileItem.icon = avatar
+            }
+            
+            return profileItem
+        } else {
+            handleProfileError()
+            let emptyProfileItem = MenuItem(title: "", type: .profile, icon: UIImage(named: "ProfileAvatarPlaceholder"))
+            return emptyProfileItem
+        }
+    }
+    
+    private func handleErrors(_ errors: [AuthorizationAPIError]) {
+        guard let view = view as? UIViewController else { return }
+        AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+    }
+    
+    private func handleProfileError() {
     }
 
 }

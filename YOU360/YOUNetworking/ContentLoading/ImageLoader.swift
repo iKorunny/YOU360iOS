@@ -12,12 +12,13 @@ public final class ImageLoader {
     private lazy var session: URLSession = {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = .returnCacheDataElseLoad
-        sessionConfig.urlCache = URLCache.shared
-        sessionConfig.urlCache?.diskCapacity = 500000000 // 500 mb
-        sessionConfig.urlCache?.memoryCapacity = 50000000 // 50 mb
+        sessionConfig.urlCache = URLCache(memoryCapacity: 50000000, diskCapacity: 500000000)
         return URLSession(configuration: sessionConfig)
     }()
     
+    /**
+     GET
+    */
     public func dataTaskToLoadImage(with url: URL?, completion: @escaping ((UIImage?) -> Void)) -> URLSessionDataTask? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)

@@ -47,7 +47,7 @@ final class ProfileNetworkService {
                                   instagram: String?,
                                   facebook: String?,
                                   twitter: String?,
-                                  avatar: UIImage?, 
+                                  avatar: UIImage?,
                                   isAvatarUpdated: Bool,
                                   banner: UIImage?,
                                   isBannerUpdated: Bool,
@@ -154,6 +154,18 @@ final class ProfileNetworkService {
             
             DispatchQueue.main.async {
                 completion(true)
+            }
+        }
+    }
+    
+    func makeDownloadImageGetRequest(imagePath: String,
+                                    completion: @escaping ((UIImage?) -> Void)) {
+        
+        let url = URL(string: imagePath)!
+        
+        let dataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { image in
+            DispatchQueue.main.async() {
+                completion(image)
             }
         }
     }

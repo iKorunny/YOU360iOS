@@ -14,7 +14,7 @@ public enum SecretPartNetworkLocalError {
 
 public final class SecretPartNetworkService {
     
-    static let shared = SecretPartNetworkService()
+    static public let shared = SecretPartNetworkService()
     
     public var authToken: String = ""
     public var refreshToken: String = ""

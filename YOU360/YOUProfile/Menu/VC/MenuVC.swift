@@ -9,7 +9,11 @@ import UIKit
 import YOUUIComponents
 import YOUUtils
 
-final class MenuVC: UIViewController {
+protocol MenuView {
+    func reload()
+}
+
+final class MenuVC: UIViewController, MenuView {
     
     private enum Constants {
         static let backButtonInsets = UIEdgeInsets(top: 52, left: 20, bottom: 0, right: 0)
@@ -36,19 +40,26 @@ final class MenuVC: UIViewController {
         return table
     }()
     
-    private let viewModel: MenuViewModel
+    private var viewModel: MenuViewModel
     
     init(viewModel: MenuViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.view = self
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func reload() {
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
+        viewModel.onViewDidLoad()
         super.viewDidLoad()
 
         tabBarController?.tabBar.isHidden = true

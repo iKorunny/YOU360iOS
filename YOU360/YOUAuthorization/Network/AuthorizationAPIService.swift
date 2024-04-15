@@ -136,12 +136,11 @@ final public class AuthorizationAPIService {
         let request = requestMaker.makeRequest(with: url,
                                                        headerAcceptValue: "application/json",
                                                        headerContentTypeValue: "application/json",
-                                                       body: AuthorizationService.shared.refreshToken,
                                                        authToken: AuthorizationService.shared.token,
                                                        method: .post,
-                                                       json: [:])
+                                                       json: ["refreshToken": AuthorizationService.shared.refreshToken])
         
-        dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+        SecretPartNetworkService.shared.performDataTask(request: request) { data, response, error, secretPartError in
             var errors: [AuthorizationAPIError] = []
             if let error = error {
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
@@ -155,8 +154,8 @@ final public class AuthorizationAPIService {
             
             let success = httpResponse.statusCode == 200
             if success {
-                print(data)
                 guard let data = data else { return }
+                print(data)
             }
             else {
                 guard let data = data,
@@ -169,8 +168,6 @@ final public class AuthorizationAPIService {
             DispatchQueue.main.async {
                 completion(errors.isEmpty && success, errors)
             }
-        })
-        
-        dataTask?.resume()
+        }
     }
 }

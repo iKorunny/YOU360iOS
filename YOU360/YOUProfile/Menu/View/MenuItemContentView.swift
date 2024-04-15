@@ -70,6 +70,8 @@ final class MenuItemContentView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 12
         label.textAlignment = .left
         label.font = Constants.textFont
         label.textColor = Constants.mainTextColor
@@ -137,6 +139,9 @@ final class MenuItemContentView: UIView {
         
         mainTextLabel.font = Constants.profileTitleFont
         subTextLabel.topAnchor.constraint(equalTo: self.mainTextLabel.bottomAnchor).isActive = true
+        mainTextLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor).isActive = true
+        mainTextLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor).isActive = true
+        
         
         return stackView
     }()
@@ -199,9 +204,12 @@ final class MenuItemContentView: UIView {
             leftIconView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.leftIconOffset).isActive = true
             leftIconView.widthAnchor.constraint(equalToConstant: Constants.profileIconWidth).isActive = true
             leftIconView.heightAnchor.constraint(equalToConstant: Constants.profileIconHeight).isActive = true
+            leftIconView.layer.cornerRadius = Constants.profileIconHeight / 2
+            leftIconView.clipsToBounds = true
             
             profileStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.leftIconOffset).isActive = true
             profileStackView.leadingAnchor.constraint(equalTo: leftIconView.trailingAnchor, constant: Constants.textLeadingOffset).isActive = true
+            profileStackView.trailingAnchor.constraint(lessThanOrEqualTo: rightIconView.leadingAnchor).isActive = true
             mainTextLabel.heightAnchor.constraint(equalToConstant: Constants.profileTitleHeigth).isActive = true
             
         } else {
