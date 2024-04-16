@@ -20,8 +20,9 @@ protocol ProfileEditScreenView {
 }
 
 protocol ProfileEditScreenViewModel {
-    func set(tableView: UITableView, controller: UIViewController & ProfileEditScreenView)
-    func set(tableViewBottomConstraint: NSLayoutConstraint)
+    func set(tableView: UITableView,
+             controller: UIViewController & ProfileEditScreenView,
+             tableViewBottomConstraint: NSLayoutConstraint)
     func deactivateInputFields()
     func onWillDissapear()
     func onSave()
@@ -50,10 +51,6 @@ private enum ProfileEditFieldsSection: Int {
 }
 
 final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel {
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private enum Constants {
         static let avatarsCellID = "ProfileEditAvatarsCell"
         static let imageButtonsCellID = "ProfileEditImagesButtonsCell"
@@ -117,6 +114,8 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         
         return picker
     }()
+    
+    private var tableInputScroller: TableViewInputScrollerService?
     
     private lazy var fieldsViewModels: [ProfileEditFieldsContentViewModel] = [
         ProfileEditFieldsContentViewModel(fieldModels: [
@@ -232,32 +231,23 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         self.profileManager = profileManager
         self.onClose = onClose
         super.init()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-    }
-    
-    @objc private func keyboardWillShow(_ notification: Notification) {
-        guard  let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-        
-        onShowInputView(with: keyboardHeight, type: .keyboard)
-    }
-    
-    func set(tableViewBottomConstraint: NSLayoutConstraint) {
-        self.tableViewBottomConstraint = tableViewBottomConstraint
     }
     
     func set(tableView: UITableView,
-             controller: UIViewController & ProfileEditScreenView) {
+             controller: UIViewController & ProfileEditScreenView,
+             tableViewBottomConstraint: NSLayoutConstraint) {
         self.controller = controller
         self.table = tableView
+        self.tableViewBottomConstraint = tableViewBottomConstraint
         registerCells(for: tableView)
         tableView.delegate = self
         tableView.dataSource = self
         table?.rowHeight = UITableView.automaticDimension
+        
+        tableInputScroller = TableViewInputScrollerService(mainView: controller.view,
+                                                           tableView: tableView,
+                                                           bottomConstraint: tableViewBottomConstraint,
+                                                           delegate: self)
     }
     
     private func registerCells(for tableView: UITableView) {
@@ -335,25 +325,6 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     private func onChooseBanner() {
         guard let vc = controller else { return }
         imagePicker.present(from: vc, type: .banner)
-    }
-    
-    private func onShowInputView(with height: CGFloat, type: ProfileEditFieldModelType) {
-        var editingCellPath: IndexPath?
-        
-        switch type {
-        case .date:
-            editingCellPath = fieldsViewModels.first(where: { $0.fieldModels.contains(where: { $0.type == .date }) })?.indexPath
-        case .keyboard:
-            editingCellPath = fieldsViewModels.first(where: { $0.isFirstResponder })?.indexPath
-        }
-        
-        tableViewBottomConstraint?.constant = -height
-        UIView.animate(withDuration: Constants.inputViewShowHideAnimationDuration) { [weak self] in
-            self?.controller?.view.layoutIfNeeded()
-        } completion: { [weak self] _ in
-            guard let editingCellPath else { return }
-            self?.table?.scrollToRow(at: editingCellPath, at: .bottom, animated: true)
-        }
     }
     
     private func onHideInputView() {
@@ -494,7 +465,7 @@ extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
         case .date:
             guard let controller else { return }
             datePicker.present(from: controller, with: selectedDateOfBirth ?? profileManager.profile?.birthDate)
-            onShowInputView(with: datePicker.pickerHeight, type: type)
+            tableInputScroller?.onShowInputView(with: datePicker.pickerHeight, type: .date)
         }
     }
 }
@@ -531,5 +502,16 @@ extension ProfileEditScreenViewModelImpl {
     }
     var twitterToSave: String? {
         return fieldModels.first(where: { $0.identifier == Constants.fieldsIDs.twitterField })?.text
+    }
+}
+
+extension ProfileEditScreenViewModelImpl: TableViewInputScrollerDelegate {
+    func indexPath(for type: TableViewInputScrollerType) -> IndexPath? {
+        switch type {
+        case .date:
+            return fieldsViewModels.first(where: { $0.fieldModels.contains(where: { $0.type == .date }) })?.indexPath
+        case .keyboard:
+            return fieldsViewModels.first(where: { $0.isFirstResponder })?.indexPath
+        }
     }
 }

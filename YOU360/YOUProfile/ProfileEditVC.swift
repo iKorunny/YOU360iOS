@@ -44,7 +44,6 @@ final class ProfileEditVC: UIViewController {
         table.separatorStyle = .none
         table.rowHeight = UITableView.automaticDimension
         table.translatesAutoresizingMaskIntoConstraints = false
-        viewModel.set(tableView: table, controller: self)
         
         return table
     }()
@@ -90,7 +89,9 @@ final class ProfileEditVC: UIViewController {
         let bottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         bottomConstraint.isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        viewModel.set(tableViewBottomConstraint: bottomConstraint)
+        viewModel.set(tableView: tableView,
+                      controller: self,
+                      tableViewBottomConstraint: bottomConstraint)
     }
     
     private func setupTopButtons() {
