@@ -134,6 +134,9 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
                 self?.reloadProfile()
             }
         }
+        else {
+            loaderManager.removeFullscreenLoader()
+        }
     }
     
     private func getSections() -> [Section] {

@@ -138,7 +138,7 @@ final public class AuthorizationAPIService {
                                                        headerContentTypeValue: "application/json",
                                                        authToken: AuthorizationService.shared.token,
                                                        method: .post,
-                                                       json: ["refreshToken": AuthorizationService.shared.refreshToken])
+                                                       json: ["refreshToken": AuthorizationService.shared.refreshToken ?? ""])
         
         SecretPartNetworkService.shared.performDataTask(request: request) { data, response, error, secretPartError in
             var errors: [AuthorizationAPIError] = []
