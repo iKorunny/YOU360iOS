@@ -177,7 +177,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     
     private func getProfileItem() -> MenuItem {
         if let profile = profile {
-            var profileItem = MenuItem(title: profile.displayName, type: .profile, icon: avatarImage ?? UIImage(named: "ProfileAvatarPlaceholder"))
+            var profileItem = MenuItem(title: profile.displayName, type: .profile, subTitle: profile.email, icon: avatarImage ?? UIImage(named: "ProfileAvatarPlaceholder"))
             
             if let avatar = avatarImage {
                 profileItem.icon = avatar

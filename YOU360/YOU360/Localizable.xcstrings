@@ -79,6 +79,50 @@
         }
       }
     },
+    "DarkModeTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark mode"
+          }
+        }
+      }
+    },
+    "DistanceTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance"
+          }
+        }
+      }
+    },
+    "HelpCenterTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Help center"
+          }
+        }
+      }
+    },
+    "HistorOfReservationsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History of Reservations"
+          }
+        }
+      }
+    },
     "HomeTabBarTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -185,6 +229,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We’re happy to see you!"
+          }
+        }
+      }
+    },
+    "LogOutTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log out"
+          }
+        }
+      }
+    },
+    "NotificationsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "PaymentMethodsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Payment methods"
           }
         }
       }
@@ -541,6 +618,17 @@
         }
       }
     },
+    "ProfileSettingsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile settings"
+          }
+        }
+      }
+    },
     "ProfileTabBarTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -607,6 +695,17 @@
         }
       }
     },
+    "ReportBugTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a bug"
+          }
+        }
+      }
+    },
     "ReserveTabBarTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -614,6 +713,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reserve"
+          }
+        }
+      }
+    },
+    "SettingsAndPreferencesTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings & Preferences"
+          }
+        }
+      }
+    },
+    "SupportTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support"
           }
         }
       }

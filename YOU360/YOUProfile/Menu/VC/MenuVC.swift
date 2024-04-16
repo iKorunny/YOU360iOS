@@ -20,12 +20,11 @@ final class MenuVC: UIViewController, MenuView {
         static let backgroundColor = ColorPallete.appDarkWhite
     }
     
-    private lazy var logoutButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "NavigationBack")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(logoutBack), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.isHidden = true
         return button
     }()
     
@@ -91,10 +90,9 @@ final class MenuVC: UIViewController, MenuView {
     }
 
     private func setupButtons() {
-        view.addSubview(logoutButton)
-        logoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.backButtonInsets.left).isActive = true
-        logoutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.backButtonInsets.top).isActive = true
-        logoutButton.isHidden = ((navigationController?.viewControllers ?? []).count == 1 || navigationController?.visibleViewController !== self)
+        view.addSubview(backButton)
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.backButtonInsets.left).isActive = true
+        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.backButtonInsets.top).isActive = true
     }
 
     @objc private func logoutBack() {
