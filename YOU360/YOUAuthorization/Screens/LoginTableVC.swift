@@ -44,9 +44,6 @@ final class LoginTableVC: CustomNavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.tableView = tableView
-        viewModel.viewController = self
 
         title = nil
         view.backgroundColor = ColorPallete.appWhiteSecondary
@@ -61,7 +58,12 @@ final class LoginTableVC: CustomNavigationViewController {
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.tableTopOffset).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        let bottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        bottomConstraint.isActive = true
+        
+        viewModel.set(tableView: tableView,
+                      viewController: self,
+                      bottomConstraint: bottomConstraint)
     }
 }
 

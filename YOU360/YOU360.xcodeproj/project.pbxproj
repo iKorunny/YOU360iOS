@@ -58,6 +58,7 @@
 		80528F062B8DFAFB000D6D80 /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F052B8DFAFB000D6D80 /* LoaderManager.swift */; };
 		8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */; };
 		8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */; };
+		8058F62F2BCF09A6008DD704 /* TableViewInputFocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */; };
 		805BCBF02B9CE3EC00641FB7 /* TextSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBEF2B9CE3EC00641FB7 /* TextSizeCalculator.swift */; };
 		805BCBF22B9CE6F800641FB7 /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCBF12B9CE6F800641FB7 /* ProfileEditVC.swift */; };
 		805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824092B924A9D0057F152 /* ProfileScreenFactory.swift */; };
@@ -426,6 +427,7 @@
 		80528F052B8DFAFB000D6D80 /* LoaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderManager.swift; sourceTree = "<group>"; };
 		8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewInputFocusService.swift; sourceTree = "<group>"; };
 		805BCBEF2B9CE3EC00641FB7 /* TextSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeCalculator.swift; sourceTree = "<group>"; };
 		805BCBF12B9CE6F800641FB7 /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
 		805BCBF32B9CE76B00641FB7 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				805CB49D2BA8A8160051665E /* YOUDatePicker.swift */,
 				805CB49F2BA8B3A50051665E /* YOUNativeDatePickerVC.swift */,
 				809B1D0D2BC3160100DEEBC6 /* AlertsPresenter.swift */,
+				8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */,
 				80528F002B8DF8BE000D6D80 /* Loaders */,
 			);
 			path = YOUUIComponents;
@@ -1395,6 +1398,7 @@
 			files = (
 				80528F062B8DFAFB000D6D80 /* LoaderManager.swift in Sources */,
 				809B1D0E2BC3160100DEEBC6 /* AlertsPresenter.swift in Sources */,
+				8058F62F2BCF09A6008DD704 /* TableViewInputFocusService.swift in Sources */,
 				80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */,
 				806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */,
 				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,

@@ -28,8 +28,10 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
         return LoaderManager()
     }()
     
-    var tableView: UITableView?
-    var viewController: UIViewController?
+    private var tableView: UITableView?
+    private var viewController: UIViewController?
+    
+    private var tableInputScroller: TableViewInputScrollerService?
     
     var numberOfRows: Int {
         return 6
@@ -111,6 +113,16 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
         hideKeyboards()
     }
     
+    func set(tableView: UITableView, 
+             viewController: UIViewController,
+             bottomConstraint: NSLayoutConstraint) {
+        self.tableView = tableView
+        self.viewController = viewController
+        self.tableInputScroller = TableViewInputScrollerService(mainView: viewController.view,
+                                                                tableView: tableView, bottomConstraint: bottomConstraint,
+                                                                delegate: self)
+    }
+    
     private func hideKeyboards() {
         fieldsCell?.hideKeyboard()
     }
@@ -147,5 +159,12 @@ extension RegisterMainVCViewModel: UITextFieldDelegate {
         let isEmpty = input.isEmpty
         fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
         fieldsCell?.saveValue(for: textField)
+    }
+}
+
+extension RegisterMainVCViewModel: TableViewInputScrollerDelegate {
+    func indexPath(for type: TableViewInputScrollerType) -> IndexPath? {
+        guard let cell = fieldsCell else { return nil }
+        return tableView?.indexPath(for: cell)
     }
 }

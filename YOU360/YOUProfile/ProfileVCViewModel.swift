@@ -59,9 +59,10 @@ protocol ProfileVCViewModel {
     var isProfileFilled: Bool { get }
     
     func toMenu()
-    func set(collectionView: UICollectionView, 
+    func set(collectionView: UICollectionView,
              view: (UIViewController & ProfileVCView),
-             postsDataSource: ProfileVCPostsDataSource)
+             postsDataSource: ProfileVCPostsDataSource,
+             refreshControl: UIRefreshControl)
     
     func onMakePost()
 }
@@ -93,8 +94,13 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     var isProfileFilled: Bool { return profileManager.isProfileEdited }
     var profileHasSocial: Bool { return profileManager.profile?.hasSocial ?? false }
     
+    private lazy var networkService = {
+        ProfileNetworkService()
+    }()
+    
     private weak var collectionView: UICollectionView?
     private weak var view: (UIViewController & ProfileVCView)?
+    private weak var refreshControl: UIRefreshControl?
     
     private let profileManager: ProfileManager
     private var postsDataSource: ProfileVCPostsDataSource?
@@ -169,7 +175,8 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     
     func set(collectionView: UICollectionView,
              view: (UIViewController & ProfileVCView),
-             postsDataSource: ProfileVCPostsDataSource) {
+             postsDataSource: ProfileVCPostsDataSource,
+             refreshControl: UIRefreshControl) {
         self.collectionView = collectionView
         self.view = view
         self.postsDataSource = postsDataSource
@@ -191,6 +198,10 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         if isProfileFilled, let profile = profileManager.profile {
             reloadContent(with: profile)
         }
+        
+        self.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(fullReload), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
     }
     
     func onMakePost() {
@@ -281,6 +292,26 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.posts)) { [weak self] success in
             guard success else { return }
             self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+        }
+    }
+    
+    @objc private func fullReload() {
+        guard let profile = profileHeaderViewModel.profile else { return }
+        refreshControl?.beginRefreshing()
+        
+        networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile in
+            self?.refreshControl?.endRefreshing()
+            guard success, let updatedProfile = profile else {
+                if let view = self?.view {
+                    AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                }
+                return
+            }
+            
+            self?.profileManager.profile = updatedProfile
+            self?.collectionView?.reloadData()
+            guard self?.isProfileFilled == true else { return }
+            self?.reloadContent(with: updatedProfile)
         }
     }
 }
@@ -479,7 +510,6 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
             loaderManager.addFullscreenLoader(for: view)
         }
         
-        let networkService = ProfileNetworkService()
         networkService.makeUploadImagePostRequest(id: profile.id,
                                                            image: image) { [weak self] success in
             guard success else {
@@ -490,8 +520,7 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
                 return
             }
             
-            // TODO: request posts and removeLoader on completion
-            networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile in
+            self?.networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile in
                 self?.loaderManager.removeFullscreenLoader()
                 guard success, let updatedProfile = profile else {
                     if let view = self?.view {

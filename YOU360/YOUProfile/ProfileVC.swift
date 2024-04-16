@@ -43,6 +43,10 @@ final class ProfileVC: UIViewController {
         return collection
     }()
     
+    private lazy var refresher: UIRefreshControl = {
+        return UIRefreshControl()
+    }()
+    
     private lazy var makePostButton: UIButton = {
         ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appPink,
@@ -81,7 +85,8 @@ final class ProfileVC: UIViewController {
         
         viewModel.set(collectionView: collectionView, 
                       view: self,
-                      postsDataSource: ProfileVCPostsDataSource(collectionView: collectionView))
+                      postsDataSource: ProfileVCPostsDataSource(collectionView: collectionView),
+                      refreshControl: refresher)
     }
     
     private func setupTopButtons() {

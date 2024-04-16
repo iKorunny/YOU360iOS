@@ -9,10 +9,9 @@ import Foundation
 import UIKit
 
 protocol LoginTableVCViewModel {
-    var tableView: UITableView? { get set }
     var numberOfRows: Int { get }
-    var viewController: UIViewController? { get set }
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell
     func registerCells(for tableView: UITableView)
     func didScrollByUser()
+    func set(tableView: UITableView, viewController: UIViewController, bottomConstraint: NSLayoutConstraint)
 }
