@@ -60,13 +60,18 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
                 
                 AuthorizationAPIService.shared.requestLogin(email: self?.fieldsCellModel.loginString ?? "",
                                                             password: self?.fieldsCellModel.passwordString ?? "") { [weak self] success, errors, profile, token, rToken in
-                    defer {
-                        self?.loaderManager.removeFullscreenLoader()
+                    if !errors.isEmpty {
+                        self?.loaderManager.removeFullscreenLoader(completion: { [weak self] _ in
+                            if let vc = self?.viewController {
+                                AlertsPresenter.presentSomethingWentWrongAlert(from: vc, with: "Authorization.Error.CheckInput".localised())
+                            }
+                        })
+                    
+                        return
                     }
                     
-                    if !errors.isEmpty {
-                        // TODO: will handle errors here
-                        return
+                    defer {
+                        self?.loaderManager.removeFullscreenLoader()
                     }
                     
                     guard success, 

@@ -15,4 +15,10 @@ public final class AlertsPresenter {
         alert.addAction(UIAlertAction(title: "ALertOkButton".localised(), style: .cancel))
         vc.present(alert, animated: true)
     }
+    
+    public static func presentSomethingWentWrongAlert(from vc: UIViewController, with text: String) {
+        let alert = UIAlertController(title: "Alert.Ops".localised(), message: String(format: "Alert.SomethingWentWrongWithPlaceholder".localised(), text), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ALertOkButton".localised(), style: .cancel))
+        vc.present(alert, animated: true)
+    }
 }

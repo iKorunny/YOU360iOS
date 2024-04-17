@@ -1,13 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "\"ProfileEditCityPlaceholder\"" : {
+    "Alert.Ops" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "City"
+            "value" : "Ops"
+          }
+        }
+      }
+    },
+    "Alert.SomethingWentWrongWithPlaceholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong.\n%@"
           }
         }
       }
@@ -30,6 +41,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Something went wrong."
+          }
+        }
+      }
+    },
+    "Authorization.Error.CheckInput" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check input data."
+          }
+        }
+      }
+    },
+    "Authorization.Error.EmailMayBeInUse" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email may be in use."
           }
         }
       }
@@ -421,6 +454,17 @@
       }
     },
     "ProfileEditCityFieldPlaceholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City"
+          }
+        }
+      }
+    },
+    "ProfileEditCityPlaceholder" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
