@@ -84,6 +84,10 @@ final class LoginFieldsCell: UITableViewCell {
         passwordField.hideKeyboard()
     }
     
+    func setState(_ state: TextFieldWithError.State, for field: TextFieldWithError) {
+        setState(state, for: field.field())
+    }
+    
     func setState(_ state: TextFieldWithError.State, for field: UITextField) {
         if loginField.equal(to: field) {
             loginField.set(state: state)

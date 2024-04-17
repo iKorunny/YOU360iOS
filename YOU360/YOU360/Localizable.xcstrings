@@ -34,6 +34,39 @@
         }
       }
     },
+    "AuthorizationError.InvalidEmail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid email"
+          }
+        }
+      }
+    },
+    "AuthorizationError.PasswordsDoNotMatch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwords do not match"
+          }
+        }
+      }
+    },
+    "AuthorizationError.ShortPassword" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password should be at least 4 characters length"
+          }
+        }
+      }
+    },
     "ButtonCreateAccountTitle" : {
       "extractionState" : "manual",
       "localizations" : {

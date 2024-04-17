@@ -74,6 +74,10 @@ public final class TextFieldWithError: UIView {
         label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         return label
     }()
+    
+    public func field() -> UITextField {
+        textField
+    }
 
     private func setupUI() {
         addSubview(textField)

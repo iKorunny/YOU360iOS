@@ -10,6 +10,7 @@ import UIKit
 import YOUUIComponents
 import YOUProfileInterfaces
 import YOUNetworking
+import YOUUtils
 
 final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     private enum Constants {
@@ -48,8 +49,9 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
         case 2:
             let cell = table.dequeueReusableCell(withIdentifier: Constants.buttonFieldCellID, for: index) as! SignInButtonsCell
             cell.setup { [weak self] in
-                print("Register -> sign in")
                 self?.hideKeyboards()
+                guard self?.validateInput() == true else { return }
+                
                 if let vc = self?.viewController {
                     self?.loaderManager.addFullscreenLoader(for: vc)
                 }
@@ -100,6 +102,51 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
         }
     }
     
+    private func validateInput() -> Bool {
+        var validationErrors: [StringValidatorResult] = []
+        let email = fieldsCellModel.loginString
+        let emailValidationResult = EmailValidator().validate(value: email)
+        if emailValidationResult != .success {
+            validationErrors.append(emailValidationResult)
+        }
+        
+        let passwordValidator = PasswordValidator()
+        let password = fieldsCellModel.passwordString
+        let passwordValidationResult = passwordValidator.validate(value: password)
+        if passwordValidationResult != .success {
+            validationErrors.append(passwordValidationResult)
+        }
+        
+        let repeatPassword = fieldsCellModel.repeatPasswordString
+        let repeatPasswordValidationResult = passwordValidator.isSame(password1: password, password2: repeatPassword)
+        if repeatPasswordValidationResult != .success {
+            validationErrors.append(repeatPasswordValidationResult)
+        }
+        
+        handle(errors: validationErrors)
+        
+        return validationErrors.isEmpty
+    }
+    
+    private func handle(errors: [StringValidatorResult]) {
+        if let cell = fieldsCell {
+            tableView?.beginUpdates()
+            errors.reversed().forEach { error in
+                switch error {
+                case .invalidEmail:
+                    cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.InvalidEmail".localised())), for: cell.loginField)
+                case .wrongPasswordLength:
+                    cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.ShortPassword".localised())), for: cell.passwordField)
+                case .passwordsDoNotMatch:
+                    cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.PasswordsDoNotMatch".localised())), for: cell.repeatPasswordField)
+                case .success:
+                    break
+                }
+            }
+            tableView?.endUpdates()
+        }
+    }
+    
     func registerCells(for tableView: UITableView) {
         tableView.register(SignInTitleCell.self, forCellReuseIdentifier: Constants.registerTitleCellID)
         tableView.register(SignInFieldsCell.self, forCellReuseIdentifier: Constants.fieldsCellID)
@@ -126,11 +173,6 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     private func hideKeyboards() {
         fieldsCell?.hideKeyboard()
     }
-    
-    private func show(error: TextFieldWithError.FieldError, for field: UITextField) {
-        fieldsCell?.setState(.error(error: error), for: field)
-        tableView?.reloadRows(at: [IndexPath(row: Constants.fieldsCellIndex, section: 0)], with: .none)
-    }
 }
 
 extension RegisterMainVCViewModel: UITextFieldDelegate {
@@ -151,14 +193,18 @@ extension RegisterMainVCViewModel: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        tableView?.beginUpdates()
         fieldsCell?.setState(.typing, for: textField)
+        tableView?.endUpdates()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         let input = textField.text ?? ""
         let isEmpty = input.isEmpty
+        tableView?.beginUpdates()
         fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
         fieldsCell?.saveValue(for: textField)
+        tableView?.endUpdates()
     }
 }
 
