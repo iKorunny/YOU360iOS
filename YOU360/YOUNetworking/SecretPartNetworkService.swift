@@ -10,6 +10,14 @@ import YOUUtils
 
 public enum SecretPartNetworkLocalError {
     case general
+    case noInternet
+    
+    static func map(performerError: YOUNetworkRequestError) -> SecretPartNetworkLocalError {
+        switch performerError{
+        case .noInternet:
+            return .noInternet
+        }
+    }
 }
 
 public final class SecretPartNetworkService {
@@ -28,6 +36,10 @@ public final class SecretPartNetworkService {
         sessionConfig.urlCache = nil
         return URLSession(configuration: sessionConfig)
     }()
+    private lazy var requester: NetworkRequestPerformer = {
+       return NetworkRequestPerformer(session: session)
+    }()
+    
     private var dataTask: URLSessionDataTask?
     
     private var refreshRequest: URLRequest {
@@ -45,9 +57,14 @@ public final class SecretPartNetworkService {
         refreshToken = SafeStorage.getRefreshToken() ?? ""
     }
     
-    public func performDataTask(request: URLRequest, 
+    public func performDataTask(request: URLRequest,
                                 completion: @escaping ((Data?, URLResponse?, Error?, SecretPartNetworkLocalError?) -> Void)) {
-        dataTask = session.dataTask(with: request) { [weak self] data, response, error in
+        dataTask = requester.performDataTask(from: request) { [weak self] data, response, error, performerError in
+            if let performerError = performerError {
+                completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
+                return
+            }
+            
             guard let self,
                   let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 401 else {
@@ -55,7 +72,11 @@ public final class SecretPartNetworkService {
                 return
             }
             
-            let refreshDataTask = self.session.dataTask(with: self.refreshRequest) { [weak self] data, response, error in
+            let refreshDataTask = self.requester.performDataTask(from: self.refreshRequest) { [weak self] data, response, error, performerError in
+                if let performerError = performerError {
+                    completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
+                    return
+                }
                 guard let httpResponse = response as? HTTPURLResponse,
                       httpResponse.statusCode == 200,
                       let data = data,
@@ -78,12 +99,16 @@ public final class SecretPartNetworkService {
                     requestToRepeat.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
                 }
                 
-                self?.dataTask = self?.session.dataTask(with: requestToRepeat) { data, response, error in
+                self?.dataTask = self?.requester.performDataTask(from: requestToRepeat) { data, response, error, performerError in
+                    if let performerError = performerError {
+                        completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
+                        return
+                    }
                     completion(data, response, error, nil)
                 }
                 self?.dataTask?.resume()
             }
-            refreshDataTask.resume()
+            refreshDataTask?.resume()
         }
         dataTask?.resume()
     }

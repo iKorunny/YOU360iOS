@@ -51,7 +51,7 @@ final class ProfileNetworkService {
                                   isAvatarUpdated: Bool,
                                   banner: UIImage?,
                                   isBannerUpdated: Bool,
-                                  completion: @escaping ((Bool, Profile?) -> Void)) {
+                                  completion: @escaping ((Bool, Profile?, SecretPartNetworkLocalError?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Profile/UpdateProfileInfo")
 
         var multipartTextFields: [MultipartRequestTextField] = [
@@ -112,26 +112,26 @@ final class ProfileNetworkService {
                   httpResponse.statusCode == 200,
                   let data = data else {
                 DispatchQueue.main.async {
-                    completion(false, nil)
+                    completion(false, nil, localError)
                 }
                 return
             }
 
             let profile: Profile? = try? JSONDecoder().decode(Profile.self, from: data)
             DispatchQueue.main.async {
-                completion(profile != nil, profile)
+                completion(profile != nil, profile, localError)
             }
         }
     }
     
     func makeUploadImagePostRequest(id: String,
                                     image: UIImage,
-                                    completion: @escaping ((Bool) -> Void)) {
+                                    completion: @escaping ((Bool, SecretPartNetworkLocalError?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)/media")
         
         guard let postData = image.jpegData(compressionQuality: 1.0) else {
             DispatchQueue.main.async {
-                completion(false)
+                completion(false, nil)
             }
             return
         }
@@ -147,13 +147,13 @@ final class ProfileNetworkService {
                   let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
                 DispatchQueue.main.async {
-                    completion(false)
+                    completion(false, localError)
                 }
                 return
             }
             
             DispatchQueue.main.async {
-                completion(true)
+                completion(true, localError)
             }
         }
     }
@@ -170,7 +170,7 @@ final class ProfileNetworkService {
         }
     }
     
-    func makeProfileRequest(id: String, completion: @escaping (Bool, Profile?) -> Void) {
+    func makeProfileRequest(id: String, completion: @escaping (Bool, Profile?, SecretPartNetworkLocalError?) -> Void) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)")
         
         let request = requestMaker.makeAuthorizedRequest(with: url,
@@ -186,19 +186,19 @@ final class ProfileNetworkService {
                   httpResponse.statusCode == 200,
                   let data = data else {
                 DispatchQueue.main.async {
-                    completion(false, nil)
+                    completion(false, nil, localError)
                 }
                 return
             }
 
             let profile: Profile? = try? JSONDecoder().decode(Profile.self, from: data)
             DispatchQueue.main.async {
-                completion(profile != nil, profile)
+                completion(profile != nil, profile, localError)
             }
         }
     }
     
-    func makeProfileMediaRequest(id: String, page: RequestPage, completion: @escaping (Bool, [ProfileContent]?) -> Void) {
+    func makeProfileMediaRequest(id: String, page: RequestPage, completion: @escaping (Bool, [ProfileContent]?, SecretPartNetworkLocalError?) -> Void) {
         let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)/media")
         let querryItems: [URLQueryItem] = page.jSON.map({ URLQueryItem(name: $0.key, value: "\($0.value)") })
         let url = baseUrl.appending(queryItems: querryItems)
@@ -213,15 +213,16 @@ final class ProfileNetworkService {
                   let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200,
                   let data = data else {
+                print()
                 DispatchQueue.main.async {
-                    completion(false, [])
+                    completion(false, [], localError)
                 }
                 return
             }
             
             let contentPage: ProfileContentPage? = try? JSONDecoder().decode(ProfileContentPage.self, from: data)
             DispatchQueue.main.async {
-                completion(contentPage != nil, contentPage?.items)
+                completion(contentPage != nil, contentPage?.items, localError)
             }
         }
     }

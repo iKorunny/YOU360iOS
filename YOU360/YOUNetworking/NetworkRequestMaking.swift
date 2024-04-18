@@ -133,19 +133,6 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
         
         for dataField in dataFields {
             bodyData.append(multipartRequestDataLine(from: dataField, boundary: boundary))
-//            // Convert the image into Data
-//            let imageData = dataField.data
-//            
-//            let filename = "image0.jpg"
-//            let mimetype = "image/jpg"
-//            
-//            // Add the image data to the body
-//            bodyData.append("--\(boundary)\r\n".data(using: .utf8)!)
-//            bodyData.append("Content-Disposition: form-data; name=\"\(dataField.name)\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
-//            bodyData.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
-//            bodyData.append(imageData)
-//            bodyData.append("\r\n".data(using: .utf8)!)
-
         }
         
         

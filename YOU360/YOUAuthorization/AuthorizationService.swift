@@ -69,7 +69,6 @@ public final class AuthorizationService {
     @objc public func onLogout() {
         ProfileManager.shared.deleteProfile()
         SafeStorage.clear()
-        URLCache.shared.removeAllCachedResponses()
         loginObservers.forEach { $0.closure() }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import YOUUtils
 import UIKit
+import YOUNetworking
 
 public final class ProfileManager {
     private enum Constants {
@@ -79,6 +80,7 @@ public final class ProfileManager {
         banner = nil
         guard FileManager.default.fileExists(atPath: fileURL.path()) else { return }
         try? FileManager.default.removeItem(at: fileURL)
+        ContentLoaders.removeCache()
     }
     
     public func set(profile: Profile?) {

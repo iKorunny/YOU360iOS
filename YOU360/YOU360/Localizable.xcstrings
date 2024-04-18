@@ -23,6 +23,17 @@
         }
       }
     },
+    "AlertNoInternet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet connection"
+          }
+        }
+      }
+    },
     "ALertOkButton" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -160,16 +160,13 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
                 MenuItem(title: "LogOutTitle".localised(), type: .logOut, icon: MenuItem.Icons.logOut, action: {
                     AuthorizationAPIService.shared.requestLogout { success, errors in
                         DispatchQueue.main.async { [weak self] in
-                            if success {
-                                self?.logoutAction()
-                            } else {
-                                guard !errors.isEmpty else {
+                            self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
+                                if success {
+                                    self?.logoutAction()
+                                } else {
                                     self?.handleErrors(errors)
-                                    return
                                 }
                             }
-                           
-                            self?.loaderManager.removeFullscreenLoader()
                         }
                     }
                 })
@@ -196,7 +193,12 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     
     private func handleErrors(_ errors: [AuthorizationAPIError]) {
         guard let view = view as? UIViewController else { return }
-        AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+        if errors.contains(where: { $0.isNoInternet }) {
+            AlertsPresenter.presentNoInternet(from: view)
+        }
+        else {
+            AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+        }
     }
     
     private func handleProfileError() {

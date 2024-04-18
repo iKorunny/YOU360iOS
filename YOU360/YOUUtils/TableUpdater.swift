@@ -15,14 +15,34 @@ public final class TableUpdater {
     }
     
     public func update(closure: (() -> Void)) {
-        table?.beginUpdates()
+        beginUpdatesIfNeeded()
         closure()
-        table?.endUpdates()
+        endUpdatesIfNeeded()
     }
     
     public static func update(table: UITableView?, closure: (() -> Void)) {
-        table?.beginUpdates()
+        beginUpdatesIfNeeded(table: table)
         closure()
+        endUpdatesIfNeeded(table: table)
+    }
+    
+    private func beginUpdatesIfNeeded() {
+        guard table?.window != nil else { return }
+        table?.beginUpdates()
+    }
+    
+    private func endUpdatesIfNeeded() {
+        guard table?.window != nil else { return }
+        table?.endUpdates()
+    }
+    
+    private static func beginUpdatesIfNeeded(table: UITableView?) {
+        guard table?.window != nil else { return }
+        table?.beginUpdates()
+    }
+    
+    private static func endUpdatesIfNeeded(table: UITableView?) {
+        guard table?.window != nil else { return }
         table?.endUpdates()
     }
 }

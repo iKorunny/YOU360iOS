@@ -14,7 +14,7 @@ public final class ProfileRouter {
     
     public static var shared = ProfileRouter()
     
-    public func toEditProfile(onClose: @escaping ((Bool, Bool, UIImage?, UIImage?) -> Void)) {
+    public func toEditProfile(onClose: @escaping ((Bool, Bool, UIImage?, UIImage?, Bool) -> Void)) {
         rootProfileVC?.pushViewController(ProfileScreenFactory.createProfileEditVC(onClose: onClose), animated: true)
     }
     

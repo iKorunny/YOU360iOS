@@ -10,10 +10,43 @@ import YOUNetworking
 import YOUProfileInterfaces
 
 final public class AuthorizationAPIError {
+    private enum Constants {
+        static let noInternetKey = "AuthorizationAPIErrorNoInternet"
+        static let unknown = "AuthorizationAPIErrorUnknown"
+    }
+    
+    public var isNoInternet: Bool {
+        stringRepresentation == Constants.noInternetKey
+    }
+    
     let stringRepresentation: String
     
     init(stringRepresentation: String) {
         self.stringRepresentation = stringRepresentation
+    }
+    
+    static func createNoInternet() -> AuthorizationAPIError {
+        return AuthorizationAPIError(stringRepresentation: Constants.noInternetKey)
+    }
+    
+    static func createUnknown() -> AuthorizationAPIError {
+        return AuthorizationAPIError(stringRepresentation: Constants.unknown)
+    }
+    
+    static func map(performerError: YOUNetworkRequestError) -> AuthorizationAPIError {
+        switch performerError {
+        case .noInternet:
+            return createNoInternet()
+        }
+    }
+    
+    static func map(secretPartError: SecretPartNetworkLocalError) -> AuthorizationAPIError {
+        switch secretPartError {
+        case .noInternet:
+            return createNoInternet()
+        case .general:
+            return createUnknown()
+        }
     }
 }
 
@@ -29,6 +62,9 @@ final public class AuthorizationAPIService {
         sessionConfig.urlCache = nil
         return URLSession(configuration: sessionConfig)
     }()
+    private lazy var requester: NetworkRequestPerformer = {
+       return NetworkRequestPerformer(session: session)
+    }()
     private var dataTask: URLSessionDataTask?
     
     func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
@@ -43,8 +79,17 @@ final public class AuthorizationAPIService {
                                                 "password" : password
                                                ])
         
-        dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+        dataTask = requester.performDataTask(from: request) { data, response, error, performerError in
             var errors: [AuthorizationAPIError] = []
+            
+            if let performerError = performerError {
+                errors.append(.map(performerError: performerError))
+                DispatchQueue.main.async {
+                    completion(false, errors, nil, nil, nil)
+                }
+                return
+            }
+            
             if let error = error {
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
@@ -76,7 +121,7 @@ final public class AuthorizationAPIService {
                            httpResponse.value(forHTTPHeaderField: "x-token"),
                            httpResponse.value(forHTTPHeaderField: "r-token"))
             }
-        })
+        }
         
         dataTask?.resume()
     }
@@ -93,8 +138,16 @@ final public class AuthorizationAPIService {
                                                 "password" : password
                                                ])
         
-        dataTask = session.dataTask(with: request, completionHandler: { data, response, error in
+        dataTask = requester.performDataTask(from: request) { data, response, error, performerError in
             var errors: [AuthorizationAPIError] = []
+            
+            if let performerError = performerError {
+                errors.append(.map(performerError: performerError))
+                DispatchQueue.main.async {
+                    completion(false, errors, nil, nil, nil)
+                }
+                return
+            }
             if let error = error {
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
@@ -125,7 +178,7 @@ final public class AuthorizationAPIService {
                            httpResponse.value(forHTTPHeaderField: "x-token"),
                            httpResponse.value(forHTTPHeaderField: "r-token"))
             }
-        })
+        }
         
         dataTask?.resume()
     }
@@ -142,6 +195,13 @@ final public class AuthorizationAPIService {
         
         SecretPartNetworkService.shared.performDataTask(request: request) { data, response, error, secretPartError in
             var errors: [AuthorizationAPIError] = []
+            if let secretPartError = secretPartError {
+                errors.append(.map(secretPartError: secretPartError))
+                DispatchQueue.main.async {
+                    completion(false, errors)
+                }
+                return
+            }
             if let error = error {
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }

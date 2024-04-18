@@ -63,7 +63,12 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
                     if !errors.isEmpty {
                         self?.loaderManager.removeFullscreenLoader(completion: { [weak self] _ in
                             if let vc = self?.viewController {
-                                AlertsPresenter.presentSomethingWentWrongAlert(from: vc, with: "Authorization.Error.EmailMayBeInUse".localised())
+                                if errors.contains(where: { $0.isNoInternet }) {
+                                    AlertsPresenter.presentNoInternet(from: vc)
+                                }
+                                else {
+                                    AlertsPresenter.presentSomethingWentWrongAlert(from: vc, with: "Authorization.Error.CheckInput".localised())
+                                }
                             }
                         })
                         return

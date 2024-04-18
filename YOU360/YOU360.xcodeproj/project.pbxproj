@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */; };
 		8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8232BD12F6E000BED8D /* TableUpdater.swift */; };
+		8018B8272BD19081000BED8D /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8262BD19081000BED8D /* InternetConnectionManager.swift */; };
+		8018B8292BD193D6000BED8D /* NetworkRequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8282BD193D6000BED8D /* NetworkRequestPerformer.swift */; };
 		801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */; };
 		801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */; };
 		801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A732BCC3FF200277394 /* RequestPage.swift */; };
@@ -381,6 +383,8 @@
 /* Begin PBXFileReference section */
 		8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		8018B8232BD12F6E000BED8D /* TableUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableUpdater.swift; sourceTree = "<group>"; };
+		8018B8262BD19081000BED8D /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
+		8018B8282BD193D6000BED8D /* NetworkRequestPerformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestPerformer.swift; sourceTree = "<group>"; };
 		801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCPostsDataSource.swift; sourceTree = "<group>"; };
 		801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCellModel.swift; sourceTree = "<group>"; };
 		801F7A732BCC3FF200277394 /* RequestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPage.swift; sourceTree = "<group>"; };
@@ -656,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				8032A5682B820BA000294DD7 /* YOUNetworking.h */,
+				8018B8282BD193D6000BED8D /* NetworkRequestPerformer.swift */,
 				8032A5722B820BBD00294DD7 /* NetworkRequestMaking.swift */,
 				80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */,
 				8032A5742B820C2100294DD7 /* YOUNetworkingServices.swift */,
@@ -853,6 +858,7 @@
 				805C55922BA7502F00CBC64E /* UIImageResizer.swift */,
 				805CB4A12BA8BBC80051665E /* Formatters.swift */,
 				8018B8232BD12F6E000BED8D /* TableUpdater.swift */,
+				8018B8262BD19081000BED8D /* InternetConnectionManager.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 			);
 			path = YOUUtils;
@@ -1397,6 +1403,7 @@
 			files = (
 				8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */,
 				80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */,
+				8018B8292BD193D6000BED8D /* NetworkRequestPerformer.swift in Sources */,
 				801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */,
 				806A8E3E2BC719DF00AD0227 /* ContentLoaders.swift in Sources */,
 				806A8E3D2BC719DF00AD0227 /* ImageLoader.swift in Sources */,
@@ -1540,6 +1547,7 @@
 				805CB4A22BA8BBC80051665E /* Formatters.swift in Sources */,
 				805C55932BA7502F00CBC64E /* UIImageResizer.swift in Sources */,
 				80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */,
+				8018B8272BD19081000BED8D /* InternetConnectionManager.swift in Sources */,
 				805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */,
 				8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,

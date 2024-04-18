@@ -224,10 +224,12 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     private weak var controller: (UIViewController & ProfileEditScreenView)?
     private weak var tableViewBottomConstraint: NSLayoutConstraint?
     
-    let profileManager: ProfileManager
-    let onClose: ((Bool, Bool,UIImage?, UIImage?) -> Void)
+    private var saved: Bool = false
     
-    init(profileManager: ProfileManager, onClose: @escaping ((Bool, Bool, UIImage?, UIImage?) -> Void)) {
+    let profileManager: ProfileManager
+    let onClose: ((Bool, Bool,UIImage?, UIImage?, Bool) -> Void)
+    
+    init(profileManager: ProfileManager, onClose: @escaping ((Bool, Bool, UIImage?, UIImage?, Bool) -> Void)) {
         self.profileManager = profileManager
         self.onClose = onClose
         super.init()
@@ -291,9 +293,10 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             avatar: selectedAvatar,
             isAvatarUpdated: didSelectAvatar,
             banner: selectedBanner,
-            isBannerUpdated: didSelectBanner) { [weak self] success, profile in
+            isBannerUpdated: didSelectBanner) { [weak self] success, profile, localError in
+                self?.saved = success
                 self?.loaderManager.removeFullscreenLoader { [weak self] removed in
-                    guard removed else { return }
+                    guard removed, success else { return }
                     self?.controller?.close()
                 }
                 
@@ -302,7 +305,12 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
                 }
                 else {
                     if let vc = self?.controller {
-                        AlertsPresenter.presentSomethingWentWrongAlert(from: vc)
+                        if localError == .noInternet {
+                            AlertsPresenter.presentNoInternet(from: vc)
+                        }
+                        else {
+                            AlertsPresenter.presentSomethingWentWrongAlert(from: vc)
+                        }
                     }
                 }
             }
@@ -314,7 +322,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
     }
     
     func onWillDissapear() {
-        onClose(didSelectAvatar, didSelectBanner, selectedAvatar, selectedBanner)
+        onClose(didSelectAvatar, didSelectBanner, selectedAvatar, selectedBanner, saved)
     }
     
     private func onChooseAvatar() {

@@ -21,4 +21,10 @@ public final class AlertsPresenter {
         alert.addAction(UIAlertAction(title: "ALertOkButton".localised(), style: .cancel))
         vc.present(alert, animated: true)
     }
+    
+    public static func presentNoInternet(from vc: UIViewController) {
+        let alert = UIAlertController(title: nil, message: "AlertNoInternet".localised(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ALertOkButton".localised(), style: .cancel))
+        vc.present(alert, animated: true)
+    }
 }

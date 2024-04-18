@@ -70,7 +70,12 @@ public final class TableViewInputScrollerService {
         
         bottomConstraint.constant = -height
         UIView.animate(withDuration: Constants.inputViewShowHideAnimationDuration) { [weak self] in
-            self?.mainView.layoutIfNeeded()
+            if self?.mainView.window == nil {
+                self?.mainView.setNeedsLayout()
+            }
+            else {
+                self?.mainView.layoutIfNeeded()
+            }
         } completion: { [weak self] _ in
             guard let editingCellPath else { return }
             self?.tableView.scrollToRow(at: editingCellPath, at: .bottom, animated: true)

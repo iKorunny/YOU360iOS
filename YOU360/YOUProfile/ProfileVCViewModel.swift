@@ -242,8 +242,8 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func toEditProfile() {
-        ProfileRouter.shared.toEditProfile { [weak self] didSelectAvatar, didSelectBanner, newAvatar, newBanner in
-            guard let self else { return }
+        ProfileRouter.shared.toEditProfile { [weak self] didSelectAvatar, didSelectBanner, newAvatar, newBanner, hasChanges in
+            guard let self, hasChanges else { return }
             if didSelectAvatar {
                 profileHeaderViewModel.avatar = newAvatar
             }
@@ -289,9 +289,19 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func reloadContent(with updatedProfile: Profile) {
-        postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.posts)) { [weak self] success in
-            guard success else { return }
-            self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+        postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.posts)) { [weak self] success, localError in
+            if success {
+                self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+            }
+            else {
+                guard let vc = self?.view else { return }
+                if localError == .noInternet {
+                    AlertsPresenter.presentNoInternet(from: vc)
+                }
+                else {
+                    AlertsPresenter.presentSomethingWentWrongAlert(from: vc)
+                }
+            }
         }
     }
     
@@ -299,11 +309,17 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         guard let profile = profileHeaderViewModel.profile else { return }
         refreshControl?.beginRefreshing()
         
-        networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile in
+        networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile, localError in
             self?.refreshControl?.endRefreshing()
             guard success, let updatedProfile = profile else {
+                self?.collectionView?.setContentOffset(CGPoint(x: 0, y: -(self?.collectionView?.safeAreaInsets.top ?? .zero)), animated: false)
                 if let view = self?.view {
-                    AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                    if localError == .noInternet {
+                        AlertsPresenter.presentNoInternet(from: view)
+                    }
+                    else {
+                        AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                    }
                 }
                 return
             }
@@ -511,24 +527,37 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
         }
         
         networkService.makeUploadImagePostRequest(id: profile.id,
-                                                           image: image) { [weak self] success in
+                                                           image: image) { [weak self] success, localError in
             guard success else {
-                self?.loaderManager.removeFullscreenLoader()
-                if let view = self?.view {
-                    AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
+                    if let view = self?.view {
+                        if localError == .noInternet {
+                            AlertsPresenter.presentNoInternet(from: view)
+                        }
+                        else {
+                            AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                        }
+                    }
                 }
                 return
             }
             
-            self?.networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile in
-                self?.loaderManager.removeFullscreenLoader()
+            self?.networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile, localError in
                 guard success, let updatedProfile = profile else {
-                    if let view = self?.view {
-                        AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                    self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
+                        if let view = self?.view {
+                            if localError == .noInternet {
+                                AlertsPresenter.presentNoInternet(from: view)
+                            }
+                            else {
+                                AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                            }
+                        }
                     }
                     return
                 }
                 
+                self?.loaderManager.removeFullscreenLoader()
                 self?.profileManager.applyUpdate(updatedProfile: updatedProfile)
                 self?.collectionView?.reloadSections([Constants.contentSectionIndex])
                 self?.reloadContent(with: updatedProfile)

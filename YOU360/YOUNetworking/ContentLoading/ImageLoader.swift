@@ -16,6 +16,10 @@ public final class ImageLoader {
         return URLSession(configuration: sessionConfig)
     }()
     
+    private lazy var requester: NetworkRequestPerformer = {
+       return NetworkRequestPerformer(session: session)
+    }()
+    
     /**
      GET
     */
@@ -24,7 +28,7 @@ public final class ImageLoader {
         var request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         request.httpMethod = "GET"
         
-        let task: URLSessionDataTask? = session.dataTask(with: request) { data, response, error in
+        let task: URLSessionDataTask? = requester.performDataTask(from: request) { data, response, error, performerError in
             var image: UIImage?
             
             defer {
@@ -35,6 +39,7 @@ public final class ImageLoader {
             
             guard let data = data,
                   error == nil,
+                  performerError == nil,
                   let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
                 return
@@ -46,5 +51,9 @@ public final class ImageLoader {
         
         task?.resume()
         return task
+    }
+    
+    public func removeCache() {
+        session.configuration.urlCache?.removeAllCachedResponses()
     }
 }
