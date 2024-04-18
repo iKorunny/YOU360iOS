@@ -33,6 +33,7 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     private var viewController: UIViewController?
     
     private var tableInputScroller: TableViewInputScrollerService?
+    private var tableUpdater: TableUpdater?
     
     var numberOfRows: Int {
         return 6
@@ -135,20 +136,20 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
     
     private func handle(errors: [StringValidatorResult]) {
         if let cell = fieldsCell {
-            tableView?.beginUpdates()
-            errors.reversed().forEach { error in
-                switch error {
-                case .invalidEmail:
-                    cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.InvalidEmail".localised())), for: cell.loginField)
-                case .wrongPasswordLength:
-                    cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.ShortPassword".localised())), for: cell.passwordField)
-                case .passwordsDoNotMatch:
-                    cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.PasswordsDoNotMatch".localised())), for: cell.repeatPasswordField)
-                case .success:
-                    break
+            tableUpdater?.update {
+                errors.reversed().forEach { error in
+                    switch error {
+                    case .invalidEmail:
+                        cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.InvalidEmail".localised())), for: cell.loginField)
+                    case .wrongPasswordLength:
+                        cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.ShortPassword".localised())), for: cell.passwordField)
+                    case .passwordsDoNotMatch:
+                        cell.setState(.error(error: TextFieldWithError.FieldError(description: "AuthorizationError.PasswordsDoNotMatch".localised())), for: cell.repeatPasswordField)
+                    case .success:
+                        break
+                    }
                 }
             }
-            tableView?.endUpdates()
         }
     }
     
@@ -173,6 +174,7 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
         self.tableInputScroller = TableViewInputScrollerService(mainView: viewController.view,
                                                                 tableView: tableView, bottomConstraint: bottomConstraint,
                                                                 delegate: self)
+        tableUpdater = TableUpdater(table: tableView)
     }
     
     private func hideKeyboards() {
@@ -198,18 +200,18 @@ extension RegisterMainVCViewModel: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        tableView?.beginUpdates()
-        fieldsCell?.setState(.typing, for: textField)
-        tableView?.endUpdates()
+        tableUpdater?.update { [weak self] in
+            self?.fieldsCell?.setState(.typing, for: textField)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         let input = textField.text ?? ""
         let isEmpty = input.isEmpty
-        tableView?.beginUpdates()
-        fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
-        fieldsCell?.saveValue(for: textField)
-        tableView?.endUpdates()
+        tableUpdater?.update { [weak self] in
+            self?.fieldsCell?.setState(isEmpty ? .default : .typed, for: textField)
+            self?.fieldsCell?.saveValue(for: textField)
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */; };
+		8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8232BD12F6E000BED8D /* TableUpdater.swift */; };
 		801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */; };
 		801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */; };
 		801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A732BCC3FF200277394 /* RequestPage.swift */; };
@@ -379,6 +380,7 @@
 
 /* Begin PBXFileReference section */
 		8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		8018B8232BD12F6E000BED8D /* TableUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableUpdater.swift; sourceTree = "<group>"; };
 		801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCPostsDataSource.swift; sourceTree = "<group>"; };
 		801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCellModel.swift; sourceTree = "<group>"; };
 		801F7A732BCC3FF200277394 /* RequestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPage.swift; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 				805C55902BA7500700CBC64E /* UIImage+Extension.swift */,
 				805C55922BA7502F00CBC64E /* UIImageResizer.swift */,
 				805CB4A12BA8BBC80051665E /* Formatters.swift */,
+				8018B8232BD12F6E000BED8D /* TableUpdater.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 			);
 			path = YOUUtils;
@@ -1538,6 +1541,7 @@
 				805C55932BA7502F00CBC64E /* UIImageResizer.swift in Sources */,
 				80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */,
 				805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */,
+				8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,
 				80ADA48C2BD0599400303938 /* Validators.swift in Sources */,
 				8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */,
