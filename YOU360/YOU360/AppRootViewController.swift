@@ -12,6 +12,7 @@ import YOUProfile
 import YOUEstablishments
 import YOUChat
 import YOUUIComponents
+import YOUEvents
 
 class AppRootViewController: UIViewController {
     
@@ -96,7 +97,7 @@ class AppRootViewController: UIViewController {
         ProfileRouter.shared.rootProfileVC = myProfileVC
         ProfileRouter.shared.rootReserveVC = reserveVC
         tabBar.viewControllers = [
-            EstablishmentsScreenFactory.createHomeRootVC(),
+            EventsScreenFactory.createHomeRootVC(),
             EstablishmentsScreenFactory.createTopRootVC(),
             ChatScreenFactory.createChatRootVC(),
             reserveVC,

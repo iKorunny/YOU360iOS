@@ -13,8 +13,4 @@ public final class EstablishmentsScreenFactory {
     public static func createTopRootVC() -> UIViewController {
         return YOUNavigationController(rootViewController: UIViewController(), type: .top)
     }
-    
-    public static func createHomeRootVC() -> UIViewController {
-        return YOUNavigationController(rootViewController: UIViewController(), type: .home)
-    }
 }

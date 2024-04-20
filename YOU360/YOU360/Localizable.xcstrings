@@ -211,6 +211,17 @@
         }
       }
     },
+    "LocationAccessDeniedToSettingsButtonTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To settings"
+          }
+        }
+      }
+    },
     "LoginButtonTitle" : {
       "extractionState" : "manual",
       "localizations" : {

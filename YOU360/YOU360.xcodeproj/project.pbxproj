@@ -11,6 +11,16 @@
 		8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8232BD12F6E000BED8D /* TableUpdater.swift */; };
 		8018B8272BD19081000BED8D /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8262BD19081000BED8D /* InternetConnectionManager.swift */; };
 		8018B8292BD193D6000BED8D /* NetworkRequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8282BD193D6000BED8D /* NetworkRequestPerformer.swift */; };
+		8018B8332BD4139C000BED8D /* YOUEvents.h in Headers */ = {isa = PBXBuildFile; fileRef = 8018B8322BD4139C000BED8D /* YOUEvents.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8018B8362BD4139C000BED8D /* YOUEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8018B8302BD4139C000BED8D /* YOUEvents.framework */; };
+		8018B8372BD4139C000BED8D /* YOUEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8018B8302BD4139C000BED8D /* YOUEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8018B83B2BD413A7000BED8D /* YOUUIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */; };
+		8018B83C2BD413A7000BED8D /* YOUUIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A57B2B820D8200294DD7 /* YOUUIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8018B8402BD413AD000BED8D /* YOUNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A5662B820BA000294DD7 /* YOUNetworking.framework */; };
+		8018B8412BD413AD000BED8D /* YOUNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A5662B820BA000294DD7 /* YOUNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8018B8452BD4140F000BED8D /* EventsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8442BD4140F000BED8D /* EventsScreenFactory.swift */; };
+		8018B8482BD417F7000BED8D /* EventsSwiperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8472BD417F7000BED8D /* EventsSwiperVC.swift */; };
+		8018B84B2BD4189C000BED8D /* YOULocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B84A2BD4189C000BED8D /* YOULocationManager.swift */; };
 		801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */; };
 		801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */; };
 		801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A732BCC3FF200277394 /* RequestPage.swift */; };
@@ -92,6 +102,8 @@
 		80980A2A2BC03E22009DD9AB /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */; };
 		809B1D0E2BC3160100DEEBC6 /* AlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809B1D0D2BC3160100DEEBC6 /* AlertsPresenter.swift */; };
 		809B1D122BC4773000DEEBC6 /* Profile+FieldsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809B1D112BC4773000DEEBC6 /* Profile+FieldsExtension.swift */; };
+		809CA3BA2BD43EEE0037CEF4 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */; };
+		809CA3BC2BD459CE0037CEF4 /* AppRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */; };
 		809F56162BB0B2DF00CF702C /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */; };
 		809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */; };
 		809FC41B2B946FFF00C0A707 /* YOUProfileInterfaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 809FC41A2B946FFF00C0A707 /* YOUProfileInterfaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -175,6 +187,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8018B8342BD4139C000BED8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8018B82F2BD4139C000BED8D;
+			remoteInfo = YOUEvents;
+		};
+		8018B83D2BD413A7000BED8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8032A57A2B820D8200294DD7;
+			remoteInfo = YOUUIComponents;
+		};
+		8018B8422BD413AD000BED8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8032A5652B820BA000294DD7;
+			remoteInfo = YOUNetworking;
+		};
 		8032A56A2B820BA000294DD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8032A53F2B820B7600294DD7 /* Project object */;
@@ -283,6 +316,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8018B83F2BD413A7000BED8D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8018B8412BD413AD000BED8D /* YOUNetworking.framework in Embed Frameworks */,
+				8018B83C2BD413A7000BED8D /* YOUUIComponents.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8032A5712B820BA000294DD7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +342,7 @@
 				8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */,
 				8048242D2B9465C30057F152 /* YOUChat.framework in Embed Frameworks */,
 				8032A56D2B820BA000294DD7 /* YOUNetworking.framework in Embed Frameworks */,
+				8018B8372BD4139C000BED8D /* YOUEvents.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +431,11 @@
 		8018B8232BD12F6E000BED8D /* TableUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableUpdater.swift; sourceTree = "<group>"; };
 		8018B8262BD19081000BED8D /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
 		8018B8282BD193D6000BED8D /* NetworkRequestPerformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestPerformer.swift; sourceTree = "<group>"; };
+		8018B8302BD4139C000BED8D /* YOUEvents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUEvents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8018B8322BD4139C000BED8D /* YOUEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUEvents.h; sourceTree = "<group>"; };
+		8018B8442BD4140F000BED8D /* EventsScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsScreenFactory.swift; sourceTree = "<group>"; };
+		8018B8472BD417F7000BED8D /* EventsSwiperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperVC.swift; sourceTree = "<group>"; };
+		8018B84A2BD4189C000BED8D /* YOULocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOULocationManager.swift; sourceTree = "<group>"; };
 		801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCPostsDataSource.swift; sourceTree = "<group>"; };
 		801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCellModel.swift; sourceTree = "<group>"; };
 		801F7A732BCC3FF200277394 /* RequestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPage.swift; sourceTree = "<group>"; };
@@ -464,6 +515,8 @@
 		80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
 		809B1D0D2BC3160100DEEBC6 /* AlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsPresenter.swift; sourceTree = "<group>"; };
 		809B1D112BC4773000DEEBC6 /* Profile+FieldsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+FieldsExtension.swift"; sourceTree = "<group>"; };
+		809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRedirector.swift; sourceTree = "<group>"; };
 		809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoContentView.swift; sourceTree = "<group>"; };
 		809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfileInterfaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -524,6 +577,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8018B82D2BD4139C000BED8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8018B8402BD413AD000BED8D /* YOUNetworking.framework in Frameworks */,
+				8018B83B2BD413A7000BED8D /* YOUUIComponents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8032A5442B820B7600294DD7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -536,6 +598,7 @@
 				8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */,
 				8048242C2B9465C30057F152 /* YOUChat.framework in Frameworks */,
 				8032A56C2B820BA000294DD7 /* YOUNetworking.framework in Frameworks */,
+				8018B8362BD4139C000BED8D /* YOUEvents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +668,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8018B8312BD4139C000BED8D /* YOUEvents */ = {
+			isa = PBXGroup;
+			children = (
+				8018B8322BD4139C000BED8D /* YOUEvents.h */,
+				8018B8442BD4140F000BED8D /* EventsScreenFactory.swift */,
+				8018B8462BD417D8000BED8D /* EventsSwiper */,
+			);
+			path = YOUEvents;
+			sourceTree = "<group>";
+		};
+		8018B8462BD417D8000BED8D /* EventsSwiper */ = {
+			isa = PBXGroup;
+			children = (
+				8018B8472BD417F7000BED8D /* EventsSwiperVC.swift */,
+			);
+			path = EventsSwiper;
+			sourceTree = "<group>";
+		};
+		8018B8492BD4188A000BED8D /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				8018B84A2BD4189C000BED8D /* YOULocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		8032A53E2B820B7600294DD7 = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +706,7 @@
 				804823FE2B924A120057F152 /* YOUProfile */,
 				804824172B9465B40057F152 /* YOUEstablishments */,
 				804824272B9465C30057F152 /* YOUChat */,
+				8018B8312BD4139C000BED8D /* YOUEvents */,
 				8032A5482B820B7600294DD7 /* Products */,
 				896C908A2BC73FF000DB36DB /* Frameworks */,
 			);
@@ -634,6 +724,7 @@
 				804824162B9465B40057F152 /* YOUEstablishments.framework */,
 				804824262B9465C30057F152 /* YOUChat.framework */,
 				809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */,
+				8018B8302BD4139C000BED8D /* YOUEvents.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -652,6 +743,7 @@
 				8032A5532B820B7600294DD7 /* YOU360.xcdatamodeld */,
 				8032A5862B820DF400294DD7 /* MainRouter.swift */,
 				80A4F5862B836410002CC9AD /* Localizable.xcstrings */,
+				809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */,
 			);
 			path = YOU360;
 			sourceTree = "<group>";
@@ -843,6 +935,7 @@
 		80A4F5782B8361CB002CC9AD /* YOUUtils */ = {
 			isa = PBXGroup;
 			children = (
+				8018B8492BD4188A000BED8D /* Location */,
 				80ADA48A2BD0597A00303938 /* Validators */,
 				80528EFF2B8DF6F5000D6D80 /* Internal */,
 				80A4F5792B8361CB002CC9AD /* YOUUtils.h */,
@@ -860,6 +953,7 @@
 				8018B8232BD12F6E000BED8D /* TableUpdater.swift */,
 				8018B8262BD19081000BED8D /* InternetConnectionManager.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
+				809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */,
 			);
 			path = YOUUtils;
 			sourceTree = "<group>";
@@ -976,6 +1070,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		8018B82B2BD4139C000BED8D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8018B8332BD4139C000BED8D /* YOUEvents.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8032A5612B820BA000294DD7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1043,6 +1145,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8018B82F2BD4139C000BED8D /* YOUEvents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8018B83A2BD4139C000BED8D /* Build configuration list for PBXNativeTarget "YOUEvents" */;
+			buildPhases = (
+				8018B82B2BD4139C000BED8D /* Headers */,
+				8018B82C2BD4139C000BED8D /* Sources */,
+				8018B82D2BD4139C000BED8D /* Frameworks */,
+				8018B82E2BD4139C000BED8D /* Resources */,
+				8018B83F2BD413A7000BED8D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8018B83E2BD413A7000BED8D /* PBXTargetDependency */,
+				8018B8432BD413AD000BED8D /* PBXTargetDependency */,
+			);
+			name = YOUEvents;
+			productName = YOUEvents;
+			productReference = 8018B8302BD4139C000BED8D /* YOUEvents.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8032A5462B820B7600294DD7 /* YOU360 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8032A55E2B820B7700294DD7 /* Build configuration list for PBXNativeTarget "YOU360" */;
@@ -1063,6 +1186,7 @@
 				8048241B2B9465B40057F152 /* PBXTargetDependency */,
 				8048242B2B9465C30057F152 /* PBXTargetDependency */,
 				809FC41D2B946FFF00C0A707 /* PBXTargetDependency */,
+				8018B8352BD4139C000BED8D /* PBXTargetDependency */,
 			);
 			name = YOU360;
 			productName = YOU360;
@@ -1237,6 +1361,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					8018B82F2BD4139C000BED8D = {
+						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
+					};
 					8032A5462B820B7600294DD7 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -1295,11 +1423,19 @@
 				804824152B9465B40057F152 /* YOUEstablishments */,
 				804824252B9465C30057F152 /* YOUChat */,
 				809FC4172B946FFF00C0A707 /* YOUProfileInterfaces */,
+				8018B82F2BD4139C000BED8D /* YOUEvents */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8018B82E2BD4139C000BED8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8032A5452B820B7600294DD7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1310,6 +1446,7 @@
 				80A4F59D2B836C66002CC9AD /* Manrope-ExtraBold.ttf in Resources */,
 				80A4F5A22B836C66002CC9AD /* Manrope-SemiBold.ttf in Resources */,
 				80A4F5A12B836C66002CC9AD /* Manrope-Light.ttf in Resources */,
+				809CA3BA2BD43EEE0037CEF4 /* InfoPlist.xcstrings in Resources */,
 				80A4F5872B836410002CC9AD /* Localizable.xcstrings in Resources */,
 				80A4F5A02B836C66002CC9AD /* Manrope-Regular.ttf in Resources */,
 				80A4F59E2B836C66002CC9AD /* Manrope-ExtraLight.ttf in Resources */,
@@ -1384,6 +1521,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8018B82C2BD4139C000BED8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8018B8452BD4140F000BED8D /* EventsScreenFactory.swift in Sources */,
+				8018B8482BD417F7000BED8D /* EventsSwiperVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8032A5432B820B7600294DD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1542,6 +1688,7 @@
 				80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */,
 				80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */,
 				805BCBF02B9CE3EC00641FB7 /* TextSizeCalculator.swift in Sources */,
+				8018B84B2BD4189C000BED8D /* YOULocationManager.swift in Sources */,
 				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
 				80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */,
 				805CB4A22BA8BBC80051665E /* Formatters.swift in Sources */,
@@ -1549,6 +1696,7 @@
 				80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */,
 				8018B8272BD19081000BED8D /* InternetConnectionManager.swift in Sources */,
 				805C55912BA7500700CBC64E /* UIImage+Extension.swift in Sources */,
+				809CA3BC2BD459CE0037CEF4 /* AppRedirector.swift in Sources */,
 				8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */,
 				8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */,
 				80ADA48C2BD0599400303938 /* Validators.swift in Sources */,
@@ -1559,6 +1707,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8018B8352BD4139C000BED8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8018B82F2BD4139C000BED8D /* YOUEvents */;
+			targetProxy = 8018B8342BD4139C000BED8D /* PBXContainerItemProxy */;
+		};
+		8018B83E2BD413A7000BED8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8032A57A2B820D8200294DD7 /* YOUUIComponents */;
+			targetProxy = 8018B83D2BD413A7000BED8D /* PBXContainerItemProxy */;
+		};
+		8018B8432BD413AD000BED8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8032A5652B820BA000294DD7 /* YOUNetworking */;
+			targetProxy = 8018B8422BD413AD000BED8D /* PBXContainerItemProxy */;
+		};
 		8032A56B2B820BA000294DD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8032A5652B820BA000294DD7 /* YOUNetworking */;
@@ -1658,6 +1821,77 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8018B8382BD4139C000BED8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUEvents;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8018B8392BD4139C000BED8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VYS4WS26NU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = iKor.YOUEvents;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8032A55C2B820B7700294DD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1793,8 +2027,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1823,8 +2056,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2404,6 +2636,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8018B83A2BD4139C000BED8D /* Build configuration list for PBXNativeTarget "YOUEvents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8018B8382BD4139C000BED8D /* Debug */,
+				8018B8392BD4139C000BED8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8032A5422B820B7600294DD7 /* Build configuration list for PBXProject "YOU360" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
