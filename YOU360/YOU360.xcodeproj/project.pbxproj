@@ -104,6 +104,9 @@
 		809B1D122BC4773000DEEBC6 /* Profile+FieldsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809B1D112BC4773000DEEBC6 /* Profile+FieldsExtension.swift */; };
 		809CA3BA2BD43EEE0037CEF4 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */; };
 		809CA3BC2BD459CE0037CEF4 /* AppRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */; };
+		809CA3BF2BD4F8BD0037CEF4 /* EventsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3BE2BD4F8BD0037CEF4 /* EventsNetworkService.swift */; };
+		809CA3C32BD50D4A0037CEF4 /* EventsSwiperContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3C22BD50D4A0037CEF4 /* EventsSwiperContentVC.swift */; };
+		809CA3C52BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3C42BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift */; };
 		809F56162BB0B2DF00CF702C /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */; };
 		809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */; };
 		809FC41B2B946FFF00C0A707 /* YOUProfileInterfaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 809FC41A2B946FFF00C0A707 /* YOUProfileInterfaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -517,6 +520,9 @@
 		809B1D112BC4773000DEEBC6 /* Profile+FieldsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+FieldsExtension.swift"; sourceTree = "<group>"; };
 		809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRedirector.swift; sourceTree = "<group>"; };
+		809CA3BE2BD4F8BD0037CEF4 /* EventsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsNetworkService.swift; sourceTree = "<group>"; };
+		809CA3C22BD50D4A0037CEF4 /* EventsSwiperContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperContentVC.swift; sourceTree = "<group>"; };
+		809CA3C42BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperStoryLineVC.swift; sourceTree = "<group>"; };
 		809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		809F56172BB0B36A00CF702C /* ProfileInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoContentView.swift; sourceTree = "<group>"; };
 		809FC4182B946FFF00C0A707 /* YOUProfileInterfaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUProfileInterfaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -673,6 +679,7 @@
 			children = (
 				8018B8322BD4139C000BED8D /* YOUEvents.h */,
 				8018B8442BD4140F000BED8D /* EventsScreenFactory.swift */,
+				809CA3BD2BD4F7310037CEF4 /* Networking */,
 				8018B8462BD417D8000BED8D /* EventsSwiper */,
 			);
 			path = YOUEvents;
@@ -682,6 +689,8 @@
 			isa = PBXGroup;
 			children = (
 				8018B8472BD417F7000BED8D /* EventsSwiperVC.swift */,
+				809CA3C22BD50D4A0037CEF4 /* EventsSwiperContentVC.swift */,
+				809CA3C42BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift */,
 			);
 			path = EventsSwiper;
 			sourceTree = "<group>";
@@ -905,6 +914,14 @@
 			isa = PBXGroup;
 			children = (
 				80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		809CA3BD2BD4F7310037CEF4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				809CA3BE2BD4F8BD0037CEF4 /* EventsNetworkService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1526,7 +1543,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8018B8452BD4140F000BED8D /* EventsScreenFactory.swift in Sources */,
+				809CA3C32BD50D4A0037CEF4 /* EventsSwiperContentVC.swift in Sources */,
+				809CA3BF2BD4F8BD0037CEF4 /* EventsNetworkService.swift in Sources */,
 				8018B8482BD417F7000BED8D /* EventsSwiperVC.swift in Sources */,
+				809CA3C52BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

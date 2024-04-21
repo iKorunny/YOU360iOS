@@ -10,6 +10,15 @@ import YOUUtils
 
 final class EventsSwiperVC: UIViewController {
     
+    private enum Constants {
+        static let logoNavBarSize: CGSize = .init(width: 72, height: 24)
+        static let rightNavigationButtonsViewSize = CGSize(width: 88, height: 44)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private var statusObserver: AnyObject?
     
     private lazy var locationManager: YOULocationManager = {
@@ -18,6 +27,30 @@ final class EventsSwiperVC: UIViewController {
             self?.gpsAccessUpdated()
         }
         return manager
+    }()
+    
+    private lazy var searchNavigationButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "NavigationSearch")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(toSearch), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var menuNavigationButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "NavigationMenuVertical")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(toMenu), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var rightNavigationBarView: UIView = {
+        let stackView = UIStackView(arrangedSubviews: [searchNavigationButton, menuNavigationButton])
+        stackView.spacing = 0
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.frame = CGRect(origin: .zero, size: Constants.rightNavigationButtonsViewSize)
+        
+        return stackView
     }()
     
     private lazy var waitingAccessToGPSView: UIView = {
@@ -61,6 +94,12 @@ final class EventsSwiperVC: UIViewController {
         contentView.isHidden = true
         return contentView
     }()
+    
+    private lazy var contentVC: EventsSwiperContentVC = {
+        let vc = EventsSwiperContentVC()
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        return vc
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +107,17 @@ final class EventsSwiperVC: UIViewController {
         setupNotifications()
         
         locationManager.startUpdatingLocation()
+    }
+    
+    private func configureNavigation() {
+        navigationItem.setLeftBarButton(UIBarButtonItem(
+            image: UIImage(named: "LOGOYOU360")?.imageWith(newSize: Constants.logoNavBarSize).withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: nil,
+            action: nil),
+                                        animated: false)
+        
+        navigationItem.setRightBarButton(.init(customView: rightNavigationBarView), animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +131,8 @@ final class EventsSwiperVC: UIViewController {
     }
     
     private func setupUI() {
+        configureNavigation()
+        
         view.backgroundColor = ColorPallete.appWhiteSecondary
         
         view.addSubview(waitingAccessToGPSView)
@@ -100,6 +152,15 @@ final class EventsSwiperVC: UIViewController {
         accessToGPSGrantedView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         accessToGPSGrantedView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         accessToGPSGrantedView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        contentVC.willMove(toParent: self)
+        accessToGPSGrantedView.addSubview(contentVC.view)
+        contentVC.view.leadingAnchor.constraint(equalTo: accessToGPSGrantedView.leadingAnchor).isActive = true
+        contentVC.view.trailingAnchor.constraint(equalTo: accessToGPSGrantedView.trailingAnchor).isActive = true
+        contentVC.view.topAnchor.constraint(equalTo: accessToGPSGrantedView.topAnchor).isActive = true
+        contentVC.view.bottomAnchor.constraint(equalTo: accessToGPSGrantedView.bottomAnchor).isActive = true
+        addChild(contentVC)
+        contentVC.didMove(toParent: self)
     }
     
     @objc func appDidBecomeActive() {
@@ -120,6 +181,7 @@ final class EventsSwiperVC: UIViewController {
             waitingAccessToGPSView.isHidden = true
             accessToGPSDeniedView.isHidden = true
             accessToGPSGrantedView.isHidden = false
+            contentVC.reload()
         case .denied:
             waitingAccessToGPSView.isHidden = true
             accessToGPSDeniedView.isHidden = false
@@ -129,5 +191,13 @@ final class EventsSwiperVC: UIViewController {
     
     @objc private func goToSettings() {
         AppRedirector.toSettings()
+    }
+    
+    @objc private func toMenu() {
+        print("EventsSwiperVC -> toMenu()")
+    }
+    
+    @objc private func toSearch() {
+        print("EventsSwiperVC -> toSearch()")
     }
 }
