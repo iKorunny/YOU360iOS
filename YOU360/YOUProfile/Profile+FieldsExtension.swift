@@ -11,22 +11,7 @@ import YOUUtils
 
 extension Profile {
     var displayName: String {
-        var result: String?
-        
-        if let name {
-            result = name
-        }
-        
-        if let surname {
-            if result != nil {
-                result! +=  " " + surname
-            }
-            else {
-                result = surname
-            }
-        }
-        
-        return result ?? userName
+        return Formatters.formatFullName(firstName: name, lastName: surname) ?? userName
     }
     
     var isVerified: Bool {

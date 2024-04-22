@@ -20,7 +20,11 @@ final class ProfilePostCellModel {
     }
     
     private var image: UIImage?
-    private var loadDataTask: URLSessionDataTask?
+    private var loadDataTask: URLSessionDataTask? {
+        didSet {
+            oldValue?.cancel()
+        }
+    }
     
     var url: URL? {
         return URL(string: urlString)

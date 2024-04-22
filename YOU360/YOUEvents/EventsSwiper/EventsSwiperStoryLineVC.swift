@@ -11,7 +11,7 @@ import YOUUtils
 final class EventsSwiperStoryLineVC: UIViewController {
     private enum Constants {
         static let innerItemSpacing: CGFloat = 5
-        static let stackViewInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
+        static let stackViewInsets = UIEdgeInsets(top: 0, left: 36, bottom: 0, right: -36)
         static let itemViewCornerRadius: CGFloat = 1.5
         static let itemNotSeenAlpha: CGFloat = 0.2
         static let itemSeenAlpha: CGFloat = 1.0

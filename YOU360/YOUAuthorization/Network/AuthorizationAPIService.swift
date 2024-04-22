@@ -101,7 +101,7 @@ final public class AuthorizationAPIService {
             }
             
             var profile: Profile?
-            let success = httpResponse.statusCode == 200
+            let success = httpResponse.isSuccess
             if success {
                 guard let data = data else { return }
                 profile = try? JSONDecoder().decode(Profile.self, from: data)
@@ -159,7 +159,7 @@ final public class AuthorizationAPIService {
             }
             
             var profile: Profile?
-            let success = httpResponse.statusCode == 200
+            let success = httpResponse.isSuccess
             if success {
                 guard let data = data else { return }
                 profile = try? JSONDecoder().decode(Profile.self, from: data)
@@ -212,7 +212,7 @@ final public class AuthorizationAPIService {
                 return
             }
             
-            let success = httpResponse.statusCode == 200
+            let success = httpResponse.isSuccess
             if success {
                 guard let data = data else { return }
                 print(data)

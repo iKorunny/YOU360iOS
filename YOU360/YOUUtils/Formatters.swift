@@ -26,6 +26,19 @@ public final class Formatters {
         guard let age = ageComponents.year else { return nil }
         return "\(age)"
     }
+    
+    public static func formatFullName(firstName: String?, lastName: String?) -> String? {
+        let formatter = PersonNameComponentsFormatter()
+        var components = PersonNameComponents(namePrefix: nil,
+                                              givenName: firstName,
+                                              middleName: nil,
+                                              familyName: lastName,
+                                              nameSuffix: nil,
+                                              nickname: nil,
+                                              phoneticRepresentation: nil)
+        
+        return formatter.string(from: components)
+    }
 }
 
 public final class DateOfBirthNetworkFormatter {

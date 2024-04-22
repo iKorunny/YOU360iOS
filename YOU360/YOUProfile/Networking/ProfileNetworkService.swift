@@ -108,8 +108,7 @@ final class ProfileNetworkService {
         
         secretNetworkService.performDataTask(request: request) { data, response, error, localError in
             guard error == nil && localError == nil,
-                  let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200,
+                  response?.isSuccess == true,
                   let data = data else {
                 DispatchQueue.main.async {
                     completion(false, nil, localError)
@@ -144,8 +143,7 @@ final class ProfileNetworkService {
         
         secretNetworkService.performDataTask(request: request) { _, response, error, localError in
             guard error == nil && localError == nil,
-                  let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
+            response?.isSuccess == true else {
                 DispatchQueue.main.async {
                     completion(false, localError)
                 }
@@ -163,7 +161,7 @@ final class ProfileNetworkService {
         
         let url = URL(string: imagePath)!
         
-        let dataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { image in
+        let _ = ContentLoaders.imageLoader.dataTaskToLoadImage(with: url) { image in
             DispatchQueue.main.async() {
                 completion(image)
             }
@@ -182,8 +180,7 @@ final class ProfileNetworkService {
         
         secretNetworkService.performDataTask(request: request) { data, response, error, localError in
             guard error == nil && localError == nil,
-                  let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200,
+                  response?.isSuccess == true,
                   let data = data else {
                 DispatchQueue.main.async {
                     completion(false, nil, localError)
@@ -210,10 +207,8 @@ final class ProfileNetworkService {
                                                          json: nil)
         secretNetworkService.performDataTask(request: request) { data, response, error, localError in
             guard error == nil && localError == nil,
-                  let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200,
+                  response?.isSuccess == true,
                   let data = data else {
-                print()
                 DispatchQueue.main.async {
                     completion(false, [], localError)
                 }

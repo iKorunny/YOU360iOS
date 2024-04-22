@@ -12,7 +12,7 @@ public final class ImageLoader {
     private lazy var session: URLSession = {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = .returnCacheDataElseLoad
-        sessionConfig.urlCache = URLCache(memoryCapacity: 50000000, diskCapacity: 500000000)
+        sessionConfig.urlCache = DownloadCaches.getContentCache()
         return URLSession(configuration: sessionConfig)
     }()
     
@@ -40,8 +40,7 @@ public final class ImageLoader {
             guard let data = data,
                   error == nil,
                   performerError == nil,
-                  let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
+                  response?.isSuccess == true else {
                 return
             }
             
@@ -51,9 +50,5 @@ public final class ImageLoader {
         
         task?.resume()
         return task
-    }
-    
-    public func removeCache() {
-        session.configuration.urlCache?.removeAllCachedResponses()
     }
 }

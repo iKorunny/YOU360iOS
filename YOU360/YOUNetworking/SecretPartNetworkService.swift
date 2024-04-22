@@ -77,8 +77,7 @@ public final class SecretPartNetworkService {
                     completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
                     return
                 }
-                guard let httpResponse = response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200,
+                guard response?.isSuccess == true,
                       let data = data,
                       let tokens = try? JSONDecoder().decode([String: String].self, from: data) else {
                     if httpResponse.statusCode == 400 || httpResponse.statusCode == 401 {

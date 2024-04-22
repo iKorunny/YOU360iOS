@@ -17,6 +17,7 @@ final class EventsSwiperVC: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        locationManager.removeStatus(observer: statusObserver)
     }
     
     private var statusObserver: AnyObject?

@@ -9,8 +9,4 @@ import Foundation
 
 public final class ContentLoaders {
     public static let imageLoader = ImageLoader()
-    
-    public static func removeCache() {
-        imageLoader.removeCache()
-    }
 }

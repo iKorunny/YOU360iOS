@@ -80,7 +80,7 @@ public final class ProfileManager {
         banner = nil
         guard FileManager.default.fileExists(atPath: fileURL.path()) else { return }
         try? FileManager.default.removeItem(at: fileURL)
-        ContentLoaders.removeCache()
+        DownloadCaches.getContentCache().removeAllCachedResponses()
     }
     
     public func set(profile: Profile?) {
