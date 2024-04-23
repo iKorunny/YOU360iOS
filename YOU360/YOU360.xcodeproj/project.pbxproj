@@ -45,6 +45,7 @@
 		8032A5932B820E6C00294DD7 /* YOUAuthorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; };
 		8032A5942B820E6C00294DD7 /* YOUAuthorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8032A5992B822D8200294DD7 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032A5982B822D8200294DD7 /* AuthorizationService.swift */; };
+		80381DF62BD851C5007B00BD /* CubicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80381DF52BD851C5007B00BD /* CubicAnimator.swift */; };
 		8038AD532BA4DE67003B377C /* ProfileEditPushScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */; };
 		8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */; };
 		8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */; };
@@ -467,6 +468,7 @@
 		8032A58D2B820E6C00294DD7 /* YOUAuthorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUAuthorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8032A58F2B820E6C00294DD7 /* YOUAuthorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUAuthorization.h; sourceTree = "<group>"; };
 		8032A5982B822D8200294DD7 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		80381DF52BD851C5007B00BD /* CubicAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicAnimator.swift; sourceTree = "<group>"; };
 		8038AD522BA4DE67003B377C /* ProfileEditPushScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenCell.swift; sourceTree = "<group>"; };
 		8038AD542BA4DF25003B377C /* ProfileEditPushScreenContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenContentView.swift; sourceTree = "<group>"; };
 		8038AD562BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPushScreenLineView.swift; sourceTree = "<group>"; };
@@ -818,6 +820,14 @@
 			path = YOUAuthorization;
 			sourceTree = "<group>";
 		};
+		80381DF42BD851B4007B00BD /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				80381DF52BD851C5007B00BD /* CubicAnimator.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		804823FE2B924A120057F152 /* YOUProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -966,6 +976,7 @@
 		80A4F5782B8361CB002CC9AD /* YOUUtils */ = {
 			isa = PBXGroup;
 			children = (
+				80381DF42BD851B4007B00BD /* Animations */,
 				8018B8492BD4188A000BED8D /* Location */,
 				80ADA48A2BD0597A00303938 /* Validators */,
 				80528EFF2B8DF6F5000D6D80 /* Internal */,
@@ -1727,6 +1738,7 @@
 				80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */,
 				80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */,
 				805BCBF02B9CE3EC00641FB7 /* TextSizeCalculator.swift in Sources */,
+				80381DF62BD851C5007B00BD /* CubicAnimator.swift in Sources */,
 				8018B84B2BD4189C000BED8D /* YOULocationManager.swift in Sources */,
 				80A4F59B2B83690F002CC9AD /* YOUFontsProvider.swift in Sources */,
 				80528EFE2B8DF6EE000D6D80 /* KeychainService.swift in Sources */,

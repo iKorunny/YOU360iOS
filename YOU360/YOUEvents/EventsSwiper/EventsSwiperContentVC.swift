@@ -20,7 +20,15 @@ final class EventsSwiperContentVC: UIViewController {
     private lazy var posterVCs: [EventsSwiperPosterVC] = {
         let firstVC = EventsSwiperPosterVC()
         firstVC.view.translatesAutoresizingMaskIntoConstraints = false
+        firstVC.view.layer.masksToBounds = true
         return [firstVC]
+    }()
+    
+    private lazy var newPosterVC: EventsSwiperPosterVC = {
+        let vc = EventsSwiperPosterVC()
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        vc.view.layer.masksToBounds = true
+        return vc
     }()
     
     private lazy var lineVC: EventsSwiperStoryLineVC = {
@@ -36,6 +44,21 @@ final class EventsSwiperContentVC: UIViewController {
         container.layer.masksToBounds = true
         container.layer.cornerRadius = Constants.contentCornerRadius
         return container
+    }()
+    
+    private lazy var contentAnimationView: UIView = {
+        let container = UIView()
+        container.backgroundColor = .clear
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    private lazy var cubicAnimator: CubicAnimator = {
+        let animator = CubicAnimator(animationOnView: contentAnimationView) { [weak self] hiddenVC in
+            guard let vc = hiddenVC else { return }
+            self?.removeChildFromContentContainer(vc: vc)
+        }
+        return animator
     }()
 
     override func viewDidLoad() {
@@ -58,15 +81,30 @@ final class EventsSwiperContentVC: UIViewController {
         addChild(lineVC)
         lineVC.didMove(toParent: self)
         
-        view.addSubview(contentContainer)
-        contentContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.contentInsets.left).isActive = true
-        contentContainer.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
-        contentContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
-        contentContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.contentInsets.bottom).isActive = true
+        view.addSubview(contentAnimationView)
+        contentAnimationView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        contentAnimationView.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
+        contentAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        contentAnimationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.contentInsets.bottom).isActive = true
+        
+        contentAnimationView.addSubview(contentContainer)
+        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor, constant: Constants.contentInsets.left).isActive = true
+        contentContainer.topAnchor.constraint(equalTo: contentAnimationView.topAnchor).isActive = true
+        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
+        contentContainer.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
         
         guard let firstPosterVC = posterVCs.first else { return }
         addChildToContentContainer(vc: firstPosterVC)
         firstPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/3850/2160"))
+        
+        //TODO: remove debug code
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.cubicAnimator.animate(with: .fromLeft, currentVC: firstPosterVC) {
+                self.addChildToContentContainer(vc: self.newPosterVC)
+            }
+            
+            self.newPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/1920/1080"))
+        }
     }
     
     func reload() {
@@ -84,5 +122,12 @@ final class EventsSwiperContentVC: UIViewController {
         vc.view.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor).isActive = true
         
         vc.didMove(toParent: self)
+    }
+    
+    private func removeChildFromContentContainer(vc: UIViewController) {
+        vc.willMove(toParent: nil)
+        vc.view.removeFromSuperview()
+        vc.removeFromParent()
+        vc.didMove(toParent: nil)
     }
 }
