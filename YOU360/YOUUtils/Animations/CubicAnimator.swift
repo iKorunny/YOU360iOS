@@ -16,9 +16,9 @@ public enum CubicAnimatorDirection {
 
 public final class CubicAnimator: NSObject {
     private enum Constants {
-        static let animationDuration: CFTimeInterval = 4//0.8
+        static let animationDuration: CFTimeInterval = 0.8
         static let animationTypeKey: String = "cube"
-        static let animationKey: String = "layerAnimationKey"
+        static let animationKey: String = "layerCubicAnimationKey"
     }
     
     private let animationOnView: UIView
