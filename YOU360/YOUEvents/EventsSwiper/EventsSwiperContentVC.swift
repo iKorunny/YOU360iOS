@@ -82,22 +82,21 @@ final class EventsSwiperContentVC: UIViewController {
         lineVC.didMove(toParent: self)
         
         view.addSubview(contentAnimationView)
-        contentAnimationView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        contentAnimationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.contentInsets.left).isActive = true
         contentAnimationView.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
-        contentAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        contentAnimationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
         contentAnimationView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.contentInsets.bottom).isActive = true
         
         contentAnimationView.addSubview(contentContainer)
-        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor, constant: Constants.contentInsets.left).isActive = true
+        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
         contentContainer.topAnchor.constraint(equalTo: contentAnimationView.topAnchor).isActive = true
-        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
+        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
         contentContainer.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
         
         guard let firstPosterVC = posterVCs.first else { return }
         addChildToContentContainer(vc: firstPosterVC)
         firstPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/3850/2160"))
         
-        //TODO: remove debug code
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.cubicAnimator.animate(with: .fromLeft, currentVC: firstPosterVC) {
                 self.addChildToContentContainer(vc: self.newPosterVC)
