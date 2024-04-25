@@ -67,6 +67,8 @@ public final class RemoteContentImageView: UIImageView {
                 self?.activity.hide()
             }
         }
+        
+        loader = newLoader
     }
     
     public func setImage(with urlString: String) {
@@ -84,6 +86,7 @@ class RemoteImageViewActivityDefault: UIActivityIndicatorView, RemoteContentImag
     
     func hide() {
         self.stopAnimating()
+        self.isHidden = true
     }
     
     func setToCenter(of view: UIView) {

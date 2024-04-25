@@ -52,7 +52,7 @@ final class EventsSwiperPosterVC: UIViewController {
     }
     
     private func setupColors() {
-        view.backgroundColor = ColorPallete.appWhiteSecondary
+        view.backgroundColor = ColorPallete.appGrey2
     }
     
     private func setupUI() {
@@ -63,6 +63,10 @@ final class EventsSwiperPosterVC: UIViewController {
         imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func reset() {
+        imageView.image = nil
     }
     
     func showImage(with url: URL?) {

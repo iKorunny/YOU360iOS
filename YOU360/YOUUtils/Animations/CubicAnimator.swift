@@ -14,28 +14,28 @@ public enum CubicAnimatorDirection {
     case fromRight
 }
 
-public final class CubicAnimator: NSObject {
-    private enum Constants {
-        static let animationDuration: CFTimeInterval = 0.8
-        static let animationTypeKey: String = "cube"
-        static let animationKey: String = "layerCubicAnimationKey"
-    }
-    
+private enum Constants {
+    static let animationDuration: CFTimeInterval = 0.8
+    static let animationTypeKey: String = "cube"
+    static let animationKey: String = "layerCubicAnimationKey"
+}
+
+public final class CubicAnimator<T: AnyObject>: NSObject, CAAnimationDelegate {
     private let animationOnView: UIView
-    private let completion: (UIViewController?) -> Void
+    private let completion: (T?) -> Void
     
-    private weak var oldVC: UIViewController?
+    private weak var oldItem: T?
     
-    public init(animationOnView: UIView, completion: @escaping (UIViewController?) -> Void) {
+    public init(animationOnView: UIView, completion: @escaping (T?) -> Void) {
         self.animationOnView = animationOnView
         self.completion = completion
         super.init()
     }
     
     public func animate(with direction: CubicAnimatorDirection, 
-                        currentVC: UIViewController?,
+                        currentItem: T?,
                         animationBlock: (() -> Void)) {
-        oldVC = currentVC
+        oldItem = currentItem
         let transition = CATransition()
         transition.delegate = self
         transition.duration = Constants.animationDuration
@@ -54,10 +54,8 @@ public final class CubicAnimator: NSObject {
         animationOnView.layer.add(transition, forKey: Constants.animationKey)
         animationBlock()
     }
-}
-
-extension CubicAnimator: CAAnimationDelegate {
+    
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        completion(flag ? oldVC : nil)
+        completion(flag ? oldItem : nil)
     }
 }

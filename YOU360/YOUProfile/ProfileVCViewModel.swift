@@ -289,6 +289,10 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func reloadContent(with updatedProfile: Profile) {
+        guard updatedProfile.posts > 0 else {
+            collectionView?.reloadSections([Constants.contentSectionIndex])
+            return
+        }
         postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.posts)) { [weak self] success, localError in
             if success {
                 self?.collectionView?.reloadSections([Constants.contentSectionIndex])

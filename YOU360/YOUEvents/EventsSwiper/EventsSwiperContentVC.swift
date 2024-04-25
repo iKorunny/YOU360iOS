@@ -34,35 +34,6 @@ final class EventsSwiperContentVC: UIViewController {
         return gesture
     }()
     
-    private lazy var posterVCs: [EventsSwiperPosterVC] = {
-        let firstVC = EventsSwiperPosterVC()
-        firstVC.view.translatesAutoresizingMaskIntoConstraints = false
-        firstVC.view.layer.masksToBounds = true
-        return [firstVC]
-    }()
-    
-    private lazy var newPosterVC: EventsSwiperPosterVC = {
-        let vc = EventsSwiperPosterVC()
-        vc.view.translatesAutoresizingMaskIntoConstraints = false
-        vc.view.layer.masksToBounds = true
-        return vc
-    }()
-    
-    private lazy var lineVC: EventsSwiperStoryLineVC = {
-        let vc = EventsSwiperStoryLineVC()
-        vc.view.translatesAutoresizingMaskIntoConstraints = false
-        return vc
-    }()
-    
-    private lazy var contentContainer: UIView = {
-        let container = UIView()
-        container.backgroundColor = .clear
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.layer.masksToBounds = true
-        container.layer.cornerRadius = Constants.contentCornerRadius
-        return container
-    }()
-    
     private lazy var contentAnimationView: UIView = {
         let container = UIView()
         container.backgroundColor = .clear
@@ -78,11 +49,20 @@ final class EventsSwiperContentVC: UIViewController {
     }()
     
     private lazy var cubicAnimator: CubicAnimator = {
-        let animator = CubicAnimator(animationOnView: contentAnimationView) { [weak self] hiddenVC in
+        let animator = CubicAnimator<UIViewController>(animationOnView: contentAnimationView) { [weak self] hiddenVC in
             guard let vc = hiddenVC else { return }
             self?.removeChildFromContentContainer(vc: vc)
         }
         return animator
+    }()
+    
+    var dataSource: EventsSwiperContentVCDataSource?
+    private lazy var contentControllers: Queue<EventsSwiperEstablishmentContentVC> = {
+        let queue = Queue<EventsSwiperEstablishmentContentVC>.init(item: .init())
+        queue.addToRear(item: .init())
+        queue.addToRear(item: .init())
+        queue.loop()
+        return queue
     }()
 
     override func viewDidLoad() {
@@ -110,32 +90,31 @@ final class EventsSwiperContentVC: UIViewController {
         contentAnimationView.trailingAnchor.constraint(equalTo: contentGestuiresView.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
         contentAnimationView.bottomAnchor.constraint(equalTo: contentGestuiresView.bottomAnchor).isActive = true
         
-        lineVC.willMove(toParent: self)
-        contentAnimationView.addSubview(lineVC.view)
-        lineVC.view.heightAnchor.constraint(equalToConstant: Constants.lineHeight).isActive = true
-        lineVC.view.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
-        lineVC.view.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
-        lineVC.view.topAnchor.constraint(equalTo: contentAnimationView.topAnchor, constant: Constants.lineTopOffset).isActive = true
-        addChild(lineVC)
-        lineVC.didMove(toParent: self)
+//        lineVC.willMove(toParent: self)
+//        contentAnimationView.addSubview(lineVC.view)
+//        lineVC.view.heightAnchor.constraint(equalToConstant: Constants.lineHeight).isActive = true
+//        lineVC.view.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
+//        lineVC.view.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
+//        lineVC.view.topAnchor.constraint(equalTo: contentAnimationView.topAnchor, constant: Constants.lineTopOffset).isActive = true
+//        addChild(lineVC)
+//        lineVC.didMove(toParent: self)
         
-        contentAnimationView.addSubview(contentContainer)
-        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
-        contentContainer.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
-        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
-        contentContainer.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
+//        contentAnimationView.addSubview(contentContainer)
+//        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
+//        contentContainer.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
+//        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
+//        contentContainer.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
         
-        guard let firstPosterVC = posterVCs.first else { return }
-        addChildToContentContainer(vc: firstPosterVC)
-        firstPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/3850/2160"))
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.cubicAnimator.animate(with: .fromLeft, currentVC: firstPosterVC) {
-                self.addChildToContentContainer(vc: self.newPosterVC)
-            }
-            
-            self.newPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/1920/1080"))
-        }
+//        addChildToContentContainer(vc: firstPosterVC)
+//        firstPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/3850/2160"))
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            self.cubicAnimator.animate(with: .fromLeft, currentVC: firstPosterVC) {
+//                self.addChildToContentContainer(vc: self.newPosterVC)
+//            }
+//            
+//            self.newPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/1920/1080"))
+//        }
         
         
         contentGestuiresView.addGestureRecognizer(contentTapGesture)
@@ -145,15 +124,42 @@ final class EventsSwiperContentVC: UIViewController {
     }
     
     @objc private func onTap(sender: UITapGestureRecognizer) {
-        guard let touchView = sender.view else { return }
+        guard let touchView = sender.view,
+        let dataSource = dataSource else { return }
         let touchLocation = sender.location(in: touchView)
         let leftSideTouch: Bool = touchLocation.x < touchView.bounds.width * 0.5
         if leftSideTouch {
-            print("Touched left!!!!")
+            if dataSource.isFirstEvent {
+                toPreviousBussinessIfPossible()
+            }
+            else {
+                toPreviousEventIfPossible()
+            }
         }
         else {
-            print("Touched right!!!!")
+            if dataSource.isLastEvent {
+                toNextBussinessIfPossible()
+            }
+            else {
+                toNextEventIfPossible()
+            }
         }
+    }
+    
+    private func toNextEventIfPossible() {
+        guard let dataSource = dataSource,
+              !dataSource.isLastEvent,
+              let nextEvent = dataSource.nextEvent else { return }
+        let currentVC = contentControllers.currentItem
+        currentVC?.toNextPoster()
+    }
+    
+    private func toPreviousEventIfPossible() {
+        guard let dataSource = dataSource,
+              !dataSource.isFirstEvent,
+              let nextEvent = dataSource.previousEvent else { return }
+        let currentVC = contentControllers.currentItem
+        currentVC?.toPreviousPoster()
     }
     
     @objc private func onLongPress(sender: UILongPressGestureRecognizer) {
@@ -167,28 +173,48 @@ final class EventsSwiperContentVC: UIViewController {
     }
     
     @objc private func onNextSwipe(sender: UISwipeGestureRecognizer) {
-        print("Swipe Next!!!!")
+        toNextBussinessIfPossible()
+    }
+    
+    private func toNextBussinessIfPossible() {
+        guard let dataSource = dataSource,
+              !dataSource.isLastBussiness,
+              let nextBussiness = dataSource.nextBussiness else { return }
+        let currentVC = contentControllers.currentItem
+        guard let nextVC = contentControllers.next() else { return }
+        nextVC.show(bussiness: nextBussiness)
+        cubicAnimator.animate(with: .fromRight, currentItem: currentVC) { [weak self] in
+            self?.addContent(vc: nextVC)
+        }
     }
     
     @objc private func onPreviousSwipe(sender: UISwipeGestureRecognizer) {
-        print("Swipe Previous!!!!")
+        toPreviousBussinessIfPossible()
     }
     
-    func reload() {
-        lineVC.redraw(with: 7)
-        lineVC.set(activeIndex: 0)
+    private func toPreviousBussinessIfPossible() {
+        guard let dataSource = dataSource,
+              !dataSource.isFirstBussiness,
+              let previousBussiness = dataSource.previousBussiness else { return }
+        let currentVC = contentControllers.currentItem
+        guard let previousVC = contentControllers.previous() else { return }
+        previousVC.show(bussiness: previousBussiness)
+        cubicAnimator.animate(with: .fromLeft, currentItem: currentVC) { [weak self] in
+            self?.addContent(vc: previousVC)
+        }
     }
     
-    private func addChildToContentContainer(vc: UIViewController) {
+    private func addContent(vc: UIViewController) {
         vc.willMove(toParent: self)
-        
-        contentContainer.addSubview(vc.view)
-        vc.view.topAnchor.constraint(equalTo: contentContainer.topAnchor).isActive = true
-        vc.view.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor).isActive = true
-        vc.view.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor).isActive = true
-        vc.view.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor).isActive = true
-        
+        addChild(vc)
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        contentAnimationView.addSubview(vc.view)
         vc.didMove(toParent: self)
+        
+        vc.view.topAnchor.constraint(equalTo: contentAnimationView.topAnchor).isActive = true
+        vc.view.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
+        vc.view.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
+        vc.view.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
     }
     
     private func removeChildFromContentContainer(vc: UIViewController) {
@@ -196,5 +222,27 @@ final class EventsSwiperContentVC: UIViewController {
         vc.view.removeFromSuperview()
         vc.removeFromParent()
         vc.didMove(toParent: nil)
+    }
+    
+    func clean() {
+        children.forEach {
+            $0.willMove(toParent: nil)
+            $0.view.removeFromSuperview()
+            $0.removeFromParent()
+            $0.didMove(toParent: nil)
+        }
+    }
+    
+    func reload() {
+        contentControllers.forEach { [weak self] controller in
+            guard controller.parent === self else { return }
+            self?.removeChildFromContentContainer(vc: controller)
+        }
+        
+        if let currentContentVC = contentControllers.currentItem,
+            let bussiness = dataSource?.bussiness {
+            addContent(vc: currentContentVC)
+            currentContentVC.show(bussiness: bussiness)
+        }
     }
 }

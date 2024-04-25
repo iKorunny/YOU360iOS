@@ -19,7 +19,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Azazazaza"
+            "value" : "Allow access so we can show places and events near you on a map."
           }
         }
       }
@@ -30,7 +30,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ololololo"
+            "value" : "Allow access so we can show places and events near you on a map."
           }
         }
       }
