@@ -11,6 +11,6 @@ import YOUUIComponents
 
 public final class EventsScreenFactory {
     public static func createHomeRootVC() -> UIViewController {
-        return YOUNavigationController(rootViewController: EventsSwiperVC(), type: .home)
+        return YOUNavigationController(rootViewController: EventsSwiperVC(viewModel: EventsSwiperViewModelImpl()), type: .home)
     }
 }

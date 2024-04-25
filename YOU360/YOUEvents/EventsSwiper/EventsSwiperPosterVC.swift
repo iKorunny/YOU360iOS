@@ -7,6 +7,7 @@
 
 import UIKit
 import YOUUIComponents
+import YOUUtils
 
 final class EventsSwiperPosterVC: UIViewController {
     
@@ -51,7 +52,7 @@ final class EventsSwiperPosterVC: UIViewController {
     }
     
     private func setupColors() {
-        view.backgroundColor = .clear
+        view.backgroundColor = ColorPallete.appWhiteSecondary
     }
     
     private func setupUI() {

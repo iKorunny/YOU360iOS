@@ -15,21 +15,6 @@ final class EventsSwiperVC: UIViewController {
         static let rightNavigationButtonsViewSize = CGSize(width: 88, height: 44)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        locationManager.removeStatus(observer: statusObserver)
-    }
-    
-    private var statusObserver: AnyObject?
-    
-    private lazy var locationManager: YOULocationManager = {
-        let manager = YOULocationManager.shared()
-        statusObserver = manager.observeStatus { [weak self] in
-            self?.gpsAccessUpdated()
-        }
-        return manager
-    }()
-    
     private lazy var searchNavigationButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "NavigationSearch")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -58,6 +43,7 @@ final class EventsSwiperVC: UIViewController {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.backgroundColor = ColorPallete.appWhiteSecondary
+        
         let imageView = UIImageView(image: .init(named: "LOGOYOU360"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -74,6 +60,7 @@ final class EventsSwiperVC: UIViewController {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.backgroundColor = ColorPallete.appWhiteSecondary
+        
         
         let button = UIButton()
         button.setTitle("LocationAccessDeniedToSettingsButtonTitle".localised(), for: .normal)
@@ -101,13 +88,26 @@ final class EventsSwiperVC: UIViewController {
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         return vc
     }()
+    
+    private let viewModel: EventsSwiperViewModel
+    
+    init(viewModel: EventsSwiperViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.set(view: self)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNotifications()
         
-        locationManager.startUpdatingLocation()
+        viewModel.onViewDidLoad()
     }
     
     private func configureNavigation() {
@@ -124,17 +124,13 @@ final class EventsSwiperVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        gpsAccessUpdated()
-    }
-    
-    private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        viewModel.onViewWillAppear()
     }
     
     private func setupUI() {
         configureNavigation()
         
-        view.backgroundColor = ColorPallete.appWhiteSecondary
+        setupColors()
         
         view.addSubview(waitingAccessToGPSView)
         waitingAccessToGPSView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -164,16 +160,29 @@ final class EventsSwiperVC: UIViewController {
         contentVC.didMove(toParent: self)
     }
     
-    @objc func appDidBecomeActive() {
-        if locationManager.status == .unknown {
-            locationManager.startUpdatingLocation()
-        }
-        
-        gpsAccessUpdated()
+    private func setupColors() {
+        view.backgroundColor = ColorPallete.appWhiteSecondary
+        accessToGPSGrantedView.backgroundColor = ColorPallete.appWhiteSecondary
+        accessToGPSDeniedView.backgroundColor = ColorPallete.appWhiteSecondary
+        waitingAccessToGPSView.backgroundColor = ColorPallete.appWhiteSecondary
     }
     
-    private func gpsAccessUpdated() {
-        switch locationManager.status {
+    @objc private func goToSettings() {
+        viewModel.onToSettings()
+    }
+    
+    @objc private func toMenu() {
+        viewModel.onToMenu()
+    }
+    
+    @objc private func toSearch() {
+        viewModel.onToSearch()
+    }
+}
+
+extension EventsSwiperVC: EventsSwiperView {
+    func onLocationStatusChanged(newStatus: YOULocationManagerAccessStatus) {
+        switch newStatus {
         case .unknown:
             waitingAccessToGPSView.isHidden = false
             accessToGPSDeniedView.isHidden = true
@@ -188,17 +197,5 @@ final class EventsSwiperVC: UIViewController {
             accessToGPSDeniedView.isHidden = false
             accessToGPSGrantedView.isHidden = true
         }
-    }
-    
-    @objc private func goToSettings() {
-        AppRedirector.toSettings()
-    }
-    
-    @objc private func toMenu() {
-        print("EventsSwiperVC -> toMenu()")
-    }
-    
-    @objc private func toSearch() {
-        print("EventsSwiperVC -> toSearch()")
     }
 }

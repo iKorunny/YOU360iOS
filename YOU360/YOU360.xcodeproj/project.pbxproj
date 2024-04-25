@@ -94,6 +94,7 @@
 		806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E972B8683F9007A695D /* TextFieldWithError.swift */; };
 		806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E992B87A3EB007A695D /* TopRoundedView.swift */; };
 		806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */; };
+		806E23E22BDAD2B9009A7C1B /* EventsSwiperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E23E12BDAD2B9009A7C1B /* EventsSwiperViewModel.swift */; };
 		806E88952B88FBEC00D45FDA /* LoginFieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */; };
 		807FAAFF2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FAAFE2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift */; };
 		807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */; };
@@ -516,6 +517,7 @@
 		806B3E972B8683F9007A695D /* TextFieldWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithError.swift; sourceTree = "<group>"; };
 		806B3E992B87A3EB007A695D /* TopRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
 		806B3E9B2B87AE99007A695D /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		806E23E12BDAD2B9009A7C1B /* EventsSwiperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperViewModel.swift; sourceTree = "<group>"; };
 		806E88942B88FBEC00D45FDA /* LoginFieldsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsCell.swift; sourceTree = "<group>"; };
 		807FAAFE2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentSegmentCell.swift; sourceTree = "<group>"; };
 		807FAB002BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentSegmentContentView.swift; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				8018B8472BD417F7000BED8D /* EventsSwiperVC.swift */,
+				806E23E12BDAD2B9009A7C1B /* EventsSwiperViewModel.swift */,
 				809CA3C22BD50D4A0037CEF4 /* EventsSwiperContentVC.swift */,
 				809CA3C42BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift */,
 				80CA644A2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift */,
@@ -1573,6 +1576,7 @@
 				80CA644B2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift in Sources */,
 				809CA3BF2BD4F8BD0037CEF4 /* EventsNetworkService.swift in Sources */,
 				8018B8482BD417F7000BED8D /* EventsSwiperVC.swift in Sources */,
+				806E23E22BDAD2B9009A7C1B /* EventsSwiperViewModel.swift in Sources */,
 				809CA3C52BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
