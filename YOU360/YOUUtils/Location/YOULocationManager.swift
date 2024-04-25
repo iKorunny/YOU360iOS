@@ -88,6 +88,8 @@ public final class YOULocationManager: NSObject {
 
 extension YOULocationManager: CLLocationManagerDelegate {
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        statusObservers.forEach { $0.closure() }
+        DispatchQueue.main.async { [weak self] in
+            self?.statusObservers.forEach { $0.closure() }
+        }
     }
 }

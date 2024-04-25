@@ -65,6 +65,10 @@ final class EventsSwiperPosterVC: UIViewController {
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    func reset() {
+        imageView.image = nil
+    }
+    
     func showImage(with url: URL?) {
         guard let url = url else { return }
         imageView.setImage(with: url)

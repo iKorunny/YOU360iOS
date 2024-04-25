@@ -67,6 +67,8 @@ public final class RemoteContentImageView: UIImageView {
                 self?.activity.hide()
             }
         }
+        
+        loader = newLoader
     }
     
     public func setImage(with urlString: String) {

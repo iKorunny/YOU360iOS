@@ -7,6 +7,7 @@
 
 import UIKit
 import YOUUtils
+import YOUUIComponents
 
 final class EventsSwiperVC: UIViewController {
     
@@ -87,6 +88,10 @@ final class EventsSwiperVC: UIViewController {
         let vc = EventsSwiperContentVC()
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         return vc
+    }()
+    
+    private lazy var loaderManager: LoaderManager = {
+        return LoaderManager()
     }()
     
     private let viewModel: EventsSwiperViewModel
@@ -191,11 +196,27 @@ extension EventsSwiperVC: EventsSwiperView {
             waitingAccessToGPSView.isHidden = true
             accessToGPSDeniedView.isHidden = true
             accessToGPSGrantedView.isHidden = false
-            contentVC.reload()
+            reload(with: viewModel.dataModels)
         case .denied:
             waitingAccessToGPSView.isHidden = true
             accessToGPSDeniedView.isHidden = false
             accessToGPSGrantedView.isHidden = true
+        }
+    }
+    
+    func reload(with models: [EventsSwiperBussiness]) {
+        contentVC.clean()
+        contentVC.dataSource = EventsSwiperContentVCDataSourceImpl(with: models)
+        contentVC.reload()
+    }
+    
+    func runActivity() {
+        loaderManager.addFullscreenLoader(for: self.tabBarController ?? self)
+    }
+    
+    func stopActivity(completion: @escaping (() -> Void)) {
+        loaderManager.removeFullscreenLoader { _ in
+            completion()
         }
     }
 }
