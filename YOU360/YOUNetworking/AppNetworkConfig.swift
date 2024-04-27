@@ -9,6 +9,6 @@ import Foundation
 
 public enum AppNetworkConfig {
     public enum V1 {
-        public static let backendAddress = "https://you360-sdmncvewtq-uc.a.run.app/api/v1"
+        public static let backendAddress = "https://you360web-jimgjllrwq-uc.a.run.app/api/v1"
     }
 }
