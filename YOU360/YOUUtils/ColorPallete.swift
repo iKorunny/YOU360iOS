@@ -21,6 +21,10 @@ public final class ColorPallete {
         return UIColor.color(from: "#FDFDFD")
     }
     
+    public static var appWhite4: UIColor {
+        return UIColor.color(from: "#FFF7FA")
+    }
+    
     public static var appBlack: UIColor {
         return .black
     }

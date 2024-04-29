@@ -148,16 +148,14 @@ final class EventsSwiperContentVC: UIViewController {
     
     private func toNextEventIfPossible() {
         guard let dataSource = dataSource,
-              !dataSource.isLastEvent,
-              let nextEvent = dataSource.nextEvent else { return }
+              !dataSource.isLastEvent else { return }
         let currentVC = contentControllers.currentItem
         currentVC?.toNextPoster()
     }
     
     private func toPreviousEventIfPossible() {
         guard let dataSource = dataSource,
-              !dataSource.isFirstEvent,
-              let nextEvent = dataSource.previousEvent else { return }
+              !dataSource.isFirstEvent else { return }
         let currentVC = contentControllers.currentItem
         currentVC?.toPreviousPoster()
     }
@@ -165,9 +163,9 @@ final class EventsSwiperContentVC: UIViewController {
     @objc private func onLongPress(sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .began:
-            print("Long press start!!!!")
+            contentControllers.currentItem?.setOverlays(hidden: true)
         case .ended:
-            print("Long press end!!!!")
+            contentControllers.currentItem?.setOverlays(hidden: false)
         default: break
         }
     }

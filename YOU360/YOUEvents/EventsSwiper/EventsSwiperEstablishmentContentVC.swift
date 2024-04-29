@@ -7,6 +7,7 @@
 
 import UIKit
 import YOUUtils
+import YOUUIComponents
 
 final class EventsSwiperEstablishmentContentVC: UIViewController {
     private enum Constants {
@@ -15,7 +16,21 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         
         static let contentCornerRadius: CGFloat = 20
         static let contentInsets: UIEdgeInsets = .init(top: 8, left: 20, bottom: -12, right: -20)
+        
+        static let topInfoViewOffset: CGFloat = 16
     }
+    
+    private lazy var dateInfoView: EventInfoView = {
+        let dateView = EventInfoView.create(with: .date, text: "")
+        dateView.translatesAutoresizingMaskIntoConstraints = false
+        return dateView
+    }()
+    
+    private lazy var priceInfoView: EventInfoView = {
+        let priceView = EventInfoView.create(with: .price, text: "")
+        priceView.translatesAutoresizingMaskIntoConstraints = false
+        return priceView
+    }()
     
     private lazy var lineVC: EventsSwiperStoryLineVC = {
         let vc = EventsSwiperStoryLineVC()
@@ -78,6 +93,14 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         
         addChildToContentContainer(vc: posterVC)
         addChildToContentContainer(vc: videoPosterVC)
+        
+        view.addSubview(dateInfoView)
+        dateInfoView.topAnchor.constraint(equalTo: contentContainer.topAnchor, constant: Constants.topInfoViewOffset).isActive = true
+        dateInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.topInfoViewOffset).isActive = true
+        
+        view.addSubview(priceInfoView)
+        priceInfoView.topAnchor.constraint(equalTo: contentContainer.topAnchor, constant: Constants.topInfoViewOffset).isActive = true
+        priceInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.topInfoViewOffset).isActive = true
     }
     
     private func addChildToContentContainer(vc: UIViewController) {
@@ -135,11 +158,19 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
             videoPosterVC.view.isHidden = false
             videoPosterVC.showVideo(with: event.url)
         }
+        
+        dateInfoView.set(text: Formatters.formatEvent(date: event.date))
+        priceInfoView.set(text: Formatters.formatEventPrice(amount: event.price.amount, currencySymbol: event.price.currencySymbol))
     }
     
     private func event(by index: Int) -> EventsSwiperEvent? {
         guard let events = bussinessModel?.events, index < events.count else { return nil }
         
         return events[index]
+    }
+    
+    func setOverlays(hidden: Bool) {
+        dateInfoView.isHidden = hidden
+        priceInfoView.isHidden = hidden
     }
 }

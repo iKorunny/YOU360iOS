@@ -23,6 +23,7 @@
 		8018B84B2BD4189C000BED8D /* YOULocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B84A2BD4189C000BED8D /* YOULocationManager.swift */; };
 		801E86D22BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E86D12BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift */; };
 		801E86D42BDC2B1C00E9FB35 /* FullScreenLoopedVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E86D32BDC2B1C00E9FB35 /* FullScreenLoopedVideoPlayerController.swift */; };
+		801E86D82BE039E700E9FB35 /* EventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E86D72BE039E700E9FB35 /* EventInfoView.swift */; };
 		801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */; };
 		801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */; };
 		801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A732BCC3FF200277394 /* RequestPage.swift */; };
@@ -454,6 +455,7 @@
 		8018B84A2BD4189C000BED8D /* YOULocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOULocationManager.swift; sourceTree = "<group>"; };
 		801E86D12BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperVideoPosterVC.swift; sourceTree = "<group>"; };
 		801E86D32BDC2B1C00E9FB35 /* FullScreenLoopedVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoopedVideoPlayerController.swift; sourceTree = "<group>"; };
+		801E86D72BE039E700E9FB35 /* EventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoView.swift; sourceTree = "<group>"; };
 		801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCPostsDataSource.swift; sourceTree = "<group>"; };
 		801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCellModel.swift; sourceTree = "<group>"; };
 		801F7A732BCC3FF200277394 /* RequestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPage.swift; sourceTree = "<group>"; };
@@ -735,6 +737,14 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		801E86D62BE039AD00E9FB35 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				801E86D72BE039E700E9FB35 /* EventInfoView.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		8032A53E2B820B7600294DD7 = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +817,7 @@
 		8032A57C2B820D8200294DD7 /* YOUUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				801E86D62BE039AD00E9FB35 /* Events */,
 				8032A57D2B820D8200294DD7 /* YOUUIComponents.h */,
 				80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */,
 				80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */,
@@ -1669,6 +1680,7 @@
 				804824312B9466280057F152 /* YOUNavigationController.swift in Sources */,
 				805CB49E2BA8A8160051665E /* YOUDatePicker.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
+				801E86D82BE039E700E9FB35 /* EventInfoView.swift in Sources */,
 				806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

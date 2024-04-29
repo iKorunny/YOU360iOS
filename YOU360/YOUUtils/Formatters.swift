@@ -39,6 +39,20 @@ public final class Formatters {
         
         return formatter.string(from: components)
     }
+    
+    public static func formatEvent(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.mm.yy"
+        return formatter.string(from: date)
+    }
+    
+    public static func formatEventPrice(amount: CGFloat, currencySymbol: String) -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.minimumFractionDigits = 0
+        formatter.currencySymbol = currencySymbol
+        return formatter.string(from: NSNumber(value: amount))
+    }
 }
 
 public final class DateOfBirthNetworkFormatter {
