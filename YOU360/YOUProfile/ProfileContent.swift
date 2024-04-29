@@ -14,8 +14,8 @@ final class ProfileContent: Codable {
         case previewUrl = "previewUrl"
         case contentTypeFull = "contentTypeFull"
         case contentTypeCompressed = "contentTypeCompressed"
-        case fullName = "fullName"
-        case compressedName = "compressedName"
+        case fullName = "contentName"
+        case compressedName = "previewName"
     }
     
     var id: String
