@@ -42,11 +42,23 @@ final class EventsSwiperEvent {
 final class EventsSwiperBussiness {
     let id: String
     let events: [EventsSwiperEvent]
+    let likes: Int
+    let name: String
+    let address: String?
+    let category: String?
     
     init(id: String, 
-         events: [EventsSwiperEvent]) {
+         events: [EventsSwiperEvent],
+         likes: Int,
+         name: String,
+         address: String?,
+         category: String?) {
         self.id = id
         self.events = events
+        self.likes = likes
+        self.name = name
+        self.address = address
+        self.category = category
     }
 }
 

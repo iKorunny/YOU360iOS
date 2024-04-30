@@ -178,6 +178,17 @@
         }
       }
     },
+    "EventsGuestListButton" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GUEST LIST"
+          }
+        }
+      }
+    },
     "HelpCenterTitle" : {
       "extractionState" : "manual",
       "localizations" : {

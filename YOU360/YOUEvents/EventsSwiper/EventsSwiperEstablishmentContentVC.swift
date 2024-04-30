@@ -32,6 +32,12 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         return priceView
     }()
     
+    private lazy var bussinessInfoView: EventSwiperBussinessBluredTransparentView = {
+        let infoView = EventSwiperBussinessBluredTransparentView.create()
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        return infoView
+    }()
+    
     private lazy var lineVC: EventsSwiperStoryLineVC = {
         let vc = EventsSwiperStoryLineVC()
         vc.view.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +107,11 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         view.addSubview(priceInfoView)
         priceInfoView.topAnchor.constraint(equalTo: contentContainer.topAnchor, constant: Constants.topInfoViewOffset).isActive = true
         priceInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.topInfoViewOffset).isActive = true
+        
+        view.addSubview(bussinessInfoView)
+        bussinessInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        bussinessInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bussinessInfoView.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor).isActive = true
     }
     
     private func addChildToContentContainer(vc: UIViewController) {
@@ -124,6 +135,18 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         videoPosterVC.reset()
         if let event = event(by: posterIndex) {
             showPoster(for: event)
+        }
+        bussinessInfoView.set(likes: bussiness.likes,
+                              name: bussiness.name,
+                              address: bussiness.address,
+                              category: bussiness.category) {
+            print("EventsSwiperEstablishmentContentVC -> on guest list!!!")
+        } onTaxi: {
+            print("EventsSwiperEstablishmentContentVC -> on taxi!!!")
+        } onLike: {
+            print("EventsSwiperEstablishmentContentVC -> on like!!!")
+        } onExpand: {
+            print("EventsSwiperEstablishmentContentVC -> on expand!!!")
         }
     }
     
@@ -172,5 +195,6 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
     func setOverlays(hidden: Bool) {
         dateInfoView.isHidden = hidden
         priceInfoView.isHidden = hidden
+        bussinessInfoView.isHidden = hidden
     }
 }

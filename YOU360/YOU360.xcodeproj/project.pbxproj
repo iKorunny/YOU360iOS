@@ -73,6 +73,7 @@
 		80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */; };
 		80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */; };
 		80528F062B8DFAFB000D6D80 /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F052B8DFAFB000D6D80 /* LoaderManager.swift */; };
+		8053227C2BE17C4200554FCD /* EventSwiperBussinessBluredTransparentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */; };
 		8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */; };
 		8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */; };
 		8058F62F2BCF09A6008DD704 /* TableViewInputFocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */; };
@@ -504,6 +505,7 @@
 		80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FulScreenLoaderVC.swift; sourceTree = "<group>"; };
 		80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoading.swift; sourceTree = "<group>"; };
 		80528F052B8DFAFB000D6D80 /* LoaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderManager.swift; sourceTree = "<group>"; };
+		805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSwiperBussinessBluredTransparentView.swift; sourceTree = "<group>"; };
 		8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewInputFocusService.swift; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 			isa = PBXGroup;
 			children = (
 				801E86D72BE039E700E9FB35 /* EventInfoView.swift */,
+				805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -1673,6 +1676,7 @@
 				80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */,
 				806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */,
 				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,
+				8053227C2BE17C4200554FCD /* EventSwiperBussinessBluredTransparentView.swift in Sources */,
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
 				805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */,
 				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,

@@ -53,6 +53,18 @@ public final class Formatters {
         formatter.currencySymbol = currencySymbol
         return formatter.string(from: NSNumber(value: amount))
     }
+    
+    public static func formatShorForm(of value: Int) -> String? {
+        if value >= 1000, value <= 999999 {
+            return "\(Int(floor(Double(value / 1000))))K"
+        }
+        
+        if value > 999999 {
+            return "\(Int(floor(Double(value / 1000000))))M"
+        }
+        
+        return "\(value)"
+    }
 }
 
 public final class DateOfBirthNetworkFormatter {
