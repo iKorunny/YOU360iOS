@@ -280,7 +280,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
         ProfileNetworkService().makeUpdateProfileRequest(
             id: profile.id,
             email: profile.email,
-            username: profile.userName,
+            username: profile.userName ?? "",
             name: nameToSave,
             surname: surnameToSave,
             aboutMe: aboutMeToSave,

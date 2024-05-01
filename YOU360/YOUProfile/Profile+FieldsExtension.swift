@@ -11,7 +11,7 @@ import YOUUtils
 
 extension Profile {
     var displayName: String {
-        return Formatters.formatFullName(firstName: name, lastName: surname) ?? userName
+        return Formatters.formatFullName(firstName: name, lastName: surname) ?? userName ?? ""
     }
     
     var isVerified: Bool {

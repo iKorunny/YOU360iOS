@@ -199,10 +199,12 @@ public final class EventSwiperBussinessBluredTransparentView: UIView {
     private func updateButtons() {
         buttonsContainer.arrangedSubviews.forEach {
             buttonsContainer.removeArrangedSubview($0)
+            $0.removeFromSuperview()
         }
         
         smallButtonsContainer.arrangedSubviews.forEach {
             smallButtonsContainer.removeArrangedSubview($0)
+            $0.removeFromSuperview()
         }
         
         if onGuestList != nil {
@@ -227,7 +229,7 @@ public final class EventSwiperBussinessBluredTransparentView: UIView {
     }
     
     private func makeGuestListButton() -> UIButton {
-        return ButtonsFactory.createButton(
+        return ButtonsFactory.createButtonDisablingGestures(
             backgroundColor: ColorPallete.appWhite4,
             highlightedBackgroundColor: ColorPallete.appDarkWhite,
             title: "EventsGuestListButton".localised(),
@@ -243,21 +245,21 @@ public final class EventSwiperBussinessBluredTransparentView: UIView {
     }
     
     private func makeTaxiButton() -> UIButton {
-        let button = UIButton()
+        let button = ButtonDisablingGestures()
         button.setBackgroundImage(UIImage(named: "EventTaxiIcon"), for: .normal)
         button.addTarget(self, action: #selector(taxiAction), for: .touchUpInside)
         return button
     }
     
     private func makeLikeButton() -> UIButton {
-        let button = UIButton()
+        let button = ButtonDisablingGestures()
         button.setBackgroundImage(UIImage(named: "EventMyLikeIcon"), for: .normal)
         button.addTarget(self, action: #selector(likeAction), for: .touchUpInside)
         return button
     }
     
     private func makeExpandButton() -> UIButton {
-        let button = UIButton()
+        let button = ButtonDisablingGestures()
         button.setBackgroundImage(UIImage(named: "EventToBussinessIcon"), for: .normal)
         button.addTarget(self, action: #selector(expandAction), for: .touchUpInside)
         return button
@@ -299,5 +301,15 @@ public final class EventSwiperBussinessBluredTransparentView: UIView {
         mask.frame = bounds
         layer.addSublayer(mask)
         layer.mask = mask
+    }
+    
+    override public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let result = super.gestureRecognizerShouldBegin(gestureRecognizer)
+        
+        if gestureRecognizer is UILongPressGestureRecognizer {
+            return false
+        }
+        
+        return result
     }
 }

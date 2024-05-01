@@ -21,9 +21,7 @@ final class EventsSwiperContentVC: UIViewController {
         return UITapGestureRecognizer(target: self, action: #selector(onTap))
     }()
     private lazy var contentLongPressGesture: UILongPressGestureRecognizer = {
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
-        gesture.delegate = self
-        return gesture
+        return UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
     }()
     private lazy var contentSwipeToNextGesture: UISwipeGestureRecognizer = {
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(onNextSwipe))
@@ -218,17 +216,6 @@ final class EventsSwiperContentVC: UIViewController {
             let bussiness = dataSource?.bussiness {
             addContent(vc: currentContentVC)
             currentContentVC.show(bussiness: bussiness)
-        }
-    }
-}
-
-extension EventsSwiperContentVC: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        let touchedView = gestureRecognizer.view
-        
-        switch touchedView {
-        case is UIButton : return false
-        default: return true
         }
     }
 }

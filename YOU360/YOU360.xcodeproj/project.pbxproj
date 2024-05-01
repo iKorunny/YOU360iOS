@@ -151,6 +151,7 @@
 		80A4F5A22B836C66002CC9AD /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */; };
 		80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */; };
 		80A7395A2B85262000A5A482 /* LoginTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739592B85262000A5A482 /* LoginTableVC.swift */; };
+		80A82EA52BE2D26F00F66E82 /* ButtonDisablingGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */; };
 		80ADA48C2BD0599400303938 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA48B2BD0599400303938 /* Validators.swift */; };
 		80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */; };
 		80BF5E5F2B8A029F0017524F /* LoginButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */; };
@@ -573,6 +574,7 @@
 		80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUFontsProvider.swift; sourceTree = "<group>"; };
 		80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 		80A739592B85262000A5A482 /* LoginTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableVC.swift; sourceTree = "<group>"; };
+		80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDisablingGestures.swift; sourceTree = "<group>"; };
 		80ADA48B2BD0599400303938 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditScreenFieldModel.swift; sourceTree = "<group>"; };
 		80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonsCell.swift; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 			children = (
 				801E86D72BE039E700E9FB35 /* EventInfoView.swift */,
 				805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */,
+				80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -1678,6 +1681,7 @@
 				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,
 				8053227C2BE17C4200554FCD /* EventSwiperBussinessBluredTransparentView.swift in Sources */,
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
+				80A82EA52BE2D26F00F66E82 /* ButtonDisablingGestures.swift in Sources */,
 				805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */,
 				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,
 				805CB4A02BA8B3A50051665E /* YOUNativeDatePickerVC.swift in Sources */,
