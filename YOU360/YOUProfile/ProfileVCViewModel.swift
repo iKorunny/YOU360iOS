@@ -275,9 +275,9 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         case .content:
             return postsDataSource?.numberOfPosts ?? 0
         case .events:
-            return profileManager.profile?.events ?? 0
+            return profileManager.profile?.eventsCount ?? 0
         case .places:
-            return profileManager.profile?.establishments ?? 0
+            return profileManager.profile?.establishmentsCount ?? 0
         }
     }
     
@@ -293,11 +293,11 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     private func reloadContent(with updatedProfile: Profile) {
-        guard updatedProfile.posts > 0 else {
+        guard updatedProfile.postsCount > 0 else {
             collectionView?.reloadSections([Constants.contentSectionIndex])
             return
         }
-        postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.posts)) { [weak self] success, localError in
+        postsDataSource?.reloadContent(userId: updatedProfile.id, page: RequestPage(offset: 0, size: updatedProfile.postsCount)) { [weak self] success, localError in
             if success {
                 self?.collectionView?.reloadSections([Constants.contentSectionIndex])
             }

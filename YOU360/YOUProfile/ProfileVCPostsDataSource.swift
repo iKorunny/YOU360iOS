@@ -15,7 +15,7 @@ final class ProfileVCPostsDataSource {
     private var posts: [ProfileContent] = []
     
     var numberOfPosts: Int {
-        ProfileManager.shared.profile?.posts ?? 0
+        ProfileManager.shared.profile?.postsCount ?? 0
     }
     
     var shouldShowLoadingFooter: Bool = true

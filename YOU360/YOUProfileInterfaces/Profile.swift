@@ -25,9 +25,9 @@ public final class Profile: Codable {
         case instagram = "instagram"
         case facebook = "facebook"
         case twitter = "twitter"
-        case posts = "posts"
-        case events = "events"
-        case establishments = "establishments"
+        case postsCount = "postsCount"
+        case eventsCount = "eventsCount"
+        case establishmentsCount = "establishmentsCount"
         case photoAvatarUrl = "photoAvatarUrl"
         case photoBackgroundUrl = "photoBackgroundUrl"
         case verification = "verification"
@@ -46,9 +46,9 @@ public final class Profile: Codable {
     public var instagram: String?
     public var facebook: String?
     public var twitter: String?
-    public var posts: Int
-    public var events: Int
-    public var establishments: Int
+    public var postsCount: Int
+    public var eventsCount: Int
+    public var establishmentsCount: Int
     public var photoAvatarUrl: String?
     public var photoBackgroundUrl: String?
     public var verification: ProfileVerification
@@ -68,9 +68,9 @@ public final class Profile: Codable {
         try container.encode(instagram, forKey: .instagram)
         try container.encode(facebook, forKey: .facebook)
         try container.encode(twitter, forKey: .twitter)
-        try container.encode(posts, forKey: .posts)
-        try container.encode(events, forKey: .events)
-        try container.encode(establishments, forKey: .establishments)
+        try container.encode(postsCount, forKey: .postsCount)
+        try container.encode(eventsCount, forKey: .eventsCount)
+        try container.encode(establishmentsCount, forKey: .establishmentsCount)
         try container.encode(photoAvatarUrl, forKey: .photoAvatarUrl)
         try container.encode(photoBackgroundUrl, forKey: .photoBackgroundUrl)
         try container.encode(verification.rawValue, forKey: .verification)
@@ -80,9 +80,9 @@ public final class Profile: Codable {
         id = ""
         email = ""
         userName = ""
-        posts = 0
-        events = 0
-        establishments = 0
+        postsCount = 0
+        eventsCount = 0
+        establishmentsCount = 0
         verification = .no
     }
 }

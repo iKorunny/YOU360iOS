@@ -89,7 +89,7 @@ public final class ProfileManager {
     }
     
     public func applyUpdate(updatedProfile: Profile) {
-        profile?.posts = updatedProfile.posts
+        profile?.postsCount = updatedProfile.postsCount
         saveProfile()
     }
 }
@@ -105,9 +105,9 @@ extension Profile {
         instagram != nil ||
         facebook != nil ||
         twitter != nil ||
-        posts != 0 ||
-        events != 0 ||
-        establishments != 0 ||
+        postsCount != 0 ||
+        eventsCount != 0 ||
+        establishmentsCount != 0 ||
         photoAvatarUrl != nil ||
         photoBackgroundUrl != nil
     }
