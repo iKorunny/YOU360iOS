@@ -21,7 +21,9 @@ final class EventsSwiperContentVC: UIViewController {
         return UITapGestureRecognizer(target: self, action: #selector(onTap))
     }()
     private lazy var contentLongPressGesture: UILongPressGestureRecognizer = {
-        return UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
+        gesture.delegate = self
+        return gesture
     }()
     private lazy var contentSwipeToNextGesture: UISwipeGestureRecognizer = {
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(onNextSwipe))
@@ -89,33 +91,6 @@ final class EventsSwiperContentVC: UIViewController {
         contentAnimationView.topAnchor.constraint(equalTo: contentGestuiresView.topAnchor).isActive = true
         contentAnimationView.trailingAnchor.constraint(equalTo: contentGestuiresView.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
         contentAnimationView.bottomAnchor.constraint(equalTo: contentGestuiresView.bottomAnchor).isActive = true
-        
-//        lineVC.willMove(toParent: self)
-//        contentAnimationView.addSubview(lineVC.view)
-//        lineVC.view.heightAnchor.constraint(equalToConstant: Constants.lineHeight).isActive = true
-//        lineVC.view.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
-//        lineVC.view.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
-//        lineVC.view.topAnchor.constraint(equalTo: contentAnimationView.topAnchor, constant: Constants.lineTopOffset).isActive = true
-//        addChild(lineVC)
-//        lineVC.didMove(toParent: self)
-        
-//        contentAnimationView.addSubview(contentContainer)
-//        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
-//        contentContainer.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
-//        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
-//        contentContainer.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
-        
-//        addChildToContentContainer(vc: firstPosterVC)
-//        firstPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/3850/2160"))
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            self.cubicAnimator.animate(with: .fromLeft, currentVC: firstPosterVC) {
-//                self.addChildToContentContainer(vc: self.newPosterVC)
-//            }
-//            
-//            self.newPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/1920/1080"))
-//        }
-        
         
         contentGestuiresView.addGestureRecognizer(contentTapGesture)
         contentGestuiresView.addGestureRecognizer(contentLongPressGesture)
@@ -243,6 +218,17 @@ final class EventsSwiperContentVC: UIViewController {
             let bussiness = dataSource?.bussiness {
             addContent(vc: currentContentVC)
             currentContentVC.show(bussiness: bussiness)
+        }
+    }
+}
+
+extension EventsSwiperContentVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let touchedView = gestureRecognizer.view
+        
+        switch touchedView {
+        case is UIButton : return false
+        default: return true
         }
     }
 }

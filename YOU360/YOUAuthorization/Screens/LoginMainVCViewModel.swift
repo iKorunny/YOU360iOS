@@ -61,7 +61,7 @@ final class LoginMainVCViewModel: NSObject, LoginTableVCViewModel {
                 
                 AuthorizationAPIService.shared.requestLogin(email: self?.fieldsCellModel.loginString ?? "",
                                                             password: self?.fieldsCellModel.passwordString ?? "") { [weak self] success, errors, profile, token, rToken in
-                    if !errors.isEmpty {
+                    if !success {
                         self?.loaderManager.removeFullscreenLoader(completion: { [weak self] _ in
                             if let vc = self?.viewController {
                                 if errors.contains(where: { $0.isNoInternet }) {
