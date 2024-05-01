@@ -35,7 +35,7 @@ public final class Profile: Codable {
     
     public var id: String
     public var email: String
-    public var userName: String?
+    public var userName: String
     
     public var name: String?
     public var surname: String?
@@ -47,7 +47,7 @@ public final class Profile: Codable {
     public var facebook: String?
     public var twitter: String?
     public var postsCount: Int
-    public var eventsCount: Int?
+    public var eventsCount: Int
     public var establishmentsCount: Int
     public var photoAvatarUrl: String?
     public var photoBackgroundUrl: String?
