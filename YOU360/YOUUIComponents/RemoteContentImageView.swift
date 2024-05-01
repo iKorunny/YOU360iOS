@@ -32,6 +32,7 @@ public final class RemoteContentImageView: UIImageView {
     private var loader: SingleImageLoading? {
         didSet {
             oldValue?.stopLoading()
+            oldValue?.invalidate()
         }
     }
     

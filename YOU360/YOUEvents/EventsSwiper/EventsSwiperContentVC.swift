@@ -151,6 +151,7 @@ final class EventsSwiperContentVC: UIViewController {
               !dataSource.isLastEvent else { return }
         let currentVC = contentControllers.currentItem
         currentVC?.toNextPoster()
+        dataSource.onNextEvent()
     }
     
     private func toPreviousEventIfPossible() {
@@ -158,6 +159,7 @@ final class EventsSwiperContentVC: UIViewController {
               !dataSource.isFirstEvent else { return }
         let currentVC = contentControllers.currentItem
         currentVC?.toPreviousPoster()
+        dataSource.onPreviousEvent()
     }
     
     @objc private func onLongPress(sender: UILongPressGestureRecognizer) {

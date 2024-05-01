@@ -29,7 +29,7 @@ public final class Formatters {
     
     public static func formatFullName(firstName: String?, lastName: String?) -> String? {
         let formatter = PersonNameComponentsFormatter()
-        var components = PersonNameComponents(namePrefix: nil,
+        let components = PersonNameComponents(namePrefix: nil,
                                               givenName: firstName,
                                               middleName: nil,
                                               familyName: lastName,
@@ -42,7 +42,7 @@ public final class Formatters {
     
     public static func formatEvent(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.mm.yy"
+        formatter.dateFormat = "dd.MM.YY"
         return formatter.string(from: date)
     }
     

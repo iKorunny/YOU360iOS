@@ -100,15 +100,15 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         addChildToContentContainer(vc: posterVC)
         addChildToContentContainer(vc: videoPosterVC)
         
-        view.addSubview(dateInfoView)
+        contentContainer.addSubview(dateInfoView)
         dateInfoView.topAnchor.constraint(equalTo: contentContainer.topAnchor, constant: Constants.topInfoViewOffset).isActive = true
         dateInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.topInfoViewOffset).isActive = true
         
-        view.addSubview(priceInfoView)
+        contentContainer.addSubview(priceInfoView)
         priceInfoView.topAnchor.constraint(equalTo: contentContainer.topAnchor, constant: Constants.topInfoViewOffset).isActive = true
         priceInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.topInfoViewOffset).isActive = true
         
-        view.addSubview(bussinessInfoView)
+        contentContainer.addSubview(bussinessInfoView)
         bussinessInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         bussinessInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         bussinessInfoView.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor).isActive = true

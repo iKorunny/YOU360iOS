@@ -229,7 +229,7 @@ public final class EventSwiperBussinessBluredTransparentView: UIView {
     private func makeGuestListButton() -> UIButton {
         return ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appWhite4,
-            highlightedBackgroundColor: ColorPallete.appWhite4.withAlphaComponent(0.5),
+            highlightedBackgroundColor: ColorPallete.appDarkWhite,
             title: "EventsGuestListButton".localised(),
             titleFont: YOUFontsProvider.appSemiBoldFont(with: Constants.guestListButtonTextSize),
             titleColor: ColorPallete.appBlackSecondary,
