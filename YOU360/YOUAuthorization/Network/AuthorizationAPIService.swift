@@ -78,9 +78,14 @@ final public class AuthorizationAPIService {
                                                 "email" : email,
                                                 "password" : password
                                                ])
+        print("Request: \(request)")
         
         dataTask = requester.performDataTask(from: request) { data, response, error, performerError in
             var errors: [AuthorizationAPIError] = []
+            print("Response: \(response)")
+            if let data {
+                print("Response data: \(String(describing: String(data: data, encoding: .utf8)))")
+            }
             
             if let performerError = performerError {
                 errors.append(.map(performerError: performerError))
@@ -91,6 +96,7 @@ final public class AuthorizationAPIService {
             }
             
             if let error = error {
+                print("Response error: \(error)")
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -137,9 +143,14 @@ final public class AuthorizationAPIService {
                                                 "email" : email,
                                                 "password" : password
                                                ])
+        print("Request: \(request)")
         
         dataTask = requester.performDataTask(from: request) { data, response, error, performerError in
             var errors: [AuthorizationAPIError] = []
+            print("Response: \(response)")
+            if let data {
+                print("Response data: \(String(describing: String(data: data, encoding: .utf8)))")
+            }
             
             if let performerError = performerError {
                 errors.append(.map(performerError: performerError))
@@ -149,6 +160,7 @@ final public class AuthorizationAPIService {
                 return
             }
             if let error = error {
+                print("Response error: \(error)")
                 errors.append(AuthorizationAPIError(stringRepresentation: error.localizedDescription))
             }
             guard let httpResponse = response as? HTTPURLResponse else {

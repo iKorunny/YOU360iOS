@@ -59,6 +59,9 @@ public final class SecretPartNetworkService {
     
     public func performDataTask(request: URLRequest,
                                 completion: @escaping ((Data?, URLResponse?, Error?, SecretPartNetworkLocalError?) -> Void)) {
+        
+        print("Request: \(request)")
+        
         dataTask = requester.performDataTask(from: request) { [weak self] data, response, error, performerError in
             if let performerError = performerError {
                 completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
@@ -68,6 +71,7 @@ public final class SecretPartNetworkService {
             guard let self,
                   let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 401 else {
+                print("Response: \(String(describing: response))")
                 completion(data, response, error, nil)
                 return
             }
@@ -77,6 +81,7 @@ public final class SecretPartNetworkService {
                     completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
                     return
                 }
+                print("Response: \(String(describing: response)), \nerror: \(String(describing: error))")
                 guard response?.isSuccess == true,
                       let data = data,
                       let tokens = try? JSONDecoder().decode([String: String].self, from: data) else {
@@ -99,9 +104,13 @@ public final class SecretPartNetworkService {
                 }
                 
                 self?.dataTask = self?.requester.performDataTask(from: requestToRepeat) { data, response, error, performerError in
+                    print("Response: \(String(describing: response)), \nerror: \(String(describing: error))")
                     if let performerError = performerError {
                         completion(nil, nil, nil, SecretPartNetworkLocalError.map(performerError: performerError))
                         return
+                    }
+                    if let data {
+                        print("Data: \(String(describing: String(data: data, encoding: .utf8)))")
                     }
                     completion(data, response, error, nil)
                 }

@@ -127,7 +127,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         
         profile = ProfileManager.shared.profile
         
-        if let imagePath = profile?.photoAvatarUrl {
+        if let imagePath = profile?.avatar?.contentUrl {
             networkService.makeDownloadImageGetRequest(imagePath: imagePath) { [weak self] avatar in
                 self?.avatarImage = avatar
                 self?.loaderManager.removeFullscreenLoader()

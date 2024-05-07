@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import YOUNetworking
+
 public enum ProfileVerification: Int, Decodable {
     case no
     case verified
@@ -21,16 +23,21 @@ public final class Profile: Codable {
         case aboutMe = "aboutMe"
         case dateOfBirth = "dateOfBirth"
         case city = "city"
-//        case paymentMethod = "paymentMethod"
+        case paymentMethod = "paymentMethod"
         case instagram = "instagram"
         case facebook = "facebook"
         case twitter = "twitter"
-        case posts = "posts"
-        case events = "events"
-        case establishments = "establishments"
-        case photoAvatarUrl = "photoAvatarUrl"
-        case photoBackgroundUrl = "photoBackgroundUrl"
+        case postsCount = "postsCount"
+        case likedEventsCount = "likedEventsCount"
+        case ticketsCount = "ticketsCount"
+        case establishmentsSubscriptionsCount = "establishmentsSubscriptionsCount"
+        case reservationsCount = "reservationsCount"
         case verification = "verification"
+        case background = "background"
+        case backgroundId = "backgroundId"
+        case avatar = "avatar"
+        case avatarId = "avatarId"
+        case establishmentId = "establishmentId"
     }
     
     public var id: String
@@ -42,16 +49,21 @@ public final class Profile: Codable {
     public var aboutMe: String?
     public var dateOfBirth: String?
     public var city: String?
-//    public var paymentMethod
+    public var paymentMethod: String?
     public var instagram: String?
     public var facebook: String?
     public var twitter: String?
-    public var posts: Int
-    public var events: Int
-    public var establishments: Int
-    public var photoAvatarUrl: String?
-    public var photoBackgroundUrl: String?
+    public var postsCount: Int
+    public var ticketsCount: Int
+    public var likedEventsCount: Int
+    public var establishmentsSubscriptionsCount: Int
+    public var reservationsCount: Int
+    public var avatar: ContentResponse?
+    public var avatarId: String?
+    public var background: ContentResponse?
+    public var backgroundId: String?
     public var verification: ProfileVerification
+    public var establishmentId: String?
     
     
     public func encode(to encoder: Encoder) throws {
@@ -64,15 +76,17 @@ public final class Profile: Codable {
         try container.encode(aboutMe, forKey: .aboutMe)
         try container.encode(dateOfBirth, forKey: .dateOfBirth)
         try container.encode(city, forKey: .city)
-//        try container.encode(paymentMethod, forKey: .paymentMethod)
+        try container.encode(paymentMethod, forKey: .paymentMethod)
         try container.encode(instagram, forKey: .instagram)
         try container.encode(facebook, forKey: .facebook)
         try container.encode(twitter, forKey: .twitter)
-        try container.encode(posts, forKey: .posts)
-        try container.encode(events, forKey: .events)
-        try container.encode(establishments, forKey: .establishments)
-        try container.encode(photoAvatarUrl, forKey: .photoAvatarUrl)
-        try container.encode(photoBackgroundUrl, forKey: .photoBackgroundUrl)
+        try container.encode(postsCount, forKey: .postsCount)
+        try container.encode(likedEventsCount, forKey: .likedEventsCount)
+        try container.encode(establishmentsSubscriptionsCount, forKey: .establishmentsSubscriptionsCount)
+        try container.encode(avatarId, forKey: .avatarId)
+        try container.encode(avatar, forKey: .avatar)
+        try container.encode(background, forKey: .background)
+        try container.encode(backgroundId, forKey: .backgroundId)
         try container.encode(verification.rawValue, forKey: .verification)
     }
     
@@ -80,9 +94,11 @@ public final class Profile: Codable {
         id = ""
         email = ""
         userName = ""
-        posts = 0
-        events = 0
-        establishments = 0
+        postsCount = 0
+        likedEventsCount = 0
+        establishmentsSubscriptionsCount = 0
+        reservationsCount = 0
+        ticketsCount = 0
         verification = .no
     }
 }

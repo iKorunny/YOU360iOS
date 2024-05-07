@@ -33,6 +33,10 @@ public final class ColorPallete {
         return UIColor.color(from: "#F5F5F5")
     }
     
+    public static var appDirtyWhite: UIColor {
+        return UIColor.color(from: "#FFF7FA")
+    }
+    
     public static var appPink: UIColor {
         return UIColor.color(from: "#F81C79")
     }

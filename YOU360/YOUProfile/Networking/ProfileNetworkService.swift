@@ -141,7 +141,7 @@ final class ProfileNetworkService {
                                                                   textFields: [],
                                                                   dataFields: multipartImageFields)
         
-        secretNetworkService.performDataTask(request: request) { _, response, error, localError in
+        secretNetworkService.performDataTask(request: request) { data, response, error, localError in
             guard error == nil && localError == nil,
             response?.isSuccess == true else {
                 DispatchQueue.main.async {
@@ -205,6 +205,7 @@ final class ProfileNetworkService {
                                                          token: secretNetworkService.authToken,
                                                          method: .get,
                                                          json: nil)
+
         secretNetworkService.performDataTask(request: request) { data, response, error, localError in
             guard error == nil && localError == nil,
                   response?.isSuccess == true,
