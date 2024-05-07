@@ -27,6 +27,7 @@
 		8018B84B2BD4189C000BED8D /* YOULocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B84A2BD4189C000BED8D /* YOULocationManager.swift */; };
 		801E86D22BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E86D12BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift */; };
 		801E86D42BDC2B1C00E9FB35 /* FullScreenLoopedVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E86D32BDC2B1C00E9FB35 /* FullScreenLoopedVideoPlayerController.swift */; };
+		801E86D82BE039E700E9FB35 /* EventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E86D72BE039E700E9FB35 /* EventInfoView.swift */; };
 		801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */; };
 		801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */; };
 		801F7A742BCC3FF200277394 /* RequestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801F7A732BCC3FF200277394 /* RequestPage.swift */; };
@@ -76,6 +77,7 @@
 		80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */; };
 		80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */; };
 		80528F062B8DFAFB000D6D80 /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80528F052B8DFAFB000D6D80 /* LoaderManager.swift */; };
+		8053227C2BE17C4200554FCD /* EventSwiperBussinessBluredTransparentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */; };
 		8054AA4C2B83D045001AFCF4 /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */; };
 		8054AA4E2B83D086001AFCF4 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */; };
 		8058F62F2BCF09A6008DD704 /* TableViewInputFocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */; };
@@ -153,6 +155,7 @@
 		80A4F5A22B836C66002CC9AD /* Manrope-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F58C2B836800002CC9AD /* Manrope-SemiBold.ttf */; };
 		80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */; };
 		80A7395A2B85262000A5A482 /* LoginTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739592B85262000A5A482 /* LoginTableVC.swift */; };
+		80A82EA52BE2D26F00F66E82 /* ButtonDisablingGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */; };
 		80ADA48C2BD0599400303938 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA48B2BD0599400303938 /* Validators.swift */; };
 		80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */; };
 		80BF5E5F2B8A029F0017524F /* LoginButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */; };
@@ -462,6 +465,7 @@
 		8018B84A2BD4189C000BED8D /* YOULocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOULocationManager.swift; sourceTree = "<group>"; };
 		801E86D12BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperVideoPosterVC.swift; sourceTree = "<group>"; };
 		801E86D32BDC2B1C00E9FB35 /* FullScreenLoopedVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoopedVideoPlayerController.swift; sourceTree = "<group>"; };
+		801E86D72BE039E700E9FB35 /* EventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoView.swift; sourceTree = "<group>"; };
 		801F7A6E2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCPostsDataSource.swift; sourceTree = "<group>"; };
 		801F7A702BCC30DB00277394 /* ProfilePostCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCellModel.swift; sourceTree = "<group>"; };
 		801F7A732BCC3FF200277394 /* RequestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPage.swift; sourceTree = "<group>"; };
@@ -510,6 +514,7 @@
 		80528F012B8DF8E2000D6D80 /* FulScreenLoaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FulScreenLoaderVC.swift; sourceTree = "<group>"; };
 		80528F032B8DF8FC000D6D80 /* FullscreenLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoading.swift; sourceTree = "<group>"; };
 		80528F052B8DFAFB000D6D80 /* LoaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderManager.swift; sourceTree = "<group>"; };
+		805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSwiperBussinessBluredTransparentView.swift; sourceTree = "<group>"; };
 		8054AA4B2B83D045001AFCF4 /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 		8054AA4D2B83D086001AFCF4 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		8058F62E2BCF09A6008DD704 /* TableViewInputFocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewInputFocusService.swift; sourceTree = "<group>"; };
@@ -577,6 +582,7 @@
 		80A4F59A2B83690F002CC9AD /* YOUFontsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUFontsProvider.swift; sourceTree = "<group>"; };
 		80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 		80A739592B85262000A5A482 /* LoginTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableVC.swift; sourceTree = "<group>"; };
+		80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDisablingGestures.swift; sourceTree = "<group>"; };
 		80ADA48B2BD0599400303938 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditScreenFieldModel.swift; sourceTree = "<group>"; };
 		80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonsCell.swift; sourceTree = "<group>"; };
@@ -808,6 +814,16 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		801E86D62BE039AD00E9FB35 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				801E86D72BE039E700E9FB35 /* EventInfoView.swift */,
+				805322792BE17B7A00554FCD /* EventSwiperBussinessBluredTransparentView.swift */,
+				80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		8032A53E2B820B7600294DD7 = {
 			isa = PBXGroup;
 			children = (
@@ -881,6 +897,7 @@
 		8032A57C2B820D8200294DD7 /* YOUUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				801E86D62BE039AD00E9FB35 /* Events */,
 				8032A57D2B820D8200294DD7 /* YOUUIComponents.h */,
 				80A4F56E2B824350002CC9AD /* ButtonsFactory.swift */,
 				80A739552B851E0F00A5A482 /* CustomNavigationViewController.swift */,
@@ -1731,13 +1748,16 @@
 				80A4F56F2B824350002CC9AD /* ButtonsFactory.swift in Sources */,
 				806B3E982B8683F9007A695D /* TextFieldWithError.swift in Sources */,
 				80528F042B8DF8FC000D6D80 /* FullscreenLoading.swift in Sources */,
+				8053227C2BE17C4200554FCD /* EventSwiperBussinessBluredTransparentView.swift in Sources */,
 				806B3E9A2B87A3EB007A695D /* TopRoundedView.swift in Sources */,
+				80A82EA52BE2D26F00F66E82 /* ButtonDisablingGestures.swift in Sources */,
 				805C558F2BA73C2C00CBC64E /* YOUImagePicker.swift in Sources */,
 				80528F022B8DF8E2000D6D80 /* FulScreenLoaderVC.swift in Sources */,
 				805CB4A02BA8B3A50051665E /* YOUNativeDatePickerVC.swift in Sources */,
 				804824312B9466280057F152 /* YOUNavigationController.swift in Sources */,
 				805CB49E2BA8A8160051665E /* YOUDatePicker.swift in Sources */,
 				80A739562B851E0F00A5A482 /* CustomNavigationViewController.swift in Sources */,
+				801E86D82BE039E700E9FB35 /* EventInfoView.swift in Sources */,
 				806B3E9C2B87AE99007A695D /* CustomNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

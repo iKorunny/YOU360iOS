@@ -29,7 +29,7 @@ public final class Formatters {
     
     public static func formatFullName(firstName: String?, lastName: String?) -> String? {
         let formatter = PersonNameComponentsFormatter()
-        var components = PersonNameComponents(namePrefix: nil,
+        let components = PersonNameComponents(namePrefix: nil,
                                               givenName: firstName,
                                               middleName: nil,
                                               familyName: lastName,
@@ -38,6 +38,32 @@ public final class Formatters {
                                               phoneticRepresentation: nil)
         
         return formatter.string(from: components)
+    }
+    
+    public static func formatEvent(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YY"
+        return formatter.string(from: date)
+    }
+    
+    public static func formatEventPrice(amount: CGFloat, currencySymbol: String) -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.minimumFractionDigits = 0
+        formatter.currencySymbol = currencySymbol
+        return formatter.string(from: NSNumber(value: amount))
+    }
+    
+    public static func formatShorForm(of value: Int) -> String? {
+        if value >= 1000, value <= 999999 {
+            return "\(Int(floor(Double(value / 1000))))K"
+        }
+        
+        if value > 999999 {
+            return "\(Int(floor(Double(value / 1000000))))M"
+        }
+        
+        return "\(value)"
     }
 }
 

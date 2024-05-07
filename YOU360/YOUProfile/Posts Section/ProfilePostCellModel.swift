@@ -12,9 +12,6 @@ import YOUNetworking
 final class ProfilePostCellModel {
     weak var cell: ProfileContentCell? {
         didSet {
-            if cell == nil {
-                print()
-            }
             cell?.set(image: image)
         }
     }

@@ -457,7 +457,7 @@ extension ProfileEditScreenViewModelImpl: YOUImagePickerDelegate {
 
 extension ProfileEditScreenViewModelImpl: ProfileEditFieldActionsDelegate {
     func onShouldEndEditing(for type: ProfileEditFieldModelType) {
-        print()
+        
     }
     
     func willShowPicker(for type: ProfileEditFieldModelType) -> Bool {

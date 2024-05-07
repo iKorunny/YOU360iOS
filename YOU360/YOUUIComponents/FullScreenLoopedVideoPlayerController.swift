@@ -20,12 +20,11 @@ public final class FullScreenLoopedVideoPlayerController: UIViewController {
     deinit {
         playerController.player?.pause()
         NotificationCenter.default.removeObserver(self)
-        guard observingPlayer else { return }
-        playerController.player?.currentItem?.removeObserver(self, forKeyPath: Constants.playerRateObserveKey)
-        observingPlayer = false
+        removeObservers()
     }
     
-    private var observingPlayer = false
+    private var statusObserver: NSKeyValueObservation?
+    private var rateObserver: NSKeyValueObservation?
     
     private lazy var activityControl: RemoteImageViewActivityDefault = {
         let activity = RemoteImageViewActivityDefault(style: .large)
@@ -67,27 +66,6 @@ public final class FullScreenLoopedVideoPlayerController: UIViewController {
         }
     }
     
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let playerItem = object as? AVPlayerItem, 
-            keyPath == Constants.playerStatusObserveKey {
-            switch playerItem.status {
-            case .readyToPlay:
-                activityControl.hide()
-            case .failed:
-                activityControl.hide()
-            case .unknown:
-                activityControl.show()
-            @unknown default:
-                activityControl.hide()
-            }
-        }
-        
-        if keyPath == Constants.playerRateObserveKey,
-            let player = playerController.player {
-            player.rate.isZero ? activityControl.show() : activityControl.hide()
-        }
-    }
-    
     private func setupColors() {
         view.backgroundColor = .clear
     }
@@ -106,14 +84,17 @@ public final class FullScreenLoopedVideoPlayerController: UIViewController {
         playerController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    private func removeObservers() {
+        statusObserver?.invalidate()
+        statusObserver = nil
+        rateObserver?.invalidate()
+        rateObserver = nil
+    }
+    
     public func reset() {
         DownloadCaches.getContentCache().removeAllCachedResponses()
         playerController.player?.pause()
-        if observingPlayer {
-            playerController.player?.currentItem?.removeObserver(self, forKeyPath: Constants.playerStatusObserveKey)
-            playerController.player?.currentItem?.removeObserver(self, forKeyPath: Constants.playerRateObserveKey)
-            observingPlayer = false
-        }
+        removeObservers()
         playerController.player?.replaceCurrentItem(with: nil)
         playerLooper = nil
         activityControl.hide()
@@ -122,9 +103,37 @@ public final class FullScreenLoopedVideoPlayerController: UIViewController {
     public func playVideo(with url: URL?) {
         guard let url = url else { return }
         playerController.player?.replaceCurrentItem(with: AVPlayerItem(url: url))
-        playerController.player?.currentItem?.addObserver(self, forKeyPath: Constants.playerStatusObserveKey, options: .new, context: nil)
-        playerController.player?.currentItem?.addObserver(self, forKeyPath: Constants.playerRateObserveKey, options: .new, context: nil)
-        observingPlayer = true
+        
+        statusObserver = playerController.player?.currentItem?.observe(\AVPlayerItem.status, changeHandler: { [weak self] item, _ in
+            DispatchQueue.main.async { [weak self] in
+                switch item.status {
+                case .readyToPlay:
+                    self?.activityControl.hide()
+                case .failed:
+                    self?.activityControl.hide()
+                case .unknown:
+                    self?.activityControl.show()
+                @unknown default:
+                    self?.activityControl.hide()
+                }
+            }
+        })
+        
+        rateObserver = playerController.player?.observe(\AVPlayer.rate, changeHandler: { [weak self] player, _ in
+            DispatchQueue.main.async { [weak self] in
+                switch player.status {
+                case .readyToPlay:
+                    player.rate.isZero ? self?.activityControl.show() : self?.activityControl.hide()
+                case .unknown:
+                    self?.activityControl.show()
+                case .failed:
+                    self?.activityControl.hide()
+                @unknown default:
+                    self?.activityControl.hide()
+                }
+            }
+        })
+        
         if let player = playerController.player as? AVQueuePlayer, let playerItem = player.currentItem {
             playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
         }

@@ -21,6 +21,9 @@ protocol EventsSwiperContentVCDataSource {
     
     var bussiness: EventsSwiperBussiness? { get }
     var event: EventsSwiperEvent? { get }
+    
+    func onNextEvent()
+    func onPreviousEvent()
 }
 
 final class EventsSwiperContentVCDataSourceImpl {
@@ -95,5 +98,15 @@ extension EventsSwiperContentVCDataSourceImpl: EventsSwiperContentVCDataSource {
         return events[eventIndex]
     }
     
+    func onNextEvent() {
+        let newIndex = eventIndex + 1
+        guard newIndex < events.count else { return }
+        eventIndex = newIndex
+    }
     
+    func onPreviousEvent() {
+        let newIndex = eventIndex - 1
+        guard newIndex >= 0 else { return }
+        eventIndex = newIndex
+    }
 }

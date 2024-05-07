@@ -90,33 +90,6 @@ final class EventsSwiperContentVC: UIViewController {
         contentAnimationView.trailingAnchor.constraint(equalTo: contentGestuiresView.trailingAnchor, constant: Constants.contentInsets.right).isActive = true
         contentAnimationView.bottomAnchor.constraint(equalTo: contentGestuiresView.bottomAnchor).isActive = true
         
-//        lineVC.willMove(toParent: self)
-//        contentAnimationView.addSubview(lineVC.view)
-//        lineVC.view.heightAnchor.constraint(equalToConstant: Constants.lineHeight).isActive = true
-//        lineVC.view.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
-//        lineVC.view.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
-//        lineVC.view.topAnchor.constraint(equalTo: contentAnimationView.topAnchor, constant: Constants.lineTopOffset).isActive = true
-//        addChild(lineVC)
-//        lineVC.didMove(toParent: self)
-        
-//        contentAnimationView.addSubview(contentContainer)
-//        contentContainer.leadingAnchor.constraint(equalTo: contentAnimationView.leadingAnchor).isActive = true
-//        contentContainer.topAnchor.constraint(equalTo: lineVC.view.bottomAnchor, constant: Constants.contentInsets.top).isActive = true
-//        contentContainer.trailingAnchor.constraint(equalTo: contentAnimationView.trailingAnchor).isActive = true
-//        contentContainer.bottomAnchor.constraint(equalTo: contentAnimationView.bottomAnchor).isActive = true
-        
-//        addChildToContentContainer(vc: firstPosterVC)
-//        firstPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/3850/2160"))
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            self.cubicAnimator.animate(with: .fromLeft, currentVC: firstPosterVC) {
-//                self.addChildToContentContainer(vc: self.newPosterVC)
-//            }
-//            
-//            self.newPosterVC.showImage(with: URL(string: "https://random.imagecdn.app/1920/1080"))
-//        }
-        
-        
         contentGestuiresView.addGestureRecognizer(contentTapGesture)
         contentGestuiresView.addGestureRecognizer(contentLongPressGesture)
         contentGestuiresView.addGestureRecognizer(contentSwipeToNextGesture)
@@ -148,26 +121,26 @@ final class EventsSwiperContentVC: UIViewController {
     
     private func toNextEventIfPossible() {
         guard let dataSource = dataSource,
-              !dataSource.isLastEvent,
-              let nextEvent = dataSource.nextEvent else { return }
+              !dataSource.isLastEvent else { return }
         let currentVC = contentControllers.currentItem
         currentVC?.toNextPoster()
+        dataSource.onNextEvent()
     }
     
     private func toPreviousEventIfPossible() {
         guard let dataSource = dataSource,
-              !dataSource.isFirstEvent,
-              let nextEvent = dataSource.previousEvent else { return }
+              !dataSource.isFirstEvent else { return }
         let currentVC = contentControllers.currentItem
         currentVC?.toPreviousPoster()
+        dataSource.onPreviousEvent()
     }
     
     @objc private func onLongPress(sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .began:
-            print("Long press start!!!!")
+            contentControllers.currentItem?.setOverlays(hidden: true)
         case .ended:
-            print("Long press end!!!!")
+            contentControllers.currentItem?.setOverlays(hidden: false)
         default: break
         }
     }

@@ -59,35 +59,8 @@ public final class SafeStorage: NSObject {
 		}
 	}
 	
-//	public static func getUserLogin() -> String? {
-//		return KeychainService.load(key: userLoginKey)
-//	}
-//	
-//	public static func removeUserLogin() {
-//		KeychainService.remove(key: userLoginKey)
-//	}
-//	
-//    public static func saveUserPassword(_ password: String) {
-//		if KeychainService.load(key: userPasKey) == nil {
-//			_ = KeychainService.save(key: userPasKey, data: password)
-//		}
-//		else {
-//			_ = KeychainService.update(key: userPasKey, data: password)
-//		}
-//	}
-//	
-//    public static func getUserPassword() -> String? {
-//		return KeychainService.load(key: userPasKey)
-//	}
-//	
-//    public static func removeUserPassword() {
-//		KeychainService.remove(key: userPasKey)
-//	}
-	
     public static func clear() {
 		removeAuthToken()
         removeRefreshToken()
-//		removeUserLogin()
-//		removeUserPassword()
 	}
 }

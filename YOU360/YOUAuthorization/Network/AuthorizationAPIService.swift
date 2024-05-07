@@ -109,13 +109,23 @@ final public class AuthorizationAPIService {
             var profile: Profile?
             let success = httpResponse.isSuccess
             if success {
-                guard let data = data else { return }
+                guard let data = data else {
+                    DispatchQueue.main.async {
+                        completion(false, errors, nil, nil, nil)
+                    }
+                    return
+                }
                 profile = try? JSONDecoder().decode(Profile.self, from: data)
             }
             else {
                 guard let data = data,
-                let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
-                let errorsString = errorsJSON["errors"] else { return }
+                      let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
+                      let errorsString = errorsJSON["errors"] else {
+                    DispatchQueue.main.async {
+                        completion(false, errors, nil, nil, nil)
+                    }
+                    return
+                }
                 
                 errorsString.forEach({ errors.append(AuthorizationAPIError(stringRepresentation: $0)) })
             }
@@ -173,13 +183,23 @@ final public class AuthorizationAPIService {
             var profile: Profile?
             let success = httpResponse.isSuccess
             if success {
-                guard let data = data else { return }
+                guard let data = data else {
+                    DispatchQueue.main.async {
+                        completion(false, errors, nil, nil, nil)
+                    }
+                    return
+                }
                 profile = try? JSONDecoder().decode(Profile.self, from: data)
             }
             else {
                 guard let data = data,
-                let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
-                let errorsString = errorsJSON["errors"] else { return }
+                      let errorsJSON = try? JSONSerialization.jsonObject(with: data) as? [String:[String]],
+                      let errorsString = errorsJSON["errors"] else {
+                    DispatchQueue.main.async {
+                        completion(false, errors, nil, nil, nil)
+                    }
+                    return
+                }
                 
                 errorsString.forEach({ errors.append(AuthorizationAPIError(stringRepresentation: $0)) })
             }
