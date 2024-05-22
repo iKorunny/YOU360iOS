@@ -8,7 +8,7 @@
 import UIKit
 import YOUUtils
 import YOUUIComponents
-import YOUProfileInterfaces
+import YOUNetworking
 
 enum OnlineIndicatorStatus: String {
     case online = "ProfileHeaderOnlineIndicatorOnline"
@@ -27,7 +27,7 @@ struct OnlineIndicator {
 }
 
 final class ProvileHeaderContentViewModel {
-    var profile: Profile?
+    var profile: UserInfoResponse?
     var avatar: UIImage?
     var banner: UIImage?
     var onlineIdicator: OnlineIndicator
@@ -35,7 +35,7 @@ final class ProvileHeaderContentViewModel {
     var onEdit: (() -> Void)
     var onShare: (() -> Void)
     
-    init(profile: Profile?,
+    init(profile: UserInfoResponse?,
          onlineIdicator: OnlineIndicator,
          avatar: UIImage?,
          banner: UIImage?,

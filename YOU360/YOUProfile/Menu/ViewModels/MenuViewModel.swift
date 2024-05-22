@@ -8,7 +8,6 @@
 import UIKit
 import YOUUIComponents
 import YOUUtils
-import YOUProfileInterfaces
 import YOUAuthorization
 import YOUNetworking
 
@@ -49,7 +48,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     
     var tableView: UITableView?
     var view: MenuView?
-    private var profile: Profile?
+    private var profile: UserInfoResponse?
     private var avatarImage: UIImage?
     
     var heightForRow: CGFloat {
@@ -117,6 +116,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     }
     
     private func logoutAction() {
+        ProfileManager.shared.deleteProfile()
         AuthorizationService.shared.onLogout()
     }
     

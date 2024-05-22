@@ -8,7 +8,6 @@
 import Foundation
 import YOUNetworking
 import UIKit
-import YOUProfileInterfaces
 import YOUUtils
 
 final class ProfileNetworkService {
@@ -51,7 +50,7 @@ final class ProfileNetworkService {
                                   isAvatarUpdated: Bool,
                                   banner: UIImage?,
                                   isBannerUpdated: Bool,
-                                  completion: @escaping ((Bool, Profile?, SecretPartNetworkLocalError?) -> Void)) {
+                                  completion: @escaping ((Bool, UserInfoResponse?, SecretPartNetworkLocalError?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Profile/UpdateProfileInfo")
 
         var multipartTextFields: [MultipartRequestTextField] = [
@@ -116,7 +115,7 @@ final class ProfileNetworkService {
                 return
             }
 
-            let profile: Profile? = try? JSONDecoder().decode(Profile.self, from: data)
+            let profile: UserInfoResponse? = try? JSONDecoder().decode(UserInfoResponse.self, from: data)
             DispatchQueue.main.async {
                 completion(profile != nil, profile, localError)
             }
@@ -126,7 +125,14 @@ final class ProfileNetworkService {
     func makeUploadImagePostRequest(id: String,
                                     image: UIImage,
                                     completion: @escaping ((Bool, SecretPartNetworkLocalError?) -> Void)) {
-        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)/media")
+        var url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post")
+        var queryItems: [URLQueryItem] = []
+        queryItems.append(URLQueryItem(name: "UserAuthorId", value: id))
+        queryItems.append(URLQueryItem(name: "PublicationDate", value: Formatters.formatEvent(date: Date())))
+        queryItems.append(URLQueryItem(name: "Visibility", value: "1"))
+        queryItems.append(URLQueryItem(name: "Description", value: "Test Test Test"))
+        url.append(queryItems: queryItems)
+        
         
         guard let postData = image.jpegData(compressionQuality: 1.0) else {
             DispatchQueue.main.async {
@@ -168,7 +174,7 @@ final class ProfileNetworkService {
         }
     }
     
-    func makeProfileRequest(id: String, completion: @escaping (Bool, Profile?, SecretPartNetworkLocalError?) -> Void) {
+    func makeProfileRequest(id: String, completion: @escaping (Bool, UserInfoResponse?, SecretPartNetworkLocalError?) -> Void) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)")
         
         let request = requestMaker.makeAuthorizedRequest(with: url,
@@ -188,16 +194,78 @@ final class ProfileNetworkService {
                 return
             }
 
-            let profile: Profile? = try? JSONDecoder().decode(Profile.self, from: data)
+            let profile: UserInfoResponse? = try? JSONDecoder().decode(UserInfoResponse.self, from: data)
             DispatchQueue.main.async {
                 completion(profile != nil, profile, localError)
             }
         }
     }
     
+    /*
+     {
+       "items": [
+         {
+           "id": "4c02014c-974d-4db1-8513-ea18c13b31b8",
+           "description": "Trololo",
+           "visibility": 1,
+           "publicationDate": "0001-01-01T00:00:00",
+           "contents": [
+             {
+               "id": "105f1f23-3c71-45a4-8c59-13bf8ff3ef44",
+               "contentUrl": "https://storage.googleapis.com/download/storage/v1/b/you360-bucket/o/Post%2FContent%2FImage%2FContent%2F105f1f23-3c71-45a4-8c59-13bf8ff3ef44?generation=1715598804925922&alt=media",
+               "previewUrl": "https://storage.googleapis.com/download/storage/v1/b/you360-bucket/o/Post%2FContent%2FImage%2FPreview%2F105f1f23-3c71-45a4-8c59-13bf8ff3ef44?generation=1715598805156460&alt=media",
+               "contentTypeFull": "image/png",
+               "contentTypeCompressed": "image/jpeg",
+               "contentName": "Post/Content/Image/Content/105f1f23-3c71-45a4-8c59-13bf8ff3ef44",
+               "previewName": "Post/Content/Image/Preview/105f1f23-3c71-45a4-8c59-13bf8ff3ef44"
+             }
+           ],
+           "userAuthor": {
+             "id": "f72d4638-43ff-49f5-bae5-dd0d769398f1",
+             "email": null,
+             "userName": null,
+             "name": "Andy",
+             "surname": null,
+             "aboutMe": null,
+             "dateOfBirth": null,
+             "city": null,
+             "paymentMethod": null,
+             "instagram": null,
+             "facebook": null,
+             "twitter": null,
+             "postsCount": 0,
+             "ticketsCount": 0,
+             "likedEventsCount": 0,
+             "establishmentsSubscriptionsCount": 0,
+             "reservationsCount": 0,
+             "avatar": null,
+             "avatarId": null,
+             "background": null,
+             "backgroundId": null,
+             "verification": 0,
+             "establishmentId": null
+           },
+           "userAuthorId": "f72d4638-43ff-49f5-bae5-dd0d769398f1",
+           "establishmentAuthor": null,
+           "establishmentAuthorId": null,
+           "likesCount": 0,
+           "commentsCount": 0
+         }
+       ],
+       "offset": 0,
+       "size": 100,
+       "totalCount": 1,
+       "hasNextItem": false,
+       "hasPreviousItem": false
+     }
+
+     */
+    
     func makeProfileMediaRequest(id: String, page: RequestPage, completion: @escaping (Bool, [ProfileContent]?, SecretPartNetworkLocalError?) -> Void) {
-        let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)/media")
-        let querryItems: [URLQueryItem] = page.jSON.map({ URLQueryItem(name: $0.key, value: "\($0.value)") })
+        let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post/")
+        var querryItems: [URLQueryItem] = []
+        querryItems.append(URLQueryItem(name: "userId", value: id))
+        querryItems.append(contentsOf: page.jSON.map { URLQueryItem(name: $0.key, value: "\($0.value)") })
         let url = baseUrl.appending(queryItems: querryItems)
         let request = requestMaker.makeAuthorizedRequest(with: url,
                                                          headerAcceptValue: "application/json",

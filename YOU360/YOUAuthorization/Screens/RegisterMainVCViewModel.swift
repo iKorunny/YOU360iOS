@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import YOUUIComponents
-import YOUProfileInterfaces
 import YOUNetworking
 import YOUUtils
 
@@ -78,10 +77,13 @@ final class RegisterMainVCViewModel: NSObject, LoginTableVCViewModel {
                         self?.loaderManager.removeFullscreenLoader()
                     }
                     
-                    guard success,
-                            let profile = profile,
-                            let token = token,
-                            let rToken = rToken else { return }
+                    guard 
+                        success,
+                        let profile = profile,
+                        let token = token,
+                        let rToken = rToken 
+                    else { return }
+                    
                     ProfileManager.shared.set(profile: profile)
                     AuthorizationService.shared.token = token
                     AuthorizationService.shared.refreshToken = rToken

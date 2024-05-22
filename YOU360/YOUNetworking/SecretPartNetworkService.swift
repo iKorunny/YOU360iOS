@@ -72,6 +72,9 @@ public final class SecretPartNetworkService {
                   let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 401 else {
                 print("Response: \(String(describing: response))")
+                if let data {
+                    print("Data: \(String(describing: String(data: data, encoding: .utf8)))")
+                }
                 completion(data, response, error, nil)
                 return
             }
@@ -82,6 +85,9 @@ public final class SecretPartNetworkService {
                     return
                 }
                 print("Response: \(String(describing: response)), \nerror: \(String(describing: error))")
+                if let data {
+                    print("Data: \(String(describing: String(data: data, encoding: .utf8)))")
+                }
                 guard response?.isSuccess == true,
                       let data = data,
                       let tokens = try? JSONDecoder().decode([String: String].self, from: data) else {

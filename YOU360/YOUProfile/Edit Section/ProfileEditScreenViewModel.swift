@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import YOUProfileInterfaces
+import YOUAuthorization
 import YOUUtils
 import YOUUIComponents
 

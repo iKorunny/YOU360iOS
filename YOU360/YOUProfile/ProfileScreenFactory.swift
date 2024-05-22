@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import YOUUIComponents
-import YOUProfileInterfaces
+import YOUAuthorization
 
 public final class ProfileScreenFactory {
     public static func createMyProfileRootVC() -> UINavigationController {

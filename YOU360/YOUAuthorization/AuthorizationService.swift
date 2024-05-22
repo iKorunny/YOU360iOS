@@ -15,7 +15,7 @@ public final class AuthorizationService {
     }()
     
     public var isAuthorized: Bool {
-        token != nil && refreshToken != nil && ProfileManager.shared.hasProfile
+        token != nil && refreshToken != nil
     }
     
     var token: String? {
@@ -67,7 +67,6 @@ public final class AuthorizationService {
     }
     
     @objc public func onLogout() {
-        ProfileManager.shared.deleteProfile()
         SafeStorage.clear()
         loginObservers.forEach { $0.closure() }
     }

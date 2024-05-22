@@ -7,7 +7,6 @@
 
 import Foundation
 import YOUNetworking
-import YOUProfileInterfaces
 
 final public class AuthorizationAPIError {
     private enum Constants {
@@ -67,7 +66,7 @@ final public class AuthorizationAPIService {
     }()
     private var dataTask: URLSessionDataTask?
     
-    func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
+    func requestLogin(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], UserInfoResponse?, String?, String?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/SignIn")
         
         let request = requestMaker.makeRequest(with: url,
@@ -106,7 +105,7 @@ final public class AuthorizationAPIService {
                 return
             }
             
-            var profile: Profile?
+            var profile: UserInfoResponse?
             let success = httpResponse.isSuccess
             if success {
                 guard let data = data else {
@@ -115,7 +114,7 @@ final public class AuthorizationAPIService {
                     }
                     return
                 }
-                profile = try? JSONDecoder().decode(Profile.self, from: data)
+                profile = try? JSONDecoder().decode(UserInfoResponse.self, from: data)
             }
             else {
                 guard let data = data,
@@ -142,7 +141,7 @@ final public class AuthorizationAPIService {
         dataTask?.resume()
     }
     
-    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], Profile?, String?, String?) -> Void)) {
+    func requestRegister(email: String, password: String, completion: @escaping ((Bool, [AuthorizationAPIError], UserInfoResponse?, String?, String?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/SignUp")
         
         let request = requestMaker.makeRequest(with: url,
@@ -180,7 +179,7 @@ final public class AuthorizationAPIService {
                 return
             }
             
-            var profile: Profile?
+            var profile: UserInfoResponse?
             let success = httpResponse.isSuccess
             if success {
                 guard let data = data else {
@@ -189,7 +188,7 @@ final public class AuthorizationAPIService {
                     }
                     return
                 }
-                profile = try? JSONDecoder().decode(Profile.self, from: data)
+                profile = try? JSONDecoder().decode(UserInfoResponse.self, from: data)
             }
             else {
                 guard let data = data,

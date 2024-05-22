@@ -17,6 +17,12 @@ public final class Formatters {
         return formatter.string(from: date)
     }
     
+    public static func dateFromString(_ string: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.date(from: string)
+    }
+    
     public static func ageFrom(birthdate: Date) -> String? {
         let now = Date()
         let birthday: Date = birthdate

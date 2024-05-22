@@ -9,6 +9,7 @@ import Foundation
 import YOUUtils
 import UIKit
 import YOUNetworking
+import YOUAuthorization
 
 public final class ProfileManager {
     private enum Constants {
@@ -18,7 +19,7 @@ public final class ProfileManager {
     public static var shared = {
         return ProfileManager()
     }()
-    public var profile: Profile? {
+    public var profile: UserInfoResponse? {
         didSet {
             saveProfile()
         }
@@ -28,11 +29,16 @@ public final class ProfileManager {
     public var hasProfile: Bool {
         profile != nil
     }
+    
+    public var isAuthorized: Bool {
+        AuthorizationService.shared.isAuthorized && hasProfile
+    }
+    
     public var isProfileEdited: Bool {
         set {
-            UserDefaults.standard.setValue(newValue, forKey: Constants.isFilledProfileKey)
+            UserDefaults.standard.setValue(newValue, 
+                                           forKey: Constants.isFilledProfileKey)
         }
-        
         get {
             UserDefaults.standard.bool(forKey: Constants.isFilledProfileKey)
         }
@@ -68,7 +74,7 @@ public final class ProfileManager {
         guard FileManager.default.fileExists(atPath: fileURL.path()) else { return }
         do {
             let jsonData = try Data(contentsOf: fileURL)
-            profile = try JSONDecoder().decode(Profile.self, from: jsonData)
+            profile = try JSONDecoder().decode(UserInfoResponse.self, from: jsonData)
         }
         catch let err {
             print("ProfileManager -> loadProfile() error: \(err) ")
@@ -83,18 +89,18 @@ public final class ProfileManager {
         DownloadCaches.getContentCache().removeAllCachedResponses()
     }
     
-    public func set(profile: Profile?) {
+    public func set(profile: UserInfoResponse?) {
         self.profile = profile
         self.isProfileEdited = profile?.profileFilled ?? false
     }
     
-    public func applyUpdate(updatedProfile: Profile) {
+    public func applyUpdate(updatedProfile: UserInfoResponse) {
         profile?.postsCount = updatedProfile.postsCount
         saveProfile()
     }
 }
 
-extension Profile {
+extension UserInfoResponse {
     var profileFilled: Bool {
         return name != nil ||
         surname != nil ||

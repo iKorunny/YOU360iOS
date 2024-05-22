@@ -1,19 +1,18 @@
 //
-//  Profile.swift
+//  UserInfoResponse.swift
 //  YOUAuthorization
 //
 //  Created by Ihar Karunny on 3/1/24.
 //
 
 import Foundation
-import YOUNetworking
 
-public enum ProfileVerification: Int, Decodable {
+public enum ProfileVerification: Int, Codable {
     case no
     case verified
 }
 
-public final class Profile: Codable {
+public final class UserInfoResponse: Codable {
     private enum CodingKeys : String, CodingKey {
         case id = "id"
         case email = "email"

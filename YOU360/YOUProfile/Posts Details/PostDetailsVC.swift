@@ -23,7 +23,7 @@ final class PostDetailsVC: UIViewController {
 }
 
 protocol PostDetailsContentDataSource {
-
+    
 }
 
 class PostDetailsContentViewModel: NSObject, UICollectionViewDataSource {

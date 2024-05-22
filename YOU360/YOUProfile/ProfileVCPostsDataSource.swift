@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import YOUProfileInterfaces
+import YOUAuthorization
 import YOUNetworking
 
 final class ProfileVCPostsDataSource {
@@ -27,7 +27,12 @@ final class ProfileVCPostsDataSource {
     func cellModel(for index: Int) -> ProfilePostCellModel? {
         guard index < posts.count else { return nil }
         let post = posts[index]
-        return ProfilePostCellModel(id: post.id, urlString: post.previewUrl)
+        
+        // TODO: Display only first item for post as there is no desigh for multi-item post
+        guard let item = post.items.first else {
+            return nil
+        }
+        return ProfilePostCellModel(id: post.id, urlString: item.previewUrl)
     }
     
     func postModel(for index: Int) -> ProfileContent? {

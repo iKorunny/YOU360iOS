@@ -8,15 +8,16 @@
 import UIKit
 import YOUUtils
 import YOUUIComponents
+import YOUNetworking
 import YOUProfileInterfaces
 
 
 final class ProfileEditHeaderContentViewModel {
-    var profile: Profile?
+    var profile: UserInfoResponse?
     var selectedAvatar: UIImage?
     var selectedBanner: UIImage?
     
-    init(profile: Profile?,
+    init(profile: UserInfoResponse?,
          selectedAvatar: UIImage?,
          selectedBanner: UIImage?) {
         self.profile = profile

@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import YOUProfileInterfaces
+import YOUAuthorization
 import UIKit
 import YOUNetworking
+import YOUUtils
 import YOUUIComponents
 
 enum ProfileTab {
@@ -121,7 +122,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private lazy var profileHeaderViewModel: ProvileHeaderContentViewModel = {
         ProvileHeaderContentViewModel(
             profile: ProfileManager.shared.profile,
-            onlineIdicator: .init(isHidden: false, status: .online),
+            onlineIdicator: OnlineIndicator(isHidden: true, status: .online),
             avatar: profileManager.avatar,
             banner: profileManager.banner) { [weak self] in
                 self?.toEditProfile()
@@ -210,16 +211,18 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         imagePicker.present(from: view, type: .contentImage)
     }
     
-    private func infoViewModel(from pofile: Profile?) -> ProfileInfoContentViewModel? {
+    private func infoViewModel(from pofile: UserInfoResponse?) -> ProfileInfoContentViewModel? {
         guard let profile = profileManager.profile else { return nil }
-        return ProfileInfoContentViewModel(name: profile.displayName,
+        
+        let date = profile.dateOfBirth.flatMap { Formatters.dateFromString($0) }
+        return ProfileInfoContentViewModel(name: profile.userName,
                                            desciption: profile.aboutMe,
                                            address: profile.city, 
-                                           dateOfBirth: profile.birthDate,
-                                           isVerified: profile.isVerified)
+                                           dateOfBirth: date,
+                                           isVerified: profile.verification == .verified)
     }
     
-    private func socialsModel(from profile: Profile?) -> ProfileSocialButtonContentViewModel? {
+    private func socialsModel(from profile: UserInfoResponse?) -> ProfileSocialButtonContentViewModel? {
         guard let profile = profile else { return nil }
         var social: [ProfileSocialButtonModel] = []
         if let instagram = profile.instagram, let instagramUrl = URL(string: instagram) {
@@ -288,7 +291,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
         }
     }
     
-    private func reloadContent(with updatedProfile: Profile) {
+    private func reloadContent(with updatedProfile: UserInfoResponse) {
         guard updatedProfile.postsCount > 0 else {
             collectionView?.reloadSections([Constants.contentSectionIndex])
             return
@@ -534,7 +537,7 @@ extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
         }
         
         networkService.makeUploadImagePostRequest(id: profile.id,
-                                                           image: image) { [weak self] success, localError in
+                                                  image: image) { [weak self] success, localError in
             guard success else {
                 self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
                     if let view = self?.view {

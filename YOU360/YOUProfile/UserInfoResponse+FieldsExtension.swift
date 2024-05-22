@@ -1,5 +1,5 @@
 //
-//  Profile+FieldsExtension.swift
+//  UserInfoResponse+FieldsExtension.swift
 //  YOUProfile
 //
 //  Created by Ihar Karunny on 4/8/24.
@@ -8,8 +8,9 @@
 import Foundation
 import YOUProfileInterfaces
 import YOUUtils
+import YOUNetworking
 
-extension Profile {
+extension UserInfoResponse {
     var displayName: String {
         return Formatters.formatFullName(firstName: name, lastName: surname) ?? userName
     }
