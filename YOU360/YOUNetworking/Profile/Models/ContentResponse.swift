@@ -52,5 +52,4 @@ public class ContentResponse: Codable {
         try container.encode(self.contentName, forKey: ContentResponse.CodingKeys.contentName)
         try container.encode(self.previewName, forKey: ContentResponse.CodingKeys.previewName)
     }
-    
 }

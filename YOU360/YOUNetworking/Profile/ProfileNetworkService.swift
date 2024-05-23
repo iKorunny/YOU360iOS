@@ -128,7 +128,7 @@ final class ProfileNetworkService {
         var url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post")
         var queryItems: [URLQueryItem] = []
         queryItems.append(URLQueryItem(name: "UserAuthorId", value: id))
-        queryItems.append(URLQueryItem(name: "PublicationDate", value: Formatters.formatEvent(date: Date())))
+        queryItems.append(URLQueryItem(name: "PublicationDelay", value: "0"))
         queryItems.append(URLQueryItem(name: "Visibility", value: "1"))
         queryItems.append(URLQueryItem(name: "Description", value: "Test Test Test"))
         url.append(queryItems: queryItems)

@@ -63,6 +63,7 @@ protocol MyProfileVCViewModel {
     func set(collectionView: UICollectionView,
              view: (UIViewController & MyProfileVCView),
              postsDataSource: ProfileVCPostsDataSource,
+             relatedWindow: UIWindow?,
              refreshControl: UIRefreshControl)
     
     func onMakePost()
@@ -102,6 +103,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     private weak var collectionView: UICollectionView?
     private weak var view: (UIViewController & MyProfileVCView)?
     private weak var refreshControl: UIRefreshControl?
+    private weak var relatedWindow: UIWindow?
     
     private let profileManager: ProfileManager
     private var postsDataSource: ProfileVCPostsDataSource?
@@ -177,10 +179,13 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     func set(collectionView: UICollectionView,
              view: (UIViewController & MyProfileVCView),
              postsDataSource: ProfileVCPostsDataSource,
+             relatedWindow: UIWindow?,
              refreshControl: UIRefreshControl) {
+        
         self.collectionView = collectionView
         self.view = view
         self.postsDataSource = postsDataSource
+        self.relatedWindow = relatedWindow
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alwaysBounceHorizontal = false
@@ -431,7 +436,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
+        let width = (relatedWindow ?? collectionView.window)?.bounds.width ?? .leastNormalMagnitude
         if indexPath.section == Constants.headerSectionIndex {
             let height = ProvileHeaderContentView.calculateHeight(from: width)
             return CGSize(width: width, height: height)
@@ -496,7 +501,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        let width = collectionView.window?.bounds.width ?? .leastNormalMagnitude
+        let width = (relatedWindow ?? collectionView.window)?.bounds.width ?? .leastNormalMagnitude
         switch section {
         case Constants.contentSectionIndex:
             return CGSize(width: width, height: Constants.contentFooterHeight)

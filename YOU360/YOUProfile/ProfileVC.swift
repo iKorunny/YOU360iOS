@@ -83,9 +83,9 @@ final class ProfileVC: UIViewController {
         setupCollectionView()
         setupTopButtons()
         
-        viewModel.set(collectionView: collectionView, 
+        viewModel.set(collectionView: collectionView,
                       view: self,
-                      postsDataSource: ProfileVCPostsDataSource(collectionView: collectionView), 
+                      postsDataSource: ProfileVCPostsDataSource(collectionView: collectionView),
                       relatedWindow: ProfileRouter.shared.rootProfileVC?.view.window,
                       refreshControl: refresher)
     }
