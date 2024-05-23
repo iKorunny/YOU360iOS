@@ -29,7 +29,7 @@ final class ProfileVCPostsDataSource {
         let post = posts[index]
         
         // TODO: Display only first item for post as there is no desigh for multi-item post
-        guard let item = post.items.first else {
+        guard let item = post.contents.first else {
             return nil
         }
         return ProfilePostCellModel(id: post.id, urlString: item.previewUrl)

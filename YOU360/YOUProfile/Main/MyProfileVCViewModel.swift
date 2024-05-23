@@ -220,7 +220,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         guard let profile = profileManager.profile else { return nil }
         
         let date = profile.dateOfBirth.flatMap { Formatters.dateFromString($0) }
-        return ProfileInfoContentViewModel(name: profile.userName,
+        return ProfileInfoContentViewModel(name: profile.displayName,
                                            desciption: profile.aboutMe,
                                            address: profile.city, 
                                            dateOfBirth: date,

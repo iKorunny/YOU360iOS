@@ -7,6 +7,11 @@
 
 import Foundation
 
+public enum VisibilityInt: Int {
+    case subsscribersOnly
+    case `public`
+}
+
 public enum Visibility: Codable {
     case `public`
     case subsscribersOnly
@@ -61,12 +66,12 @@ public enum Visibility: Codable {
 
 public final class ProfileContent: Codable {
     public var id: String
-    public var visibility: Visibility
+    public var description: String?
+    public var visibility: VisibilityInt
     public var publicationDate: String
     public var userAuthorId: String
     
-    public var items: [ProfileContentItem]
-    public var contentsCount: Int
+    public var contents: [ProfileContentItem]
     public var userAuthor: UserInfoResponse
     public var establishmentAuthorId: String?
     public var establishmentAuthor: EstablishmentResponse?
@@ -75,11 +80,11 @@ public final class ProfileContent: Codable {
     
     enum CodingKeys: CodingKey {
         case id
+        case description
         case visibility
         case publicationDate
         case userAuthorId
-        case items
-        case contentsCount
+        case contents
         case userAuthor
         case establishmentAuthorId
         case establishmentAuthor
@@ -90,12 +95,12 @@ public final class ProfileContent: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(visibility, forKey: .visibility)
+        try container.encode(description, forKey: .description)
+        try container.encode(visibility.rawValue, forKey: .visibility)
         try container.encode(publicationDate, forKey: .publicationDate)
         try container.encode(userAuthorId, forKey: .userAuthorId)
         
-        try container.encode(items, forKey: .items)
-        try container.encode(contentsCount, forKey: .contentsCount)
+        try container.encode(contents, forKey: .contents)
         try container.encode(userAuthor, forKey: .userAuthor)
         try container.encode(establishmentAuthorId, forKey: .establishmentAuthorId)
         try container.encode(establishmentAuthor, forKey: .establishmentAuthor)
@@ -107,11 +112,11 @@ public final class ProfileContent: Codable {
         let container: KeyedDecodingContainer<ProfileContent.CodingKeys> = try decoder.container(keyedBy: ProfileContent.CodingKeys.self)
         
         self.id = try container.decode(String.self, forKey: ProfileContent.CodingKeys.id)
-        self.visibility = try container.decode(Visibility.self, forKey: ProfileContent.CodingKeys.visibility)
+        let visibilityValue = try container.decode(Int.self, forKey: ProfileContent.CodingKeys.visibility)
+        self.visibility = VisibilityInt(rawValue: visibilityValue) ?? .public
         self.publicationDate = try container.decode(String.self, forKey: ProfileContent.CodingKeys.publicationDate)
         self.userAuthorId = try container.decode(String.self, forKey: ProfileContent.CodingKeys.userAuthorId)
-        self.items = try container.decode([ProfileContentItem].self, forKey: ProfileContent.CodingKeys.items)
-        self.contentsCount = try container.decode(Int.self, forKey: ProfileContent.CodingKeys.contentsCount)
+        self.contents = try container.decode([ProfileContentItem].self, forKey: ProfileContent.CodingKeys.contents)
         self.userAuthor = try container.decode(UserInfoResponse.self, forKey: ProfileContent.CodingKeys.userAuthor)
         self.establishmentAuthorId = try container.decodeIfPresent(String.self, forKey: ProfileContent.CodingKeys.establishmentAuthorId)
         self.establishmentAuthor = try container.decodeIfPresent(EstablishmentResponse.self, forKey: ProfileContent.CodingKeys.establishmentAuthor)

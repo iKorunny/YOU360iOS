@@ -57,7 +57,7 @@ final class ProfileNetworkService {
             MultipartRequestTextField(name:"Id", value: id),
             MultipartRequestTextField(name:"Email", value: email),
             MultipartRequestTextField(name:"UserName", value: username)
-          ]
+        ]
         
         if let name = name {
             multipartTextFields.append(MultipartRequestTextField(name:"Name", value: name))
@@ -125,13 +125,14 @@ final class ProfileNetworkService {
     func makeUploadImagePostRequest(id: String,
                                     image: UIImage,
                                     completion: @escaping ((Bool, SecretPartNetworkLocalError?) -> Void)) {
-        var url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post")
-        var queryItems: [URLQueryItem] = []
-        queryItems.append(URLQueryItem(name: "UserAuthorId", value: id))
-        queryItems.append(URLQueryItem(name: "PublicationDelay", value: "0"))
-        queryItems.append(URLQueryItem(name: "Visibility", value: "1"))
-        queryItems.append(URLQueryItem(name: "Description", value: "Test Test Test"))
-        url.append(queryItems: queryItems)
+        let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post")
+        
+        let multipartTextFields: [MultipartRequestTextField] = [
+            MultipartRequestTextField(name:"UserAuthorId", value: id),
+            MultipartRequestTextField(name:"PublicationDelay", value: "0"),
+            MultipartRequestTextField(name:"Visibility", value: "1"),
+            MultipartRequestTextField(name:"Description", value: "")
+        ]
         
         
         guard let postData = image.jpegData(compressionQuality: 1.0) else {
@@ -144,7 +145,7 @@ final class ProfileNetworkService {
         
         let request = requestMaker.makeAuthorizedMultipartRequest(with: url,
                                                                   token: secretNetworkService.authToken,
-                                                                  textFields: [],
+                                                                  textFields: multipartTextFields,
                                                                   dataFields: multipartImageFields)
         
         secretNetworkService.performDataTask(request: request) { data, response, error, localError in
