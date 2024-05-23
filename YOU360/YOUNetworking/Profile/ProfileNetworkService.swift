@@ -93,11 +93,11 @@ final class ProfileNetworkService {
         var multipartImageFields: [MultipartRequestDataField] = []
         if let avatar = avatar,
             let avatarData = avatar.jpegData(compressionQuality: 1.0) {
-            multipartImageFields.append(MultipartRequestDataField.init(name: "PhotoAvatar", data: avatarData, mimeType: "image/jpeg"))
+            multipartImageFields.append(MultipartRequestDataField.init(name: "AvatarFile", data: avatarData, mimeType: "image/jpeg"))
         }
         if let banner = banner,
             let bannerData = banner.jpegData(compressionQuality: 1.0) {
-            multipartImageFields.append(MultipartRequestDataField.init(name: "PhotoBackground", data: bannerData, mimeType: "image/jpeg"))
+            multipartImageFields.append(MultipartRequestDataField.init(name: "BackgroundFile", data: bannerData, mimeType: "image/jpeg"))
         }
         
         let request = requestMaker.makeAuthorizedMultipartRequest(with: url,
@@ -141,7 +141,7 @@ final class ProfileNetworkService {
             }
             return
         }
-        let multipartImageFields: [MultipartRequestDataField] = [MultipartRequestDataField(name: "contentFiles", data: postData, mimeType: "image/jpeg", fileName: "contentFile0")]
+        let multipartImageFields: [MultipartRequestDataField] = [MultipartRequestDataField(name: "PostsFiles", data: postData, mimeType: "image/jpeg", fileName: "contentFile0")]
         
         let request = requestMaker.makeAuthorizedMultipartRequest(with: url,
                                                                   token: secretNetworkService.authToken,

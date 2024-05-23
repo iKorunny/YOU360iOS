@@ -340,6 +340,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
             self?.collectionView?.reloadData()
             guard self?.isProfileFilled == true else { return }
             self?.reloadContent(with: updatedProfile)
+            self?.loadImages()
         }
     }
 }
