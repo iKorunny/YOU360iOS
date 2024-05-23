@@ -160,7 +160,7 @@ public final class NetworkRequestMaker: NetworkRequestMaking {
     
     private func multipartRequestDataLine(from model: MultipartRequestDataField, boundary: String) -> Data {
         var fieldData = Data()
-        var fileName = model.fileName ?? ("\(model.name).jpg")
+        let fileName = model.fileName ?? ("\(model.name).jpg")
         
         fieldData.append("--\(boundary)\r\n".data(using: .utf8)!)
         fieldData.append("Content-Disposition: form-data; name=\"\(model.name)\"; filename=\"photo\(fileName)\"\r\n".data(using: .utf8)!)
