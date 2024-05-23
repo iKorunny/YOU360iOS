@@ -9,7 +9,6 @@ import Foundation
 import YOUUtils
 import UIKit
 import YOUNetworking
-import YOUAuthorization
 
 public final class ProfileManager {
     private enum Constants {
