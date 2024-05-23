@@ -1,5 +1,5 @@
 //
-//  ProfileVC.swift
+//  MyProfileVC.swift
 //  YOUProfile
 //
 //  Created by Ihar Karunny on 3/1/24.
@@ -9,7 +9,7 @@ import UIKit
 import YOUUtils
 import YOUUIComponents
 
-final class ProfileVC: UIViewController {
+final class MyProfileVC: UIViewController {
     
     private enum Constants {
         static let backButtonInsets = UIEdgeInsets(top: 52, left: 20, bottom: 0, right: 0)
@@ -17,7 +17,7 @@ final class ProfileVC: UIViewController {
         static let makePostButtonInsets = UIEdgeInsets(top: 0, left: 20, bottom: -16, right: -20)
     }
     
-    private var viewModel: ProfileVCViewModel
+    private var viewModel: MyProfileVCViewModel
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -59,7 +59,7 @@ final class ProfileVC: UIViewController {
         )
     }()
     
-    init(viewModel: ProfileVCViewModel) {
+    init(viewModel: MyProfileVCViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -128,11 +128,11 @@ final class ProfileVC: UIViewController {
     }
 }
 
-extension ProfileVC: UIGestureRecognizerDelegate {
+extension MyProfileVC: UIGestureRecognizerDelegate {
     
 }
 
-extension ProfileVC: ProfileVCView {
+extension MyProfileVC: MyProfileVCView {
     func setMakePostButton(visible: Bool) {
         makePostButton.isHidden = !visible
     }

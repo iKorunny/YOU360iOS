@@ -70,7 +70,7 @@
 		804824032B924A120057F152 /* YOUProfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; };
 		804824042B924A120057F152 /* YOUProfile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804823FD2B924A120057F152 /* YOUProfile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8048240E2B924C740057F152 /* AppearanceConfigoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240D2B924C740057F152 /* AppearanceConfigoration.swift */; };
-		804824102B9250B90057F152 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240F2B9250B90057F152 /* ProfileVC.swift */; };
+		804824102B9250B90057F152 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048240F2B9250B90057F152 /* MyProfileVC.swift */; };
 		804824192B9465B40057F152 /* YOUEstablishments.h in Headers */ = {isa = PBXBuildFile; fileRef = 804824182B9465B40057F152 /* YOUEstablishments.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8048241C2B9465B40057F152 /* YOUEstablishments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804824162B9465B40057F152 /* YOUEstablishments.framework */; };
 		8048241D2B9465B40057F152 /* YOUEstablishments.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 804824162B9465B40057F152 /* YOUEstablishments.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -179,7 +179,7 @@
 		80BF5E7A2B8C8C6A0017524F /* AuthorizationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */; };
 		80C224DF2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C224DE2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift */; };
 		80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */; };
-		80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */; };
+		80CA23A62B9BA274008C9170 /* MyProfileVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A52B9BA274008C9170 /* MyProfileVCViewModel.swift */; };
 		80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */; };
 		80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */; };
 		80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AE2B9CCDF2008C9170 /* ProfileEditCellContentView.swift */; };
@@ -513,7 +513,7 @@
 		804824092B924A9D0057F152 /* ProfileScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenFactory.swift; sourceTree = "<group>"; };
 		8048240B2B924AC90057F152 /* YOUNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOUNavigationController.swift; sourceTree = "<group>"; };
 		8048240D2B924C740057F152 /* AppearanceConfigoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigoration.swift; sourceTree = "<group>"; };
-		8048240F2B9250B90057F152 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		8048240F2B9250B90057F152 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		804824162B9465B40057F152 /* YOUEstablishments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUEstablishments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		804824182B9465B40057F152 /* YOUEstablishments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOUEstablishments.h; sourceTree = "<group>"; };
 		804824262B9465C30057F152 /* YOUChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YOUChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -612,7 +612,7 @@
 		80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAPIService.swift; sourceTree = "<group>"; };
 		80C224DE2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoIconWithTextView.swift; sourceTree = "<group>"; };
 		80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvileHeaderContentView.swift; sourceTree = "<group>"; };
-		80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCViewModel.swift; sourceTree = "<group>"; };
+		80CA23A52B9BA274008C9170 /* MyProfileVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVCViewModel.swift; sourceTree = "<group>"; };
 		80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
 		80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureObserver.swift; sourceTree = "<group>"; };
 		80CA23AE2B9CCDF2008C9170 /* ProfileEditCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCellContentView.swift; sourceTree = "<group>"; };
@@ -753,8 +753,8 @@
 		0EA5CC992BDE5CB200E0B145 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				8048240F2B9250B90057F152 /* ProfileVC.swift */,
-				80CA23A52B9BA274008C9170 /* ProfileVCViewModel.swift */,
+				8048240F2B9250B90057F152 /* MyProfileVC.swift */,
+				80CA23A52B9BA274008C9170 /* MyProfileVCViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1873,10 +1873,10 @@
 				801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */,
 				809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */,
 				80C224DF2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift in Sources */,
-				80CA23A62B9BA274008C9170 /* ProfileVCViewModel.swift in Sources */,
+				80CA23A62B9BA274008C9170 /* MyProfileVCViewModel.swift in Sources */,
 				896C909E2BC7446C00DB36DB /* MenuViewModel.swift in Sources */,
 				807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */,
-				804824102B9250B90057F152 /* ProfileVC.swift in Sources */,
+				804824102B9250B90057F152 /* MyProfileVC.swift in Sources */,
 				8038AD592BA61D5C003B377C /* ProfileEditHeaderFooterCell.swift in Sources */,
 				805BCBFD2B9DE0EF00641FB7 /* ProfileEditAvatarsCell.swift in Sources */,
 				805BCBFB2B9DDD4500641FB7 /* ProfileEditScreenViewModel.swift in Sources */,

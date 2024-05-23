@@ -1,5 +1,5 @@
 //
-//  ProfileVCViewModel.swift
+//  MyProfileVCViewModel.swift
 //  YOUProfile
 //
 //  Created by Ihar Karunny on 3/8/24.
@@ -51,24 +51,24 @@ enum ProfileTab {
     }
 }
 
-protocol ProfileVCView: AnyObject {
+protocol MyProfileVCView: AnyObject {
     func setMakePostButton(visible: Bool)
 }
 
-protocol ProfileVCViewModel {
+protocol MyProfileVCViewModel {
     var myProfile: Bool { get }
     var isProfileFilled: Bool { get }
     
     func toMenu()
     func set(collectionView: UICollectionView,
-             view: (UIViewController & ProfileVCView),
+             view: (UIViewController & MyProfileVCView),
              postsDataSource: ProfileVCPostsDataSource,
              refreshControl: UIRefreshControl)
     
     func onMakePost()
 }
 
-final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
+final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     private enum Constants {
         static let profileHeaderId = "ProfileHeaderCell"
         static let profileEditCellId = "ProfileEditProfileCell"
@@ -100,7 +100,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }()
     
     private weak var collectionView: UICollectionView?
-    private weak var view: (UIViewController & ProfileVCView)?
+    private weak var view: (UIViewController & MyProfileVCView)?
     private weak var refreshControl: UIRefreshControl?
     
     private let profileManager: ProfileManager
@@ -175,7 +175,7 @@ final class MyProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     }
     
     func set(collectionView: UICollectionView,
-             view: (UIViewController & ProfileVCView),
+             view: (UIViewController & MyProfileVCView),
              postsDataSource: ProfileVCPostsDataSource,
              refreshControl: UIRefreshControl) {
         self.collectionView = collectionView

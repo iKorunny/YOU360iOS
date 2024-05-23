@@ -12,7 +12,7 @@ import YOUAuthorization
 
 public final class ProfileScreenFactory {
     public static func createMyProfileRootVC() -> UINavigationController {
-        return YOUNavigationController(rootViewController: ProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared)), type: .you)
+        return YOUNavigationController(rootViewController: MyProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared)), type: .you)
     }
     public static func createProfileEditVC(onClose: @escaping ((Bool, Bool, UIImage?, UIImage?, Bool) -> Void)) -> UIViewController {
         return ProfileEditVC(viewModel: ProfileEditScreenViewModelImpl(profileManager: ProfileManager.shared, onClose: onClose))
