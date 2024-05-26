@@ -53,6 +53,7 @@ enum ProfileTab {
 
 protocol MyProfileVCView: AnyObject {
     func setMakePostButton(visible: Bool)
+    
 }
 
 protocol MyProfileVCViewModel {
@@ -528,8 +529,12 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             guard let selectedPost = postsDataSource?.postModel(for: indexPath.row) else { return }
             print("MyProfileVCViewModelImpl -> didSelect post: \(selectedPost.id)")
             
-            
-        default: 
+            let postDetailsVC = PostDetailsVC(
+                viewModel: PostDetailsViewModelImpl(),
+                injection: PostDetailsInjectionImpl(dataSource: postsDataSource!)
+            )
+            view?.present(postDetailsVC, animated: true)
+        default:
             return
         }
     }
