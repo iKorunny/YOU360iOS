@@ -6,20 +6,15 @@
 //
 
 import Foundation
-import YOUNetworking
 import UIKit
 import YOUUtils
 
-final class ProfileNetworkService {
-    private var requestMaker: NetworkRequestMaker {
-        YOUNetworkingServices.requestMaker
+public final class ProfileNetworkService: BaseSecretPartNetworkService {
+    public static func makeService() -> ProfileNetworkService {
+        return ProfileNetworkService()
     }
     
-    private var secretNetworkService: SecretPartNetworkService {
-        YOUNetworkingServices.secretNetworkService
-    }
-    
-    func makeSecretPageRequest() {
+    public func makeSecretPageRequest() {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Auth/GetSecretPage")
         
         let request = requestMaker.makeAuthorizedRequest(with: url,
@@ -34,7 +29,7 @@ final class ProfileNetworkService {
         }
     }
     
-    func makeUpdateProfileRequest(id: String,
+    public func makeUpdateProfileRequest(id: String,
                                   email: String,
                                   username: String,
                                   name: String?,
@@ -122,7 +117,7 @@ final class ProfileNetworkService {
         }
     }
     
-    func makeUploadImagePostRequest(id: String,
+    public func makeUploadImagePostRequest(id: String,
                                     image: UIImage,
                                     completion: @escaping ((Bool, SecretPartNetworkLocalError?) -> Void)) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post")
@@ -163,7 +158,7 @@ final class ProfileNetworkService {
         }
     }
     
-    func makeDownloadImageGetRequest(imagePath: String,
+    public func makeDownloadImageGetRequest(imagePath: String,
                                     completion: @escaping ((UIImage?) -> Void)) {
         
         let url = URL(string: imagePath)!
@@ -175,7 +170,7 @@ final class ProfileNetworkService {
         }
     }
     
-    func makeProfileRequest(id: String, completion: @escaping (Bool, UserInfoResponse?, SecretPartNetworkLocalError?) -> Void) {
+    public func makeProfileRequest(id: String, completion: @escaping (Bool, UserInfoResponse?, SecretPartNetworkLocalError?) -> Void) {
         let url = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("User/\(id)")
         
         let request = requestMaker.makeAuthorizedRequest(with: url,
@@ -262,7 +257,7 @@ final class ProfileNetworkService {
 
      */
     
-    func makeProfileMediaRequest(id: String, page: RequestPage, completion: @escaping (Bool, [ProfileContent]?, SecretPartNetworkLocalError?) -> Void) {
+    public func makeProfileMediaRequest(id: String, page: RequestPage, completion: @escaping (Bool, [ProfileContent]?, SecretPartNetworkLocalError?) -> Void) {
         let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Post/")
         var querryItems: [URLQueryItem] = []
         querryItems.append(URLQueryItem(name: "userId", value: id))

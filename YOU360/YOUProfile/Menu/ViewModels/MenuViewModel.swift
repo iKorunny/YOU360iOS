@@ -41,7 +41,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     
     let onClose: (() -> Void)
     
-    private lazy var networkService = ProfileNetworkService()
+    private lazy var networkService = ProfileNetworkService.makeService()
     private lazy var loaderManager: LoaderManager = {
         return LoaderManager()
     }()

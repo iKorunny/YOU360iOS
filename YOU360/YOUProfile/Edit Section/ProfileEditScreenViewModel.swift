@@ -10,6 +10,7 @@ import UIKit
 import YOUAuthorization
 import YOUUtils
 import YOUUIComponents
+import YOUNetworking
 
 protocol EditProfileField {
     func apply()
@@ -277,7 +278,7 @@ final class ProfileEditScreenViewModelImpl: NSObject, ProfileEditScreenViewModel
             loaderManager.addFullscreenLoader(for: controller)
         }
         
-        ProfileNetworkService().makeUpdateProfileRequest(
+        ProfileNetworkService.makeService().makeUpdateProfileRequest(
             id: profile.id,
             email: profile.email,
             username: profile.userName,

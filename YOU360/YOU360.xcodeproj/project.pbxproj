@@ -121,12 +121,10 @@
 		8096B74D2B88A60E0015D917 /* LoginMainVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B74C2B88A60E0015D917 /* LoginMainVCViewModel.swift */; };
 		8096B7582B88B2CD0015D917 /* LoginTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096B7572B88B2CD0015D917 /* LoginTitleCell.swift */; };
 		80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A262BC02C28009DD9AB /* SecretPartNetworkService.swift */; };
-		80980A2A2BC03E22009DD9AB /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */; };
 		809B1D0E2BC3160100DEEBC6 /* AlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809B1D0D2BC3160100DEEBC6 /* AlertsPresenter.swift */; };
 		809B1D122BC4773000DEEBC6 /* UserInfoResponse+FieldsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809B1D112BC4773000DEEBC6 /* UserInfoResponse+FieldsExtension.swift */; };
 		809CA3BA2BD43EEE0037CEF4 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */; };
 		809CA3BC2BD459CE0037CEF4 /* AppRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */; };
-		809CA3BF2BD4F8BD0037CEF4 /* EventsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3BE2BD4F8BD0037CEF4 /* EventsNetworkService.swift */; };
 		809CA3C32BD50D4A0037CEF4 /* EventsSwiperContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3C22BD50D4A0037CEF4 /* EventsSwiperContentVC.swift */; };
 		809CA3C52BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809CA3C42BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift */; };
 		809F56162BB0B2DF00CF702C /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */; };
@@ -189,6 +187,9 @@
 		80CA64472BD6F79700DA9C6B /* SingleImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA64462BD6F79700DA9C6B /* SingleImageLoader.swift */; };
 		80CA64492BD6F93E00DA9C6B /* URLResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA64482BD6F93E00DA9C6B /* URLResponse+Extension.swift */; };
 		80CA644B2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA644A2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift */; };
+		80CFF16E2C0CF106005E4618 /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80980A292BC03E22009DD9AB /* ProfileNetworkService.swift */; };
+		80CFF1712C0CF20D005E4618 /* EventsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFF1702C0CF20D005E4618 /* EventsNetworkService.swift */; };
+		80CFF1732C0CF2A1005E4618 /* BaseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFF1722C0CF2A1005E4618 /* BaseNetworkService.swift */; };
 		80E627A52BB3519A00F50B4E /* ProfileSocialButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E627A42BB3519A00F50B4E /* ProfileSocialButtonsCell.swift */; };
 		80E627A72BB3526F00F50B4E /* ProfileSocialButtonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */; };
 		80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F82CC72BB7500D00006FEC /* ProfileContentEmptyCell.swift */; };
@@ -566,7 +567,6 @@
 		809B1D112BC4773000DEEBC6 /* UserInfoResponse+FieldsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserInfoResponse+FieldsExtension.swift"; sourceTree = "<group>"; };
 		809CA3B92BD43EEE0037CEF4 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRedirector.swift; sourceTree = "<group>"; };
-		809CA3BE2BD4F8BD0037CEF4 /* EventsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsNetworkService.swift; sourceTree = "<group>"; };
 		809CA3C22BD50D4A0037CEF4 /* EventsSwiperContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperContentVC.swift; sourceTree = "<group>"; };
 		809CA3C42BD50F950037CEF4 /* EventsSwiperStoryLineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperStoryLineVC.swift; sourceTree = "<group>"; };
 		809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
@@ -622,6 +622,8 @@
 		80CA64462BD6F79700DA9C6B /* SingleImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageLoader.swift; sourceTree = "<group>"; };
 		80CA64482BD6F93E00DA9C6B /* URLResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extension.swift"; sourceTree = "<group>"; };
 		80CA644A2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSwiperPosterVC.swift; sourceTree = "<group>"; };
+		80CFF1702C0CF20D005E4618 /* EventsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsNetworkService.swift; sourceTree = "<group>"; };
+		80CFF1722C0CF2A1005E4618 /* BaseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkService.swift; sourceTree = "<group>"; };
 		80E627A42BB3519A00F50B4E /* ProfileSocialButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialButtonsCell.swift; sourceTree = "<group>"; };
 		80E627A62BB3526F00F50B4E /* ProfileSocialButtonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialButtonContentView.swift; sourceTree = "<group>"; };
 		80F82CC72BB7500D00006FEC /* ProfileContentEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentEmptyCell.swift; sourceTree = "<group>"; };
@@ -842,7 +844,6 @@
 			children = (
 				8018B8322BD4139C000BED8D /* YOUEvents.h */,
 				8018B8442BD4140F000BED8D /* EventsScreenFactory.swift */,
-				809CA3BD2BD4F7310037CEF4 /* Networking */,
 				8018B8462BD417D8000BED8D /* EventsSwiper */,
 			);
 			path = YOUEvents;
@@ -940,9 +941,11 @@
 			isa = PBXGroup;
 			children = (
 				8032A5682B820BA000294DD7 /* YOUNetworking.h */,
+				80CFF1722C0CF2A1005E4618 /* BaseNetworkService.swift */,
 				0ED9EDB42BF29EB50003A184 /* Establishment */,
 				0EE995782BE7DE6300A5FE47 /* Models */,
 				0ED9EDAB2BF290AB0003A184 /* Profile */,
+				80CFF16F2C0CF1F2005E4618 /* Events */,
 				0ED9EDAF2BF292470003A184 /* Auth */,
 				0ED9EDBB2BF33FFF0003A184 /* Common */,
 				8018B8282BD193D6000BED8D /* NetworkRequestPerformer.swift */,
@@ -1115,14 +1118,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		809CA3BD2BD4F7310037CEF4 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				809CA3BE2BD4F8BD0037CEF4 /* EventsNetworkService.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		809FC4192B946FFF00C0A707 /* YOUProfileInterfaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,6 +1223,14 @@
 				80F82CC92BB89DD500006FEC /* ProfileContentCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		80CFF16F2C0CF1F2005E4618 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				80CFF1702C0CF20D005E4618 /* EventsNetworkService.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		896C908A2BC73FF000DB36DB /* Frameworks */ = {
@@ -1744,7 +1747,6 @@
 				809CA3C32BD50D4A0037CEF4 /* EventsSwiperContentVC.swift in Sources */,
 				80CA644B2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift in Sources */,
 				806E23EC2BDAE30C009A7C1B /* EventsSwiperEstablishmentContentVC.swift in Sources */,
-				809CA3BF2BD4F8BD0037CEF4 /* EventsNetworkService.swift in Sources */,
 				801E86D22BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift in Sources */,
 				806E23E52BDAD7D5009A7C1B /* EventsSwiperModels.swift in Sources */,
 				8018B8482BD417F7000BED8D /* EventsSwiperVC.swift in Sources */,
@@ -1774,10 +1776,12 @@
 				0ED9EDB32BF2994D0003A184 /* ProfileContent.swift in Sources */,
 				0ED9EDBF2BF341A90003A184 /* WorkingDaysResponse.swift in Sources */,
 				0ED9EDB62BF29EE90003A184 /* EstablishmentResponse.swift in Sources */,
+				80CFF1712C0CF20D005E4618 /* EventsNetworkService.swift in Sources */,
 				0ED9EDB02BF292D10003A184 /* UserInfoResponse.swift in Sources */,
 				8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */,
 				80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */,
 				8018B8292BD193D6000BED8D /* NetworkRequestPerformer.swift in Sources */,
+				80CFF1732C0CF2A1005E4618 /* BaseNetworkService.swift in Sources */,
 				0ED9EDBD2BF340110003A184 /* AddressResponse.swift in Sources */,
 				0ED9EDC12BF348340003A184 /* SubscriptionResponse.swift in Sources */,
 				0ED9EDB22BF294520003A184 /* ContentResponse.swift in Sources */,
@@ -1789,6 +1793,7 @@
 				806A8E3D2BC719DF00AD0227 /* ImageLoader.swift in Sources */,
 				80CA64452BD6F68E00DA9C6B /* DownloadCaches.swift in Sources */,
 				80980A272BC02C28009DD9AB /* SecretPartNetworkService.swift in Sources */,
+				80CFF16E2C0CF106005E4618 /* ProfileNetworkService.swift in Sources */,
 				0ED9EDB82BF2A0410003A184 /* EstablishmentCategory.swift in Sources */,
 				8032A5732B820BBD00294DD7 /* NetworkRequestMaking.swift in Sources */,
 				8032A5752B820C2100294DD7 /* YOUNetworkingServices.swift in Sources */,
@@ -1884,7 +1889,6 @@
 				8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */,
 				80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */,
 				805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */,
-				80980A2A2BC03E22009DD9AB /* ProfileNetworkService.swift in Sources */,
 				80F82CCA2BB89DD500006FEC /* ProfileContentCell.swift in Sources */,
 				80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */,
 				805BCBF62B9CE7F900641FB7 /* ProfileScreenFactory.swift in Sources */,

@@ -9,8 +9,8 @@ import Foundation
 import CoreLocation
 
 public struct YOULocationManagerCoordinate {
-    let latitude: CGFloat
-    let longitude: CGFloat
+    public let latitude: CGFloat
+    public let longitude: CGFloat
 }
 
 public enum YOULocationManagerAccessStatus {

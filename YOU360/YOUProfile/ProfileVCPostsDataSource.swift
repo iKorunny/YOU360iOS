@@ -102,7 +102,7 @@ final class ProfileVCPostsDataSource {
     }
     
     func reloadContent(userId: String, page: RequestPage, completion: @escaping ((Bool, SecretPartNetworkLocalError?) -> Void)) {
-        ProfileNetworkService().makeProfileMediaRequest(id: userId, page: page) { [weak self] success, content, localError in
+        ProfileNetworkService.makeService().makeProfileMediaRequest(id: userId, page: page) { [weak self] success, content, localError in
             if success {
                 self?.posts = content ?? []
             }

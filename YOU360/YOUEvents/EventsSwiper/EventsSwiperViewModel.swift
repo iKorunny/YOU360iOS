@@ -8,6 +8,7 @@
 import Foundation
 import YOUUtils
 import UIKit
+import YOUNetworking
 
 protocol EventsSwiperView: AnyObject {
     func onLocationStatusChanged(newStatus: YOULocationManagerAccessStatus)
@@ -40,6 +41,10 @@ final class EventsSwiperViewModelImpl {
     }
     
     private var statusObserver: AnyObject?
+    
+    private lazy var networkService: EventsNetworkService = {
+        EventsNetworkService.makeService()
+    }()
     
     private lazy var locationManager: YOULocationManager = {
         let manager = YOULocationManager.shared()
@@ -74,10 +79,11 @@ final class EventsSwiperViewModelImpl {
     }
     
     private func reloadIfNeeded() {
-        guard locationManager.status == .granted else { return }
+        guard locationManager.status == .granted, let location = locationManager.location else { return }
         //TODO: request models
         
         view?.runActivity()
+        networkService.makeNearestEstablishmentsRequest(location: location, page: .init(offset: 0, size: 10))
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.view?.stopActivity {
                 

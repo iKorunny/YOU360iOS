@@ -98,7 +98,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     var profileHasSocial: Bool { return profileManager.profile?.hasSocial ?? false }
     
     private lazy var networkService = {
-        ProfileNetworkService()
+        ProfileNetworkService.makeService()
     }()
     
     private weak var collectionView: UICollectionView?
