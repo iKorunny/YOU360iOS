@@ -75,6 +75,10 @@ public final class SecretPartNetworkService {
                 if let data {
                     print("Data: \(String(describing: String(data: data, encoding: .utf8)))")
                 }
+                let httpResponse = response as? HTTPURLResponse
+                if httpResponse?.statusCode == 400 || httpResponse?.statusCode == 401 {
+                    NotificationCenter.default.post(name: .onLogout, object: nil)
+                }
                 completion(data, response, error, nil)
                 return
             }
