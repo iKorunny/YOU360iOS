@@ -83,7 +83,7 @@ final class EventsSwiperViewModelImpl {
         //TODO: request models
         
         view?.runActivity()
-        networkService.makeNearestEstablishmentsRequest(location: location, page: .init(offset: 0, size: 10))
+//        networkService.makeNearestEstablishmentsRequest(location: location, page: .init(offset: 0, size: 10))
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.view?.stopActivity {
                 

@@ -113,6 +113,7 @@ final class EventsSwiperVC: UIViewController {
         setupUI()
         
         viewModel.onViewDidLoad()
+        navigationController?.delegate = self
     }
     
     private func configureNavigation() {
@@ -177,6 +178,8 @@ final class EventsSwiperVC: UIViewController {
     }
     
     @objc private func toMenu() {
+        let nextvc = EstablishmentDetailVC(model: EstablishmentDetailVCViewModel.init())
+        navigationController?.pushViewController(nextvc, animated: true)
         viewModel.onToMenu()
     }
     
@@ -219,4 +222,24 @@ extension EventsSwiperVC: EventsSwiperView {
             completion()
         }
     }
+}
+
+extension EventsSwiperVC: EventToEstablishmentFromTransition {
+    func animatingView() -> UIView? {
+        return contentVC.currentBussinessVC()?.bussinessInfoView
+    }
+}
+
+extension EventsSwiperVC: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            
+            switch toVC {
+            case is EstablishmentDetailVC:
+                return EventToEstablishmentTransition()
+            default: return nil
+            }
+        }
 }

@@ -218,4 +218,8 @@ final class EventsSwiperContentVC: UIViewController {
             currentContentVC.show(bussiness: bussiness)
         }
     }
+    
+    func currentBussinessVC() -> EventsSwiperEstablishmentContentVC? {
+        return contentControllers.currentItem
+    }
 }

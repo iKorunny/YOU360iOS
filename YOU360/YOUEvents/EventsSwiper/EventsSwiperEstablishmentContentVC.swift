@@ -32,7 +32,7 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         return priceView
     }()
     
-    private lazy var bussinessInfoView: EventSwiperBussinessBluredTransparentView = {
+    private(set) lazy var bussinessInfoView: EventSwiperBussinessBluredTransparentView = {
         let infoView = EventSwiperBussinessBluredTransparentView.create()
         infoView.translatesAutoresizingMaskIntoConstraints = false
         return infoView

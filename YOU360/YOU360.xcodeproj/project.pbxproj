@@ -20,6 +20,10 @@
 		0ED9EDC12BF348340003A184 /* SubscriptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9EDC02BF348340003A184 /* SubscriptionResponse.swift */; };
 		0ED9EDC32BF3D5460003A184 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804824362B946CDD0057F152 /* ProfileManager.swift */; };
 		0EE9957C2BE7E22900A5FE47 /* EventLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE9957B2BE7E22900A5FE47 /* EventLike.swift */; };
+		8000151B2C0E4EE900D4D292 /* EventToEstablishmentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000151A2C0E4EE900D4D292 /* EventToEstablishmentTransition.swift */; };
+		800015212C0E56F400D4D292 /* EstablishmentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000151C2C0E511500D4D292 /* EstablishmentDetailVC.swift */; };
+		800015222C0E56F600D4D292 /* EstablishmentDetailVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000151E2C0E513800D4D292 /* EstablishmentDetailVCViewModel.swift */; };
+		800015242C0E577600D4D292 /* UIView+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800015232C0E577600D4D292 /* UIView+Copy.swift */; };
 		8004E6CF2BC5D78D00E0BFDD /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */; };
 		8018B8242BD12F6E000BED8D /* TableUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8232BD12F6E000BED8D /* TableUpdater.swift */; };
 		8018B8272BD19081000BED8D /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018B8262BD19081000BED8D /* InternetConnectionManager.swift */; };
@@ -467,6 +471,10 @@
 		0ED9EDC02BF348340003A184 /* SubscriptionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionResponse.swift; sourceTree = "<group>"; };
 		0EE995792BE7DEC200A5FE47 /* ContentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentResponse.swift; sourceTree = "<group>"; };
 		0EE9957B2BE7E22900A5FE47 /* EventLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLike.swift; sourceTree = "<group>"; };
+		8000151A2C0E4EE900D4D292 /* EventToEstablishmentTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventToEstablishmentTransition.swift; sourceTree = "<group>"; };
+		8000151C2C0E511500D4D292 /* EstablishmentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentDetailVC.swift; sourceTree = "<group>"; };
+		8000151E2C0E513800D4D292 /* EstablishmentDetailVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentDetailVCViewModel.swift; sourceTree = "<group>"; };
+		800015232C0E577600D4D292 /* UIView+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Copy.swift"; sourceTree = "<group>"; };
 		8004E6CE2BC5D78D00E0BFDD /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		8018B8232BD12F6E000BED8D /* TableUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableUpdater.swift; sourceTree = "<group>"; };
 		8018B8262BD19081000BED8D /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
@@ -839,6 +847,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		800015202C0E56E100D4D292 /* Bussiness */ = {
+			isa = PBXGroup;
+			children = (
+				8000151C2C0E511500D4D292 /* EstablishmentDetailVC.swift */,
+				8000151E2C0E513800D4D292 /* EstablishmentDetailVCViewModel.swift */,
+			);
+			path = Bussiness;
+			sourceTree = "<group>";
+		};
 		8018B8312BD4139C000BED8D /* YOUEvents */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +869,7 @@
 		8018B8462BD417D8000BED8D /* EventsSwiper */ = {
 			isa = PBXGroup;
 			children = (
+				800015202C0E56E100D4D292 /* Bussiness */,
 				806E23E32BDAD7B9009A7C1B /* Models */,
 				8018B8472BD417F7000BED8D /* EventsSwiperVC.swift */,
 				806E23E12BDAD2B9009A7C1B /* EventsSwiperViewModel.swift */,
@@ -861,6 +879,7 @@
 				80CA644A2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift */,
 				801E86D12BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift */,
 				806E23EB2BDAE30C009A7C1B /* EventsSwiperEstablishmentContentVC.swift */,
+				8000151A2C0E4EE900D4D292 /* EventToEstablishmentTransition.swift */,
 			);
 			path = EventsSwiper;
 			sourceTree = "<group>";
@@ -1162,6 +1181,7 @@
 				8018B8232BD12F6E000BED8D /* TableUpdater.swift */,
 				8018B8262BD19081000BED8D /* InternetConnectionManager.swift */,
 				80CA64482BD6F93E00DA9C6B /* URLResponse+Extension.swift */,
+				800015232C0E577600D4D292 /* UIView+Copy.swift */,
 				80A4F58A2B8367AA002CC9AD /* fonts */,
 				809CA3BB2BD459CE0037CEF4 /* AppRedirector.swift */,
 			);
@@ -1744,8 +1764,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8018B8452BD4140F000BED8D /* EventsScreenFactory.swift in Sources */,
+				800015212C0E56F400D4D292 /* EstablishmentDetailVC.swift in Sources */,
 				809CA3C32BD50D4A0037CEF4 /* EventsSwiperContentVC.swift in Sources */,
 				80CA644B2BD6FB6A00DA9C6B /* EventsSwiperPosterVC.swift in Sources */,
+				800015222C0E56F600D4D292 /* EstablishmentDetailVCViewModel.swift in Sources */,
+				8000151B2C0E4EE900D4D292 /* EventToEstablishmentTransition.swift in Sources */,
 				806E23EC2BDAE30C009A7C1B /* EventsSwiperEstablishmentContentVC.swift in Sources */,
 				801E86D22BDC237800E9FB35 /* EventsSwiperVideoPosterVC.swift in Sources */,
 				806E23E52BDAD7D5009A7C1B /* EventsSwiperModels.swift in Sources */,
@@ -1930,6 +1953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A4F5832B8361DF002CC9AD /* String+Localisation.swift in Sources */,
+				800015242C0E577600D4D292 /* UIView+Copy.swift in Sources */,
 				80A4F5852B836250002CC9AD /* LocalisedImageProvider.swift in Sources */,
 				80528EFC2B8DF680000D6D80 /* SafeStorage.swift in Sources */,
 				805BCBF02B9CE3EC00641FB7 /* TextSizeCalculator.swift in Sources */,
