@@ -58,12 +58,23 @@ final class EventsSwiperContentVC: UIViewController {
     
     var dataSource: EventsSwiperContentVCDataSource?
     private lazy var contentControllers: Queue<EventsSwiperEstablishmentContentVC> = {
-        let queue = Queue<EventsSwiperEstablishmentContentVC>.init(item: .init())
-        queue.addToRear(item: .init())
-        queue.addToRear(item: .init())
+        let queue = Queue<EventsSwiperEstablishmentContentVC>.init(item: .init(viewModel: EventsSwiperEstablishmentContentViewModelImpl(delegate: self)))
+        queue.addToRear(item: .init(viewModel: EventsSwiperEstablishmentContentViewModelImpl(delegate: self)))
+        queue.addToRear(item: .init(viewModel: EventsSwiperEstablishmentContentViewModelImpl(delegate: self)))
         queue.loop()
         return queue
     }()
+    
+    private let viewModel: EventsSwiperContentViewModel
+    
+    init(viewModel: EventsSwiperContentViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -221,5 +232,11 @@ final class EventsSwiperContentVC: UIViewController {
     
     func currentBussinessVC() -> EventsSwiperEstablishmentContentVC? {
         return contentControllers.currentItem
+    }
+}
+
+extension EventsSwiperContentVC: EventsSwiperEstablishmentContentViewModelDelegate {
+    func expand(bussiness: EventsSwiperBussiness) {
+        viewModel.onExpand(bussiness: bussiness)
     }
 }

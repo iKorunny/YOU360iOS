@@ -70,6 +70,17 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
     
     private var bussinessModel: EventsSwiperBussiness?
     private var posterIndex: Int = 0
+    
+    private let viewModel: EventsSwiperEstablishmentContentViewModel
+    
+    init(viewModel: EventsSwiperEstablishmentContentViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,6 +157,8 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         } onLike: {
             print("EventsSwiperEstablishmentContentVC -> on like!!!")
         } onExpand: {
+            [weak self] in
+            self?.viewModel.onOpen(bussiness: bussiness)
             print("EventsSwiperEstablishmentContentVC -> on expand!!!")
         }
     }
