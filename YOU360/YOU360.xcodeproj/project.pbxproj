@@ -168,6 +168,8 @@
 		80A7395A2B85262000A5A482 /* LoginTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A739592B85262000A5A482 /* LoginTableVC.swift */; };
 		80A82EA52BE2D26F00F66E82 /* ButtonDisablingGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */; };
 		80ADA48C2BD0599400303938 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA48B2BD0599400303938 /* Validators.swift */; };
+		80B8921E2C136DD70031B233 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B8921D2C136DD70031B233 /* ProfileVC.swift */; };
+		80B892202C136E450031B233 /* ProfileVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B8921F2C136E450031B233 /* ProfileVCViewModel.swift */; };
 		80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */; };
 		80BF5E5F2B8A029F0017524F /* LoginButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */; };
 		80BF5E612B8A10410017524F /* LoginSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */; };
@@ -610,6 +612,8 @@
 		80A739592B85262000A5A482 /* LoginTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableVC.swift; sourceTree = "<group>"; };
 		80A82EA42BE2D26F00F66E82 /* ButtonDisablingGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDisablingGestures.swift; sourceTree = "<group>"; };
 		80ADA48B2BD0599400303938 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		80B8921D2C136DD70031B233 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		80B8921F2C136E450031B233 /* ProfileVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCViewModel.swift; sourceTree = "<group>"; };
 		80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditScreenFieldModel.swift; sourceTree = "<group>"; };
 		80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonsCell.swift; sourceTree = "<group>"; };
 		80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSeparatorCell.swift; sourceTree = "<group>"; };
@@ -771,6 +775,8 @@
 			children = (
 				8048240F2B9250B90057F152 /* MyProfileVC.swift */,
 				80CA23A52B9BA274008C9170 /* MyProfileVCViewModel.swift */,
+				80B8921D2C136DD70031B233 /* ProfileVC.swift */,
+				80B8921F2C136E450031B233 /* ProfileVCViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1908,6 +1914,7 @@
 				809B1D122BC4773000DEEBC6 /* UserInfoResponse+FieldsExtension.swift in Sources */,
 				80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */,
 				0EA5CC9E2BDED70500E0B145 /* PostDetailsVC.swift in Sources */,
+				80B892202C136E450031B233 /* ProfileVCViewModel.swift in Sources */,
 				807FAAFF2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift in Sources */,
 				805BCBF72B9CE82800641FB7 /* ProfileRouter.swift in Sources */,
 				801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */,
@@ -1923,6 +1930,7 @@
 				80CA23B12B9CDBD0008C9170 /* ProfileEditProfileCell.swift in Sources */,
 				8038AD552BA4DF25003B377C /* ProfileEditPushScreenContentView.swift in Sources */,
 				80F82CC82BB7500D00006FEC /* ProfileContentEmptyCell.swift in Sources */,
+				80B8921E2C136DD70031B233 /* ProfileVC.swift in Sources */,
 				805BCC012B9DEF4B00641FB7 /* ProfileEditFieldsCell.swift in Sources */,
 				80F82CCA2BB89DD500006FEC /* ProfileContentCell.swift in Sources */,
 				80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */,

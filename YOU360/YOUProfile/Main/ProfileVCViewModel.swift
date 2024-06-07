@@ -1,8 +1,8 @@
 //
-//  MyProfileVCViewModel.swift
+//  ProfileVCViewModel.swift
 //  YOUProfile
 //
-//  Created by Ihar Karunny on 3/8/24.
+//  Created by Ihar Karunny on 6/7/24.
 //
 
 import Foundation
@@ -12,67 +12,25 @@ import YOUNetworking
 import YOUUtils
 import YOUUIComponents
 
-enum ProfileTab {
-    case content
-    case places
-    case events
-    
-    var icon: UIImage? {
-        switch self {
-        case .content:
-            return UIImage(named: "ProfileContentTab")
-        case .places:
-            return UIImage(named: "ProfilePlacesTab")
-        case .events:
-            return UIImage(named: "ProfileEventsTab")
-        }
-    }
-    
-    var selectedIcon: UIImage? {
-        switch self {
-        case .content:
-            return UIImage(named: "ProfileContentTabSelected")
-        case .places:
-            return UIImage(named: "ProfilePlacesTabSelected")
-        case .events:
-            return UIImage(named: "ProfileEventsTabSelected")
-        }
-    }
-    
-    var title: String? {
-        switch self {
-        case .content:
-            return "ProfileContentTab".localised()
-        case .places:
-            return "ProfilePlacesTab".localised()
-        case .events:
-            return "ProfileEventsTab".localised()
-        }
-    }
-}
-
-protocol MyProfileVCView: AnyObject {
-    func setMakePostButton(visible: Bool)
+protocol ProfileVCView: AnyObject {
+    func setConversationButton(visible: Bool)
     
 }
 
-protocol MyProfileVCViewModel {
-    var isProfileFilled: Bool { get }
-    
+protocol ProfileVCViewModel {
     func toMenu()
     func set(collectionView: UICollectionView,
-             view: (UIViewController & MyProfileVCView),
+             view: (UIViewController & ProfileVCView),
              postsDataSource: ProfileVCPostsDataSource,
              relatedWindow: UIWindow?,
              refreshControl: UIRefreshControl)
     
-    func onMakePost()
+    func onConversationButton()
 }
 
-final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
+final class ProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
     private enum Constants {
         static let profileHeaderId = "ProfileHeaderCell"
-        static let profileEditCellId = "ProfileEditProfileCell"
         static let profileInfoCellId = "ProfileInfoCell"
         static let profileSocialButtonsCellId = "ProfileSocialButtonsCell"
         static let profileContentSegmentCellId = "ProfileContentSegmentCell"
@@ -92,29 +50,26 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         static let contentFooterHeight: CGFloat = 72
     }
     
-    var isProfileFilled: Bool { return profileManager.isProfileEdited }
-    var profileHasSocial: Bool { return profileManager.profile?.hasSocial ?? false }
+    var profileHasSocial: Bool { return profile.hasSocial }
     
     private lazy var networkService = {
         ProfileNetworkService.makeService()
     }()
     
     private weak var collectionView: UICollectionView?
-    private weak var view: (UIViewController & MyProfileVCView)?
+    private weak var view: (UIViewController & ProfileVCView)?
     private weak var refreshControl: UIRefreshControl?
     private weak var relatedWindow: UIWindow?
     
-    private let profileManager: ProfileManager
+    private var profile: UserInfoResponse
     private var postsDataSource: ProfileVCPostsDataSource?
     
     private var contentType: ProfileTab = .content
     
     private var avatarDataTask: URLSessionDataTask?
     private var bannerDataTask: URLSessionDataTask?
-    
-    private lazy var imagePicker: YOUImagePicker = {
-       return YOUNativeImagePicker(delegate: self)
-    }()
+    private var avatarImage: UIImage?
+    private var bannerImage: UIImage?
     
     private lazy var loaderManager: LoaderManager = {
         return LoaderManager()
@@ -124,9 +79,10 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         ProvileHeaderContentViewModel(
             profile: ProfileManager.shared.profile,
             onlineIdicator: OnlineIndicator(isHidden: true, status: .online),
-            avatar: profileManager.avatar,
-            banner: profileManager.banner) { [weak self] in
-                self?.toEditProfile()
+            avatar: avatarImage,
+            banner: bannerImage) { [weak self] in
+                //TODO: remove closure
+//                self?.toEditProfile()
             } onShare: {
                 print("MyProfileVCViewModelImpl -> OnShare")
             }
@@ -135,8 +91,8 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     
     private var headerCell: ProfileHeaderCell?
     
-    init(profileManager: ProfileManager) {
-        self.profileManager = profileManager
+    init(profile: UserInfoResponse) {
+        self.profile = profile
         super.init()
         loadImages()
     }
@@ -145,24 +101,24 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         let group = DispatchGroup()
         var shouldReloadHeader = false
         
-        if let avatarUrlString = profileManager.profile?.avatar?.contentUrl {
+        if let avatarUrlString = profile.avatar?.contentUrl {
             let avatarUrl = URL(string: avatarUrlString)
             group.enter()
             avatarDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: avatarUrl) { [weak self] image in
                 self?.avatarDataTask = nil
-                self?.profileManager.avatar = image
+                self?.avatarImage = image
                 self?.profileHeaderViewModel.avatar = image
                 shouldReloadHeader = true
                 group.leave()
             }
         }
         
-        if let bannerUrlString = profileManager.profile?.background?.contentUrl {
+        if let bannerUrlString = profile.background?.contentUrl {
             let bannerUrl = URL(string: bannerUrlString)
             group.enter()
             bannerDataTask = ContentLoaders.imageLoader.dataTaskToLoadImage(with: bannerUrl) { [weak self] image in
                 self?.bannerDataTask = nil
-                self?.profileManager.banner = image
+                self?.bannerImage = image
                 self?.profileHeaderViewModel.banner = image
                 shouldReloadHeader = true
                 group.leave()
@@ -176,7 +132,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     }
     
     func set(collectionView: UICollectionView,
-             view: (UIViewController & MyProfileVCView),
+             view: (UIViewController & ProfileVCView),
              postsDataSource: ProfileVCPostsDataSource,
              relatedWindow: UIWindow?,
              refreshControl: UIRefreshControl) {
@@ -190,38 +146,31 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         collectionView.alwaysBounceHorizontal = false
         collectionView.alwaysBounceVertical = true
         collectionView.showsVerticalScrollIndicator = false
-        view.setMakePostButton(visible: self.isProfileFilled && contentType == .content)
+        view.setConversationButton(visible: contentType == .content)
         
         collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
-        collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
         collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: Constants.profileInfoCellId)
         collectionView.register(ProfileSocialButtonsCell.self, forCellWithReuseIdentifier: Constants.profileSocialButtonsCellId)
         collectionView.register(ProfileContentSegmentCell.self, forCellWithReuseIdentifier: Constants.profileContentSegmentCellId)
         collectionView.register(ProfileContentEmptyCell.self, forCellWithReuseIdentifier: Constants.profileContentEmptyCellId)
         collectionView.register(ProfileContentCell.self, forCellWithReuseIdentifier: Constants.profileContentCellId)
         
-        if isProfileFilled, let profile = profileManager.profile {
-            reloadContent(with: profile)
-        }
+        reloadContent(with: profile)
         
         self.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fullReload), for: .valueChanged)
         collectionView.addSubview(refreshControl)
     }
     
-    func onMakePost() {
-        guard let view = view else { return }
-        
-        imagePicker.present(from: view, type: .contentImage)
+    func onConversationButton() {
+        print("ProfileVCViewModel -> Open conversation")
     }
     
-    private func infoViewModel(from pofile: UserInfoResponse?) -> ProfileInfoContentViewModel? {
-        guard let profile = profileManager.profile else { return nil }
-        
+    private func infoViewModel(from pofile: UserInfoResponse) -> ProfileInfoContentViewModel? {
         let date = profile.dateOfBirth.flatMap { Formatters.dateFromString($0) }
         return ProfileInfoContentViewModel(name: profile.displayName,
                                            desciption: profile.aboutMe,
-                                           address: profile.city, 
+                                           address: profile.city,
                                            dateOfBirth: date,
                                            isVerified: profile.verification == .verified)
     }
@@ -248,25 +197,9 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         }
     }
     
-    private func toEditProfile() {
-        ProfileRouter.shared.toEditProfile { [weak self] didSelectAvatar, didSelectBanner, newAvatar, newBanner, hasChanges in
-            guard let self, hasChanges else { return }
-            if didSelectAvatar {
-                profileHeaderViewModel.avatar = newAvatar
-            }
-            
-            if didSelectBanner {
-                profileHeaderViewModel.banner = newBanner
-            }
-            
-            self.reloadUI()
-        }
-        profileManager.isProfileEdited = true
-    }
-    
     private func reloadUI() {
         collectionView?.reloadData()
-        view?.setMakePostButton(visible: self.isProfileFilled && contentType == .content)
+        view?.setConversationButton(visible: contentType == .content)
     }
 
     func toMenu() {
@@ -278,20 +211,20 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         case .content:
             return postsDataSource?.numberOfPosts ?? 0
         case .events:
-            return profileManager.profile?.likedEventsCount ?? 0
+            return profile.likedEventsCount
         case .places:
-            return profileManager.profile?.establishmentsSubscriptionsCount ?? 0
+            return profile.establishmentsSubscriptionsCount
         }
     }
     
     private func emptySectionText(for tab: ProfileTab) -> String? {
         switch tab {
         case .content:
-            return "MyProfileContentEmpty".localised()
+            return "ProfileContentEmpty".localised()
         case .events:
-            return "MyProfileEventsEmpty".localised()
+            return "ProfileEventsEmpty".localised()
         case .places:
-            return "MyProfilePlacesEmpty".localised()
+            return "ProfilePlacesEmpty".localised()
         }
     }
     
@@ -335,9 +268,8 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
                 return
             }
             
-            self?.profileManager.profile = updatedProfile
+            self?.profile = updatedProfile
             self?.collectionView?.reloadData()
-            guard self?.isProfileFilled == true else { return }
             self?.reloadContent(with: updatedProfile)
             self?.loadImages()
         }
@@ -345,9 +277,9 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
 }
 
 
-extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return isProfileFilled ? 4 : 2
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -355,9 +287,9 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         case Constants.headerSectionIndex:
             return 1
         case Constants.socialSectionIndex:
-            return isProfileFilled ? (profileHasSocial ? 2 : 1) : 1
+            return (profileHasSocial ? 2 : 1)
         case Constants.contentSegmentSectionIndex:
-            return isProfileFilled ? 1 : 0
+            return 1
         case Constants.contentSectionIndex:
             let contentNumber = numberOfItems(for: contentType)
             return (contentNumber == 0 ? 1 : contentNumber)
@@ -376,24 +308,15 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         else if indexPath.section == Constants.socialSectionIndex {
             switch indexPath.row {
             case 0:
-                if !isProfileFilled {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileEditCellId, for: indexPath) as! ProfileEditProfileCell
-                    cell.apply(viewModel: .init(onEdit: { [weak self] in
-                        self?.toEditProfile()
-                    }))
-                    return cell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileInfoCellId, for: indexPath) as! ProfileInfoCell
+                if let model = infoViewModel(from: profile) {
+                    cell.apply(viewModel: model)
                 }
-                else {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileInfoCellId, for: indexPath) as! ProfileInfoCell
-                    if let model = infoViewModel(from: profileManager.profile) {
-                        cell.apply(viewModel: model)
-                    }
-                    
-                    return cell
-                }
+                
+                return cell
             case 1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileSocialButtonsCellId, for: indexPath) as! ProfileSocialButtonsCell
-                if let model = socialsModel(from: profileManager.profile) {
+                if let model = socialsModel(from: profile) {
                     cell.apply(viewModel: model)
                 }
                 
@@ -410,7 +333,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
                 guard let self = self else { return }
                 self.contentType = newTab
                 self.collectionView?.reloadSections([Constants.contentSectionIndex])
-                self.view?.setMakePostButton(visible: self.isProfileFilled && self.contentType == .content)
+                self.view?.setConversationButton(visible: self.contentType == .content)
             }))
             
             return cell
@@ -446,16 +369,10 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
         else if indexPath.section == Constants.socialSectionIndex {
             switch indexPath.row {
             case 0:
-                if !isProfileFilled {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileEditCellId, for: indexPath) as! ProfileEditProfileCell
-                    return CGSize(width: width, height: cell.height(with: width))
-                }
-                else {
-                    guard let infoModel = infoViewModel(from: profileManager.profile) else { return CGSize.zero }
-                    
-                    return CGSize(width: width,
-                                  height: ProfileInfoCell.calculateHeight(from: width, model: infoModel))
-                }
+                guard let infoModel = infoViewModel(from: profile) else { return CGSize.zero }
+                
+                return CGSize(width: width,
+                              height: ProfileInfoCell.calculateHeight(from: width, model: infoModel))
             case 1:
                 return CGSize(width: width, height: ProfileSocialButtonsCell.height())
             default:
@@ -536,53 +453,6 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             view?.present(postDetailsVC, animated: true)
         default:
             return
-        }
-    }
-}
-
-extension MyProfileVCViewModelImpl: YOUImagePickerDelegate {
-    func didPick(image: UIImage?, type: YOUImagePickerType) {
-        guard let image, let profile = profileManager.profile else { return }
-        if let view = view?.tabBarController ?? view {
-            loaderManager.addFullscreenLoader(for: view)
-        }
-        
-        networkService.makeUploadImagePostRequest(id: profile.id,
-                                                  image: image) { [weak self] success, localError in
-            guard success else {
-                self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
-                    if let view = self?.view {
-                        if localError == .noInternet {
-                            AlertsPresenter.presentNoInternet(from: view)
-                        }
-                        else {
-                            AlertsPresenter.presentSomethingWentWrongAlert(from: view)
-                        }
-                    }
-                }
-                return
-            }
-            
-            self?.networkService.makeProfileRequest(id: profile.id) { [weak self] success, profile, localError in
-                guard success, let updatedProfile = profile else {
-                    self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
-                        if let view = self?.view {
-                            if localError == .noInternet {
-                                AlertsPresenter.presentNoInternet(from: view)
-                            }
-                            else {
-                                AlertsPresenter.presentSomethingWentWrongAlert(from: view)
-                            }
-                        }
-                    }
-                    return
-                }
-                
-                self?.loaderManager.removeFullscreenLoader()
-                self?.profileManager.applyUpdate(updatedProfile: updatedProfile)
-                self?.collectionView?.reloadSections([Constants.contentSectionIndex])
-                self?.reloadContent(with: updatedProfile)
-            }
         }
     }
 }

@@ -1,23 +1,22 @@
 //
-//  MyProfileVC.swift
+//  ProfileVC.swift
 //  YOUProfile
 //
-//  Created by Ihar Karunny on 3/1/24.
+//  Created by Ihar Karunny on 6/7/24.
 //
 
 import UIKit
 import YOUUtils
 import YOUUIComponents
 
-final class MyProfileVC: UIViewController {
-    
+final class ProfileVC: UIViewController {
     private enum Constants {
         static let backButtonInsets = UIEdgeInsets(top: 52, left: 20, bottom: 0, right: 0)
         static let moreButtonInsets = UIEdgeInsets(top: 52, left: 0, bottom: 0, right: 20)
-        static let makePostButtonInsets = UIEdgeInsets(top: 0, left: 20, bottom: -16, right: -20)
+        static let conversationButtonInsets = UIEdgeInsets(top: 0, left: 20, bottom: -16, right: -20)
     }
     
-    private var viewModel: MyProfileVCViewModel
+    private var viewModel: ProfileVCViewModel
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -47,19 +46,19 @@ final class MyProfileVC: UIViewController {
         return UIRefreshControl()
     }()
     
-    private lazy var makePostButton: UIButton = {
+    private lazy var conversationButton: UIButton = {
         ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appPink,
             highlightedBackgroundColor: ColorPallete.appDarkPink,
-            title: "ProfileMakePostButtonTitle".localised(),
+            title: "ProfileConversationButtonTitle".localised(),
             titleColor: ColorPallete.appWhite,
-            titleIcon: UIImage(named: "ProfileMakePostButtonIcon"),
+            titleIcon: UIImage(named: "ProfileConversationButtonIcon"),
             target: self,
-            action: #selector(toMakePost)
+            action: #selector(toConversation)
         )
     }()
     
-    init(viewModel: MyProfileVCViewModel) {
+    init(viewModel: ProfileVCViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -68,10 +67,10 @@ final class MyProfileVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         view.backgroundColor = ColorPallete.appWhiteSecondary
@@ -83,7 +82,7 @@ final class MyProfileVC: UIViewController {
         setupCollectionView()
         setupTopButtons()
         
-        viewModel.set(collectionView: collectionView, 
+        viewModel.set(collectionView: collectionView,
                       view: self,
                       postsDataSource: ProfileVCPostsDataSource(collectionView: collectionView),
                       relatedWindow: ProfileRouter.shared.rootProfileVC?.view.window,
@@ -100,11 +99,11 @@ final class MyProfileVC: UIViewController {
         moreButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.moreButtonInsets.top).isActive = true
         moreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.moreButtonInsets.right).isActive = true
         
-        view.addSubview(makePostButton)
-        makePostButton.isHidden = true
-        makePostButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.makePostButtonInsets.left).isActive = true
-        makePostButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.makePostButtonInsets.right).isActive = true
-        makePostButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.makePostButtonInsets.bottom - (view.safeAreaInsets.bottom + (tabBarController?.tabBar.bounds.height ?? 0))).isActive = true
+        view.addSubview(conversationButton)
+        conversationButton.isHidden = true
+        conversationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.conversationButtonInsets.left).isActive = true
+        conversationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.conversationButtonInsets.right).isActive = true
+        conversationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.conversationButtonInsets.bottom - (view.safeAreaInsets.bottom + (tabBarController?.tabBar.bounds.height ?? 0))).isActive = true
     }
     
     private func setupCollectionView() {
@@ -123,18 +122,18 @@ final class MyProfileVC: UIViewController {
         viewModel.toMenu()
     }
     
-    @objc private func toMakePost() {
-        print("MyProfileVC -> toMakePost")
-        viewModel.onMakePost()
+    @objc private func toConversation() {
+        print("ProfileVC -> toConversation")
+        viewModel.onConversationButton()
     }
 }
 
-extension MyProfileVC: UIGestureRecognizerDelegate {
+extension ProfileVC: UIGestureRecognizerDelegate {
     
 }
 
-extension MyProfileVC: MyProfileVCView {
-    func setMakePostButton(visible: Bool) {
-        makePostButton.isHidden = !visible
+extension ProfileVC: ProfileVCView {
+    func setConversationButton(visible: Bool) {
+        conversationButton.isHidden = !visible
     }
 }

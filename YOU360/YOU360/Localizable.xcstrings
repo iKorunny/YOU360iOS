@@ -343,6 +343,39 @@
         }
       }
     },
+    "MyProfileContentEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All of your uploaded content will be placed here"
+          }
+        }
+      }
+    },
+    "MyProfileEventsEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All the events you like\nwill be here."
+          }
+        }
+      }
+    },
+    "MyProfilePlacesEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Here you will see your favorite places"
+          }
+        }
+      }
+    },
     "NotificationsTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -393,7 +426,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All of your uploaded content will be placed here"
+            "value" : "This user hasn't uploaded any photos yet"
           }
         }
       }
@@ -405,6 +438,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Content"
+          }
+        }
+      }
+    },
+    "ProfileConversationButtonTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Message"
           }
         }
       }
@@ -657,7 +701,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All the events you like\nwill be here."
+            "value" : "This user hasn't liked any events yet"
           }
         }
       }
@@ -712,7 +756,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Here you will see your favorite places"
+            "value" : "This user hasn't liked the places"
           }
         }
       }
