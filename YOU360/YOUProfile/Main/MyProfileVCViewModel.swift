@@ -192,7 +192,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         collectionView.alwaysBounceHorizontal = false
         collectionView.alwaysBounceVertical = true
         collectionView.showsVerticalScrollIndicator = false
-        view.setMakePostButton(visible: self.isProfileFilled)
+        view.setMakePostButton(visible: self.isProfileFilled && contentType == .content)
         
         collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
@@ -268,7 +268,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     
     private func reloadUI() {
         collectionView?.reloadData()
-        view?.setMakePostButton(visible: self.isProfileFilled)
+        view?.setMakePostButton(visible: self.isProfileFilled && contentType == .content)
     }
 
     func toMenu() {
@@ -409,8 +409,10 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileContentSegmentCellId, for: indexPath) as! ProfileContentSegmentCell
             
             cell.apply(viewModel: ProfileContentSegmentContentViewModel(tabs: [.content, .places, .events], selectedTab: contentType, onSelectTab: { [weak self] newTab in
-                self?.contentType = newTab
-                self?.collectionView?.reloadSections([Constants.contentSectionIndex])
+                guard let self = self else { return }
+                self.contentType = newTab
+                self.collectionView?.reloadSections([Constants.contentSectionIndex])
+                self.view?.setMakePostButton(visible: self.isProfileFilled && self.contentType == .content)
             }))
             
             return cell
