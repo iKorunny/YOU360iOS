@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import YOUUIComponents
 import YOUAuthorization
+import YOUNetworking
 
 public final class ProfileScreenFactory {
     public static func createMyProfileRootVC() -> UINavigationController {
@@ -24,5 +25,14 @@ public final class ProfileScreenFactory {
     
     public static func createMenuVC(onClose: @escaping (() -> Void)) -> UIViewController {
         return MenuVC(viewModel: MenuViewModelImpl(onClose: onClose))
+    }
+    
+    public static func createProfileVC(for profile: UserInfoResponse) -> UIViewController {
+        if ProfileManager.shared.isMy(profile: profile) && false {
+            return MyProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared))
+        }
+        else {
+            return ProfileVC(viewModel: ProfileVCViewModelImpl(profile: profile))
+        }
     }
 }

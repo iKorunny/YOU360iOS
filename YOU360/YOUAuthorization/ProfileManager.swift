@@ -95,7 +95,12 @@ public final class ProfileManager {
     
     public func applyUpdate(updatedProfile: UserInfoResponse) {
         profile?.postsCount = updatedProfile.postsCount
+        
         saveProfile()
+    }
+    
+    public func isMy(profile: UserInfoResponse) -> Bool {
+        return profile.id == self.profile?.id
     }
 }
 

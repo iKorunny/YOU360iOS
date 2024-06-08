@@ -85,7 +85,7 @@ final class EventsSwiperVC: UIViewController {
     }()
     
     private lazy var contentVC: EventsSwiperContentVC = {
-        let vc = EventsSwiperContentVC(viewModel: EventsSwiperContentViewModelImpl(delegate: self))
+        let vc = EventsSwiperContentVC(viewModel: EventsSwiperContentViewModelImpl(delegate: viewModel))
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         return vc
     }()
@@ -94,9 +94,9 @@ final class EventsSwiperVC: UIViewController {
         return LoaderManager()
     }()
     
-    private let viewModel: EventsSwiperViewModel
+    private let viewModel: EventsSwiperViewModel & EventsSwiperContentViewModelDelegate
     
-    init(viewModel: EventsSwiperViewModel) {
+    init(viewModel: EventsSwiperViewModel & EventsSwiperContentViewModelDelegate) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -220,6 +220,10 @@ extension EventsSwiperVC: EventsSwiperView {
             completion()
         }
     }
+    
+    func show(vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension EventsSwiperVC: EventToEstablishmentFromTransition {
@@ -236,11 +240,4 @@ extension EventsSwiperVC: UINavigationControllerDelegate {
             
             return EventsTransitionManager.customTransition(for: fromVC, toVC: toVC)
         }
-}
-
-extension EventsSwiperVC: EventsSwiperContentViewModelDelegate {
-    func expand(bussiness: EventsSwiperBussiness) {
-        let nextvc = EstablishmentDetailVC(model: EstablishmentDetailVCViewModel.init())
-        navigationController?.pushViewController(nextvc, animated: true)
-    }
 }

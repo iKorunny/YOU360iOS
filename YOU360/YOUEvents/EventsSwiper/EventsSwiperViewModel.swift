@@ -10,12 +10,16 @@ import YOUUtils
 import UIKit
 import YOUNetworking
 
+import YOUAuthorization
+import YOUProfile
+
 protocol EventsSwiperView: AnyObject {
     func onLocationStatusChanged(newStatus: YOULocationManagerAccessStatus)
     func reload(with models: [EventsSwiperBussiness])
     
     func runActivity()
     func stopActivity(completion: @escaping (() -> Void))
+    func show(vc: UIViewController)
 }
 
 protocol EventsSwiperViewModel {
@@ -223,9 +227,20 @@ extension EventsSwiperViewModelImpl: EventsSwiperViewModel {
     
     func onToMenu() {
         print("EventsSwiperVC -> toMenu()")
+        
+        guard let profile = ProfileManager.shared.profile else { return }
+        view?.show(vc: ProfileScreenFactory.createProfileVC(for: profile))
     }
     
     func onToSearch() {
         print("EventsSwiperVC -> toSearch()")
+    }
+}
+
+
+extension EventsSwiperViewModelImpl: EventsSwiperContentViewModelDelegate {
+    func expand(bussiness: EventsSwiperBussiness) {
+        let nextVc = EstablishmentDetailVC(model: EstablishmentDetailVCViewModel.init())
+        self.view?.show(vc: nextVc)
     }
 }
