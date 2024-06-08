@@ -81,10 +81,7 @@ final class ProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
             onlineIdicator: OnlineIndicator(isHidden: true, status: .online),
             avatar: avatarImage,
             banner: bannerImage) { [weak self] in
-                //TODO: remove closure
-//                self?.toEditProfile()
-            } onShare: {
-                print("MyProfileVCViewModelImpl -> OnShare")
+                print("ProfileVCViewModelImpl -> OnShare")
             }
 
     }()
@@ -136,7 +133,6 @@ final class ProfileVCViewModelImpl: NSObject, ProfileVCViewModel {
              postsDataSource: ProfileVCPostsDataSource,
              relatedWindow: UIWindow?,
              refreshControl: UIRefreshControl) {
-        
         self.collectionView = collectionView
         self.view = view
         self.postsDataSource = postsDataSource

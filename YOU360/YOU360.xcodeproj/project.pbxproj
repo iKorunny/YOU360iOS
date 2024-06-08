@@ -170,6 +170,8 @@
 		80ADA48C2BD0599400303938 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ADA48B2BD0599400303938 /* Validators.swift */; };
 		80B8921E2C136DD70031B233 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B8921D2C136DD70031B233 /* ProfileVC.swift */; };
 		80B892202C136E450031B233 /* ProfileVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B8921F2C136E450031B233 /* ProfileVCViewModel.swift */; };
+		80B892242C14D9AD0031B233 /* ProfileHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B892232C14D9AD0031B233 /* ProfileHeaderContentView.swift */; };
+		80B892262C14DAAE0031B233 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B892252C14DAAE0031B233 /* ProfileHeaderCell.swift */; };
 		80B9F0B92BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */; };
 		80BF5E5F2B8A029F0017524F /* LoginButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */; };
 		80BF5E612B8A10410017524F /* LoginSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */; };
@@ -185,9 +187,9 @@
 		80BF5E772B8C88D90017524F /* AppNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */; };
 		80BF5E7A2B8C8C6A0017524F /* AuthorizationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */; };
 		80C224DF2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C224DE2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift */; };
-		80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */; };
+		80CA23A42B9B0F08008C9170 /* MyProvileHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A32B9B0F08008C9170 /* MyProvileHeaderContentView.swift */; };
 		80CA23A62B9BA274008C9170 /* MyProfileVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23A52B9BA274008C9170 /* MyProfileVCViewModel.swift */; };
-		80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */; };
+		80CA23AB2B9BA925008C9170 /* MyProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AA2B9BA925008C9170 /* MyProfileHeaderCell.swift */; };
 		80CA23AD2B9BB0DB008C9170 /* ClosureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */; };
 		80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23AE2B9CCDF2008C9170 /* ProfileEditCellContentView.swift */; };
 		80CA23B12B9CDBD0008C9170 /* ProfileEditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA23B02B9CDBD0008C9170 /* ProfileEditProfileCell.swift */; };
@@ -614,6 +616,8 @@
 		80ADA48B2BD0599400303938 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		80B8921D2C136DD70031B233 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		80B8921F2C136E450031B233 /* ProfileVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCViewModel.swift; sourceTree = "<group>"; };
+		80B892232C14D9AD0031B233 /* ProfileHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderContentView.swift; sourceTree = "<group>"; };
+		80B892252C14DAAE0031B233 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
 		80B9F0B82BAB6C0000D74EBD /* ProfileEditScreenFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditScreenFieldModel.swift; sourceTree = "<group>"; };
 		80BF5E5E2B8A029F0017524F /* LoginButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonsCell.swift; sourceTree = "<group>"; };
 		80BF5E602B8A10410017524F /* LoginSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSeparatorCell.swift; sourceTree = "<group>"; };
@@ -629,9 +633,9 @@
 		80BF5E762B8C88D90017524F /* AppNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNetworkConfig.swift; sourceTree = "<group>"; };
 		80BF5E792B8C8C6A0017524F /* AuthorizationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAPIService.swift; sourceTree = "<group>"; };
 		80C224DE2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoIconWithTextView.swift; sourceTree = "<group>"; };
-		80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvileHeaderContentView.swift; sourceTree = "<group>"; };
+		80CA23A32B9B0F08008C9170 /* MyProvileHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProvileHeaderContentView.swift; sourceTree = "<group>"; };
 		80CA23A52B9BA274008C9170 /* MyProfileVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVCViewModel.swift; sourceTree = "<group>"; };
-		80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		80CA23AA2B9BA925008C9170 /* MyProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderCell.swift; sourceTree = "<group>"; };
 		80CA23AC2B9BB0DB008C9170 /* ClosureObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureObserver.swift; sourceTree = "<group>"; };
 		80CA23AE2B9CCDF2008C9170 /* ProfileEditCellContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCellContentView.swift; sourceTree = "<group>"; };
 		80CA23B02B9CDBD0008C9170 /* ProfileEditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditProfileCell.swift; sourceTree = "<group>"; };
@@ -784,7 +788,8 @@
 		0EA5CC9A2BDE5CDE00E0B145 /* Header Section */ = {
 			isa = PBXGroup;
 			children = (
-				80CA23A32B9B0F08008C9170 /* ProvileHeaderContentView.swift */,
+				80CA23A32B9B0F08008C9170 /* MyProvileHeaderContentView.swift */,
+				80B892232C14D9AD0031B233 /* ProfileHeaderContentView.swift */,
 			);
 			path = "Header Section";
 			sourceTree = "<group>";
@@ -1244,7 +1249,8 @@
 		80CA23A92B9BA90A008C9170 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				80CA23AA2B9BA925008C9170 /* ProfileHeaderCell.swift */,
+				80CA23AA2B9BA925008C9170 /* MyProfileHeaderCell.swift */,
+				80B892252C14DAAE0031B233 /* ProfileHeaderCell.swift */,
 				809F56152BB0B2DF00CF702C /* ProfileInfoCell.swift */,
 				80E627A42BB3519A00F50B4E /* ProfileSocialButtonsCell.swift */,
 				807FAAFE2BB5D1770069E4F6 /* ProfileContentSegmentCell.swift */,
@@ -1904,13 +1910,13 @@
 				896C909C2BC7425600DB36DB /* MenuVC.swift in Sources */,
 				896C90A42BCBFD7900DB36DB /* MenuItemContentView.swift in Sources */,
 				8038AD572BA4E2EA003B377C /* ProfileEditPushScreenLineView.swift in Sources */,
-				80CA23AB2B9BA925008C9170 /* ProfileHeaderCell.swift in Sources */,
+				80CA23AB2B9BA925008C9170 /* MyProfileHeaderCell.swift in Sources */,
 				0E50BDE82BE26C7D00585A3E /* Post.swift in Sources */,
 				8038AD5B2BA61E90003B377C /* ProfileEditHeaderFooterContentView.swift in Sources */,
 				80E627A52BB3519A00F50B4E /* ProfileSocialButtonsCell.swift in Sources */,
 				809F56162BB0B2DF00CF702C /* ProfileInfoCell.swift in Sources */,
 				801F7A6F2BCC2E4E00277394 /* ProfileVCPostsDataSource.swift in Sources */,
-				80CA23A42B9B0F08008C9170 /* ProvileHeaderContentView.swift in Sources */,
+				80CA23A42B9B0F08008C9170 /* MyProvileHeaderContentView.swift in Sources */,
 				809B1D122BC4773000DEEBC6 /* UserInfoResponse+FieldsExtension.swift in Sources */,
 				80CA23AF2B9CCDF2008C9170 /* ProfileEditCellContentView.swift in Sources */,
 				0EA5CC9E2BDED70500E0B145 /* PostDetailsVC.swift in Sources */,
@@ -1920,6 +1926,8 @@
 				801F7A712BCC30DB00277394 /* ProfilePostCellModel.swift in Sources */,
 				809F56182BB0B36A00CF702C /* ProfileInfoContentView.swift in Sources */,
 				80C224DF2BB1B92D00C85799 /* ProfileInfoIconWithTextView.swift in Sources */,
+				80B892262C14DAAE0031B233 /* ProfileHeaderCell.swift in Sources */,
+				80B892242C14D9AD0031B233 /* ProfileHeaderContentView.swift in Sources */,
 				80CA23A62B9BA274008C9170 /* MyProfileVCViewModel.swift in Sources */,
 				896C909E2BC7446C00DB36DB /* MenuViewModel.swift in Sources */,
 				807FAB012BB5FEE90069E4F6 /* ProfileContentSegmentContentView.swift in Sources */,

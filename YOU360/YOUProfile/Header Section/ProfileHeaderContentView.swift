@@ -1,8 +1,8 @@
 //
-//  ProvileHeaderContentView.swift
+//  ProfileHeaderContentView.swift
 //  YOUProfile
 //
-//  Created by Ihar Karunny on 3/8/24.
+//  Created by Ihar Karunny on 6/8/24.
 //
 
 import UIKit
@@ -10,42 +10,23 @@ import YOUUtils
 import YOUUIComponents
 import YOUNetworking
 
-enum OnlineIndicatorStatus: String {
-    case online = "ProfileHeaderOnlineIndicatorOnline"
-}
-
-struct OnlineIndicator {
-    var isHidden: Bool
-    var status: OnlineIndicatorStatus
-    var statusStringRepresentation: String { status.rawValue.localised() }
-    var statusColor: UIColor {
-        switch status {
-        case .online:
-            return ColorPallete.appGreenIndication
-        }
-    }
-}
-
 final class ProvileHeaderContentViewModel {
     var profile: UserInfoResponse?
     var avatar: UIImage?
     var banner: UIImage?
     var onlineIdicator: OnlineIndicator
     
-    var onEdit: (() -> Void)
     var onShare: (() -> Void)
     
     init(profile: UserInfoResponse?,
          onlineIdicator: OnlineIndicator,
          avatar: UIImage?,
          banner: UIImage?,
-         onEdit: @escaping () -> Void,
          onShare: @escaping () -> Void) {
         self.profile = profile
         self.avatar = avatar
         self.banner = banner
         self.onlineIdicator = onlineIdicator
-        self.onEdit = onEdit
         self.onShare = onShare
     }
 }
@@ -62,10 +43,9 @@ final class ProvileHeaderContentView: UIView {
         
         static let buttonsTrailingOffset: CGFloat = 20
         static let buttonsBottomOffset: CGFloat = 12
-        static let buttonsHorizontalSpacing: CGFloat = 10
-        static let editButtonTextSize: CGFloat = 14
-        static let editButtonTextInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
         static let shareButtonSize: CGFloat = 32
+        static let shareButtonTitleSize: CGFloat = 14
+        static let shareButtonIconPadding: CGFloat = 4
         
         static let onlineIndicatorHeight: CGFloat = 22
         static let onlineIndicatorTitleHorizontalOffset: CGFloat = 8
@@ -103,27 +83,15 @@ final class ProvileHeaderContentView: UIView {
         let button = ButtonsFactory.createButton(
             backgroundColor: ColorPallete.appWhite,
             highlightedBackgroundColor: ColorPallete.appDarkWhite,
-            titleIcon: UIImage(named: "ProfileEdit"),
+            title: "ProfileShareButtonTitle".localised(),
+            titleFont: YOUFontsProvider.appMediumFont(with: Constants.shareButtonTitleSize),
+            titleColor: ColorPallete.appPink,
+            titleIcon: UIImage(named: "ProfileShare"),
+            iconPadding: Constants.shareButtonIconPadding,
             height: Constants.shareButtonSize,
             cornerRadius: Constants.shareButtonSize * 0.5,
             target: self,
             action: #selector(onShare)
-        )
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private(set) lazy var editButton = {
-        let button = ButtonsFactory.createButton(
-            backgroundColor: ColorPallete.appWhite,
-            highlightedBackgroundColor: ColorPallete.appDarkWhite,
-            title: "ProfileHeaderEdit".localised(),
-            titleFont: YOUFontsProvider.appBoldFont(with: Constants.editButtonTextSize),
-            titleColor: ColorPallete.appPink,
-            contentInsets: Constants.editButtonTextInsets,
-            height: Constants.shareButtonSize,
-            target: self,
-            action: #selector(onEdit)
         )
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -176,7 +144,6 @@ final class ProvileHeaderContentView: UIView {
     private func setupUI() {
         addSubview(backgroundImageView)
         addSubview(avatarImageView)
-        addSubview(editButton)
         addSubview(shareButton)
         addSubview(onlineIndicatorContainer)
         onlineIndicatorContainer.addSubview(onlineIndicatorBackgroundView)
@@ -200,11 +167,8 @@ final class ProvileHeaderContentView: UIView {
         avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.avatarLeadingOffset).isActive = true
         avatarImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        editButton.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -Constants.buttonsBottomOffset).isActive = true
-        editButton.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -Constants.buttonsTrailingOffset).isActive = true
-        shareButton.bottomAnchor.constraint(equalTo: editButton.bottomAnchor).isActive = true
-        shareButton.trailingAnchor.constraint(equalTo: editButton.leadingAnchor, constant: -Constants.buttonsHorizontalSpacing).isActive = true
-        shareButton.widthAnchor.constraint(equalToConstant: Constants.shareButtonSize).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -Constants.buttonsBottomOffset).isActive = true
+        shareButton.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -Constants.buttonsTrailingOffset).isActive = true
         
         onlineIndicatorContainer.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor).isActive = true
         onlineIndicatorContainer.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
@@ -221,10 +185,6 @@ final class ProvileHeaderContentView: UIView {
     
     @objc private func onShare() {
         viewModel?.onShare()
-    }
-    
-    @objc private func onEdit() {
-        viewModel?.onEdit()
     }
     
     func apply(viewModel: ProvileHeaderContentViewModel) {

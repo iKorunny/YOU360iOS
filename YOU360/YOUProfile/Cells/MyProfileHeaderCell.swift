@@ -1,18 +1,18 @@
 //
-//  ProfileHeaderCell.swift
+//  MyProfileHeaderCell.swift
 //  YOUProfile
 //
-//  Created by Ihar Karunny on 6/8/24.
+//  Created by Ihar Karunny on 3/8/24.
 //
 
 import UIKit
 
-final class ProfileHeaderCell: UICollectionViewCell {
-    private var profileContentView: ProvileHeaderContentView?
+final class MyProfileHeaderCell: UICollectionViewCell {
+    private var profileContentView: MyProvileHeaderContentView?
     
-    func apply(viewModel: ProvileHeaderContentViewModel) {
+    func apply(viewModel: MyProvileHeaderContentViewModel) {
         if profileContentView == nil {
-            let profileView = ProvileHeaderContentView()
+            let profileView = MyProvileHeaderContentView()
             profileView.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(profileView)
             profileView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true

@@ -71,7 +71,7 @@ protocol MyProfileVCViewModel {
 
 final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
     private enum Constants {
-        static let profileHeaderId = "ProfileHeaderCell"
+        static let profileHeaderId = "MyProfileHeaderCell"
         static let profileEditCellId = "ProfileEditProfileCell"
         static let profileInfoCellId = "ProfileInfoCell"
         static let profileSocialButtonsCellId = "ProfileSocialButtonsCell"
@@ -120,8 +120,8 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         return LoaderManager()
     }()
 
-    private lazy var profileHeaderViewModel: ProvileHeaderContentViewModel = {
-        ProvileHeaderContentViewModel(
+    private lazy var profileHeaderViewModel: MyProvileHeaderContentViewModel = {
+        MyProvileHeaderContentViewModel(
             profile: ProfileManager.shared.profile,
             onlineIdicator: OnlineIndicator(isHidden: true, status: .online),
             avatar: profileManager.avatar,
@@ -133,7 +133,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
 
     }()
     
-    private var headerCell: ProfileHeaderCell?
+    private var headerCell: MyProfileHeaderCell?
     
     init(profileManager: ProfileManager) {
         self.profileManager = profileManager
@@ -192,7 +192,7 @@ final class MyProfileVCViewModelImpl: NSObject, MyProfileVCViewModel {
         collectionView.showsVerticalScrollIndicator = false
         view.setMakePostButton(visible: self.isProfileFilled && contentType == .content)
         
-        collectionView.register(ProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
+        collectionView.register(MyProfileHeaderCell.self, forCellWithReuseIdentifier: Constants.profileHeaderId)
         collectionView.register(ProfileEditProfileCell.self, forCellWithReuseIdentifier: Constants.profileEditCellId)
         collectionView.register(ProfileInfoCell.self, forCellWithReuseIdentifier: Constants.profileInfoCellId)
         collectionView.register(ProfileSocialButtonsCell.self, forCellWithReuseIdentifier: Constants.profileSocialButtonsCellId)
@@ -367,7 +367,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == Constants.headerSectionIndex{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileHeaderId, for: indexPath) as! ProfileHeaderCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.profileHeaderId, for: indexPath) as! MyProfileHeaderCell
             headerCell = cell
 
             cell.apply(viewModel: profileHeaderViewModel)
@@ -440,7 +440,7 @@ extension MyProfileVCViewModelImpl: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (relatedWindow ?? collectionView.window)?.bounds.width ?? .leastNormalMagnitude
         if indexPath.section == Constants.headerSectionIndex {
-            let height = ProvileHeaderContentView.calculateHeight(from: width)
+            let height = MyProvileHeaderContentView.calculateHeight(from: width)
             return CGSize(width: width, height: height)
         }
         else if indexPath.section == Constants.socialSectionIndex {

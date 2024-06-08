@@ -783,6 +783,17 @@
         }
       }
     },
+    "ProfileShareButtonTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
     "ProfileTabBarTitle" : {
       "extractionState" : "manual",
       "localizations" : {
