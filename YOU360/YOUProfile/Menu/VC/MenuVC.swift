@@ -28,6 +28,18 @@ final class MenuVC: UIViewController, MenuView {
         return button
     }()
     
+    private lazy var holdView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = ColorPallete.appBlackSecondary
+        NSLayoutConstraint.activate([
+            view.heightAnchor.constraint(equalToConstant: 5),
+            view.widthAnchor.constraint(equalToConstant: 87),
+        ])
+
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = ColorPallete.appWhiteSecondary
@@ -53,10 +65,6 @@ final class MenuVC: UIViewController, MenuView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func reload() {
-        tableView.reloadData()
-    }
-    
     override func viewDidLoad() {
         viewModel.onViewDidLoad()
         super.viewDidLoad()
@@ -74,15 +82,30 @@ final class MenuVC: UIViewController, MenuView {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        holdView.layer.cornerRadius = holdView.bounds.height / 2
+    }
+    
+    func reload() {
+        tableView.reloadData()
+    }
+    
     private func setupUI() {
         setupTableView()
-        setupButtons()
+        
+        view.addSubview(holdView)
+        NSLayoutConstraint.activate([
+            holdView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            holdView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+        ])
     }
     
     private func setupTableView() {
         view.addSubview(tableView)
         view.backgroundColor = Constants.backgroundColor
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
         tableView.backgroundColor = .clear
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true

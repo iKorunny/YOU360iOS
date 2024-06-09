@@ -343,35 +343,46 @@
         }
       }
     },
-    "MyProfileContentEmpty" : {
-      "extractionState" : "manual",
-      "localizations" : {
+"MyProfileContentEmpty" : {
+    "extractionState" : "manual",
+    "localizations" : {
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All of your uploaded content will be placed here"
-          }
+            "stringUnit" : {
+                "state" : "translated",
+                "value" : "All of your uploaded content will be placed here"
+            }
+        }
+    }
+},
+"MyProfileEventsEmpty" : {
+  "extractionState" : "manual",
+  "localizations" : {
+    "en" : {
+      "stringUnit" : {
+        "state" : "translated",
+        "value" : "All the events you like\nwill be here."
+      }
+    }
+  }
+},
+"MyProfilePlacesEmpty" : {
+  "extractionState" : "manual",
+  "localizations" : {
+    "en" : {
+      "stringUnit" : {
+        "state" : "translated",
+        "value" : "Here you will see your favorite places"
         }
       }
-    },
-    "MyProfileEventsEmpty" : {
+    }
+  },
+    "MenuDistanceDescription" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All the events you like\nwill be here."
-          }
-        }
-      }
-    },
-    "MyProfilePlacesEmpty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Here you will see your favorite places"
+            "value" : "Select the distance within which places will be displayed"
           }
         }
       }

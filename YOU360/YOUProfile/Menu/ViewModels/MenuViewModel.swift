@@ -29,6 +29,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     private enum Constants {
         static let menuProfileCellID = "menuProfileCellID"
         static let menuCellID = "MenuCell"
+        static let dropDownCellId = "MenuDropDownCell"
         static let fieldsCellIndex: Int = 1
         static let heightOfRow: CGFloat = 72
         static let profileHeightOfRow: CGFloat = 72
@@ -74,6 +75,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: Constants.menuCellID)
         tableView.register(MenuCell.self, forCellReuseIdentifier: Constants.menuProfileCellID)
+        tableView.register(MenuDropDownCell.self, forCellReuseIdentifier: Constants.dropDownCellId)
     }
     
     func onViewDidLoad() {
@@ -86,19 +88,28 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
     
     func cellForRow(with index: IndexPath, for table: UITableView) -> UITableViewCell {
         var cell: UITableViewCell?
+        let item = itemForIndex(index)
         
-        switch index.row {
-        case 0:
-            cell = table.dequeueReusableCell(withIdentifier: Constants.menuProfileCellID, for: index)
-        default:
-            cell = table.dequeueReusableCell(withIdentifier: Constants.menuCellID, for: index)
+        if let regularItem = item as? MenuItemRegular {
+            if regularItem.type == .profile {
+                let profileCell = table.dequeueReusableCell(withIdentifier: Constants.menuProfileCellID, for: index) as? MenuCell
+                let menuViewModel = MenuContentViewModelImpl(item: regularItem, reloadAction: reload)
+                profileCell?.apply(viewModel: menuViewModel)
+                cell = profileCell
+            } else {
+                let regularCell = table.dequeueReusableCell(withIdentifier: Constants.menuCellID, for: index) as? MenuCell
+                let menuViewModel = MenuContentViewModelImpl(item: regularItem, reloadAction: reload)
+                regularCell?.apply(viewModel: menuViewModel)
+                cell = regularCell
+            }
+        }
+        else if let dropDown = item as? MenuDropDownViewData {
+            let dropDownCell = table.dequeueReusableCell(withIdentifier: Constants.dropDownCellId, for: index) as? MenuDropDownCell
+            dropDownCell?.apply(viewModel: dropDown)
+            cell = dropDownCell
         }
         
-        guard let cell = cell as? MenuCell else { return UITableViewCell() }
-        let menuViewModel = MenuContentViewModelImpl(item: itemForIndex(index), reloadAction: reload)
-        
-        cell.apply(viewModel: menuViewModel)
-        return cell
+        return cell ?? UITableViewCell()
     }
     
     private func itemForIndex(_ index: IndexPath) -> MenuItem {
@@ -139,25 +150,38 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         }
     }
     
+    private func createDistanceItem() -> MenuDropDownViewData {
+        let item = MenuDropDownViewData(
+            title: "DistanceTitle".localised(),
+            iconImage: MenuItemIcons.distance,
+            description: "MenuDistanceDescription".localised(),
+            selectedItemId: "5 miles"
+        )
+        item.options = [
+            .init(itemId: "5 miles", title: "5 miles".localised()),
+            .init(itemId: "10 miles", title: "10 miles".localised()),
+            .init(itemId: "15 miles", title: "15 miles".localised()),
+        ]
+        return item
+    }
+    
     private func getSections() -> [Section] {
         [
             Section(name: "", items: [
                 getProfileItem(),
-                MenuItem(title: "ProfileSettingsTitle".localised(), type: .standart, icon: MenuItem.Icons.profile),
-                MenuItem(title: "HistorOfReservationsTitle".localised(), type: .standart, icon: MenuItem.Icons.history),
-                MenuItem(title: "PaymentMethodsTitle".localised(), type: .standart, icon: MenuItem.Icons.payment),
-                MenuItem(title: "DistanceTitle".localised(), type: .standart, icon: MenuItem.Icons.distance),
-            ]
-                   ),
+                MenuItemRegular(title: "ProfileSettingsTitle".localised(), type: .standart, icon: MenuItemIcons.profile),
+                MenuItemRegular(title: "HistorOfReservationsTitle".localised(), type: .standart, icon: MenuItemIcons.history),
+                MenuItemRegular(title: "PaymentMethodsTitle".localised(), type: .standart, icon: MenuItemIcons.payment),
+                createDistanceItem()
+            ]),
             Section(name: "SettingsAndPreferencesTitle".localised(), items: [
-                MenuItem(title: "NotificationsTitle".localised(), type: .standart, icon: MenuItem.Icons.notifications),
-                MenuItem(title: "DarkModeTitle".localised(), type: .switchKey, icon: MenuItem.Icons.moon),
-            ]
-                   ),
+                MenuItemRegular(title: "NotificationsTitle".localised(), type: .standart, icon: MenuItemIcons.notifications),
+                MenuItemRegular(title: "DarkModeTitle".localised(), type: .switchKey, icon: MenuItemIcons.moon),
+            ]),
             Section(name: "SupportTitle".localised(), items: [
-                MenuItem(title: "HelpCenterTitle".localised(), type: .standart, icon: MenuItem.Icons.help),
-                MenuItem(title: "ReportBugTitle".localised(), type: .standart, icon: MenuItem.Icons.report),
-                MenuItem(title: "LogOutTitle".localised(), type: .logOut, icon: MenuItem.Icons.logOut, action: {
+                MenuItemRegular(title: "HelpCenterTitle".localised(), type: .standart, icon: MenuItemIcons.help),
+                MenuItemRegular(title: "ReportBugTitle".localised(), type: .standart, icon: MenuItemIcons.report),
+                MenuItemRegular(title: "LogOutTitle".localised(), type: .logOut, icon: MenuItemIcons.logOut, action: {
                     AuthorizationAPIService.shared.requestLogout { success, errors in
                         DispatchQueue.main.async { [weak self] in
                             self?.loaderManager.removeFullscreenLoader() { [weak self] _ in
@@ -170,14 +194,13 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
                         }
                     }
                 })
-            ]
-                   )
+            ])
         ]
     }
     
     private func getProfileItem() -> MenuItem {
         if let profile = profile {
-            var profileItem = MenuItem(title: profile.displayName, type: .profile, subTitle: profile.email, icon: avatarImage ?? UIImage(named: "ProfileAvatarPlaceholder"))
+            var profileItem = MenuItemRegular(title: profile.displayName, type: .profile, subTitle: profile.email, icon: avatarImage ?? UIImage(named: "ProfileAvatarPlaceholder"))
             
             if let avatar = avatarImage {
                 profileItem.icon = avatar
@@ -186,7 +209,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
             return profileItem
         } else {
             handleProfileError()
-            let emptyProfileItem = MenuItem(title: "", type: .profile, icon: UIImage(named: "ProfileAvatarPlaceholder"))
+            let emptyProfileItem = MenuItemRegular(title: "", type: .profile, icon: UIImage(named: "ProfileAvatarPlaceholder"))
             return emptyProfileItem
         }
     }
@@ -201,8 +224,7 @@ final class MenuViewModelImpl: NSObject, MenuViewModel {
         }
     }
     
-    private func handleProfileError() {
-    }
+    private func handleProfileError() { }
 
 }
 
@@ -226,10 +248,40 @@ extension MenuViewModelImpl: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if itemForIndex(indexPath).type == .profile {
-            return Constants.profileHeightOfRow
-        } else {
+        let item = itemForIndex(indexPath)
+        
+        if let regularItem = item as? MenuItemRegular {
+            if regularItem.type == .profile {
+                return Constants.profileHeightOfRow
+            } else {
+                return heightForRow
+            }
+        }
+        else if let dropDown = item as? MenuDropDownViewData {
+            if dropDown.expanded {
+                return 320
+            }
+            else {
+                return heightForRow
+            }
+        }
+        else {
             return heightForRow
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let dropDownCell = tableView.cellForRow(at: indexPath) as? MenuDropDownCell,
+           let viewData = dropDownCell.viewData {
+            
+            dropDownCell.setExpanded(!viewData.expanded, animated: true)
+            UIView.animate(withDuration: 0.3) {
+                self.tableView?.performBatchUpdates(nil)
+            }
         }
     }
 
