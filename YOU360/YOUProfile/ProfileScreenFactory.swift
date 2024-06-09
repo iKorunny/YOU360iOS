@@ -28,7 +28,7 @@ public final class ProfileScreenFactory {
     }
     
     public static func createProfileVC(for profile: UserInfoResponse) -> UIViewController {
-        if ProfileManager.shared.isMy(profile: profile) && false {
+        if ProfileManager.shared.isMy(profile: profile) {
             return MyProfileVC(viewModel: MyProfileVCViewModelImpl(profileManager: ProfileManager.shared))
         }
         else {
