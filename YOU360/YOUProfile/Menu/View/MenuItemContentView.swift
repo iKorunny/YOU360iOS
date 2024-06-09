@@ -45,7 +45,7 @@ final class MenuItemContentView: UIView {
     // MARK: UI
     
     private(set) lazy var rightIconView: UIImageView = {
-        let imageView = UIImageView(image: .init(named: "CellOpenScreenIcon"))
+        let imageView = UIImageView(image: .init(named: "RightDark"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         imageView.setContentHuggingPriority(.required, for: .horizontal)
@@ -61,6 +61,7 @@ final class MenuItemContentView: UIView {
         imageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         imageView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         imageView.setContentHuggingPriority(.required, for: .horizontal)
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -86,7 +87,7 @@ final class MenuItemContentView: UIView {
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         label.textAlignment = .left
         label.font = Constants.profileSubFont
-        label.textColor = Constants.subTextColor
+        label.textColor = Constants.mainTextColor
         label.heightAnchor.constraint(equalToConstant: Constants.textHeight).isActive = true
         return label
     }()
@@ -129,13 +130,12 @@ final class MenuItemContentView: UIView {
     private lazy var profileStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
         stackView.axis = .vertical
         stackView.spacing = 0
         
-        
-        stackView.addSubview(mainTextLabel)
-        stackView.addSubview(subTextLabel)
+        stackView.addArrangedSubview(mainTextLabel)
+        stackView.addArrangedSubview(subTextLabel)
         
         mainTextLabel.font = Constants.profileTitleFont
         subTextLabel.topAnchor.constraint(equalTo: self.mainTextLabel.bottomAnchor).isActive = true
@@ -194,7 +194,6 @@ final class MenuItemContentView: UIView {
     }
     
     private func setupLayout() {
-        leftIconView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         leftIconView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.leftIconOffset).isActive = true
         leftIconView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.leftIconOffset).isActive = true
         leftIconView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.leftIconOffset).isActive = true
@@ -207,7 +206,7 @@ final class MenuItemContentView: UIView {
             leftIconView.layer.cornerRadius = Constants.profileIconHeight / 2
             leftIconView.clipsToBounds = true
             
-            profileStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.leftIconOffset).isActive = true
+            profileStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
             profileStackView.leadingAnchor.constraint(equalTo: leftIconView.trailingAnchor, constant: Constants.textLeadingOffset).isActive = true
             profileStackView.trailingAnchor.constraint(lessThanOrEqualTo: rightIconView.leadingAnchor).isActive = true
             mainTextLabel.heightAnchor.constraint(equalToConstant: Constants.profileTitleHeigth).isActive = true
@@ -226,14 +225,7 @@ final class MenuItemContentView: UIView {
             rightIconView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
             rightIconView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.rightIconOffset).isActive = true
         }
-        
-        if viewModel?.type == .dropdown {
-            rightIconView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            rightIconView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.rightIconOffset).isActive = true
-            infoTextLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            infoTextLabel.trailingAnchor.constraint(equalTo: rightIconView.leadingAnchor, constant: -Constants.textLeadingOffset).isActive = true
-        }
-        
+
         button.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         button.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

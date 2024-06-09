@@ -19,7 +19,7 @@ public final class ProfileRouter {
     }
     
     public func toMenu(onClose: @escaping (() -> Void)) {
-        rootProfileVC?.pushViewController(ProfileScreenFactory.createMenuVC(onClose: onClose), animated: true)
+        rootProfileVC?.present(ProfileScreenFactory.createMenuVC(onClose: onClose), animated: true)
     }
     
     public func toLogin(onClose: @escaping (() -> Void)) {

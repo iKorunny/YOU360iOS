@@ -33,9 +33,9 @@ final class MenuContentViewModelImpl: MenuContentViewModel {
     
     // MARK: Private
     
-    private let model: MenuItem
+    private let model: MenuItemRegular
     
-    init(item: MenuItem, reloadAction: (() -> Void)? = nil) {
+    init(item: MenuItemRegular, reloadAction: (() -> Void)? = nil) {
         self.model = item
         self.reloadAction = reloadAction
     }
