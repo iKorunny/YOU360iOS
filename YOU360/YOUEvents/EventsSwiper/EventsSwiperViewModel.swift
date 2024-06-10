@@ -9,6 +9,7 @@ import Foundation
 import YOUUtils
 import UIKit
 import YOUNetworking
+import YOUUIComponents
 
 import YOUAuthorization
 import YOUProfile
@@ -25,7 +26,7 @@ protocol EventsSwiperView: AnyObject {
 protocol EventsSwiperViewModel {
     var dataModels: [EventsSwiperBussiness] { get }
     
-    func set(view: EventsSwiperView)
+    func set(view: UIViewController & EventsSwiperView)
     
     func onViewDidLoad()
     
@@ -60,7 +61,7 @@ final class EventsSwiperViewModelImpl {
         return manager
     }()
     
-    private weak var view: EventsSwiperView?
+    private weak var view: (UIViewController & EventsSwiperView)?
     
     var dataModels: [EventsSwiperBussiness] = [] {
         didSet {
@@ -87,7 +88,24 @@ final class EventsSwiperViewModelImpl {
         //TODO: request models
         
         view?.runActivity()
-//        networkService.makeNearestEstablishmentsRequest(location: location, page: .init(offset: 0, size: 10))
+        networkService.makeNearestEstablishmentsRequest(location: location, page: .init(offset: 0, size: 10)) { [weak self] success, page, localError in
+            guard success, let page = page else {
+                self?.view?.stopActivity { [weak self] in
+                    if let view = self?.view {
+                        if localError == .noInternet {
+                            AlertsPresenter.presentNoInternet(from: view)
+                        }
+                        else {
+                            AlertsPresenter.presentSomethingWentWrongAlert(from: view)
+                        }
+                    }
+                }
+                return
+            }
+            
+//            self?.view?.stopActivity {  }
+            // TODO: continue logic
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.view?.stopActivity {
                 
@@ -207,7 +225,7 @@ final class EventsSwiperViewModelImpl {
 }
 
 extension EventsSwiperViewModelImpl: EventsSwiperViewModel {
-    func set(view: EventsSwiperView) {
+    func set(view: UIViewController & EventsSwiperView) {
         self.view = view
     }
     

@@ -18,11 +18,12 @@ public final class EventsNetworkService: BaseSecretPartNetworkService {
      */
     public func makeNearestEstablishmentsRequest(location: YOULocationManagerCoordinate,
                                                  maxDistance: Double? = nil,
-                                                 page: RequestPage) {
+                                                 page: RequestPage,
+                                                 completion: @escaping (Bool, PageResponse<Establishment>?, SecretPartNetworkLocalError?) -> Void) {
         let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Establishment/nearest")
         var querryItems: [URLQueryItem] = []
-        querryItems.append(URLQueryItem(name: "RequestAddressDto.Latitude", value: "\(location.latitude)"))
-        querryItems.append(URLQueryItem(name: "RequestAddressDto.Longitude", value: "\(location.longitude)"))
+//        querryItems.append(URLQueryItem(name: "RequestAddressDto.Latitude", value: "\(location.latitude)"))
+//        querryItems.append(URLQueryItem(name: "RequestAddressDto.Longitude", value: "\(location.longitude)"))
         if let maxDistance {
             querryItems.append(URLQueryItem(name: "RequestAddressDto.MaxDistance", value: "\(maxDistance)"))
         }
@@ -39,7 +40,19 @@ public final class EventsNetworkService: BaseSecretPartNetworkService {
                                                          json: nil)
         
         secretNetworkService.performDataTask(request: request) { data, response, error, localError in
-            print()
+            guard error == nil && localError == nil,
+                  response?.isSuccess == true,
+                  let data = data else {
+                DispatchQueue.main.async {
+                    completion(false, nil, localError)
+                }
+                return
+            }
+
+            let page: PageResponse<Establishment>? = try? JSONDecoder().decode(PageResponse<Establishment>.self, from: data)
+            DispatchQueue.main.async {
+                completion(page != nil, page, localError)
+            }
         }
     }
 }
