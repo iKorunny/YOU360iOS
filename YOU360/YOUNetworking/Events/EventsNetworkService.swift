@@ -19,7 +19,7 @@ public final class EventsNetworkService: BaseSecretPartNetworkService {
     public func makeNearestEstablishmentsRequest(location: YOULocationManagerCoordinate,
                                                  maxDistance: Double? = nil,
                                                  page: RequestPage,
-                                                 completion: @escaping (Bool, PageResponse<Establishment>?, SecretPartNetworkLocalError?) -> Void) {
+                                                 completion: @escaping (Bool, PageResponse<EstablishmentWithEvents>?, SecretPartNetworkLocalError?) -> Void) {
         let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Establishment/nearest")
         var querryItems: [URLQueryItem] = []
 //        querryItems.append(URLQueryItem(name: "RequestAddressDto.Latitude", value: "\(location.latitude)"))
@@ -49,7 +49,7 @@ public final class EventsNetworkService: BaseSecretPartNetworkService {
                 return
             }
 
-            let page: PageResponse<Establishment>? = try? JSONDecoder().decode(PageResponse<Establishment>.self, from: data)
+            let page: PageResponse<EstablishmentWithEvents>? = try? JSONDecoder().decode(PageResponse<EstablishmentWithEvents>.self, from: data)
             DispatchQueue.main.async {
                 completion(page != nil, page, localError)
             }
