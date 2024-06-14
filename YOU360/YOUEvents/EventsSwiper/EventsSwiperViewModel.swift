@@ -14,6 +14,10 @@ import YOUUIComponents
 import YOUAuthorization
 import YOUProfile
 
+private enum Constants {
+    static let pageSize: Int = 10
+}
+
 protocol EventsSwiperView: AnyObject {
     func onLocationStatusChanged(newStatus: YOULocationManagerAccessStatus)
     func reload(with models: [EventsSwiperBussiness])
@@ -39,7 +43,9 @@ protocol EventsSwiperViewModel {
     func onToSearch()
 }
 
-final class EventsSwiperViewModelImpl {
+final class EventsSwiperViewModelImpl: PageLoaderDelegate {
+    typealias T = EstablishmentWithEvents
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
         locationManager.removeStatus(observer: statusObserver)
@@ -48,7 +54,13 @@ final class EventsSwiperViewModelImpl {
     private var statusObserver: AnyObject?
     
     private lazy var networkService: EventsNetworkService = {
-        EventsNetworkService.makeService()
+        let service = EventsNetworkService.makeService()
+        service.dataSource = self
+        return service
+    }()
+    
+    private lazy var pageLoader: SilentPageLoader = {
+        return SilentPageLoader(pageSize: Constants.pageSize, dataSource: networkService, delegate: self)
     }()
     
     private lazy var locationManager: YOULocationManager = {
@@ -69,6 +81,9 @@ final class EventsSwiperViewModelImpl {
         }
     }
     
+    private var loadedData: [T] = []
+    private var reloadInProgress = false
+    
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
@@ -83,12 +98,17 @@ final class EventsSwiperViewModelImpl {
         reloadIfNeeded()
     }
     
+    func didLoadPage(offset: Int, with items: [T]) {
+        loadedData.append(contentsOf: items)
+    }
+    
     private func reloadIfNeeded() {
-        guard locationManager.status == .granted, let location = locationManager.location else { return }
-        //TODO: request models
+        guard !reloadInProgress,
+                locationManager.status == .granted else { return }
+        reloadInProgress = true
         
         view?.runActivity()
-        networkService.makeNearestEstablishmentsRequest(location: location, page: .init(offset: 0, size: 10)) { [weak self] success, page, localError in
+        pageLoader.restartRequest { [weak self] success, page, localError in
             guard success, let page = page else {
                 self?.view?.stopActivity { [weak self] in
                     if let view = self?.view {
@@ -103,13 +123,15 @@ final class EventsSwiperViewModelImpl {
                 return
             }
             
-//            self?.view?.stopActivity {  }
-            // TODO: continue logic
+            self?.view?.stopActivity {  }
+            self?.loadedData = []
+            self?.didLoadPage(offset: page.offset, with: page.items)
+            self?.reloadInProgress = false
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            self?.view?.stopActivity {
-                
-            }
+//            self?.view?.stopActivity {
+//                
+//            }
             self?.dataModels = [
                 EventsSwiperBussiness(id: "0", events: [
                     EventsSwiperEvent(type: .image,
@@ -260,5 +282,17 @@ extension EventsSwiperViewModelImpl: EventsSwiperContentViewModelDelegate {
     func expand(bussiness: EventsSwiperBussiness) {
         let nextVc = EstablishmentDetailVC(model: EstablishmentDetailVCViewModel.init())
         self.view?.show(vc: nextVc)
+    }
+}
+
+extension EventsSwiperViewModelImpl: EventsNetworkServiceDataSource {
+    var location: YOULocationManagerCoordinate? {
+        guard locationManager.status == .granted, 
+                let location = locationManager.location else { return nil }
+        return location
+    }
+    
+    var maxDistance: Double? {
+        return 40 //TODO: replace with profile settings
     }
 }
