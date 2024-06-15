@@ -43,6 +43,9 @@ public final class EventsNetworkService: BaseSecretPartNetworkService, PageLoade
                                                  completion: @escaping (Bool, PageResponse<DataType>?, SecretPartNetworkLocalError?) -> Void) {
         let baseUrl = URL(string: AppNetworkConfig.V1.backendAddress)!.appendingPathComponent("Establishment/nearest")
         var querryItems: [URLQueryItem] = []
+        querryItems.append(URLQueryItem(name: "RequestAddressDto.Latitude", value: "10"))
+        querryItems.append(URLQueryItem(name: "RequestAddressDto.Longitude", value: "10"))
+        querryItems.append(URLQueryItem(name: "RequestAddressDto.MaxDistance", value: "40"))
         //TODO: Uncomment!!!!
 //        querryItems.append(URLQueryItem(name: "RequestAddressDto.Latitude", value: "\(location.latitude)"))
 //        querryItems.append(URLQueryItem(name: "RequestAddressDto.Longitude", value: "\(location.longitude)"))

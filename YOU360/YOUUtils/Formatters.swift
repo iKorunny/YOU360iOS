@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Contacts
 
 public final class Formatters {
     public static let dateOfBirthNetworkFormatter = DateOfBirthNetworkFormatter()
@@ -20,6 +21,12 @@ public final class Formatters {
     public static func dateFromString(_ string: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.date(from: string)
+    }
+    
+    public static func dateFromISO8601String(_ string: String) -> Date? {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions =  [.withInternetDateTime, .withFractionalSeconds]
         return formatter.date(from: string)
     }
     
@@ -60,7 +67,15 @@ public final class Formatters {
         return formatter.string(from: NSNumber(value: amount))
     }
     
-    public static func formatShorForm(of value: Int) -> String? {
+    public static func formatEventPrice(amount: CGFloat, currencyCode: String) -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.minimumFractionDigits = 0
+        formatter.currencyCode = currencyCode
+        return formatter.string(from: NSNumber(value: amount))
+    }
+    
+    public static func formatShortForm(of value: Int) -> String? {
         if value >= 1000, value <= 999999 {
             return "\(Int(floor(Double(value / 1000))))K"
         }
@@ -88,5 +103,36 @@ public final class DateOfBirthNetworkFormatter {
     public func toDate(string: String?) -> Date? {
         guard let string = string else { return nil }
         return dateFormatter.date(from: string)
+    }
+}
+
+public final class AddressFormatter {
+    public static func format(country: String?,
+                              region: String?,
+                              city: String?,
+                              street: String?,
+                              zipCode: String?) -> String? {
+        let address = CNMutablePostalAddress()
+        if let country {
+            address.country = country
+        }
+        
+        if let region {
+            address.state = region
+        }
+        
+        if let city {
+            address.city = city
+        }
+        
+        if let street {
+            address.street = street
+        }
+        
+        if let zipCode {
+            address.postalCode = zipCode
+        }
+        
+        return CNPostalAddressFormatter.string(from: address, style: .mailingAddress)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import YOUUtils
 
 public final class EstablishmentSubscription: Codable {
     public var id: String
@@ -78,4 +79,22 @@ public final class EstablishmentWithEvents: Codable {
     public var menusCount: Int
     public var certificatesCount: Int
     public var roomsCount: Int
+}
+
+public extension EstablishmentAddress {
+    var stringValue: String? {
+        AddressFormatter.format(country: country,
+                                region: region,
+                                city: city,
+                                street: street,
+                                zipCode: zipCode)
+    }
+}
+
+public extension EstablishmentWithEvents {
+    var categoryString: String? {
+        //TODO: implement
+//        return "Night club"
+        return "\(category)"
+    }
 }

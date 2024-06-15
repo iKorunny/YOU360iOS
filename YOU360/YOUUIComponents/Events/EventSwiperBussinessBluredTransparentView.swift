@@ -183,7 +183,7 @@ public final class EventSwiperBussinessBluredTransparentView: UIView {
                     onTaxi: (() -> Void)?,
                     onLike: (() -> Void)?,
                     onExpand: (() -> Void)?) {
-        likesLabel.text = Formatters.formatShorForm(of: likes)
+        likesLabel.text = Formatters.formatShortForm(of: likes)
         nameLabel.text = name
         addressLabel.text = address
         categoryLabel.text = category

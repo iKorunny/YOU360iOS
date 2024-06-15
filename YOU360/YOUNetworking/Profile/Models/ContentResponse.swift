@@ -7,6 +7,12 @@
 
 import Foundation
 
+public enum ContentResponseType {
+    case unknown
+    case photo
+    case video
+}
+
 public class ContentResponse: Codable {
 
     public let id: String
