@@ -193,10 +193,13 @@ final class EventsSwiperEstablishmentContentVC: UIViewController {
         case .video:
             videoPosterVC.view.isHidden = false
             videoPosterVC.showVideo(with: event.url)
+        case .unknown:
+            videoPosterVC.view.isHidden = true
+            posterVC.view.isHidden = true
         }
         
         dateInfoView.set(text: Formatters.formatEvent(date: event.date))
-        priceInfoView.set(text: Formatters.formatEventPrice(amount: event.price.amount, currencySymbol: event.price.currencySymbol))
+        priceInfoView.set(text: event.price)
     }
     
     private func event(by index: Int) -> EventsSwiperEvent? {

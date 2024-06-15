@@ -22,12 +22,14 @@ protocol EventsSwiperContentVCDataSource {
     var bussiness: EventsSwiperBussiness? { get }
     var event: EventsSwiperEvent? { get }
     
+    func append(models: [EventsSwiperBussiness])
+    
     func onNextEvent()
     func onPreviousEvent()
 }
 
 final class EventsSwiperContentVCDataSourceImpl {
-    let models: [EventsSwiperBussiness]
+    private(set) var models: [EventsSwiperBussiness]
     private var bussinessIndex: Int = 0
     private var eventIndex: Int = 0
     
@@ -96,6 +98,10 @@ extension EventsSwiperContentVCDataSourceImpl: EventsSwiperContentVCDataSource {
         guard newIndex >= 0 else { return nil }
         eventIndex = newIndex
         return events[eventIndex]
+    }
+    
+    func append(models: [EventsSwiperBussiness]) {
+        self.models.append(contentsOf: models)
     }
     
     func onNextEvent() {

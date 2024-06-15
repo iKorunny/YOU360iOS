@@ -21,6 +21,7 @@ private enum Constants {
 protocol EventsSwiperView: AnyObject {
     func onLocationStatusChanged(newStatus: YOULocationManagerAccessStatus)
     func reload(with models: [EventsSwiperBussiness])
+    func append(models: [EventsSwiperBussiness])
     
     func runActivity()
     func stopActivity(completion: @escaping (() -> Void))
@@ -99,12 +100,53 @@ final class EventsSwiperViewModelImpl: PageLoaderDelegate {
     }
     
     func didLoadPage(offset: Int, with items: [T]) {
+        let shouldReloadView = offset == 0
         loadedData.append(contentsOf: items)
+        if shouldReloadView {
+            view?.reload(with: convertLoadedEstablishmentsToUI(loaded: items))
+        }
+        else {
+            view?.append(models: convertLoadedEstablishmentsToUI(loaded: items))
+        }
+    }
+    
+    private func convertLoadedEstablishmentsToUI(loaded: [T]) -> [EventsSwiperBussiness] {
+        var result: [EventsSwiperBussiness] = []
+        for item in loaded {
+            let convertedEvents:[EventsSwiperEvent] = item.events.compactMap { [weak self] event in
+                self?.convertLoadedEventToUI(event)
+            }
+            let bussinessUIModel = EventsSwiperBussiness(id: item.id,
+                                                         events: convertedEvents,
+                                                         likes: 5000,
+                                                         name: item.name ?? "",
+                                                         address: item.address?.stringValue,
+                                                         category: item.categoryString)
+//            if !bussinessUIModel.events.isEmpty {
+                result.append(bussinessUIModel)
+//            }
+        }
+        
+        return result
+    }
+    
+    private func convertLoadedEventToUI(_ event: Event) -> EventsSwiperEvent? {
+        //TODO: remove comments and add logic
+        guard /*let afisha = event.banner,*/
+              let priceCode = event.ticketPrice?.keys.first,
+              let priceAmount = event.ticketPrice?[priceCode],
+              let eventDateString = event.startDate,
+              let eventDate = Formatters.dateFromISO8601String(eventDateString)
+        else { return nil }
+        return EventsSwiperEvent(type: /*EventsSwiperEventType.convert(string: afisha.contentTypeFull)*/ .image,
+                                 urlString: /*afisha.contentUrl*/"https://0214.by/data/event/204da255aea2cd4a75ace6018fad6b4d.jpg",
+                                 price: Formatters.formatEventPrice(amount: priceAmount, currencyCode: priceCode) ?? "",
+                                 date: eventDate)
     }
     
     private func reloadIfNeeded() {
         guard !reloadInProgress,
-                locationManager.status == .granted else { return }
+              locationManager.status == .granted else { return }
         reloadInProgress = true
         
         view?.runActivity()
@@ -128,121 +170,121 @@ final class EventsSwiperViewModelImpl: PageLoaderDelegate {
             self?.didLoadPage(offset: page.offset, with: page.items)
             self?.reloadInProgress = false
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-//            self?.view?.stopActivity {
-//                
-//            }
-            self?.dataModels = [
-                EventsSwiperBussiness(id: "0", events: [
-                    EventsSwiperEvent(type: .image,
-                                      urlString: "https://random.imagecdn.app/1920/1080",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1930/1090",
-                                      price: .init(amount: 20, currencySymbol: "$"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1921/1081",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1922/1082",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1923/1083",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1924/1084",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1925/1085",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .video, 
-                                      urlString: "https://media.istockphoto.com/id/1323816323/video/machine-counter-automatic-calculates-a-large-amount-of-dollar-banknotes-in-4k-slow-motion.mp4?s=mp4-640x640-is&k=20&c=60RyfRaPLQw8onsqGfsPvjBi9yPXJZA4b_gV6tbD6uQ=",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date())
-                ],
-                                      likes: 5000,
-                                      name: "DRUNGLY",
-                                      address: "1000 Route Nationale , Pusignan, France",
-                                      category: "Night club"),
-                EventsSwiperBussiness(id: "1", events: [
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1926/1086",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1931/1091",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1927/1087",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .video, 
-                                      urlString: "https://v3.cdnpk.net/videvo_files/video/free/2012-09/large_preview/hd1708.mp4",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date())
-                ],
-                                      likes: 5100,
-                                      name: "DRUNGLY 2",
-                                      address: nil,
-                                      category: nil),
-                EventsSwiperBussiness(id: "2", events: [
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1920/1080",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1930/1090",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1921/1081",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1922/1082",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1925/1085",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .video, 
-                                      urlString: "https://videocdn.cdnpk.net/cdn/content/video/partners0316/large_watermarked/h7975e5ac_MotionFlow6307_preview.mp4",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date())
-                ],
-                                      likes: 5200000,
-                                      name: "DRUNGLY 3",
-                                      address: "1000 Route Nationale , Pusignan, France",
-                                      category: "Night club"),
-                EventsSwiperBussiness(id: "3", events: [
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1928/1089",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .image, 
-                                      urlString: "https://random.imagecdn.app/1929/1089",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date()),
-                    EventsSwiperEvent(type: .video, 
-                                      urlString: "https://v3.cdnpk.net/videvo_files/video/free/2012-09/large_preview/hd0628.mp4",
-                                      price: .init(amount: 20.20, currencySymbol: "€"),
-                                      date: Date())
-                ],
-                                      likes: 5000,
-                                      name: "DRUNGLY 4",
-                                      address: "1000 Route Nationale , Pusignan, France",
-                                      category: "Night club")
-            ]
-        }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+        ////            self?.view?.stopActivity {
+        ////
+        ////            }
+        //            self?.dataModels = [
+        //                EventsSwiperBussiness(id: "0", events: [
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1920/1080",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1930/1090",
+        //                                      price: "20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1921/1081",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1922/1082",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1923/1083",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1924/1084",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1925/1085",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .video,
+        //                                      urlString: "https://media.istockphoto.com/id/1323816323/video/machine-counter-automatic-calculates-a-large-amount-of-dollar-banknotes-in-4k-slow-motion.mp4?s=mp4-640x640-is&k=20&c=60RyfRaPLQw8onsqGfsPvjBi9yPXJZA4b_gV6tbD6uQ=",
+        //                                      price: "20.20€",
+        //                                      date: Date())
+        //                ],
+        //                                      likes: 5000,
+        //                                      name: "DRUNGLY",
+        //                                      address: "1000 Route Nationale , Pusignan, France",
+        //                                      category: "Night club"),
+        //                EventsSwiperBussiness(id: "1", events: [
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1926/1086",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1931/1091",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1927/1087",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .video,
+        //                                      urlString: "https://v3.cdnpk.net/videvo_files/video/free/2012-09/large_preview/hd1708.mp4",
+        //                                      price: "20.20€",
+        //                                      date: Date())
+        //                ],
+        //                                      likes: 5100,
+        //                                      name: "DRUNGLY 2",
+        //                                      address: nil,
+        //                                      category: nil),
+        //                EventsSwiperBussiness(id: "2", events: [
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1920/1080",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1930/1090",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1921/1081",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1922/1082",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1925/1085",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .video,
+        //                                      urlString: "https://videocdn.cdnpk.net/cdn/content/video/partners0316/large_watermarked/h7975e5ac_MotionFlow6307_preview.mp4",
+        //                                      price: "20.20€",
+        //                                      date: Date())
+        //                ],
+        //                                      likes: 5200000,
+        //                                      name: "DRUNGLY 3",
+        //                                      address: "1000 Route Nationale , Pusignan, France",
+        //                                      category: "Night club"),
+        //                EventsSwiperBussiness(id: "3", events: [
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1928/1089",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .image,
+        //                                      urlString: "https://random.imagecdn.app/1929/1089",
+        //                                      price: "20.20€",
+        //                                      date: Date()),
+        //                    EventsSwiperEvent(type: .video,
+        //                                      urlString: "https://v3.cdnpk.net/videvo_files/video/free/2012-09/large_preview/hd0628.mp4",
+        //                                      price: "20.20€",
+        //                                      date: Date())
+        //                ],
+        //                                      likes: 5000,
+        //                                      name: "DRUNGLY 4",
+        //                                      address: "1000 Route Nationale , Pusignan, France",
+        //                                      category: "Night club")
+        //            ]
+        //        }
     }
 }
 

@@ -212,6 +212,10 @@ extension EventsSwiperVC: EventsSwiperView {
         contentVC.reload()
     }
     
+    func append(models: [EventsSwiperBussiness]) {
+        contentVC.dataSource?.append(models: models)
+    }
+    
     func runActivity() {
         loaderManager.addFullscreenLoader(for: self.tabBarController ?? self)
     }

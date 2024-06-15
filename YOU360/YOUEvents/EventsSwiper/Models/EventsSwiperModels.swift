@@ -8,29 +8,31 @@
 import Foundation
 
 enum EventsSwiperEventType {
+    case unknown
     case image
     case video
-}
-
-final class EventsPrice {
-    let amount: CGFloat
-    let currencySymbol: String
     
-    init(amount: CGFloat, currencySymbol: String) {
-        self.amount = amount
-        self.currencySymbol = currencySymbol
+    static func convert(string: String) -> EventsSwiperEventType {
+        switch string {
+        case "video":
+            return .video
+        case "image":
+            return .image
+        default:
+            return .unknown
+        }
     }
 }
 
 final class EventsSwiperEvent {
     let type: EventsSwiperEventType
     let urlString: String
-    let price: EventsPrice
+    let price: String
     let date: Date
     
     init(type: EventsSwiperEventType, 
          urlString: String,
-         price: EventsPrice,
+         price: String,
          date: Date) {
         self.type = type
         self.urlString = urlString
@@ -47,7 +49,7 @@ final class EventsSwiperBussiness {
     let address: String?
     let category: String?
     
-    init(id: String, 
+    init(id: String,
          events: [EventsSwiperEvent],
          likes: Int,
          name: String,
