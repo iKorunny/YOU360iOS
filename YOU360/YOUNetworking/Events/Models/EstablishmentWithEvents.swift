@@ -60,7 +60,7 @@ public final class EstablishmentWithEvents: Codable {
     public var twitter: String?
     public var name: String?
     public var description: String?
-    public var category: Int //TODO: change to enum later
+    public var category: CategoryOfEstablishment
     public var phoneNumber: String?
     public var placeAddress: String?
     public var background: ContentResponse?
@@ -93,8 +93,29 @@ public extension EstablishmentAddress {
 
 public extension EstablishmentWithEvents {
     var categoryString: String? {
-        //TODO: implement
-//        return "Night club"
-        return "\(category)"
+        return category.toString()
+    }
+}
+
+public enum CategoryOfEstablishment: Int, Codable {
+    case restaurant
+    case bar
+    case club
+    case cafe
+    case fastFood
+    
+    public func toString() -> String? {
+        switch self {
+        case .restaurant:
+            return "EstablishmentCategoryRestaurant".localised()
+        case .bar:
+            return "EstablishmentCategoryBar".localised()
+        case .club:
+            return "EstablishmentCategoryClub".localised()
+        case .cafe:
+            return "EstablishmentCategoryCafe".localised()
+        case .fastFood:
+            return "EstablishmentCategoryFastFood".localised()
+        }
     }
 }

@@ -178,6 +178,61 @@
         }
       }
     },
+    "EstablishmentCategoryBar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bar"
+          }
+        }
+      }
+    },
+    "EstablishmentCategoryCafe" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cafe"
+          }
+        }
+      }
+    },
+    "EstablishmentCategoryClub" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Night club"
+          }
+        }
+      }
+    },
+    "EstablishmentCategoryFastFood" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fastfood"
+          }
+        }
+      }
+    },
+    "EstablishmentCategoryRestaurant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurant"
+          }
+        }
+      }
+    },
     "EventsGuestListButton" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -343,39 +398,6 @@
         }
       }
     },
-"MyProfileContentEmpty" : {
-    "extractionState" : "manual",
-    "localizations" : {
-        "en" : {
-            "stringUnit" : {
-                "state" : "translated",
-                "value" : "All of your uploaded content will be placed here"
-            }
-        }
-    }
-},
-"MyProfileEventsEmpty" : {
-  "extractionState" : "manual",
-  "localizations" : {
-    "en" : {
-      "stringUnit" : {
-        "state" : "translated",
-        "value" : "All the events you like\nwill be here."
-      }
-    }
-  }
-},
-"MyProfilePlacesEmpty" : {
-  "extractionState" : "manual",
-  "localizations" : {
-    "en" : {
-      "stringUnit" : {
-        "state" : "translated",
-        "value" : "Here you will see your favorite places"
-        }
-      }
-    }
-  },
     "MenuDistanceDescription" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -383,6 +405,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select the distance within which places will be displayed"
+          }
+        }
+      }
+    },
+    "MyProfileContentEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All of your uploaded content will be placed here"
+          }
+        }
+      }
+    },
+    "MyProfileEventsEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All the events you like\nwill be here."
+          }
+        }
+      }
+    },
+    "MyProfilePlacesEmpty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Here you will see your favorite places"
           }
         }
       }

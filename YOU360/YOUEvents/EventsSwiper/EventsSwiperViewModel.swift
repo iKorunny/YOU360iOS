@@ -122,9 +122,9 @@ final class EventsSwiperViewModelImpl: PageLoaderDelegate {
                                                          name: item.name ?? "",
                                                          address: item.address?.stringValue,
                                                          category: item.categoryString)
-//            if !bussinessUIModel.events.isEmpty {
+            if !bussinessUIModel.events.isEmpty {
                 result.append(bussinessUIModel)
-//            }
+            }
         }
         
         return result
