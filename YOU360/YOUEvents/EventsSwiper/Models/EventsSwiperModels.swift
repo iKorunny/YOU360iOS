@@ -14,9 +14,9 @@ enum EventsSwiperEventType {
     
     static func convert(string: String) -> EventsSwiperEventType {
         switch string {
-        case "video":
+        case let str where str.contains("video"):
             return .video
-        case "image":
+        case let str where str.contains("image"):
             return .image
         default:
             return .unknown
