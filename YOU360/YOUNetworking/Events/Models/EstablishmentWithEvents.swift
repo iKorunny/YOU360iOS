@@ -79,6 +79,7 @@ public final class EstablishmentWithEvents: Codable {
     public var menusCount: Int
     public var certificatesCount: Int
     public var roomsCount: Int
+    public var likesCount: Int
 }
 
 public extension EstablishmentAddress {

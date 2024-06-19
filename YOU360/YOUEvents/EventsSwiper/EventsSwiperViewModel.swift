@@ -118,7 +118,7 @@ final class EventsSwiperViewModelImpl: PageLoaderDelegate {
             }
             let bussinessUIModel = EventsSwiperBussiness(id: item.id,
                                                          events: convertedEvents,
-                                                         likes: 5000,
+                                                         likes: item.likesCount,
                                                          name: item.name ?? "",
                                                          address: item.address?.stringValue,
                                                          category: item.categoryString)
